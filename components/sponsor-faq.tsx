@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "Can we sponsor a specific track?",
     answer:
-      "Gold tier and above can request to be the named sponsor of a specific track (Community/Main Street, Student Life, or AI & Automation). This includes prominent branding and speaking time during that track introduction.",
+      "Platinum sponsors can be the named sponsor of a specific track (Community/Main Street, Student Life, or AI & Automation). This includes prominent branding and speaking time during that track's introduction.",
   },
   {
     question: "What if we can't sponsor financially?",

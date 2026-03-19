@@ -1,4 +1,4 @@
-import { MessageCircle, Instagram } from "lucide-react"
+import Link from "next/link"
 
 export function Footer() {
   return (
@@ -16,56 +16,48 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
-              <a href="/register" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/register" className="block text-gray-400 hover:text-white transition-colors">
                 Register
-              </a>
-              <a href="/#about" className="block text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link href="/#about" className="block text-gray-400 hover:text-white transition-colors">
                 About
-              </a>
-              <a href="/#tracks" className="block text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link href="/#tracks" className="block text-gray-400 hover:text-white transition-colors">
                 Tracks
-              </a>
-              <a href="/#schedule" className="block text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link href="/#schedule" className="block text-gray-400 hover:text-white transition-colors">
                 Schedule
-              </a>
-              <a href="/resources" className="block text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link href="/resources" className="block text-gray-400 hover:text-white transition-colors">
                 Resources
-              </a>
-              <a href="/#faq" className="block text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link href="/#faq" className="block text-gray-400 hover:text-white transition-colors">
                 FAQ
-              </a>
-              <a href="/sponsor" className="block text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link href="/sponsor" className="block text-gray-400 hover:text-white transition-colors">
                 Sponsor
-              </a>
+              </Link>
             </div>
           </div>
 
           <div>
             <h4 className="font-semibold mb-4">Legal</h4>
             <div className="space-y-2">
-              <a href="/code-of-conduct" className="block text-gray-400 hover:text-white transition-colors">
+              <Link href="/code-of-conduct" className="block text-gray-400 hover:text-white transition-colors">
                 Code of Conduct
-              </a>
-              <a href="/privacy" className="block text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link href="/privacy" className="block text-gray-400 hover:text-white transition-colors">
                 Privacy Policy
-              </a>
-              <a href="/rules" className="block text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link href="/rules" className="block text-gray-400 hover:text-white transition-colors">
                 Event Rules
-              </a>
+              </Link>
             </div>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Connect</h4>
+            <h4 className="font-semibold mb-4">Community</h4>
             <div className="space-y-2">
-              <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-                <MessageCircle className="w-4 h-4" />
-                Discord
-              </a>
-              <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-                <Instagram className="w-4 h-4" />
-                Instagram
-              </a>
               <a
                 href="https://southwestmn-hacks.devpost.com/"
                 target="_blank"
@@ -74,6 +66,7 @@ export function Footer() {
               >
                 Devpost
               </a>
+              <p className="text-gray-500 text-sm">More social links coming soon!</p>
             </div>
           </div>
 
@@ -85,9 +78,10 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-          <p>
-            Hosted by <span className="font-semibold text-white">ETM Solutions</span>
-          </p>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <span>Hosted by</span>
+            <img src="/etm-solutions-logo.jpeg" alt="ETM Solutions" className="h-8 rounded" />
+          </div>
           <p className="mt-2">© 2026 SouthwestMN Hacks. All rights reserved.</p>
         </div>
       </div>

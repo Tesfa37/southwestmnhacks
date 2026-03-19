@@ -75,10 +75,13 @@ export default function RegisterPage() {
             <iframe
               src="https://docs.google.com/forms/d/e/1FAIpQLSeKYn3vyULkHJ8mYgrP2d2YvPhYGmQ48u7FebJQi7MjU1e0zw/viewform?embedded=true"
               width="100%"
-              height="1200"
+              height="1400"
               frameBorder="0"
               marginHeight={0}
               marginWidth={0}
+              className="min-h-[800px]"
+              title="SouthwestMN Hacks Registration Form"
+              loading="lazy"
             >
               Loading…
             </iframe>

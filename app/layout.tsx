@@ -4,8 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://southwestmnhacks.org"),
@@ -37,9 +37,10 @@ export const metadata: Metadata = {
     description:
       "Join us for a FREE 12-hour student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
     siteName: "SouthwestMN Hacks",
+    // TODO: Convert og-image.svg to PNG (1200x630) for full social platform support
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "SouthwestMN Hacks - March 21, 2026",
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     title: "SouthwestMN Hacks - March 21, 2026 | Free Student Hackathon in Marshall, MN",
     description:
       "Join us for a FREE 12-hour student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
-    images: ["/og-image.png"],
+    images: ["/og-image.svg"],
   },
   robots: {
     index: true,
@@ -68,7 +69,6 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#1f2937" },
   ],
-  generator: "v0.app",
   icons: {
     icon: [
       {
@@ -101,7 +101,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`}>
+      <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>

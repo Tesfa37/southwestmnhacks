@@ -8,7 +8,8 @@ export const metadata: Metadata = {
     title: "Register - SouthwestMN Hacks",
     description:
       "Register for SouthwestMN Hacks - A beginner-friendly 12-hour hackathon on March 21, 2026 in Marshall, MN.",
-    images: ["/og-image.png"],
+    // TODO: Convert og-image.svg to PNG (1200x630) for full social platform support
+    images: ["/og-image.svg"],
   },
 }
 

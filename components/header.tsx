@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
+import Link from "next/link"
+import { track } from "@vercel/analytics"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -10,48 +12,48 @@ export function Header() {
     <nav className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between gap-2">
-          <a
+          <Link
             href="/"
             className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl font-bold leading-tight whitespace-nowrap flex-shrink-0"
           >
             <span className="text-orange-600">Southwest</span>
             <span className="text-blue-600">MN</span> Hacks
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
-            <a href="/#about" className="text-gray-700 hover:text-gray-900">
+            <Link href="/#about" className="text-gray-700 hover:text-gray-900">
               About
-            </a>
-            <a href="/#tracks" className="text-gray-700 hover:text-gray-900">
+            </Link>
+            <Link href="/#tracks" className="text-gray-700 hover:text-gray-900">
               Tracks
-            </a>
-            <a href="/#schedule" className="text-gray-700 hover:text-gray-900">
+            </Link>
+            <Link href="/#schedule" className="text-gray-700 hover:text-gray-900">
               Schedule
-            </a>
-            <a href="/resources" className="text-gray-700 hover:text-gray-900">
+            </Link>
+            <Link href="/resources" className="text-gray-700 hover:text-gray-900">
               Resources
-            </a>
-            <a href="/#faq" className="text-gray-700 hover:text-gray-900">
+            </Link>
+            <Link href="/#faq" className="text-gray-700 hover:text-gray-900">
               FAQ
-            </a>
-            <a href="/rules" className="text-gray-700 hover:text-gray-900">
+            </Link>
+            <Link href="/rules" className="text-gray-700 hover:text-gray-900">
               Rules
-            </a>
-            <a
+            </Link>
+            <Link
               href="/sponsor"
-              onClick={() => window.plausible?.('Sponsor Click', { props: { location: 'header-desktop' } })}
+              onClick={() => track('Sponsor Click', { location: 'header-desktop' })}
               className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-all font-semibold"
             >
               Sponsor
-            </a>
-            <a
+            </Link>
+            <Link
               href="/register"
-              onClick={() => window.plausible?.('Register Click', { props: { location: 'header-desktop' } })}
+              onClick={() => track('Register Click', { location: 'header-desktop' })}
               className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-semibold"
             >
               Register Free
-            </a>
+            </Link>
           </div>
 
           <button
@@ -66,62 +68,62 @@ export function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 space-y-3 border-t border-gray-200 pt-4">
-            <a
+            <Link
               href="/#about"
               className="block text-gray-700 hover:text-gray-900 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               About
-            </a>
-            <a
+            </Link>
+            <Link
               href="/#tracks"
               className="block text-gray-700 hover:text-gray-900 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Tracks
-            </a>
-            <a
+            </Link>
+            <Link
               href="/#schedule"
               className="block text-gray-700 hover:text-gray-900 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Schedule
-            </a>
-            <a
+            </Link>
+            <Link
               href="/resources"
               className="block text-gray-700 hover:text-gray-900 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Resources
-            </a>
-            <a
+            </Link>
+            <Link
               href="/#faq"
               className="block text-gray-700 hover:text-gray-900 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               FAQ
-            </a>
-            <a
+            </Link>
+            <Link
               href="/rules"
               className="block text-gray-700 hover:text-gray-900 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Rules
-            </a>
-            <a
+            </Link>
+            <Link
               href="/sponsor"
-              onClick={() => window.plausible?.('Sponsor Click', { props: { location: 'header-mobile' } })}
+              onClick={() => { track('Sponsor Click', { location: 'header-mobile' }); setMobileMenuOpen(false) }}
               className="block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all font-semibold text-center"
             >
               Sponsor
-            </a>
-            <a
+            </Link>
+            <Link
               href="/register"
-              onClick={() => window.plausible?.('Register Click', { props: { location: 'header-mobile' } })}
+              onClick={() => { track('Register Click', { location: 'header-mobile' }); setMobileMenuOpen(false) }}
               className="block bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-3 rounded-full hover:shadow-lg transition-all font-semibold text-center"
             >
               Register Free
-            </a>
+            </Link>
           </div>
         )}
       </div>

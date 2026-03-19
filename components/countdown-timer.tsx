@@ -68,6 +68,35 @@ export function CountdownTimer() {
     )
   }
 
+  const eventStart = new Date("2026-03-21T08:00:00-05:00")
+  const eventEnd = new Date("2026-03-21T20:00:00-05:00")
+  const now = new Date()
+
+  if (now >= eventStart && now <= eventEnd) {
+    return (
+      <div className="max-w-4xl mx-auto mb-12">
+        <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 shadow-lg text-center">
+          <div className="text-4xl sm:text-5xl font-black text-white mb-4">
+            <span className="animate-pulse">🎉</span>
+          </div>
+          <h3 className="text-white text-xl sm:text-2xl font-bold mb-2">Hacking is LIVE!</h3>
+          <p className="text-white/90 text-lg">See you at SMSU Upper Conference Center!</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (now > eventEnd) {
+    return (
+      <div className="max-w-4xl mx-auto mb-12">
+        <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 shadow-lg text-center">
+          <h3 className="text-white text-xl sm:text-2xl font-bold mb-2">Thanks for an amazing day!</h3>
+          <p className="text-white/90 text-lg">Stay tuned for results 🏆</p>
+        </div>
+      </div>
+    )
+  }
+
   const { days, hours, minutes, seconds } = timeLeft
 
   return (

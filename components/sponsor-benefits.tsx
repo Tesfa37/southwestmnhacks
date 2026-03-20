@@ -9,7 +9,7 @@ const benefits = [
   {
     icon: Megaphone,
     title: "Brand Visibility",
-    description: "Get your brand in front of 100+ attendees and thousands on social media",
+    description: "Get your brand in front of 50+ attendees, participants, and the local tech community",
   },
   {
     icon: Heart,

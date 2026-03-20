@@ -41,9 +41,9 @@ export default function HomePage() {
     "@type": "Event",
     name: "SouthwestMN Hacks - Marshall Edition",
     description:
-      "A beginner-friendly 12-hour build day where students and creators come together to turn ideas into real projects. No experience needed—just curiosity and enthusiasm!",
+      "A beginner-friendly full-day hackathon where students and creators come together to turn ideas into real projects. No experience needed—just curiosity and enthusiasm!",
     startDate: "2026-03-21T08:00:00-05:00",
-    endDate: "2026-03-21T20:00:00-05:00",
+    endDate: "2026-03-21T19:30:00-05:00",
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
@@ -101,7 +101,7 @@ export default function HomePage() {
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed text-pretty px-4">
-          A beginner-friendly 12-hour build day where students and creators come together to turn ideas into real
+          A beginner-friendly, full-day hackathon where students and creators come together to turn ideas into real
           projects. No experience needed—just curiosity and enthusiasm!
         </p>
 
@@ -168,7 +168,7 @@ export default function HomePage() {
             of time. Think of it as a hands-on workshop meets friendly competition.
           </p>
           <p className="text-lg leading-relaxed opacity-95">
-            You'll spend 12 hours designing, coding, and presenting a project—whether it's an app, website, hardware
+            You'll spend the day designing, coding, and presenting a project—whether it's an app, website, hardware
             prototype, or creative solution to a real problem. Along the way, you'll learn new skills, meet mentors, and
             have fun!
           </p>
@@ -265,7 +265,7 @@ export default function HomePage() {
                 <Clock className="w-6 h-6 text-white" />
               </div>
               <div className="font-semibold text-gray-900">Time</div>
-              <div className="text-gray-600">8:00 AM – 8:00 PM</div>
+              <div className="text-gray-600">8:00 AM – 7:30 PM</div>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
@@ -309,23 +309,23 @@ export default function HomePage() {
               </div>
               <div className="flex-1 pb-8 border-l-4 border-orange-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-orange-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Check-in & Breakfast</h4>
+                <h4 className="font-bold text-lg sm:text-xl mb-1">Breakfast & Check-in</h4>
                 <p className="text-gray-600">Arrive, grab breakfast, and meet other participants</p>
               </div>
             </div>
             <div className="flex gap-4 sm:gap-6">
               <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">9:00 AM</div>
+                <div className="font-bold text-base sm:text-lg">8:30 AM</div>
               </div>
               <div className="flex-1 pb-8 border-l-4 border-blue-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-400 rounded-full"></div>
                 <h4 className="font-bold text-lg sm:text-xl mb-1">Opening Ceremony</h4>
-                <p className="text-gray-600">Kickoff, team formation, and track introductions</p>
+                <p className="text-gray-600">Kickoff, sponsor remarks, team formation, and track introductions</p>
               </div>
             </div>
             <div className="flex gap-4 sm:gap-6">
               <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">10:00 AM</div>
+                <div className="font-bold text-base sm:text-lg">9:00 AM</div>
               </div>
               <div className="flex-1 pb-8 border-l-4 border-purple-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-purple-400 rounded-full"></div>
@@ -339,7 +339,7 @@ export default function HomePage() {
               </div>
               <div className="flex-1 pb-8 border-l-4 border-green-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-green-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Lunch Break</h4>
+                <h4 className="font-bold text-lg sm:text-xl mb-1">Lunch</h4>
                 <p className="text-gray-600">Recharge with provided lunch and snacks</p>
               </div>
             </div>
@@ -355,12 +355,22 @@ export default function HomePage() {
             </div>
             <div className="flex gap-4 sm:gap-6">
               <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">6:00 PM</div>
+                <div className="font-bold text-base sm:text-lg">5:30 PM</div>
               </div>
               <div className="flex-1 pb-8 border-l-4 border-indigo-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-indigo-400 rounded-full"></div>
                 <h4 className="font-bold text-lg sm:text-xl mb-1">Demos & Judging</h4>
                 <p className="text-gray-600">Present your work to judges and peers</p>
+              </div>
+            </div>
+            <div className="flex gap-4 sm:gap-6">
+              <div className="text-right w-20 sm:w-24 flex-shrink-0">
+                <div className="font-bold text-base sm:text-lg">6:30 PM</div>
+              </div>
+              <div className="flex-1 pb-8 border-l-4 border-teal-400 pl-4 sm:pl-6 relative">
+                <div className="absolute -left-2 top-0 w-4 h-4 bg-teal-400 rounded-full"></div>
+                <h4 className="font-bold text-lg sm:text-xl mb-1">Dinner</h4>
+                <p className="text-gray-600">Celebrate with dinner while results are tallied</p>
               </div>
             </div>
             <div className="flex gap-4 sm:gap-6">

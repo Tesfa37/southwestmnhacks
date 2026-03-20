@@ -2,14 +2,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const faqs = [
   {
-    question: "Will I receive a tax receipt?",
-    answer:
-      "Yes! SouthwestMN Hacks is hosted by ETM Solutions. If you require a formal donation receipt for tax purposes, we can arrange that through our fiscal sponsor. Please indicate this when submitting your sponsorship inquiry.",
-  },
-  {
     question: "How many people typically attend?",
     answer:
-      "We expect 100-120 attendees including students from SMSU, community members, and mentors. Our goal is to create an intimate, supportive environment where every participant gets hands-on help and attention.",
+      "We expect 50+ attendees including students from SMSU, community members, and mentors. Our goal is to create an intimate, supportive environment where every participant gets hands-on help and attention.",
   },
   {
     question: "What do sponsor representatives do onsite?",

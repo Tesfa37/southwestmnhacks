@@ -28,7 +28,7 @@ export default function RulesPage() {
             <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 shadow-lg mb-16">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">TL;DR</h2>
               <p className="text-white text-lg leading-relaxed">
-                Students only. Teams of 1-4. Build something new in 12 hours. AI tools are fine—just be honest about
+                Students only. Teams of 1-4. Build something new in a day. AI tools are fine—just be honest about
                 it. Be creative, have fun, and follow the Code of Conduct.
               </p>
             </div>
@@ -138,7 +138,7 @@ export default function RulesPage() {
                     <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
                     <span className="text-gray-700">
                       <strong>Planning is OK</strong> – You can brainstorm and plan before the event, but code must be
-                      written during the 12 hours.
+                      written during the hackathon.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
@@ -156,7 +156,7 @@ export default function RulesPage() {
                   </li>
                 </ul>
                 <p className="text-gray-700 leading-relaxed">
-                  When in doubt, ask yourself: "Am I building something new in these 12 hours?" If yes, you're good to
+                  When in doubt, ask yourself: "Am I building something new during this hackathon?" If yes, you're good to
                   go!
                 </p>
               </div>
@@ -245,7 +245,7 @@ export default function RulesPage() {
                 </div>
                 <p className="text-gray-700 leading-relaxed mt-6 pt-6 border-t border-gray-200">
                   <strong>Bonus points:</strong> Polish, design quality, and complete functionality can help you stand
-                  out. But don't worry if things aren't perfect—this is a 12-hour hackathon, not a product launch!
+                  out. But don't worry if things aren't perfect—this is a hackathon, not a product launch!
                 </p>
               </div>
             </div>

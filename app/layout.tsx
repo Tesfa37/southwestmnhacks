@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: "SouthwestMN Hacks - March 21, 2026 | Marshall, MN",
   },
   description:
-    "Join us for a FREE 12-hour student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
+    "Join us for a FREE full-day student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
   keywords: [
     "hackathon",
     "Marshall MN",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: "https://southwestmnhacks.org",
     title: "SouthwestMN Hacks - March 21, 2026 | Free Student Hackathon in Marshall, MN",
     description:
-      "Join us for a FREE 12-hour student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
+      "Join us for a FREE full-day student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
     siteName: "SouthwestMN Hacks",
     // TODO: Convert og-image.svg to PNG (1200x630) for full social platform support
     images: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SouthwestMN Hacks - March 21, 2026 | Free Student Hackathon in Marshall, MN",
     description:
-      "Join us for a FREE 12-hour student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
+      "Join us for a FREE full-day student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
     images: ["/og-image.svg"],
   },
   robots: {

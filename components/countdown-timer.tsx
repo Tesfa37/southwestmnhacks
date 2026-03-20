@@ -69,7 +69,7 @@ export function CountdownTimer() {
   }
 
   const eventStart = new Date("2026-03-21T08:00:00-05:00")
-  const eventEnd = new Date("2026-03-21T20:00:00-05:00")
+  const eventEnd = new Date("2026-03-21T19:30:00-05:00")
   const now = new Date()
 
   if (now >= eventStart && now <= eventEnd) {

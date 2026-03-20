@@ -41,8 +41,8 @@ export default function RegisterPage() {
             <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Clock className="w-6 h-6 text-white" />
             </div>
-            <h3 className="text-xl font-bold mb-2">12 Hours</h3>
-            <p className="text-gray-600 text-sm">8:00 AM to 8:00 PM on March 21, 2026</p>
+            <h3 className="text-xl font-bold mb-2">Full Day</h3>
+            <p className="text-gray-600 text-sm">8:00 AM to 7:30 PM on March 21, 2026</p>
           </div>
 
           <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">

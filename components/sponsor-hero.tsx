@@ -12,7 +12,7 @@ export function SponsorHero() {
           Sponsor the next generation of builders
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
-          Help us create an unforgettable experience for 100+ students and community members building solutions for
+          Help us create an unforgettable experience for 50+ students and community members building solutions for
           Southwest Minnesota
         </p>
       </div>

@@ -243,7 +243,7 @@ export function Workshops() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all"
           >
-            🎓 Get $200+ in free developer tools → education.github.com/pack
+            🎓 Get free developer tools, domains & cloud credits → education.github.com/pack
             <ExternalLink className="w-5 h-5" />
           </a>
         </div>

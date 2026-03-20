@@ -5,7 +5,7 @@ const kits = [
   {
     icon: Zap,
     title: "No-Code Builder",
-    description: "Build apps with Bubble, Webflow, or Airtable. Perfect for non-technical builders.",
+    description: "No coding? No problem. These platforms let you build functional apps and sites visually.",
     tags: ["Bubble", "Webflow", "Airtable"],
     color: "bg-yellow-100",
     iconColor: "text-yellow-700",
@@ -17,7 +17,7 @@ const kits = [
   {
     icon: Code2,
     title: "Web App Starter",
-    description: "React + Next.js template with authentication and database ready to go.",
+    description: "Use React + Next.js with Vercel's free templates, and Supabase for a free database and auth.",
     tags: ["React", "Next.js", "Supabase"],
     color: "bg-blue-100",
     iconColor: "text-blue-700",
@@ -29,7 +29,7 @@ const kits = [
   {
     icon: Terminal,
     title: "Python/API Kit",
-    description: "Flask or FastAPI starter with examples for data processing and APIs.",
+    description: "Build backends and APIs with Python. FastAPI has great docs for beginners, and Replit lets you code in the browser.",
     tags: ["Python", "Flask", "APIs"],
     color: "bg-green-100",
     iconColor: "text-green-700",
@@ -53,7 +53,7 @@ const kits = [
   {
     icon: Sparkles,
     title: "AI Integration",
-    description: "Pre-built examples using OpenAI, Claude, or Gemini APIs with starter prompts.",
+    description: "Add AI to your project using free APIs. Google AI Studio and OpenRouter give you free access to powerful models.",
     tags: ["OpenAI", "Claude", "Prompts"],
     color: "bg-purple-100",
     iconColor: "text-purple-700",
@@ -69,8 +69,8 @@ export function StarterKits() {
     <section className="py-16 px-4 bg-gray-50">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Starter Kits</h2>
-          <p className="text-lg text-gray-600 text-balance">Choose your tech stack and hit the ground running</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Suggested Tools</h2>
+          <p className="text-lg text-gray-600 text-balance">Tools and platforms to help you build your project</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -17,7 +17,7 @@ const sections = [
       "Submit on Devpost (southwestmn-hacks.devpost.com) by 5:00 PM",
       "Include: project name, track, team members",
       "Link to your GitHub repo or live demo",
-      "2-minute video demo (optional but encouraged)",
+      "Short video demo (optional, not required)",
       "Brief description of what you built",
     ],
   },

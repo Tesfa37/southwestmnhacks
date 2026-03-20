@@ -1,6 +1,6 @@
 "use client"
 
-import { Gift, Database, Globe, Sparkles, Shield, Palette } from "lucide-react"
+import { Gift, Database, Globe, Sparkles, Code, Palette } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const resources = [
@@ -34,18 +34,18 @@ const resources = [
   {
     icon: Database,
     title: "MongoDB Atlas",
-    description: "FREE database with 512MB storage - no credit card needed",
+    description: "FREE database with 5GB storage - no credit card needed",
     url: "https://www.mongodb.com/atlas",
     tag: "Database",
     color: "bg-green-100",
     iconColor: "text-green-700",
   },
   {
-    icon: Shield,
-    title: "Cloudflare",
-    description: "FREE domain management, DNS, and CDN for your projects",
-    url: "https://cloudflare.com",
-    tag: "Infrastructure",
+    icon: Code,
+    title: "Replit",
+    description: "FREE browser-based IDE - code, run, and share projects with zero setup",
+    url: "https://replit.com",
+    tag: "Code Editor",
     color: "bg-orange-100",
     iconColor: "text-orange-700",
   },

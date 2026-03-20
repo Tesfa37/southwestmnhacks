@@ -10,7 +10,7 @@ export function ResourcesHero() {
         </div>
         <h1 className="text-4xl md:text-6xl font-bold text-balance mb-6 leading-tight">Starter Kits & Workshops</h1>
         <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
-          Everything you need to go from idea to working prototype in 12 hours. No experience required.
+          Everything you need to go from idea to working prototype. No experience required.
         </p>
       </div>
     </section>

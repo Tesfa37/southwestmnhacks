@@ -42,11 +42,11 @@ const beforeEventVideos: Video[] = [
     description: "Set up the most popular code editor",
   },
   {
-    title: "GitHub Student Developer Pack",
-    source: "GitHub",
-    duration: "3 min",
-    videoId: "dSCvPB5KyYk",
-    description: "Get FREE tools, domains, cloud credits & more",
+    title: "Git & GitHub for Beginners",
+    source: "Fireship",
+    duration: "~12 min",
+    videoId: "HkdAHXoRtos",
+    description: "Learn how to use GitHub to share and collaborate on your hackathon project",
   },
 ]
 
@@ -66,17 +66,10 @@ const quickReferenceVideos: Video[] = [
     description: "Modern UI framework overview",
   },
   {
-    title: "Google AI Studio Tutorial",
-    source: "Google Developers",
-    duration: "15 min",
-    videoId: "HN9cPQnPPzU",
-    description: "Add FREE AI to your project with Gemini API",
-  },
-  {
-    title: "Deploy to Vercel in 5 Minutes",
-    source: "Vercel",
-    duration: "5 min",
-    videoId: "sPHl5G_LfrA",
+    title: "Deploy to Vercel",
+    source: "PedroTech",
+    duration: "~5 min",
+    videoId: "2HBIzEx6IZA",
     description: "Free hosting for your project demo",
   },
 ]
@@ -88,13 +81,6 @@ const beforeDemosVideos: Video[] = [
     duration: "4 min",
     videoId: "17XZGUX_9iM",
     description: "Pitch structure that works for hackathons too",
-  },
-  {
-    title: "Hackathon Demo Tips",
-    source: "Devpost",
-    duration: "6 min",
-    videoId: "CTy9qQGsXRA",
-    description: "What judges look for in demos",
   },
 ]
 

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 const kits = [
   {
     icon: Zap,
-    title: "No-Code Builder",
+    title: "Visual Builder",
     description: "No coding? No problem. These platforms let you build functional apps and sites visually.",
     tags: ["Bubble", "Webflow", "Airtable"],
     color: "bg-yellow-100",

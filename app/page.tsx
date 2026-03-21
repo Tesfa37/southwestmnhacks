@@ -99,6 +99,19 @@ export default function HomePage() {
       {/* Header Component */}
       <Header />
 
+      {/* Post-Event Survey Banner */}
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 px-4 text-center">
+        <p className="text-lg font-semibold mb-2">Thanks for hacking with us! Please share your feedback:</p>
+        <a
+          href="https://forms.gle/Pa3UCXfNHhSNv7Ww6"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 hover:shadow-lg hover:scale-105 transition-all"
+        >
+          Take the Survey
+        </a>
+      </div>
+
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 text-center">
         <div className="inline-block bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full text-sm font-semibold text-blue-900 mb-6">

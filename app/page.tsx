@@ -1,6 +1,7 @@
 "use client"
 
-import { Calendar, Clock, MapPin, Users, Lightbulb, Store, GraduationCap, Sparkles } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Calendar, Clock, MapPin, Users, Lightbulb, Sparkles, Brain, BarChart3 } from "lucide-react"
 import Link from "next/link"
 import { track } from "@vercel/analytics"
 import { Header } from "@/components/header"
@@ -9,6 +10,18 @@ import { CountdownTimer } from "@/components/countdown-timer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export default function HomePage() {
+  const [challengeRevealed, setChallengeRevealed] = useState(false)
+
+  useEffect(() => {
+    const revealTime = new Date("2026-03-21T08:58:00-05:00")
+    const check = () => {
+      setChallengeRevealed(new Date() >= revealTime)
+    }
+    check()
+    const interval = setInterval(check, 30000)
+    return () => clearInterval(interval)
+  }, [])
+
   const faqs = [
     {
       question: "Do I need coding experience?",
@@ -153,7 +166,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-xl font-bold mb-2">Win Prizes</h3>
             <p className="text-gray-600">
-              Compete for awards in multiple tracks and get recognized for your creativity and innovation.
+              Compete for awards and get recognized for your creativity, innovation, and execution.
             </p>
           </div>
         </div>
@@ -175,77 +188,83 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Tracks Section */}
-      <section id="tracks" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+      {/* Schwan's Challenge Section */}
+      <section id="challenges" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Choose Your Track</h2>
-          <p className="text-xl text-gray-600">
-            Pick a challenge that excites you, or build something completely unique!
-          </p>
+          <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+            <Sparkles className="w-4 h-4" />
+            Presented by our Platinum Sponsor
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Schwan's Company Challenge</h2>
+          {challengeRevealed ? (
+            <p className="text-xl text-gray-600">Choose one of two challenges from our Platinum Sponsor</p>
+          ) : (
+            <p className="text-xl text-gray-600">Real-world business challenges from Schwan's Company</p>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Track 1: Community/Main Street */}
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow">
-            <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mb-5">
-              <Store className="w-7 h-7 text-white" />
+        {challengeRevealed ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Challenge 1: Knowledge Transfer Agent */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow flex flex-col">
+              <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mb-5">
+                <Brain className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Knowledge Transfer Agent</h3>
+              <p className="text-gray-600 mb-6 flex-1">
+                Build an AI-powered agent that helps one person teach another. Your solution should capture knowledge
+                from audio, video, screen recordings, or uploaded files. It should organize what it learns and turn
+                it into clear training materials like summaries, step-by-step instructions, or quizzes. The agent
+                must also help a new learner by guiding them through the captured content and answering their
+                questions.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">AI</span>
+                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Education</span>
+                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Automation</span>
+              </div>
+              <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
+                You may use any technology: code, no-code, AI APIs, web apps, mobile apps, or desktop applications.
+                Creativity, usability, and working functionality matter more than perfection.
+              </p>
             </div>
-            <h3 className="text-2xl font-bold mb-3">Community & Main Street</h3>
-            <p className="text-gray-600 mb-6">
-              Build solutions that strengthen local businesses and bring neighbors together.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
-                Local Directory
-              </span>
-              <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
-                Event Finder
-              </span>
-              <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
-                Shop Local App
-              </span>
-            </div>
-          </div>
 
-          {/* Track 2: Student Life */}
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow">
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center mb-5">
-              <GraduationCap className="w-7 h-7 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold mb-3">Student Life</h3>
-            <p className="text-gray-600 mb-6">
-              Create tools and experiences that make campus life easier and more connected.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Study Buddy</span>
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Campus Map</span>
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                Course Planner
-              </span>
-            </div>
-          </div>
-          {/* Track 3: AI & Automation */}
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow">
-            <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mb-5">
-              <Sparkles className="w-7 h-7 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold mb-3">AI & Automation</h3>
-            <p className="text-gray-600 mb-6">
-              Harness the power of AI and automation to solve problems in creative ways.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
-                AI Chatbot
-              </span>
-              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
-                Smart Assistant
-              </span>
-              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
-                Auto Scheduler
-              </span>
+            {/* Challenge 2: IT Budget Forecasting */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow flex flex-col">
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-teal-500 rounded-2xl flex items-center justify-center mb-5">
+                <BarChart3 className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">IT Hardware & Software Budget Forecasting</h3>
+              <p className="text-gray-600 mb-6 flex-1">
+                Build a tool that helps IT teams plan and manage hardware and software costs. Users should be able
+                to enter expected costs for things like laptops, servers, applications, and subscriptions, then
+                forecast totals for up to 5 years. The system should also track actual spending and compare it to
+                the original plan. Show planned costs, actual costs, and the difference in a clean format like
+                charts, tables, or dashboards.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Data</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Finance</span>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Dashboard</span>
+              </div>
+              <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
+                You may use any technology: code, no-code, AI APIs, web apps, mobile apps, or desktop applications.
+                Creativity, usability, and working functionality matter more than perfection.
+              </p>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="bg-white rounded-3xl p-10 shadow-sm border border-gray-200 text-center max-w-3xl mx-auto">
+            <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Sparkles className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Challenges Revealed at Opening Ceremony</h3>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Two real-world business challenges from Schwan's Company will be revealed at the opening ceremony on
+              March 21. All teams will choose one challenge to tackle.
+            </p>
+          </div>
+        )}
       </section>
 
       {/* Event Details */}
@@ -319,8 +338,8 @@ export default function HomePage() {
               </div>
               <div className="flex-1 pb-8 border-l-4 border-blue-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Opening Ceremony</h4>
-                <p className="text-gray-600">Kickoff, sponsor remarks, team formation, and track introductions</p>
+                <h4 className="font-bold text-lg sm:text-xl mb-1">Opening Ceremony & Sponsor Remarks</h4>
+                <p className="text-gray-600">Kickoff with organizers, judges, sponsor remarks, and challenge walkthrough</p>
               </div>
             </div>
             <div className="flex gap-4 sm:gap-6">
@@ -329,8 +348,8 @@ export default function HomePage() {
               </div>
               <div className="flex-1 pb-8 border-l-4 border-purple-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-purple-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Hacking Begins!</h4>
-                <p className="text-gray-600">Start building your projects with mentor support</p>
+                <h4 className="font-bold text-lg sm:text-xl mb-1">Hacking Begins</h4>
+                <p className="text-gray-600">Start building your project with mentor support available</p>
               </div>
             </div>
             <div className="flex gap-4 sm:gap-6">
@@ -340,7 +359,7 @@ export default function HomePage() {
               <div className="flex-1 pb-8 border-l-4 border-green-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-green-400 rounded-full"></div>
                 <h4 className="font-bold text-lg sm:text-xl mb-1">Lunch</h4>
-                <p className="text-gray-600">Recharge with provided lunch and snacks</p>
+                <p className="text-gray-600">Recharge with a provided lunch</p>
               </div>
             </div>
             <div className="flex gap-4 sm:gap-6">
@@ -349,18 +368,18 @@ export default function HomePage() {
               </div>
               <div className="flex-1 pb-8 border-l-4 border-pink-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-pink-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Submissions Due</h4>
-                <p className="text-gray-600">Final touches and project submissions close</p>
+                <h4 className="font-bold text-lg sm:text-xl mb-1">Submissions Due on Devpost</h4>
+                <p className="text-gray-600">Final project submissions close. No extensions.</p>
               </div>
             </div>
             <div className="flex gap-4 sm:gap-6">
               <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">5:30 PM</div>
+                <div className="font-bold text-base sm:text-lg">5:15 PM</div>
               </div>
               <div className="flex-1 pb-8 border-l-4 border-indigo-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-indigo-400 rounded-full"></div>
                 <h4 className="font-bold text-lg sm:text-xl mb-1">Demos & Judging</h4>
-                <p className="text-gray-600">Present your work to judges and peers</p>
+                <p className="text-gray-600">Each team presents their project to the judges</p>
               </div>
             </div>
             <div className="flex gap-4 sm:gap-6">
@@ -370,7 +389,7 @@ export default function HomePage() {
               <div className="flex-1 pb-8 border-l-4 border-teal-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-teal-400 rounded-full"></div>
                 <h4 className="font-bold text-lg sm:text-xl mb-1">Dinner</h4>
-                <p className="text-gray-600">Celebrate with dinner while results are tallied</p>
+                <p className="text-gray-600">Dinner served while judges deliberate</p>
               </div>
             </div>
             <div className="flex gap-4 sm:gap-6">
@@ -379,8 +398,8 @@ export default function HomePage() {
               </div>
               <div className="flex-1 border-l-4 border-yellow-400 pl-4 sm:pl-6 relative">
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-yellow-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Awards & Closing</h4>
-                <p className="text-gray-600">Celebrate winners and wrap up the day</p>
+                <h4 className="font-bold text-lg sm:text-xl mb-1">Awards Ceremony & Closing</h4>
+                <p className="text-gray-600">Winners announced, plaques and medals awarded</p>
               </div>
             </div>
           </div>

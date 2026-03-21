@@ -15,7 +15,7 @@ const sections = [
     title: "How to Submit Your Project",
     items: [
       "Submit on Devpost (southwestmn-hacks.devpost.com) by 5:00 PM",
-      "Include: project name, track, team members",
+      "Include: project name, challenge, team members",
       "Link to your GitHub repo or live demo",
       "Short video demo (optional, not required)",
       "Brief description of what you built",

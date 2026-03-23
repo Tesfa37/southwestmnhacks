@@ -16,14 +16,11 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
-              <Link href="/register" className="block text-gray-400 hover:text-white transition-colors">
-                Register
+              <Link href="/#recap" className="block text-gray-400 hover:text-white transition-colors">
+                Recap
               </Link>
-              <Link href="/#about" className="block text-gray-400 hover:text-white transition-colors">
-                About
-              </Link>
-              <Link href="/#tracks" className="block text-gray-400 hover:text-white transition-colors">
-                Tracks
+              <Link href="/#winners" className="block text-gray-400 hover:text-white transition-colors">
+                Winners
               </Link>
               <Link href="/#schedule" className="block text-gray-400 hover:text-white transition-colors">
                 Schedule
@@ -66,7 +63,14 @@ export function Footer() {
               >
                 Devpost
               </a>
-              <p className="text-gray-500 text-sm">More social links coming soon!</p>
+              <a
+                href="https://southwestmn-hacks.devpost.com/project-gallery"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-gray-400 hover:text-white transition-colors"
+              >
+                Project Gallery
+              </a>
             </div>
           </div>
 

@@ -1,13 +1,16 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Calendar, Clock, MapPin, Users, Lightbulb, Sparkles, Brain, BarChart3 } from "lucide-react"
+import { Calendar, Clock, MapPin, Users, Lightbulb, Sparkles, Brain, BarChart3, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import { track } from "@vercel/analytics"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { CountdownTimer } from "@/components/countdown-timer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { EventRecap } from "@/components/event-recap"
+import { Winners } from "@/components/winners"
+import { Appreciation } from "@/components/appreciation"
 
 export default function HomePage() {
   const [challengeRevealed, setChallengeRevealed] = useState(false)
@@ -132,19 +135,20 @@ export default function HomePage() {
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center mb-16 px-4">
-          <Link
-            href="/register"
-            onClick={() => track('Register Click', { location: 'hero' })}
-            className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-8 py-4 rounded-full hover:shadow-lg transition-all font-semibold text-lg inline-block"
+          <a
+            href="https://southwestmn-hacks.devpost.com/project-gallery"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-orange-500 text-white px-8 py-4 rounded-full hover:shadow-lg transition-all font-semibold text-lg"
           >
-            Register Now
-          </Link>
+            View Projects on Devpost
+            <ExternalLink className="w-5 h-5" />
+          </a>
           <Link
-            href="/sponsor"
-            onClick={() => track('Sponsor Click', { location: 'hero' })}
+            href="/#winners"
             className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold text-lg inline-block"
           >
-            Become a Sponsor
+            See the Winners
           </Link>
         </div>
 
@@ -184,6 +188,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Event Recap */}
+      <EventRecap />
+
+      {/* Winners */}
+      <Winners />
 
       {/* What is a Hackathon */}
       <section id="about" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
@@ -316,12 +326,12 @@ export default function HomePage() {
           </div>
           <div className="text-center mt-8">
             <a
-              href="https://southwestmn-hacks.devpost.com/"
+              href="https://southwestmn-hacks.devpost.com/project-gallery"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:scale-105 transition-all"
             >
-              Submit your project on Devpost →
+              View All Projects on Devpost →
             </a>
           </div>
         </div>
@@ -441,6 +451,9 @@ export default function HomePage() {
         </Accordion>
       </section>
 
+      {/* Appreciation */}
+      <Appreciation />
+
       {/* Sponsors Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
@@ -480,16 +493,16 @@ export default function HomePage() {
 
         {/* Sponsor CTA */}
         <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 sm:p-12 text-center text-white">
-          <h3 className="text-2xl sm:text-3xl font-bold mb-4">Want to join them?</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-4">Interested in future editions?</h3>
           <p className="text-lg sm:text-xl mb-8 opacity-95">
-            Help us make this event amazing for our community!
+            We&apos;re just getting started. Learn how to support the next generation of student builders.
           </p>
           <Link
             href="/sponsor"
             onClick={() => track('Sponsor Click', { location: 'sponsors-section' })}
             className="bg-white text-blue-600 px-8 py-4 rounded-full hover:shadow-xl transition-all font-semibold text-lg inline-block"
           >
-            Become a Sponsor
+            Sponsor a Future Event
           </Link>
         </div>
       </section>

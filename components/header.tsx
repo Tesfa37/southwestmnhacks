@@ -22,11 +22,11 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
-            <Link href="/#about" className="text-gray-700 hover:text-gray-900">
-              About
+            <Link href="/#recap" className="text-gray-700 hover:text-gray-900">
+              Recap
             </Link>
-            <Link href="/#tracks" className="text-gray-700 hover:text-gray-900">
-              Tracks
+            <Link href="/#winners" className="text-gray-700 hover:text-gray-900">
+              Winners
             </Link>
             <Link href="/#schedule" className="text-gray-700 hover:text-gray-900">
               Schedule
@@ -47,13 +47,14 @@ export function Header() {
             >
               Sponsor
             </Link>
-            <Link
-              href="/register"
-              onClick={() => track('Register Click', { location: 'header-desktop' })}
+            <a
+              href="https://southwestmn-hacks.devpost.com/project-gallery"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-semibold"
             >
-              Register Free
-            </Link>
+              View Projects
+            </a>
           </div>
 
           <button
@@ -69,18 +70,18 @@ export function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 space-y-3 border-t border-gray-200 pt-4">
             <Link
-              href="/#about"
+              href="/#recap"
               className="block text-gray-700 hover:text-gray-900 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              About
+              Recap
             </Link>
             <Link
-              href="/#tracks"
+              href="/#winners"
               className="block text-gray-700 hover:text-gray-900 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Tracks
+              Winners
             </Link>
             <Link
               href="/#schedule"
@@ -117,13 +118,15 @@ export function Header() {
             >
               Sponsor
             </Link>
-            <Link
-              href="/register"
-              onClick={() => { track('Register Click', { location: 'header-mobile' }); setMobileMenuOpen(false) }}
+            <a
+              href="https://southwestmn-hacks.devpost.com/project-gallery"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
               className="block bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-3 rounded-full hover:shadow-lg transition-all font-semibold text-center"
             >
-              Register Free
-            </Link>
+              View Projects
+            </a>
           </div>
         )}
       </div>

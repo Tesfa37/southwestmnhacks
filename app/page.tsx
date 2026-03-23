@@ -82,23 +82,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50">
-      {/*
-        Preload all page images upfront so scrolling reveals already-cached content.
-        React 19 hoists <link> elements to <head> regardless of where they appear in the tree.
-      */}
-      <link rel="preload" as="image" href="/images/group-photo.jpg" />
-      <link rel="preload" as="image" href="/images/students-presenting.jpg" />
-      <link rel="preload" as="image" href="/images/1st-place.jpg" />
-      <link rel="preload" as="image" href="/images/2nd-place.jpg" />
-      <link rel="preload" as="image" href="/images/3rd-place.jpg" />
-      <link rel="preload" as="image" href="/images/4th-place.jpg" />
-      <link rel="preload" as="image" href="/images/5th-place.jpg" />
-      <link rel="preload" as="image" href="/images/babatunde.jpg" />
-      <link rel="preload" as="image" href="/images/dr-dan.jpg" />
-      <link rel="preload" as="image" href="/images/dave-schwans.jpg" />
-      <link rel="preload" as="image" href="/schwans-logo.png" />
-      <link rel="preload" as="image" href="/etm-solutions-logo.jpeg" />
-
       {/* Event Schema Structured Data */}
       <script
         type="application/ld+json"

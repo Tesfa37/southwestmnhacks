@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: "SouthwestMN Hacks - March 21, 2026 | Marshall, MN",
   },
   description:
-    "Join us for a FREE full-day student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
+    "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building in Marshall, MN. See the winners, project gallery, and event recap.",
   keywords: [
     "hackathon",
     "Marshall MN",

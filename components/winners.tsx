@@ -77,7 +77,7 @@ export function Winners() {
               loading="eager"
               placeholder="blur"
               blurDataURL={BLUR}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 576px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               className="object-cover"
             />
           </div>
@@ -117,7 +117,7 @@ export function Winners() {
                 loading="eager"
                 placeholder="blur"
                 blurDataURL={BLUR}
-                sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 576px"
+                sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 600px"
                 className="object-cover"
               />
               <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-gray-800">

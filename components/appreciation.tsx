@@ -57,7 +57,7 @@ export function Appreciation() {
                 loading="eager"
                 placeholder="blur"
                 blurDataURL={BLUR}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 380px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
                 className="object-cover"
               />
             </div>

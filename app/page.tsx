@@ -1,13 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { Calendar, Clock, MapPin, Users, Lightbulb, Sparkles, Brain, BarChart3, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { track } from "@vercel/analytics"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { CountdownTimer } from "@/components/countdown-timer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { EventRecap } from "@/components/event-recap"
 import { Winners } from "@/components/winners"
@@ -16,18 +14,6 @@ import { Appreciation } from "@/components/appreciation"
 const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
 
 export default function HomePage() {
-  const [challengeRevealed, setChallengeRevealed] = useState(false)
-
-  useEffect(() => {
-    const revealTime = new Date("2026-03-21T08:58:00-05:00")
-    const check = () => {
-      setChallengeRevealed(new Date() >= revealTime)
-    }
-    check()
-    const interval = setInterval(check, 30000)
-    return () => clearInterval(interval)
-  }, [])
-
   const faqs = [
     {
       question: "Do I need coding experience?",
@@ -51,7 +37,7 @@ export default function HomePage() {
     {
       question: "Who can participate?",
       answer:
-        "This event is open to all students—high school, college, or anyone eager to learn. If you're curious about technology and want to build something, you're welcome here!",
+        "This event was open to all students: high school, college, or anyone eager to learn. If you were curious about technology and wanted to build something, you were welcome.",
     },
   ]
 
@@ -60,7 +46,7 @@ export default function HomePage() {
     "@type": "Event",
     name: "SouthwestMN Hacks - Marshall Edition",
     description:
-      "A beginner-friendly full-day hackathon where students and creators come together to turn ideas into real projects. No experience needed—just curiosity and enthusiasm!",
+      "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building. Held March 21, 2026 at SMSU, Marshall, MN.",
     startDate: "2026-03-21T08:00:00-05:00",
     endDate: "2026-03-21T19:30:00-05:00",
     eventStatus: "https://schema.org/EventScheduled",
@@ -150,8 +136,8 @@ export default function HomePage() {
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed text-pretty px-4">
-          A beginner-friendly, full-day hackathon where students and creators come together to turn ideas into real
-          projects. No experience needed—just curiosity and enthusiasm!
+          Southwest Minnesota&apos;s first student hackathon brought together 30 participants to turn ideas into real
+          projects over 12 hours of building, learning, and creating.
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center mb-16 px-4">
@@ -172,9 +158,6 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Countdown Timer */}
-        <CountdownTimer />
-
         {/* 3 Bullet Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
           <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200">
@@ -183,7 +166,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-xl font-bold mb-2">Beginner Friendly</h3>
             <p className="text-gray-600">
-              Never coded before? No problem. We'll have mentors and workshops to help you get started.
+              Open to all skill levels. Mentors and Schwan&apos;s Company professionals supported participants throughout the day.
             </p>
           </div>
 
@@ -191,9 +174,9 @@ export default function HomePage() {
             <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center mb-4">
               <Users className="w-6 h-6 text-white" />
             </div>
-            <h3 className="text-xl font-bold mb-2">Build Together</h3>
+            <h3 className="text-xl font-bold mb-2">Built Together</h3>
             <p className="text-gray-600">
-              Form teams of 1-4, collaborate with peers, and make new friends in the local tech community.
+              10 teams of 1-4 collaborated, shared skills, and built something real in a single day.
             </p>
           </div>
 
@@ -201,9 +184,9 @@ export default function HomePage() {
             <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl flex items-center justify-center mb-4">
               <Sparkles className="w-6 h-6 text-white" />
             </div>
-            <h3 className="text-xl font-bold mb-2">Win Prizes</h3>
+            <h3 className="text-xl font-bold mb-2">5 Prizes Awarded</h3>
             <p className="text-gray-600">
-              Compete for awards and get recognized for your creativity, innovation, and execution.
+              Top 5 teams received awards and recognition. The grand prize winner is featured on this site.
             </p>
           </div>
         </div>
@@ -238,76 +221,57 @@ export default function HomePage() {
             <Sparkles className="w-4 h-4" />
             Presented by our Platinum Sponsor
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Schwan's Company Challenge</h2>
-          {challengeRevealed ? (
-            <p className="text-xl text-gray-600">Choose one of two challenges from our Platinum Sponsor</p>
-          ) : (
-            <p className="text-xl text-gray-600">Real-world business challenges from Schwan's Company</p>
-          )}
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Schwan&apos;s Company Challenge</h2>
+          <p className="text-xl text-gray-600">Two real-world challenges that drove all 10 projects</p>
         </div>
 
-        {challengeRevealed ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Challenge 1: Knowledge Transfer Agent */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow flex flex-col">
-              <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mb-5">
-                <Brain className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold mb-3">Knowledge Transfer Agent</h3>
-              <p className="text-gray-600 mb-6 flex-1">
-                Build an AI-powered agent that helps one person teach another. Your solution should capture knowledge
-                from audio, video, screen recordings, or uploaded files. It should organize what it learns and turn
-                it into clear training materials like summaries, step-by-step instructions, or quizzes. The agent
-                must also help a new learner by guiding them through the captured content and answering their
-                questions.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">AI</span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Education</span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Automation</span>
-              </div>
-              <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
-                You may use any technology: code, no-code, AI APIs, web apps, mobile apps, or desktop applications.
-                Creativity, usability, and working functionality matter more than perfection.
-              </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Challenge 1: Knowledge Transfer Agent */}
+          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow flex flex-col">
+            <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mb-5">
+              <Brain className="w-7 h-7 text-white" />
             </div>
-
-            {/* Challenge 2: IT Budget Forecasting */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow flex flex-col">
-              <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-teal-500 rounded-2xl flex items-center justify-center mb-5">
-                <BarChart3 className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold mb-3">IT Hardware & Software Budget Forecasting</h3>
-              <p className="text-gray-600 mb-6 flex-1">
-                Build a tool that helps IT teams plan and manage hardware and software costs. Users should be able
-                to enter expected costs for things like laptops, servers, applications, and subscriptions, then
-                forecast totals for up to 5 years. The system should also track actual spending and compare it to
-                the original plan. Show planned costs, actual costs, and the difference in a clean format like
-                charts, tables, or dashboards.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Data</span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Finance</span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Dashboard</span>
-              </div>
-              <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
-                You may use any technology: code, no-code, AI APIs, web apps, mobile apps, or desktop applications.
-                Creativity, usability, and working functionality matter more than perfection.
-              </p>
+            <h3 className="text-2xl font-bold mb-3">Knowledge Transfer Agent</h3>
+            <p className="text-gray-600 mb-6 flex-1">
+              Build an AI-powered agent that helps one person teach another. Capture knowledge from audio, video,
+              screen recordings, or uploaded files. Organize it into clear training materials like summaries,
+              step-by-step instructions, or quizzes. Guide a new learner through the captured content and answer
+              their questions.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">AI</span>
+              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Education</span>
+              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Automation</span>
             </div>
-          </div>
-        ) : (
-          <div className="bg-white rounded-3xl p-10 shadow-sm border border-gray-200 text-center max-w-3xl mx-auto">
-            <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Sparkles className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold mb-4">Challenges Revealed at Opening Ceremony</h3>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Two real-world business challenges from Schwan's Company will be revealed at the opening ceremony on
-              March 21. All teams will choose one challenge to tackle.
+            <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
+              Teams used any technology of their choice. Creativity, usability, and working functionality were
+              prioritized over perfection.
             </p>
           </div>
-        )}
+
+          {/* Challenge 2: IT Budget Forecasting */}
+          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow flex flex-col">
+            <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-teal-500 rounded-2xl flex items-center justify-center mb-5">
+              <BarChart3 className="w-7 h-7 text-white" />
+            </div>
+            <h3 className="text-2xl font-bold mb-3">IT Hardware &amp; Software Budget Forecasting</h3>
+            <p className="text-gray-600 mb-6 flex-1">
+              Build a tool that helps IT teams plan and manage hardware and software costs. Enter expected costs
+              for laptops, servers, applications, and subscriptions, then forecast totals for up to 5 years. Track
+              actual spending against the original plan and display planned costs, actuals, and variance in a clean
+              format like charts, tables, or dashboards.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Data</span>
+              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Finance</span>
+              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Dashboard</span>
+            </div>
+            <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
+              Teams used any technology of their choice. Creativity, usability, and working functionality were
+              prioritized over perfection.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Event Details */}
@@ -496,6 +460,7 @@ export default function HomePage() {
                 loading="eager"
                 placeholder="blur"
                 blurDataURL={BLUR}
+                sizes="200px"
                 className="h-16 sm:h-20 w-auto object-contain"
               />
             </div>
@@ -516,6 +481,7 @@ export default function HomePage() {
               loading="eager"
               placeholder="blur"
               blurDataURL={BLUR}
+              sizes="200px"
               className="h-16 sm:h-20 w-auto object-contain rounded-xl"
             />
           </div>

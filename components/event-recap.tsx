@@ -48,7 +48,7 @@ export function EventRecap() {
             priority
             placeholder="blur"
             blurDataURL={BLUR}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 576px"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
             className="object-cover"
           />
         </div>
@@ -60,7 +60,7 @@ export function EventRecap() {
             loading="eager"
             placeholder="blur"
             blurDataURL={BLUR}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 576px"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
             className="object-cover"
           />
         </div>
@@ -80,7 +80,7 @@ export function EventRecap() {
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Students from SMSU, SDSU, and institutions across Southwest Minnesota</span>
+            <span>Students from SMSU, SDSU, Marshall High School, and other institutions across Southwest Minnesota</span>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
@@ -88,7 +88,7 @@ export function EventRecap() {
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Mentorship from SMSU faculty, Schwan&apos;s professionals, and event organizers throughout the day</span>
+            <span>Mentorship from Schwan&apos;s Company professionals and event organizers throughout the day</span>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>

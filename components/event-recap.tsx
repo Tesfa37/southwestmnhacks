@@ -1,5 +1,8 @@
 import Image from "next/image"
 
+// Tiny 1x1 gray JPEG used as blur placeholder while images load
+const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
+
 export function EventRecap() {
   return (
     <section id="recap" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
@@ -9,7 +12,7 @@ export function EventRecap() {
         </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-4">It happened.</h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Marshall&apos;s first-ever student hackathon brought together students from across Southwest Minnesota
+          Southwest Minnesota&apos;s first-ever student hackathon brought together students from across the region
           for 12 hours of building, learning, and creating.
         </p>
       </div>
@@ -34,14 +37,17 @@ export function EventRecap() {
         </div>
       </div>
 
-      {/* Photos — group photo is priority since it's near the top */}
+      {/* Photos */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        {/* group-photo is priority — it's the first image visible on the page */}
         <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
           <Image
             src="/images/group-photo.jpg"
             alt="All participants gathered at SouthwestMN Hacks, Marshall Edition"
             fill
             priority
+            placeholder="blur"
+            blurDataURL={BLUR}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 576px"
             className="object-cover"
           />
@@ -51,6 +57,9 @@ export function EventRecap() {
             src="/images/students-presenting.jpg"
             alt="Students demoing their projects to the judges"
             fill
+            loading="eager"
+            placeholder="blur"
+            blurDataURL={BLUR}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 576px"
             className="object-cover"
           />
@@ -63,7 +72,7 @@ export function EventRecap() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base md:text-lg">
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Marshall&apos;s first-ever student hackathon</span>
+            <span>Southwest Minnesota&apos;s first-ever student hackathon, hosted in Marshall</span>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
@@ -71,19 +80,19 @@ export function EventRecap() {
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
+            <span>Students from SMSU, SDSU, and institutions across Southwest Minnesota</span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
             <span>All 10 teams tackled real-world challenges from Schwan&apos;s Company</span>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Students from high schools and universities across Southwest Minnesota</span>
+            <span>Mentorship from SMSU faculty, Schwan&apos;s professionals, and event organizers throughout the day</span>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Mentorship from SMSU Computer Science faculty throughout the day</span>
-          </div>
-          <div className="flex items-start gap-3">
-            <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Hosted at the Upper Conference Center, SMSU</span>
+            <span>Hosted by ETM Software Solutions at the Upper Conference Center, SMSU</span>
           </div>
         </div>
       </div>

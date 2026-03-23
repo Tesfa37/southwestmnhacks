@@ -1,6 +1,9 @@
 import Image from "next/image"
 import { Heart } from "lucide-react"
 
+// Tiny 1x1 gray JPEG used as blur placeholder while images load
+const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
+
 const honorees = [
   {
     name: "Prof. Oluleye Babatunde",
@@ -51,6 +54,9 @@ export function Appreciation() {
                 src={person.photo}
                 alt={person.name}
                 fill
+                loading="eager"
+                placeholder="blur"
+                blurDataURL={BLUR}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 380px"
                 className="object-cover"
               />

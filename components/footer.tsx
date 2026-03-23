@@ -1,6 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
 
+const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
+
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white mt-20">
@@ -85,7 +87,7 @@ export function Footer() {
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
           <div className="flex items-center justify-center gap-3 mb-2">
             <span>Hosted by</span>
-            <Image src="/etm-solutions-logo.jpeg" alt="ETM Solutions" width={120} height={32} className="h-8 w-auto rounded" />
+            <Image src="/etm-solutions-logo.jpeg" alt="ETM Solutions" width={120} height={32} loading="eager" placeholder="blur" blurDataURL={BLUR} className="h-8 w-auto rounded" />
           </div>
           <p className="mt-2">© 2026 SouthwestMN Hacks. All rights reserved.</p>
         </div>

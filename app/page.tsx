@@ -13,6 +13,8 @@ import { EventRecap } from "@/components/event-recap"
 import { Winners } from "@/components/winners"
 import { Appreciation } from "@/components/appreciation"
 
+const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
+
 export default function HomePage() {
   const [challengeRevealed, setChallengeRevealed] = useState(false)
 
@@ -94,6 +96,23 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50">
+      {/*
+        Preload all page images upfront so scrolling reveals already-cached content.
+        React 19 hoists <link> elements to <head> regardless of where they appear in the tree.
+      */}
+      <link rel="preload" as="image" href="/images/group-photo.jpg" />
+      <link rel="preload" as="image" href="/images/students-presenting.jpg" />
+      <link rel="preload" as="image" href="/images/1st-place.jpg" />
+      <link rel="preload" as="image" href="/images/2nd-place.jpg" />
+      <link rel="preload" as="image" href="/images/3rd-place.jpg" />
+      <link rel="preload" as="image" href="/images/4th-place.jpg" />
+      <link rel="preload" as="image" href="/images/5th-place.jpg" />
+      <link rel="preload" as="image" href="/images/babatunde.jpg" />
+      <link rel="preload" as="image" href="/images/dr-dan.jpg" />
+      <link rel="preload" as="image" href="/images/dave-schwans.jpg" />
+      <link rel="preload" as="image" href="/schwans-logo.png" />
+      <link rel="preload" as="image" href="/etm-solutions-logo.jpeg" />
+
       {/* Event Schema Structured Data */}
       <script
         type="application/ld+json"
@@ -474,6 +493,9 @@ export default function HomePage() {
                 alt="Schwan's Company"
                 width={240}
                 height={80}
+                loading="eager"
+                placeholder="blur"
+                blurDataURL={BLUR}
                 className="h-16 sm:h-20 w-auto object-contain"
               />
             </div>
@@ -491,6 +513,9 @@ export default function HomePage() {
               alt="ETM Solutions"
               width={240}
               height={80}
+              loading="eager"
+              placeholder="blur"
+              blurDataURL={BLUR}
               className="h-16 sm:h-20 w-auto object-contain rounded-xl"
             />
           </div>

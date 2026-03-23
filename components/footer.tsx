@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -84,7 +85,7 @@ export function Footer() {
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
           <div className="flex items-center justify-center gap-3 mb-2">
             <span>Hosted by</span>
-            <img src="/etm-solutions-logo.jpeg" alt="ETM Solutions" className="h-8 rounded" />
+            <Image src="/etm-solutions-logo.jpeg" alt="ETM Solutions" width={120} height={32} className="h-8 w-auto rounded" />
           </div>
           <p className="mt-2">© 2026 SouthwestMN Hacks. All rights reserved.</p>
         </div>

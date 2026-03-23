@@ -51,6 +51,7 @@ export function Appreciation() {
                 src={person.photo}
                 alt={person.name}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 380px"
                 className="object-cover"
               />
             </div>

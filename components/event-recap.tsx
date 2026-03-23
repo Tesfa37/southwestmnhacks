@@ -18,7 +18,7 @@ export function EventRecap() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
         <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
           <div className="text-3xl font-black text-orange-600 mb-1">30</div>
-          <div className="text-gray-600 text-sm font-medium">Registered Participants</div>
+          <div className="text-gray-600 text-sm font-medium">Participants</div>
         </div>
         <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
           <div className="text-3xl font-black text-blue-600 mb-1">10</div>
@@ -29,18 +29,20 @@ export function EventRecap() {
           <div className="text-gray-600 text-sm font-medium">Hours of Building</div>
         </div>
         <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
-          <div className="text-3xl font-black text-purple-600 mb-1">3</div>
-          <div className="text-gray-600 text-sm font-medium">Challenge Tracks</div>
+          <div className="text-3xl font-black text-purple-600 mb-1">5</div>
+          <div className="text-gray-600 text-sm font-medium">Prizes Awarded</div>
         </div>
       </div>
 
-      {/* Photos */}
+      {/* Photos — group photo is priority since it's near the top */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
           <Image
             src="/images/group-photo.jpg"
             alt="All participants gathered at SouthwestMN Hacks, Marshall Edition"
             fill
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 576px"
             className="object-cover"
           />
         </div>
@@ -49,6 +51,7 @@ export function EventRecap() {
             src="/images/students-presenting.jpg"
             alt="Students demoing their projects to the judges"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 576px"
             className="object-cover"
           />
         </div>
@@ -60,11 +63,15 @@ export function EventRecap() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base md:text-lg">
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>3 tracks: Community &amp; Main Street, Student Life, AI &amp; Automation</span>
+            <span>Marshall&apos;s first-ever student hackathon</span>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Schwan&apos;s Company sponsor challenge on IT Budgeting &amp; Forecasting</span>
+            <span>Co-organized by Bityana Yishak and Tesfatsion Desta</span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
+            <span>All 10 teams tackled real-world challenges from Schwan&apos;s Company</span>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
@@ -76,11 +83,7 @@ export function EventRecap() {
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Marshall&apos;s first-ever student hackathon</span>
-          </div>
-          <div className="flex items-start gap-3">
-            <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Co-organized by Bityana Yishak and Tesfa Desta</span>
+            <span>Hosted at the Upper Conference Center, SMSU</span>
           </div>
         </div>
       </div>

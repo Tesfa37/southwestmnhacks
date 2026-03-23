@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Calendar, Clock, MapPin, Users, Lightbulb, Sparkles, Brain, BarChart3, ExternalLink } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { track } from "@vercel/analytics"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -468,10 +469,12 @@ export default function HomePage() {
               Platinum Sponsor
             </span>
             <div className="flex justify-center">
-              <img
+              <Image
                 src="/schwans-logo.png"
-                alt="Schwan's"
-                className="h-16 sm:h-20 object-contain"
+                alt="Schwan's Company"
+                width={240}
+                height={80}
+                className="h-16 sm:h-20 w-auto object-contain"
               />
             </div>
           </div>
@@ -483,10 +486,12 @@ export default function HomePage() {
             Hosted By
           </span>
           <div className="flex justify-center">
-            <img
+            <Image
               src="/etm-solutions-logo.jpeg"
               alt="ETM Solutions"
-              className="h-16 sm:h-20 object-contain rounded-xl"
+              width={240}
+              height={80}
+              className="h-16 sm:h-20 w-auto object-contain rounded-xl"
             />
           </div>
         </div>

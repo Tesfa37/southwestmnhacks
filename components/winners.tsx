@@ -71,6 +71,7 @@ export function Winners() {
               src={first.photo}
               alt={`${first.team} - Grand Prize winners at SouthwestMN Hacks`}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 576px"
               className="object-cover"
             />
           </div>
@@ -107,6 +108,7 @@ export function Winners() {
                 src={winner.photo}
                 alt={`${winner.team} - ${winner.label} at SouthwestMN Hacks`}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 576px"
                 className="object-cover"
               />
               <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-gray-800">

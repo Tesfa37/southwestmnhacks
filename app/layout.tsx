@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://southwestmnhacks.org",
-    title: "SouthwestMN Hacks - March 21, 2026 | Free Student Hackathon in Marshall, MN",
+    title: "SouthwestMN Hacks - Marshall Edition | Results and Project Gallery",
     description:
-      "Join us for a FREE full-day student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
+      "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building. See the winners and project gallery from March 21, 2026 in Marshall, MN.",
     siteName: "SouthwestMN Hacks",
     // TODO: Convert og-image.svg to PNG (1200x630) for full social platform support
     images: [
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SouthwestMN Hacks - March 21, 2026 | Free Student Hackathon in Marshall, MN",
+    title: "SouthwestMN Hacks - Marshall Edition | Results and Project Gallery",
     description:
-      "Join us for a FREE full-day student hackathon in Marshall, MN! Open to all skill levels with prizes, free food, mentorship, and workshops. Turn your ideas into reality. No experience required—just bring your enthusiasm!",
+      "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building. See the winners and project gallery from March 21, 2026 in Marshall, MN.",
     images: ["/og-image.svg"],
   },
   robots: {

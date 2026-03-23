@@ -207,7 +207,7 @@ export default function HomePage() {
             of time. Think of it as a hands-on workshop meets friendly competition.
           </p>
           <p className="text-lg leading-relaxed opacity-95">
-            You'll spend the day designing, coding, and presenting a project—whether it's an app, website, hardware
+            You'll spend the day designing, coding, and presenting a project: an app, website, hardware
             prototype, or creative solution to a real problem. Along the way, you'll learn new skills, meet mentors, and
             have fun!
           </p>

@@ -38,26 +38,13 @@ export function EventRecap() {
       </div>
 
       {/* Photos */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        {/* group-photo is priority — it's the first image visible on the page */}
-        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+      <div className="mb-12">
+        <div className="relative aspect-[21/9] rounded-3xl overflow-hidden shadow-lg">
           <Image
             src="/images/group-photo.jpg"
             alt="All participants gathered at SouthwestMN Hacks, Marshall Edition"
             fill
             priority
-            placeholder="blur"
-            blurDataURL={BLUR}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-            className="object-cover"
-          />
-        </div>
-        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
-          <Image
-            src="/images/students-presenting.jpg"
-            alt="Students demoing their projects to the judges"
-            fill
-            loading="eager"
             placeholder="blur"
             blurDataURL={BLUR}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"

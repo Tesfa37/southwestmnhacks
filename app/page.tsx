@@ -1,10 +1,8 @@
-"use client"
-
 import { Calendar, Clock, MapPin, Users, Lightbulb, Sparkles, Brain, BarChart3, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { track } from "@vercel/analytics"
 import { Header } from "@/components/header"
+import { SponsorCtaButton } from "@/components/sponsor-cta-button"
 import { Footer } from "@/components/footer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { EventRecap } from "@/components/event-recap"
@@ -63,8 +61,7 @@ export default function HomePage() {
         addressCountry: "US",
       },
     },
-    // TODO: Convert og-image.svg to PNG (1200x630) for full social platform support
-    image: ["https://southwestmnhacks.org/og-image.svg"],
+    image: ["https://southwestmnhacks.org/og-image.png"],
     organizer: {
       "@type": "Organization",
       name: "ETM Solutions",
@@ -190,9 +187,9 @@ export default function HomePage() {
             of time. Think of it as a hands-on workshop meets friendly competition.
           </p>
           <p className="text-lg leading-relaxed opacity-95">
-            You'll spend the day designing, coding, and presenting a project: an app, website, hardware
-            prototype, or creative solution to a real problem. Along the way, you'll learn new skills, meet mentors, and
-            have fun!
+            Participants spent the day designing, coding, and presenting a project: an app, website, hardware
+            prototype, or creative solution to a real problem. Along the way, they learned new skills, met mentors, and
+            had fun!
           </p>
         </div>
       </section>
@@ -440,7 +437,6 @@ export default function HomePage() {
                 alt="Schwan's Company"
                 width={240}
                 height={80}
-                loading="eager"
                 placeholder="blur"
                 blurDataURL={BLUR}
                 sizes="200px"
@@ -461,7 +457,6 @@ export default function HomePage() {
               alt="ETM Solutions"
               width={240}
               height={80}
-              loading="eager"
               placeholder="blur"
               blurDataURL={BLUR}
               sizes="200px"
@@ -476,13 +471,7 @@ export default function HomePage() {
           <p className="text-lg sm:text-xl mb-8 opacity-95">
             We&apos;re just getting started. Learn how to support the next generation of student builders.
           </p>
-          <Link
-            href="/sponsor"
-            onClick={() => track('Sponsor Click', { location: 'sponsors-section' })}
-            className="bg-white text-blue-600 px-8 py-4 rounded-full hover:shadow-xl transition-all font-semibold text-lg inline-block"
-          >
-            Sponsor a Future Event
-          </Link>
+          <SponsorCtaButton />
         </div>
       </section>
 

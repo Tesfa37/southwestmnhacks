@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 16 landing page for "SouthwestMN Hacks," a hackathon event scheduled for March 21, 2026 in Marshall, MN. The site is built with React 19, TypeScript, and Tailwind CSS 4, using the shadcn/ui component library in the "new-york" style. Deployed on Vercel at southwestmnhacks.org.
+This is a Next.js 16 landing page for "SouthwestMN Hacks," a hackathon event that took place on March 21, 2026 in Marshall, MN. The site now serves as the post-event recap page. Built with React 19, TypeScript, and Tailwind CSS 4, using the shadcn/ui component library in the "new-york" style. Deployed on Vercel at southwestmnhacks.org.
 
 ## Commands
 
@@ -21,10 +21,10 @@ pnpm lint         # Run ESLint
 ### Framework & Routing
 - **Next.js 16** with App Router
 - **File-based routing** using the `app/` directory:
-  - `app/page.tsx` - Main landing page
+  - `app/page.tsx` - Main landing page (server component)
   - `app/sponsor/page.tsx` - Sponsor information page
   - `app/resources/page.tsx` - Resources for participants
-  - `app/register/page.tsx` - Registration page with embedded Google Form
+  - `app/register/page.tsx` - Post-event page (shows "registration closed" message)
   - `app/rules/page.tsx` - Hackathon rules
   - `app/code-of-conduct/page.tsx` - Code of conduct
   - `app/privacy/page.tsx` - Privacy policy
@@ -40,11 +40,11 @@ pnpm lint         # Run ESLint
 ### Component Organization
 - **Page-level components** live in `components/` directory:
   - Layout: `header.tsx`, `footer.tsx`
-  - Landing page sections: Inline in `app/page.tsx`
+  - Landing page sections: `event-recap.tsx`, `winners.tsx`, `appreciation.tsx` + inline sections in `app/page.tsx`
   - Sponsor page: `sponsor-hero.tsx`, `sponsor-tiers.tsx`, `sponsor-benefits.tsx`, `sponsor-form.tsx`, `sponsor-faq.tsx`
   - Resources page: `resources-hero.tsx`, `starter-kits.tsx`, `free-resources.tsx`, `workshops.tsx`, `day-of-checklist.tsx`
-  - Countdown: `countdown-timer.tsx` (3-state: before/during/after event)
-- **UI primitives** in `components/ui/` (shadcn/ui components from Radix UI)
+  - Client wrappers: `sponsor-cta-button.tsx` (wraps `track()` call for server component compatibility)
+- **UI primitives** in `components/ui/` — only `accordion.tsx` and `button.tsx` are kept (all others deleted post-cleanup)
 - Client components use `"use client"` directive for interactivity
 
 ### Path Aliases
@@ -56,7 +56,7 @@ TypeScript path mapping (`tsconfig.json`) resolves imports:
 
 ### External Services
 - **Vercel Analytics** integrated in root layout (custom event tracking via `track()`)
-- **Google Forms** for registration and sponsor applications (embedded iframes)
+- **Google Forms** for sponsor applications (embedded iframe on `/sponsor`)
 - **Devpost** for project submissions: https://southwestmn-hacks.devpost.com/
 
 ### Navigation
@@ -64,10 +64,11 @@ TypeScript path mapping (`tsconfig.json`) resolves imports:
 - External links use `<a>` with `target="_blank"` and `rel="noopener noreferrer"`
 - Header implements responsive navigation with desktop (lg+) and mobile hamburger menu
 
-### Sponsor Logos
-- `public/schwans-logo.png` — Black on transparent (for light backgrounds)
-- `public/schwans-logo-white.png` — White version (for dark backgrounds)
-- `public/etm-solutions-logo.jpeg` — ETM Solutions logo (blue gradient bg)
+### Images
+- Event photos live in `public/images/` — compressed to max 2400px wide at quality 72 (~3 MB total, down from 94 MB)
+- Sponsor logos: `public/schwans-logo.png`, `public/schwans-logo-white.png`, `public/etm-solutions-logo.jpeg`
+- OG image: `public/og-image.png` (1200x630, generated from SVG spec)
+- Only the first below-the-fold image (`group-photo.jpg` in `event-recap.tsx`) uses `priority`; all others lazy-load by default
 
 ## Key Patterns
 
@@ -76,20 +77,24 @@ Pages are composed from isolated section components:
 - `/sponsor` page assembles: SponsorHero → SponsorTiers → SponsorBenefits → SponsorForm → SponsorFaq
 - `/resources` page assembles: ResourcesHero → StarterKits → FreeResources → Workshops → DayOfChecklist
 
+### Server vs Client Components
+- `app/page.tsx` is a **server component** — no `"use client"` at the top
+- Interactive bits that need `track()` are extracted into small client components (e.g., `sponsor-cta-button.tsx`)
+- `<Accordion>` works fine server-side since the component itself handles its own client state
+
 ### Event Tracking
 Custom events tracked via Vercel Analytics `track()` function:
-- `Register Click` with location prop (hero, header-desktop, header-mobile)
 - `Sponsor Click` with location prop (hero, header-desktop, header-mobile, sponsors-section, cta-banner)
 
 ### TypeScript Configuration
 - Strict mode enabled
 - Images are unoptimized (`next.config.mjs`)
-- TypeScript build errors ignored in production builds (for rapid iteration)
+- TypeScript build errors ignored in production builds
 
 ## Styling Conventions
 
 ### Color System
-Custom CSS variables in OKLCH format support light/dark themes:
+Custom CSS variables in OKLCH format (light theme only — dark mode removed):
 - Primary colors: orange-600, blue-600, pink-600 (brand gradients)
 - Neutral palette from `--background` to `--foreground`
 
@@ -116,11 +121,8 @@ shadcn/ui is configured with:
 - CSS variables enabled
 - Icon library: lucide-react
 
-To add new components, they should follow the existing patterns in `components/ui/`.
+Only `accordion` and `button` are currently installed. To add new components, follow existing patterns in `components/ui/`.
 
-## Post-Event TODO
-- Remove unused shadcn/ui components from `components/ui/` to reduce bundle size (currently 57 installed, ~5 used: accordion, button and their Radix dependencies)
-- Convert `public/og-image.svg` to PNG (1200x630) for full social platform OG support
+## Future TODO
 - Add actual Schwan's logo file if higher-res version becomes available
 - Set up Discord server and Instagram, then re-add links to footer
-- Consider adding a "Past Winners" / project gallery section after the event

@@ -37,10 +37,9 @@ export const metadata: Metadata = {
     description:
       "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building. See the winners and project gallery from March 21, 2026 in Marshall, MN.",
     siteName: "SouthwestMN Hacks",
-    // TODO: Convert og-image.svg to PNG (1200x630) for full social platform support
     images: [
       {
-        url: "/og-image.svg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "SouthwestMN Hacks - March 21, 2026",
@@ -52,7 +51,7 @@ export const metadata: Metadata = {
     title: "SouthwestMN Hacks - Marshall Edition | Results and Project Gallery",
     description:
       "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building. See the winners and project gallery from March 21, 2026 in Marshall, MN.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

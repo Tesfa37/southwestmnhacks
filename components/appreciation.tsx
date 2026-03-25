@@ -54,7 +54,6 @@ export function Appreciation() {
                 src={person.photo}
                 alt={person.name}
                 fill
-                loading="eager"
                 placeholder="blur"
                 blurDataURL={BLUR}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"

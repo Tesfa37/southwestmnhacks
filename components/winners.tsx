@@ -74,7 +74,6 @@ export function Winners() {
               src={first.photo}
               alt={`${first.team} - Grand Prize winners at SouthwestMN Hacks`}
               fill
-              loading="eager"
               placeholder="blur"
               blurDataURL={BLUR}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
@@ -114,7 +113,6 @@ export function Winners() {
                 src={winner.photo}
                 alt={`${winner.team} - ${winner.label} at SouthwestMN Hacks`}
                 fill
-                loading="eager"
                 placeholder="blur"
                 blurDataURL={BLUR}
                 sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 600px"

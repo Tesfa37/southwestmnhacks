@@ -167,7 +167,7 @@ export function Workshops() {
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Workshop Videos</h2>
           <p className="text-lg text-gray-600 mb-6">
-            Watch anytime — we recommend completing the 'Before the Event' videos before March 21!
+            Watch anytime — the 'Before the Event' videos are a great starting point for your next hackathon.
           </p>
           <div className="inline-block bg-blue-50 border border-blue-200 rounded-2xl px-6 py-3 text-sm text-gray-700">
             <GraduationCap className="w-4 h-4 inline-block mr-2" />

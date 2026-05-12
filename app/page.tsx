@@ -8,6 +8,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { EventRecap } from "@/components/event-recap"
 import { Winners } from "@/components/winners"
 import { Appreciation } from "@/components/appreciation"
+import { WinnerContinuationBadge } from "@/components/winner-continuation-badge"
 
 const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
 
@@ -64,7 +65,7 @@ export default function HomePage() {
     image: ["https://southwestmnhacks.org/og-image.png"],
     organizer: {
       "@type": "Organization",
-      name: "ETM Solutions",
+      name: "Aulden",
       url: "https://southwestmnhacks.org",
     },
     offers: {
@@ -177,6 +178,30 @@ export default function HomePage() {
 
       {/* Winners */}
       <Winners />
+
+      {/* From Hackathon to Production */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <div className="relative bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#C8102E]"
+          />
+          <div className="p-8 sm:p-10 pl-10 sm:pl-12">
+            <div className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">
+              After the Hackathon
+            </div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-5">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                From Hackathon to Production
+              </h2>
+              <WinnerContinuationBadge />
+            </div>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              After the awards ceremony, Schwan&apos;s Company invited The Balancers to keep building IT Budget Strategist past the prototype stage. The team accepted and is now developing the tool further as a paid engagement with Schwan&apos;s. A 12-hour hackathon build became real software for a real customer, which is exactly the kind of outcome this event was designed to make possible.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* What is a Hackathon */}
       <section id="about" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
@@ -452,17 +477,28 @@ export default function HomePage() {
             Hosted By
           </span>
           <div className="flex justify-center">
-            <Image
-              src="/etm-solutions-logo.jpeg"
-              alt="ETM Solutions"
-              width={240}
-              height={80}
-              placeholder="blur"
-              blurDataURL={BLUR}
-              sizes="200px"
-              className="h-16 sm:h-20 w-auto object-contain rounded-xl"
-            />
+            <a
+              href="https://getaulden.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Aulden"
+              className="inline-flex hover:opacity-90 transition-opacity"
+            >
+              <Image
+                src="/aulden-logo.png"
+                alt="Aulden"
+                width={240}
+                height={80}
+                placeholder="blur"
+                blurDataURL={BLUR}
+                sizes="200px"
+                className="h-16 sm:h-20 w-auto object-contain rounded-xl"
+              />
+            </a>
           </div>
+          <p className="mt-4 text-sm text-white/75">
+            Aulden was formerly known as ETM Software Solutions.
+          </p>
         </div>
 
         {/* Sponsor CTA */}

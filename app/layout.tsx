@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Minnesota hackathon",
     "free hackathon",
   ],
-  authors: [{ name: "ETM Solutions" }],
+  authors: [{ name: "Aulden" }],
   openGraph: {
     type: "website",
     locale: "en_US",

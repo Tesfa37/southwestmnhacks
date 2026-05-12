@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Trophy, ExternalLink } from "lucide-react"
+import { WinnerContinuationBadge } from "@/components/winner-continuation-badge"
 
 // Tiny 1x1 gray JPEG used as blur placeholder while images load
 const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
@@ -87,7 +88,10 @@ export function Winners() {
             </div>
             <h3 className="text-3xl font-black mb-1">{first.team}</h3>
             <p className="text-xl text-gray-700 font-semibold mb-3">{first.project}</p>
-            <p className="text-gray-500 mb-6">{first.members.join(", ")}</p>
+            <p className="text-gray-500 mb-3">{first.members.join(", ")}</p>
+            <div className="mb-6">
+              <WinnerContinuationBadge />
+            </div>
             <a
               href={first.devpost}
               target="_blank"

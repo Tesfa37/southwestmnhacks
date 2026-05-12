@@ -79,7 +79,7 @@ export function EventRecap() {
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Hosted by ETM Software Solutions at the Upper Conference Center, SMSU</span>
+            <span>Hosted by Aulden at the Upper Conference Center, SMSU</span>
           </div>
         </div>
       </div>

@@ -3,23 +3,23 @@ import { Users, Megaphone, Heart, Target } from "lucide-react"
 const benefits = [
   {
     icon: Users,
-    title: "Access to Top Talent",
-    description: "Connect with motivated students and developers interested in your industry and technology",
+    title: "Meet Emerging Talent",
+    description: "Spend the event among motivated students and early-career builders from across the region.",
   },
   {
     icon: Megaphone,
     title: "Brand Visibility",
-    description: "Get your brand in front of 50+ attendees, participants, and the local tech community",
+    description: "Put your brand in front of participants and the local tech community, on-site and on our website and social media.",
   },
   {
     icon: Heart,
     title: "Community Impact",
-    description: "Support tech education and innovation in rural Southwest Minnesota",
+    description: "Invest in tech education and innovation in rural Southwest Minnesota, where opportunities like this are rare.",
   },
   {
     icon: Target,
     title: "Recruiting Pipeline",
-    description: "Meet potential interns and hires passionate about building solutions",
+    description: "Build a direct line to interns and new hires who can already ship under pressure.",
   },
 ]
 

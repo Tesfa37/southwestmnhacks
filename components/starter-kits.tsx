@@ -30,7 +30,7 @@ const kits = [
     icon: Terminal,
     title: "Python/API Kit",
     description: "Build backends and APIs with Python. FastAPI has great docs for beginners, and Replit lets you code in the browser.",
-    tags: ["Python", "Flask", "APIs"],
+    tags: ["Python", "FastAPI", "APIs"],
     color: "bg-green-100",
     iconColor: "text-green-700",
     links: [
@@ -54,7 +54,7 @@ const kits = [
     icon: Sparkles,
     title: "AI Integration",
     description: "Add AI to your project using free APIs. Google AI Studio and OpenRouter give you free access to powerful models.",
-    tags: ["OpenAI", "Claude", "Prompts"],
+    tags: ["Gemini", "OpenRouter", "AI"],
     color: "bg-purple-100",
     iconColor: "text-purple-700",
     links: [
@@ -82,7 +82,7 @@ export function StarterKits() {
               <div
                 className={`${kit.color} ${kit.iconColor} inline-flex items-center justify-center w-full rounded-xl p-8 mb-4`}
               >
-                <kit.icon className="size-12" strokeWidth={1.5} />
+                <kit.icon className="size-12" strokeWidth={1.5} aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold mb-3">{kit.title}</h3>
               <p className="text-gray-600 leading-relaxed mb-4">{kit.description}</p>

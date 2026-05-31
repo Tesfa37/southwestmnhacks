@@ -1,5 +1,3 @@
-"use client"
-
 import { Gift, Database, Globe, Sparkles, Code, Palette } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -80,7 +78,7 @@ export function FreeResources() {
               <div
                 className={`${resource.color} ${resource.iconColor} inline-flex items-center justify-center w-full rounded-xl p-6 mb-3`}
               >
-                <resource.icon className="size-10" strokeWidth={1.5} />
+                <resource.icon className="size-10" strokeWidth={1.5} aria-hidden="true" />
               </div>
               <h3 className="text-lg font-bold mb-2">{resource.title}</h3>
               <p className="text-sm text-gray-600 leading-relaxed mb-3">{resource.description}</p>

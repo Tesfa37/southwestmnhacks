@@ -9,3 +9,4 @@ out/
 .vercel
 nul
 .claude/
+tsconfig.tsbuildinfo

@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://southwestmnhacks.org"),
   title: {
     template: "%s | SouthwestMN Hacks",
-    default: "SouthwestMN Hacks - March 21, 2026 | Marshall, MN",
+    default: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
   },
   description:
-    "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building in Marshall, MN. See the winners, project gallery, and event recap.",
+    "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Register now.",
   keywords: [
     "hackathon",
     "Marshall MN",
@@ -28,29 +28,29 @@ export const metadata: Metadata = {
     "Minnesota hackathon",
     "free hackathon",
   ],
-  authors: [{ name: "Aulden" }],
+  authors: [{ name: "Southwest MN Hacks" }],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://southwestmnhacks.org",
-    title: "SouthwestMN Hacks - Marshall Edition | Results and Project Gallery",
+    title: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
     description:
-      "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building. See the winners and project gallery from March 21, 2026 in Marshall, MN.",
+      "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Register now.",
     siteName: "SouthwestMN Hacks",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "SouthwestMN Hacks - March 21, 2026",
+        alt: "Southwest MN Hacks: Fall 2026",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SouthwestMN Hacks - Marshall Edition | Results and Project Gallery",
+    title: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
     description:
-      "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building. See the winners and project gallery from March 21, 2026 in Marshall, MN.",
+      "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Register now.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -64,10 +64,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#1f2937" },
-  ],
   icons: {
     icon: [
       {
@@ -91,6 +87,10 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#1f2937" },
+  ],
 }
 
 export default function RootLayout({

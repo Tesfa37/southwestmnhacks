@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { track } from "@vercel/analytics"
+import { MLH_APPROVED, REGISTRATION_FORM_URL } from "@/lib/config"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -12,25 +13,24 @@ export function Header() {
     <nav className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between gap-2">
-          <Link
-            href="/"
-            className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl font-bold leading-tight whitespace-nowrap flex-shrink-0"
-          >
-            <span className="text-orange-600">Southwest</span>
-            <span className="text-blue-600">MN</span> Hacks
-          </Link>
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <Link
+              href="/"
+              className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl font-bold leading-tight whitespace-nowrap"
+            >
+              <span className="text-orange-600">Southwest</span>
+              <span className="text-blue-600">MN</span> Hacks
+            </Link>
+            {/* MLH Member Event badge, hidden until the application is approved. */}
+            {MLH_APPROVED && (
+              <span className="hidden sm:inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-semibold">
+                MLH Member Event
+              </span>
+            )}
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
-            <Link href="/#recap" className="text-gray-700 hover:text-gray-900">
-              Recap
-            </Link>
-            <Link href="/#winners" className="text-gray-700 hover:text-gray-900">
-              Winners
-            </Link>
-            <Link href="/#schedule" className="text-gray-700 hover:text-gray-900">
-              Schedule
-            </Link>
             <Link href="/resources" className="text-gray-700 hover:text-gray-900">
               Resources
             </Link>
@@ -40,20 +40,24 @@ export function Header() {
             <Link href="/rules" className="text-gray-700 hover:text-gray-900">
               Rules
             </Link>
+            <Link href="/recap" className="text-gray-700 hover:text-gray-900">
+              Past Events
+            </Link>
             <Link
               href="/sponsor"
               onClick={() => track('Sponsor Click', { location: 'header-desktop' })}
-              className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-all font-semibold"
+              className="text-gray-700 hover:text-gray-900"
             >
               Sponsor
             </Link>
             <a
-              href="https://southwestmn-hacks.devpost.com/project-gallery"
+              href={REGISTRATION_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track('Register Click', { location: 'header-desktop' })}
               className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-semibold"
             >
-              View Projects
+              Register
             </a>
           </div>
 
@@ -69,27 +73,6 @@ export function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 space-y-3 border-t border-gray-200 pt-4">
-            <Link
-              href="/#recap"
-              className="block text-gray-700 hover:text-gray-900 py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Recap
-            </Link>
-            <Link
-              href="/#winners"
-              className="block text-gray-700 hover:text-gray-900 py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Winners
-            </Link>
-            <Link
-              href="/#schedule"
-              className="block text-gray-700 hover:text-gray-900 py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Schedule
-            </Link>
             <Link
               href="/resources"
               className="block text-gray-700 hover:text-gray-900 py-2"
@@ -112,20 +95,27 @@ export function Header() {
               Rules
             </Link>
             <Link
+              href="/recap"
+              className="block text-gray-700 hover:text-gray-900 py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Past Events
+            </Link>
+            <Link
               href="/sponsor"
               onClick={() => { track('Sponsor Click', { location: 'header-mobile' }); setMobileMenuOpen(false) }}
-              className="block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all font-semibold text-center"
+              className="block text-gray-700 hover:text-gray-900 py-2"
             >
               Sponsor
             </Link>
             <a
-              href="https://southwestmn-hacks.devpost.com/project-gallery"
+              href={REGISTRATION_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => { track('Register Click', { location: 'header-mobile' }); setMobileMenuOpen(false) }}
               className="block bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-3 rounded-full hover:shadow-lg transition-all font-semibold text-center"
             >
-              View Projects
+              Register
             </a>
           </div>
         )}

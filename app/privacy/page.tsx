@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Lock } from "lucide-react"
+import { MLH_APPROVED } from "@/lib/config"
 
 export default function PrivacyPage() {
   return (
@@ -29,8 +30,8 @@ export default function PrivacyPage() {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">TL;DR</h2>
               <p className="text-white text-lg leading-relaxed">
                 We collect minimal info (name, email, school) to run the event smoothly. We use trusted services that
-                hackathons everywhere use—Google Forms for registration and Devpost for submissions. Your personal data
-                gets deleted within 90 days after the event. That's it!
+                hackathons everywhere use, like Google Forms for registration and Devpost for submissions. Your
+                personal data gets deleted within 90 days after the event. That's it!
               </p>
             </div>
 
@@ -175,6 +176,26 @@ export default function PrivacyPage() {
                       important information.
                     </div>
                   </li>
+                  {/* MLH data-sharing clause, only when MLH membership is approved (Gate 1). */}
+                  {MLH_APPROVED && (
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
+                      <div className="text-gray-700">
+                        <strong>Major League Hacking (MLH)</strong> – As an MLH Member Event, we share registration
+                        information (such as your name, email, school, and date of birth) with MLH for the purposes of
+                        administration, ranking, and MLH administration. Please review the{" "}
+                        <a
+                          href="https://mlh.io/privacy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:text-blue-700 underline"
+                        >
+                          MLH Privacy Policy
+                        </a>
+                        . You can opt out of sharing your information with MLH by emailing us.
+                      </div>
+                    </li>
+                  )}
                 </ul>
                 <p className="text-gray-700 leading-relaxed">
                   These services have their own privacy policies. We chose them because they're reliable and respected
@@ -290,7 +311,7 @@ export default function PrivacyPage() {
                   change. If we make any major changes, we'll let you know via email.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  <strong>Last updated:</strong> January 13, 2026
+                  <strong>Last updated:</strong> May 31, 2026
                 </p>
                 <p className="text-gray-700 leading-relaxed">
                   You can always check this page for the most current version of our privacy policy.
@@ -303,7 +324,7 @@ export default function PrivacyPage() {
               <p className="text-sm text-gray-500 text-center leading-relaxed">
                 This is a student-run event organized by passionate students in southwestern Minnesota. We take your
                 privacy seriously, but we also keep things simple and straightforward. If something in this policy
-                doesn't make sense, please reach out—we're happy to explain in plain English!
+                doesn't make sense, please reach out, we're happy to explain in plain English!
               </p>
             </div>
           </div>

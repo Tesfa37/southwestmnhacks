@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ClipboardList } from "lucide-react"
 import Link from "next/link"
+import { SUPPORT_EMAIL } from "@/lib/config"
 
 export default function RulesPage() {
   return (
@@ -28,8 +29,8 @@ export default function RulesPage() {
             <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 shadow-lg mb-16">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">TL;DR</h2>
               <p className="text-white text-lg leading-relaxed">
-                Students only. Teams of 1-4. Build something new in a day. AI tools are fine—just be honest about
-                it. Be creative, have fun, and follow the Code of Conduct.
+                Students only. Teams of 1-4. Build something new during the event. AI tools are fine, just be honest
+                about it. Be creative, have fun, and follow the Code of Conduct.
               </p>
             </div>
 
@@ -68,7 +69,7 @@ export default function RulesPage() {
                 </ul>
                 <p className="text-gray-700 leading-relaxed">
                   You must be registered and present at the event to compete. If you're not sure if you're eligible,
-                  just ask—we want as many people as possible to participate!
+                  just ask, we want as many people as possible to participate!
                 </p>
               </div>
             </div>
@@ -245,7 +246,7 @@ export default function RulesPage() {
                 </div>
                 <p className="text-gray-700 leading-relaxed mt-6 pt-6 border-t border-gray-200">
                   <strong>Bonus points:</strong> Polish, design quality, and complete functionality can help you stand
-                  out. But don't worry if things aren't perfect—this is a hackathon, not a product launch!
+                  out. But don't worry if things aren't perfect, this is a hackathon, not a product launch!
                 </p>
               </div>
             </div>
@@ -273,7 +274,8 @@ export default function RulesPage() {
                   <li className="flex items-start gap-3">
                     <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
                     <span className="text-gray-700">
-                      <strong>Winners announced at 7:30 PM</strong> – Stick around for the closing ceremony!
+                      <strong>Winners announced at the closing ceremony</strong> – Stick around to see who takes home
+                      the prizes!
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
@@ -286,7 +288,7 @@ export default function RulesPage() {
                 </ul>
                 <p className="text-gray-700 leading-relaxed">
                   Remember: Prizes are cool, but the real reward is what you learn and build. Some of the best projects
-                  don't win prizes—they just keep growing after the hackathon!
+                  don't win prizes, they just keep growing after the hackathon!
                 </p>
               </div>
             </div>
@@ -304,7 +306,7 @@ export default function RulesPage() {
                 </p>
                 <p className="text-gray-700 leading-relaxed">
                   Violations may result in disqualification and removal from the event. Please take a moment to read
-                  it—it's there to make sure everyone has a great experience.
+                  it, it's there to make sure everyone has a great experience.
                 </p>
               </div>
             </div>
@@ -315,8 +317,8 @@ export default function RulesPage() {
               <p className="text-gray-600 text-center leading-relaxed">
                 If something isn't clear or you have questions about the rules, just ask! You can reach out to any
                 organizer at the event or email us at{" "}
-                <a href="mailto:hello@southwestmnhacks.org" className="text-blue-600 hover:text-blue-700 underline">
-                  hello@southwestmnhacks.org
+                <a href={`mailto:${SUPPORT_EMAIL}`} className="text-blue-600 hover:text-blue-700 underline">
+                  {SUPPORT_EMAIL}
                 </a>
                 . We're here to help make sure everyone can compete fairly and have an awesome time.
               </p>

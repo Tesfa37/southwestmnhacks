@@ -1,15 +1,14 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Register - SouthwestMN Hacks",
+  title: "Register",
   description:
-    "Register for SouthwestMN Hacks - A beginner-friendly full-day hackathon on March 21, 2026 in Marshall, MN. Free to attend, all skill levels welcome!",
+    "Register for Southwest MN Hacks: Fall 2026, a beginner-friendly two-day hackathon on September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome.",
   openGraph: {
-    title: "Register - SouthwestMN Hacks",
+    title: "Register | Southwest MN Hacks: Fall 2026",
     description:
-      "Register for SouthwestMN Hacks - A beginner-friendly full-day hackathon on March 21, 2026 in Marshall, MN.",
-    // TODO: Convert og-image.svg to PNG (1200x630) for full social platform support
-    images: ["/og-image.svg"],
+      "Register for Southwest MN Hacks: Fall 2026, a beginner-friendly two-day hackathon on September 12 to 13, 2026 at SMSU in Marshall, MN.",
+    images: ["/og-image.png"],
   },
 }
 

@@ -1,14 +1,18 @@
-import { Calendar, Clock, MapPin, Users, Lightbulb, Sparkles, Brain, BarChart3, ExternalLink } from "lucide-react"
-import Link from "next/link"
+import { Calendar, Clock, MapPin, Users, Lightbulb, Trophy, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import { Header } from "@/components/header"
 import { SponsorCtaButton } from "@/components/sponsor-cta-button"
 import { Footer } from "@/components/footer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { EventRecap } from "@/components/event-recap"
-import { Winners } from "@/components/winners"
-import { Appreciation } from "@/components/appreciation"
-import { WinnerContinuationBadge } from "@/components/winner-continuation-badge"
+import {
+  EVENT_NAME,
+  EVENT_DATES,
+  REGISTRATION_DEADLINE,
+  REGISTRATION_FORM_URL,
+  DISCORD_INVITE_URL,
+  CONSENT_FORM_URL,
+  PARTNERSHIP_LINE,
+} from "@/lib/config"
 
 const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
 
@@ -21,7 +25,13 @@ export default function HomePage() {
     },
     {
       question: "How much does it cost?",
-      answer: "It's completely free! We'll provide meals, snacks, swag, and all the resources you need to build your project.",
+      answer:
+        "It's completely free! We provide meals, snacks, and the resources you need to build your project.",
+    },
+    {
+      question: "How do I register?",
+      answer:
+        "Fill out the registration form linked throughout this site. Registration closes September 8, 2026, so sign up early to save your spot.",
     },
     {
       question: "Can I work alone or do I need a team?",
@@ -29,30 +39,35 @@ export default function HomePage() {
         "Both! You can participate solo or form a team of up to 4 people. We'll also have team formation activities at the start if you want to meet collaborators.",
     },
     {
+      question: "What if I'm under 18?",
+      answer:
+        "High school students are welcome. Participants under 18 must have a signed parental consent form on file before check-in. You can find the consent form linked in the registration section.",
+    },
+    {
       question: "What should I bring?",
       answer:
-        "Bring your laptop, charger, student ID, and any hardware you want to hack with. We'll provide WiFi, power strips, and snacks throughout the day.",
+        "Bring your laptop, charger, and student ID. We'll provide WiFi, power, food, and snacks throughout the event.",
     },
     {
       question: "Who can participate?",
       answer:
-        "This event was open to all students: high school, college, or anyone eager to learn. If you were curious about technology and wanted to build something, you were welcome.",
+        "Open to all students: high school, college, or anyone eager to learn. If you're curious about technology and want to build something, you're welcome.",
     },
   ]
 
   const eventSchema = {
     "@context": "https://schema.org",
     "@type": "Event",
-    name: "SouthwestMN Hacks - Marshall Edition",
+    name: EVENT_NAME,
     description:
-      "Southwest Minnesota's first student hackathon. 30 participants, 10 teams, 12 hours of building. Held March 21, 2026 at SMSU, Marshall, MN.",
-    startDate: "2026-03-21T08:00:00-05:00",
-    endDate: "2026-03-21T19:30:00-05:00",
+      "Southwest Minnesota's student hackathon returns for two days of building, learning, and creating at SMSU in Marshall, MN. Free to attend, all skill levels welcome.",
+    startDate: "2026-09-12T09:00:00-05:00",
+    endDate: "2026-09-13T17:00:00-05:00",
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
       "@type": "Place",
-      name: "Upper Conference Center, Southwest Minnesota State University",
+      name: "Southwest Minnesota State University",
       address: {
         "@type": "PostalAddress",
         streetAddress: "1501 State St",
@@ -65,16 +80,16 @@ export default function HomePage() {
     image: ["https://southwestmnhacks.org/og-image.png"],
     organizer: {
       "@type": "Organization",
-      name: "Aulden",
+      name: "Southwest MN Hacks",
       url: "https://southwestmnhacks.org",
     },
     offers: {
       "@type": "Offer",
-      url: "https://southwestmnhacks.org",
+      url: REGISTRATION_FORM_URL,
       price: "0",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
-      validFrom: "2026-01-01T00:00:00-05:00",
+      validFrom: "2026-06-01T00:00:00-05:00",
     },
   }
 
@@ -89,55 +104,44 @@ export default function HomePage() {
       {/* Header Component */}
       <Header />
 
-      {/* Post-Event Survey Banner */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 px-4 text-center">
-        <p className="text-lg font-semibold mb-2">Thanks for hacking with us! Please share your feedback:</p>
-        <a
-          href="https://forms.gle/Pa3UCXfNHhSNv7Ww6"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 hover:shadow-lg hover:scale-105 transition-all"
-        >
-          Take the Survey
-        </a>
-      </div>
-
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 text-center">
         <div className="inline-block bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full text-sm font-semibold text-blue-900 mb-6">
-          March 21, 2026 • Marshall, MN
+          {EVENT_DATES} • SMSU, Marshall, MN
         </div>
 
         <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight text-balance px-2">
           <span className="bg-gradient-to-r from-orange-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-            SouthwestMN Hacks
+            {EVENT_NAME}
           </span>
-          <br />
-          <span className="text-gray-900">Marshall Edition</span>
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed text-pretty px-4">
-          Southwest Minnesota&apos;s first student hackathon brought together 30 participants to turn ideas into real
-          projects over 12 hours of building, learning, and creating.
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed text-pretty px-4">
+          Southwest Minnesota&apos;s student hackathon returns for two days of building, learning, and creating at SMSU.
+          All skill levels welcome.
         </p>
 
-        <div className="flex flex-wrap gap-4 justify-center mb-16 px-4">
+        <div className="flex flex-wrap gap-4 justify-center mb-3 px-4">
           <a
-            href="https://southwestmn-hacks.devpost.com/project-gallery"
+            href={REGISTRATION_FORM_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-orange-500 text-white px-8 py-4 rounded-full hover:shadow-lg transition-all font-semibold text-lg"
           >
-            View Projects on Devpost
+            Register
             <ExternalLink className="w-5 h-5" />
           </a>
-          <Link
-            href="/#winners"
-            className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold text-lg inline-block"
+          <a
+            href={DISCORD_INVITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold text-lg inline-flex items-center gap-2"
           >
-            See the Winners
-          </Link>
+            Join the Discord
+            <ExternalLink className="w-5 h-5" />
+          </a>
         </div>
+        <p className="text-sm text-gray-500 mb-16">Registration closes {REGISTRATION_DEADLINE}.</p>
 
         {/* 3 Bullet Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
@@ -147,7 +151,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-xl font-bold mb-2">Beginner Friendly</h3>
             <p className="text-gray-600">
-              Open to all skill levels. Mentors and Schwan&apos;s Company professionals supported participants throughout the day.
+              Open to all skill levels. Mentors and Schwan&apos;s Company professionals are on hand to help you learn.
             </p>
           </div>
 
@@ -155,49 +159,19 @@ export default function HomePage() {
             <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center mb-4">
               <Users className="w-6 h-6 text-white" />
             </div>
-            <h3 className="text-xl font-bold mb-2">Built Together</h3>
+            <h3 className="text-xl font-bold mb-2">Build Together</h3>
             <p className="text-gray-600">
-              10 teams of 1-4 collaborated, shared skills, and built something real in a single day.
+              Team up with 1 to 4 people, share skills, and build something real over the weekend.
             </p>
           </div>
 
           <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200">
             <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl flex items-center justify-center mb-4">
-              <Sparkles className="w-6 h-6 text-white" />
+              <Trophy className="w-6 h-6 text-white" />
             </div>
-            <h3 className="text-xl font-bold mb-2">5 Prizes Awarded</h3>
+            <h3 className="text-xl font-bold mb-2">Prizes &amp; Mentorship</h3>
             <p className="text-gray-600">
-              Top 5 teams received awards and recognition. The grand prize winner is featured on this site.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Event Recap */}
-      <EventRecap />
-
-      {/* Winners */}
-      <Winners />
-
-      {/* From Hackathon to Production */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        <div className="relative bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
-          <div
-            aria-hidden="true"
-            className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#C8102E]"
-          />
-          <div className="p-8 sm:p-10 pl-10 sm:pl-12">
-            <div className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">
-              After the Hackathon
-            </div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-5">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-                From Hackathon to Production
-              </h2>
-              <WinnerContinuationBadge />
-            </div>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              After the awards ceremony, Schwan&apos;s Company invited The Balancers to keep building IT Budget Strategist past the prototype stage. The team accepted and is now developing the tool further as a paid engagement with Schwan&apos;s. A 12-hour hackathon build became real software for a real customer, which is exactly the kind of outcome this event was designed to make possible.
+              Compete for prizes, learn from mentors, and present what you build to a panel of judges.
             </p>
           </div>
         </div>
@@ -212,70 +186,10 @@ export default function HomePage() {
             of time. Think of it as a hands-on workshop meets friendly competition.
           </p>
           <p className="text-lg leading-relaxed opacity-95">
-            Participants spent the day designing, coding, and presenting a project: an app, website, hardware
-            prototype, or creative solution to a real problem. Along the way, they learned new skills, met mentors, and
-            had fun!
+            Participants spend the time designing, coding, and presenting a project: an app, website, hardware
+            prototype, or creative solution to a real problem. Along the way, you learn new skills, meet mentors, and
+            have fun.
           </p>
-        </div>
-      </section>
-
-      {/* Schwan's Challenge Section */}
-      <section id="challenges" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
-            <Sparkles className="w-4 h-4" />
-            Presented by our Platinum Sponsor
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Schwan&apos;s Company Challenge</h2>
-          <p className="text-xl text-gray-600">Two real-world challenges that drove all 10 projects</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Challenge 1: Knowledge Transfer Agent */}
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow flex flex-col">
-            <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mb-5">
-              <Brain className="w-7 h-7 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold mb-3">Knowledge Transfer Agent</h3>
-            <p className="text-gray-600 mb-6 flex-1">
-              Build an AI-powered agent that helps one person teach another. Capture knowledge from audio, video,
-              screen recordings, or uploaded files. Organize it into clear training materials like summaries,
-              step-by-step instructions, or quizzes. Guide a new learner through the captured content and answer
-              their questions.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">AI</span>
-              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Education</span>
-              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Automation</span>
-            </div>
-            <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
-              Teams used any technology of their choice. Creativity, usability, and working functionality were
-              prioritized over perfection.
-            </p>
-          </div>
-
-          {/* Challenge 2: IT Budget Forecasting */}
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl transition-shadow flex flex-col">
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-teal-500 rounded-2xl flex items-center justify-center mb-5">
-              <BarChart3 className="w-7 h-7 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold mb-3">IT Hardware &amp; Software Budget Forecasting</h3>
-            <p className="text-gray-600 mb-6 flex-1">
-              Build a tool that helps IT teams plan and manage hardware and software costs. Enter expected costs
-              for laptops, servers, applications, and subscriptions, then forecast totals for up to 5 years. Track
-              actual spending against the original plan and display planned costs, actuals, and variance in a clean
-              format like charts, tables, or dashboards.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Data</span>
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Finance</span>
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Dashboard</span>
-            </div>
-            <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
-              Teams used any technology of their choice. Creativity, usability, and working functionality were
-              prioritized over perfection.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -288,133 +202,66 @@ export default function HomePage() {
               <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
                 <Calendar className="w-6 h-6 text-white" />
               </div>
-              <div className="font-semibold text-gray-900">Date</div>
-              <div className="text-gray-600">March 21, 2026</div>
+              <div className="font-semibold text-gray-900">Dates</div>
+              <div className="text-gray-600">{EVENT_DATES}</div>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
                 <Clock className="w-6 h-6 text-white" />
               </div>
-              <div className="font-semibold text-gray-900">Time</div>
-              <div className="text-gray-600">8:00 AM – 7:30 PM</div>
+              <div className="font-semibold text-gray-900">Format</div>
+              <div className="text-gray-600">Two-day, overnight</div>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <div className="font-semibold text-gray-900">Location</div>
-              <div className="text-gray-600">Upper Conference Center, SMSU</div>
+              <div className="text-gray-600">SMSU, Marshall, MN</div>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-red-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
                 <Users className="w-6 h-6 text-white" />
               </div>
               <div className="font-semibold text-gray-900">Team Size</div>
-              <div className="text-gray-600">1-4 people</div>
+              <div className="text-gray-600">1 to 4 people</div>
             </div>
           </div>
           <div className="text-center mt-8">
             <a
-              href="https://southwestmn-hacks.devpost.com/project-gallery"
+              href={REGISTRATION_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:scale-105 transition-all"
             >
-              View All Projects on Devpost →
+              Register Now
+              <ExternalLink className="w-5 h-5" />
             </a>
+            <p className="text-sm text-gray-500 mt-3">Registration closes {REGISTRATION_DEADLINE}.</p>
           </div>
         </div>
       </section>
 
-      {/* Schedule Preview */}
-      <section id="schedule" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Schedule Preview</h2>
-          <p className="text-lg sm:text-xl text-gray-600">A full day of building, learning, and fun!</p>
-        </div>
-        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200">
-          <div className="space-y-8">
-            <div className="flex gap-4 sm:gap-6">
-              <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">8:00 AM</div>
-              </div>
-              <div className="flex-1 pb-8 border-l-4 border-orange-400 pl-4 sm:pl-6 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-orange-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Breakfast & Check-in</h4>
-                <p className="text-gray-600">Arrive, grab breakfast, and meet other participants</p>
-              </div>
-            </div>
-            <div className="flex gap-4 sm:gap-6">
-              <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">8:30 AM</div>
-              </div>
-              <div className="flex-1 pb-8 border-l-4 border-blue-400 pl-4 sm:pl-6 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Opening Ceremony & Sponsor Remarks</h4>
-                <p className="text-gray-600">Kickoff with organizers, judges, sponsor remarks, and challenge walkthrough</p>
-              </div>
-            </div>
-            <div className="flex gap-4 sm:gap-6">
-              <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">9:00 AM</div>
-              </div>
-              <div className="flex-1 pb-8 border-l-4 border-purple-400 pl-4 sm:pl-6 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-purple-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Hacking Begins</h4>
-                <p className="text-gray-600">Start building your project with mentor support available</p>
-              </div>
-            </div>
-            <div className="flex gap-4 sm:gap-6">
-              <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">12:30 PM</div>
-              </div>
-              <div className="flex-1 pb-8 border-l-4 border-green-400 pl-4 sm:pl-6 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-green-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Lunch</h4>
-                <p className="text-gray-600">Recharge with a provided lunch</p>
-              </div>
-            </div>
-            <div className="flex gap-4 sm:gap-6">
-              <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">5:00 PM</div>
-              </div>
-              <div className="flex-1 pb-8 border-l-4 border-pink-400 pl-4 sm:pl-6 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-pink-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Submissions Due on Devpost</h4>
-                <p className="text-gray-600">Final project submissions close. No extensions.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 sm:gap-6">
-              <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">5:15 PM</div>
-              </div>
-              <div className="flex-1 pb-8 border-l-4 border-indigo-400 pl-4 sm:pl-6 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-indigo-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Demos & Judging</h4>
-                <p className="text-gray-600">Each team presents their project to the judges</p>
-              </div>
-            </div>
-            <div className="flex gap-4 sm:gap-6">
-              <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">6:30 PM</div>
-              </div>
-              <div className="flex-1 pb-8 border-l-4 border-teal-400 pl-4 sm:pl-6 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-teal-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Dinner</h4>
-                <p className="text-gray-600">Dinner served while judges deliberate</p>
-              </div>
-            </div>
-            <div className="flex gap-4 sm:gap-6">
-              <div className="text-right w-20 sm:w-24 flex-shrink-0">
-                <div className="font-bold text-base sm:text-lg">7:30 PM</div>
-              </div>
-              <div className="flex-1 border-l-4 border-yellow-400 pl-4 sm:pl-6 relative">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-yellow-400 rounded-full"></div>
-                <h4 className="font-bold text-lg sm:text-xl mb-1">Awards Ceremony & Closing</h4>
-                <p className="text-gray-600">Winners announced, plaques and medals awarded</p>
-              </div>
-            </div>
-          </div>
+      {/* Who Can Participate / Minors */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-gray-200">
+          <h2 className="text-3xl font-bold mb-4">Who Can Participate</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-4">
+            Open to high school and college students of all skill levels. Whether this is your first hackathon or your
+            tenth, you belong here.
+          </p>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            Participants under 18 must have a signed parental consent form on file before check-in. You can complete the{" "}
+            <a
+              href={CONSENT_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 underline font-semibold"
+            >
+              parental consent form
+            </a>{" "}
+            ahead of the event.
+          </p>
         </div>
       </section>
 
@@ -440,14 +287,11 @@ export default function HomePage() {
         </Accordion>
       </section>
 
-      {/* Appreciation */}
-      <Appreciation />
-
       {/* Sponsors Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Our Sponsors</h2>
-          <p className="text-lg sm:text-xl text-gray-600">Thank you to our amazing partners who make this possible!</p>
+          <p className="text-lg sm:text-xl text-gray-600">Thank you to the partners who make this possible.</p>
         </div>
 
         {/* Platinum Sponsor */}
@@ -471,10 +315,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Hosted By */}
+        {/* Run in partnership with Aulden */}
         <div className="bg-gradient-to-r from-blue-500 to-blue-700 rounded-3xl p-8 sm:p-12 text-center text-white mb-8">
           <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-            Hosted By
+            In Partnership With
           </span>
           <div className="flex justify-center">
             <a
@@ -496,16 +340,14 @@ export default function HomePage() {
               />
             </a>
           </div>
-          <p className="mt-4 text-sm text-white/75">
-            Aulden was formerly known as ETM Software Solutions.
-          </p>
+          <p className="mt-4 text-sm text-white/85">{PARTNERSHIP_LINE}</p>
         </div>
 
         {/* Sponsor CTA */}
         <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 sm:p-12 text-center text-white">
-          <h3 className="text-2xl sm:text-3xl font-bold mb-4">Interested in future editions?</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-4">Want to sponsor Fall 2026?</h3>
           <p className="text-lg sm:text-xl mb-8 opacity-95">
-            We&apos;re just getting started. Learn how to support the next generation of student builders.
+            Help us support the next generation of student builders in Southwest Minnesota.
           </p>
           <SponsorCtaButton />
         </div>

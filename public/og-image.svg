@@ -13,12 +13,12 @@
   <!-- Main Title: SouthwestMN Hacks -->
   <text x="600" y="220" font-family="Arial, sans-serif" font-size="84" font-weight="900" fill="white" text-anchor="middle">SouthwestMN Hacks</text>
 
-  <!-- Subtitle: Marshall Edition -->
-  <text x="600" y="300" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">Marshall Edition</text>
+  <!-- Subtitle: Edition -->
+  <text x="600" y="300" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">Fall 2026</text>
 
   <!-- Tagline -->
-  <text x="600" y="380" font-family="Arial, sans-serif" font-size="36" font-weight="400" fill="white" text-anchor="middle" opacity="0.9">A beginner-friendly 12-hour hackathon</text>
+  <text x="600" y="380" font-family="Arial, sans-serif" font-size="36" font-weight="400" fill="white" text-anchor="middle" opacity="0.9">A beginner-friendly student hackathon</text>
 
   <!-- Date and Location -->
-  <text x="600" y="520" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="white" text-anchor="middle" opacity="0.95">March 21, 2026 • Marshall, MN</text>
+  <text x="600" y="520" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="white" text-anchor="middle" opacity="0.95">September 12 to 13, 2026 • SMSU, Marshall, MN</text>
 </svg>

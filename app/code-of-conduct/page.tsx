@@ -1,8 +1,41 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Shield } from "lucide-react"
+import { MLH_APPROVED, SMSU_DOCS_APPROVED, SUPPORT_EMAIL } from "@/lib/config"
 
 export default function CodeOfConductPage() {
+  // Gate 2: the public Code of Conduct stays behind a placeholder until the SMSU
+  // participant-document package is approved for publication.
+  if (!SMSU_DOCS_APPROVED) {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">
+          <section className="py-20 px-4 md:py-28 bg-gradient-to-br from-orange-50 via-white to-blue-50">
+            <div className="container max-w-2xl mx-auto text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-600 font-medium text-sm mb-6">
+                <Shield className="size-4" />
+                Community Guidelines
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold text-balance mb-6 leading-tight">Code of Conduct</h1>
+              <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-xl mx-auto leading-relaxed mb-6">
+                Our Code of Conduct and participant waivers will be posted here before registration closes.
+              </p>
+              <p className="text-base text-gray-600">
+                Questions in the meantime? Email{" "}
+                <a href={`mailto:${SUPPORT_EMAIL}`} className="text-blue-600 hover:text-blue-700 underline">
+                  {SUPPORT_EMAIL}
+                </a>
+                .
+              </p>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -149,21 +182,23 @@ export default function CodeOfConductPage() {
               </div>
             </div>
 
-            {/* Attribution */}
-            <div className="border-t border-gray-200 pt-8">
-              <p className="text-sm text-gray-500 text-center">
-                This Code of Conduct is based on the{" "}
-                <a
-                  href="https://mlh.io/code-of-conduct"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-700 underline"
-                >
-                  MLH Code of Conduct
-                </a>
-                . We are committed to providing a safe and welcoming environment for all participants.
-              </p>
-            </div>
+            {/* Attribution, only when MLH membership is approved (Gate 1). */}
+            {MLH_APPROVED && (
+              <div className="border-t border-gray-200 pt-8">
+                <p className="text-sm text-gray-500 text-center">
+                  This Code of Conduct is based on the{" "}
+                  <a
+                    href="https://mlh.io/code-of-conduct"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700 underline"
+                  >
+                    MLH Code of Conduct
+                  </a>
+                  . We are committed to providing a safe and welcoming environment for all participants.
+                </p>
+              </div>
+            )}
           </div>
         </section>
       </main>

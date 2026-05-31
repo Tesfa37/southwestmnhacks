@@ -4,7 +4,7 @@ const faqs = [
   {
     question: "How many people typically attend?",
     answer:
-      "We expect 50+ attendees including students from SMSU, community members, and mentors. Our goal is to create an intimate, supportive environment where every participant gets hands-on help and attention.",
+      "We bring together students from SMSU and the surrounding region, community members, and mentors. Our goal is to create a supportive environment where every participant gets hands-on help and attention.",
   },
   {
     question: "What do sponsor representatives do onsite?",

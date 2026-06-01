@@ -29,6 +29,12 @@ export const EVENT_DATES = "September 12 to 13, 2026"
 export const REGISTRATION_DEADLINE = "September 8, 2026"
 export const VENUE = "Southwest Minnesota State University, Marshall, MN"
 
+// Countdown targets as fixed instants (Central Time, CDT = UTC-5 in September).
+// The home page countdown moves through these: closes -> begins -> underway -> ended.
+export const REGISTRATION_CLOSE_AT = "2026-09-08T23:59:59-05:00"
+export const EVENT_START_AT = "2026-09-12T08:00:00-05:00"
+export const EVENT_END_AT = "2026-09-13T19:30:00-05:00"
+
 // Live event assets
 export const REGISTRATION_FORM_URL = "https://forms.gle/tR3nteuQ3CgyHAmW6"
 export const DEVPOST_FALL_URL = "https://southwest-mn-hacks.devpost.com/"

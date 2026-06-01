@@ -77,7 +77,11 @@ export function SponsorTiers() {
                 variant={tier.popular ? "default" : "outline"}
                 asChild
               >
-                <a href="#sponsor-form">
+                <a
+                  href={`mailto:sponsors@southwestmnhacks.org?subject=${encodeURIComponent(
+                    `Sponsorship inquiry: ${tier.name} (${tier.price})`,
+                  )}`}
+                >
                   Choose {tier.name}
                 </a>
               </Button>

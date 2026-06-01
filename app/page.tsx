@@ -1,6 +1,7 @@
 import { Calendar, Clock, MapPin, Users, Lightbulb, Trophy } from "lucide-react"
 import Image from "next/image"
 import { Header } from "@/components/header"
+import { CountdownTimer } from "@/components/countdown-timer"
 import { SponsorCtaButton } from "@/components/sponsor-cta-button"
 import { Footer } from "@/components/footer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -138,6 +139,9 @@ export default function HomePage() {
           >
             Join the Discord
           </a>
+        </div>
+        <div className="mb-6 px-4">
+          <CountdownTimer />
         </div>
         <p className="text-sm text-gray-500 mb-16">Registration closes {REGISTRATION_DEADLINE}.</p>
 
@@ -291,30 +295,9 @@ export default function HomePage() {
           <p className="text-lg sm:text-xl text-gray-600">Thank you to the partners who make this possible.</p>
         </div>
 
-        {/* Platinum Sponsor */}
-        <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-gray-200 mb-8">
-          <div className="text-center">
-            <span className="inline-block bg-purple-100 text-purple-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-              Platinum Sponsor
-            </span>
-            <div className="flex justify-center">
-              <Image
-                src="/schwans-logo.png"
-                alt="Schwan's Company"
-                width={240}
-                height={80}
-                placeholder="blur"
-                blurDataURL={BLUR}
-                sizes="200px"
-                className="h-16 sm:h-20 w-auto object-contain"
-              />
-            </div>
-          </div>
-        </div>
-
         {/* Run in partnership with Aulden */}
-        <div className="bg-gradient-to-r from-blue-500 to-blue-700 rounded-3xl p-8 sm:p-12 text-center text-white mb-8">
-          <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+        <div className="bg-white rounded-3xl p-8 sm:p-12 text-center shadow-sm border border-gray-200 mb-8">
+          <span className="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
             In Partnership With
           </span>
           <div className="flex justify-center">
@@ -333,11 +316,11 @@ export default function HomePage() {
                 placeholder="blur"
                 blurDataURL={BLUR}
                 sizes="200px"
-                className="h-16 sm:h-20 w-auto object-contain rounded-xl"
+                className="h-16 sm:h-20 w-auto object-contain"
               />
             </a>
           </div>
-          <p className="mt-4 text-sm text-white/85">{PARTNERSHIP_LINE}</p>
+          <p className="mt-4 text-sm text-gray-600">{PARTNERSHIP_LINE}</p>
         </div>
 
         {/* Sponsor CTA */}

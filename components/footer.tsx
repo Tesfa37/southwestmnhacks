@@ -5,6 +5,7 @@ import {
   REGISTRATION_FORM_URL,
   DEVPOST_FALL_URL,
   DISCORD_INVITE_URL,
+  DISCORD_ENABLED,
   PARTNERSHIP_LINE,
 } from "@/lib/config"
 
@@ -67,14 +68,16 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Community</h4>
             <div className="space-y-2">
-              <a
-                href={DISCORD_INVITE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-gray-400 hover:text-white transition-colors"
-              >
-                Discord
-              </a>
+              {DISCORD_ENABLED && (
+                <a
+                  href={DISCORD_INVITE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-gray-400 hover:text-white transition-colors"
+                >
+                  Discord
+                </a>
+              )}
               <a
                 href={DEVPOST_FALL_URL}
                 target="_blank"

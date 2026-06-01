@@ -11,6 +11,7 @@ import {
   REGISTRATION_DEADLINE,
   REGISTRATION_FORM_URL,
   DISCORD_INVITE_URL,
+  DISCORD_ENABLED,
   CONSENT_FORM_URL,
   PARTNERSHIP_LINE,
 } from "@/lib/config"
@@ -131,14 +132,16 @@ export default function HomePage() {
           >
             Register
           </a>
-          <a
-            href={DISCORD_INVITE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold text-lg inline-flex items-center gap-2"
-          >
-            Join the Discord
-          </a>
+          {DISCORD_ENABLED && (
+            <a
+              href={DISCORD_INVITE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold text-lg inline-flex items-center gap-2"
+            >
+              Join the Discord
+            </a>
+          )}
         </div>
         <div className="mb-6 px-4">
           <CountdownTimer />

@@ -41,6 +41,10 @@ export const DEVPOST_FALL_URL = "https://southwest-mn-hacks.devpost.com/"
 export const DISCORD_INVITE_URL = "https://discord.gg/3gsH2DTx"
 export const CONSENT_FORM_URL = "https://form.jotform.com/261474955259066"
 
+// Discord is hidden for now. Flip to true to show the hero button and the
+// footer link again. The invite URL above stays wired up either way.
+export const DISCORD_ENABLED = false
+
 // Contact
 export const SUPPORT_EMAIL = "support@southwestmnhacks.org"
 

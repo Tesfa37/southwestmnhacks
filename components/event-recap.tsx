@@ -17,26 +17,6 @@ export function EventRecap() {
         </p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
-          <div className="text-3xl font-black text-orange-600 mb-1">30</div>
-          <div className="text-gray-600 text-sm font-medium">Participants</div>
-        </div>
-        <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
-          <div className="text-3xl font-black text-blue-600 mb-1">10</div>
-          <div className="text-gray-600 text-sm font-medium">Teams Submitted</div>
-        </div>
-        <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
-          <div className="text-3xl font-black text-pink-600 mb-1">12</div>
-          <div className="text-gray-600 text-sm font-medium">Hours of Building</div>
-        </div>
-        <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
-          <div className="text-3xl font-black text-purple-600 mb-1">5</div>
-          <div className="text-gray-600 text-sm font-medium">Prizes Awarded</div>
-        </div>
-      </div>
-
       {/* Photos */}
       <div className="mb-12">
         <div className="relative aspect-[21/9] rounded-3xl overflow-hidden shadow-lg">

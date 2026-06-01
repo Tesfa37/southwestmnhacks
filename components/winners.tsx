@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Trophy, ExternalLink } from "lucide-react"
+import { Trophy } from "lucide-react"
 import { WinnerContinuationBadge } from "@/components/winner-continuation-badge"
 
 // Tiny 1x1 gray JPEG used as blur placeholder while images load
@@ -99,7 +99,6 @@ export function Winners() {
               className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all w-fit"
             >
               View on Devpost
-              <ExternalLink className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -134,10 +133,9 @@ export function Winners() {
                 href={winner.devpost}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors"
+                className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-full font-semibold text-sm hover:bg-blue-700 transition-colors w-fit"
               >
                 View on Devpost
-                <ExternalLink className="w-3 h-3" />
               </a>
             </div>
           </div>
@@ -153,7 +151,6 @@ export function Winners() {
           className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:scale-105 transition-all"
         >
           View All 10 Projects on Devpost
-          <ExternalLink className="w-5 h-5" />
         </a>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { Calendar, Clock, MapPin, Users, Lightbulb, Trophy, ExternalLink } from "lucide-react"
+import { Calendar, Clock, MapPin, Users, Lightbulb, Trophy } from "lucide-react"
 import Image from "next/image"
 import { Header } from "@/components/header"
 import { SponsorCtaButton } from "@/components/sponsor-cta-button"
@@ -129,7 +129,6 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-orange-500 text-white px-8 py-4 rounded-full hover:shadow-lg transition-all font-semibold text-lg"
           >
             Register
-            <ExternalLink className="w-5 h-5" />
           </a>
           <a
             href={DISCORD_INVITE_URL}
@@ -138,7 +137,6 @@ export default function HomePage() {
             className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold text-lg inline-flex items-center gap-2"
           >
             Join the Discord
-            <ExternalLink className="w-5 h-5" />
           </a>
         </div>
         <p className="text-sm text-gray-500 mb-16">Registration closes {REGISTRATION_DEADLINE}.</p>
@@ -235,7 +233,6 @@ export default function HomePage() {
               className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:scale-105 transition-all"
             >
               Register Now
-              <ExternalLink className="w-5 h-5" />
             </a>
             <p className="text-sm text-gray-500 mt-3">Registration closes {REGISTRATION_DEADLINE}.</p>
           </div>

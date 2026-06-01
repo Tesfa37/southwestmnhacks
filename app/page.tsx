@@ -153,7 +153,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-xl font-bold mb-2">Beginner Friendly</h3>
             <p className="text-gray-600">
-              Open to all skill levels. Mentors and Schwan&apos;s Company professionals are on hand to help you learn.
+              Open to all skill levels. Mentors and industry professionals are on hand to help you learn.
             </p>
           </div>
 

@@ -57,7 +57,7 @@ TypeScript path mapping (`tsconfig.json`) resolves imports:
 ### External Services
 - **Vercel Analytics** integrated in root layout (custom event tracking via `track()`)
 - **Google Forms** for sponsor applications (embedded iframe on `/sponsor`)
-- **Devpost** for project submissions: https://southwestmn-hacks.devpost.com/
+- **Devpost** for project submissions: https://southwest-mn-hacks.devpost.com/
 
 ### Navigation
 - All internal links use Next.js `<Link>` for client-side navigation

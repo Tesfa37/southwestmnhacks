@@ -1,5 +1,5 @@
 import { Sparkles, Calendar, MapPin } from "lucide-react"
-import { EVENT_DATES, VENUE, PARTNERSHIP_LINE } from "@/lib/config"
+import { EVENT_DATES, VENUE, VENUE_MAP_URL, PARTNERSHIP_LINE } from "@/lib/config"
 
 export function SponsorHero() {
   return (
@@ -23,10 +23,15 @@ export function SponsorHero() {
               <Calendar className="size-4 text-orange-600" />
               {EVENT_DATES}
             </span>
-            <span className="inline-flex items-center gap-2">
+            <a
+              href={VENUE_MAP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 hover:text-orange-600 underline-offset-2 hover:underline transition-colors"
+            >
               <MapPin className="size-4 text-orange-600" />
               {VENUE}
-            </span>
+            </a>
           </div>
           <p className="mt-3 text-sm text-muted-foreground">{PARTNERSHIP_LINE}</p>
         </div>

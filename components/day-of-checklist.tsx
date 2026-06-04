@@ -1,4 +1,5 @@
 import { CheckCircle2, Backpack, Upload, Presentation } from "lucide-react"
+import { DEVPOST_FALL_URL } from "@/lib/config"
 
 const sections = [
   {
@@ -12,6 +13,8 @@ const sections = [
       "Notebook and pen for brainstorming",
       "Headphones for focused work",
       "Reusable water bottle",
+      "Sleeping bag or blanket and a pillow (overnight event)",
+      "Toothbrush and basic toiletries",
     ],
   },
   {
@@ -20,7 +23,7 @@ const sections = [
     accent: "from-blue-400 to-purple-400",
     check: "text-blue-500",
     items: [
-      "Submit on Devpost (southwest-mn-hacks.devpost.com) before the deadline",
+      { text: "Submit on Devpost before the deadline", href: DEVPOST_FALL_URL },
       "Include: project name, challenge, team members",
       "Link to your GitHub repo or live demo",
       "Short video demo (optional, not required)",
@@ -61,12 +64,28 @@ export function DayOfChecklist() {
               </div>
               <h3 className="text-xl font-bold mb-6">{section.title}</h3>
               <ul className="space-y-4">
-                {section.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle2 className={`size-5 ${section.check} shrink-0 mt-0.5`} aria-hidden="true" />
-                    <span className="text-gray-600 leading-relaxed text-sm">{item}</span>
-                  </li>
-                ))}
+                {section.items.map((item) => {
+                  const text = typeof item === "string" ? item : item.text
+                  return (
+                    <li key={text} className="flex items-start gap-3">
+                      <CheckCircle2 className={`size-5 ${section.check} shrink-0 mt-0.5`} aria-hidden="true" />
+                      <span className="text-gray-600 leading-relaxed text-sm">
+                        {typeof item === "string" ? (
+                          item
+                        ) : (
+                          <a
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 underline underline-offset-2 hover:text-blue-700"
+                          >
+                            {item.text}
+                          </a>
+                        )}
+                      </span>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ))}

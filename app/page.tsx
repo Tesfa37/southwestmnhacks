@@ -10,6 +10,7 @@ import {
   EVENT_DATES,
   REGISTRATION_DEADLINE,
   REGISTRATION_FORM_URL,
+  VENUE_MAP_URL,
   DISCORD_INVITE_URL,
   DISCORD_ENABLED,
   CONSENT_FORM_URL,
@@ -48,7 +49,7 @@ export default function HomePage() {
     {
       question: "What should I bring?",
       answer:
-        "Bring your laptop, charger, and student ID. We'll provide WiFi, power, food, and snacks throughout the event.",
+        "Bring your laptop, charger, and student ID. Since we run overnight, also pack what you need to rest: a sleeping bag or blanket, a pillow, and a toothbrush. We'll provide WiFi, power, food, and snacks throughout the event.",
     },
     {
       question: "Who can participate?",
@@ -109,7 +110,15 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 text-center">
         <div className="inline-block bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full text-sm font-semibold text-blue-900 mb-6">
-          {EVENT_DATES} • SMSU, Marshall, MN
+          {EVENT_DATES} •{" "}
+          <a
+            href={VENUE_MAP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-blue-700 transition-colors"
+          >
+            SMSU, Marshall, MN
+          </a>
         </div>
 
         <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight text-balance px-2">
@@ -222,7 +231,14 @@ export default function HomePage() {
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <div className="font-semibold text-gray-900">Location</div>
-              <div className="text-gray-600">SMSU, Marshall, MN</div>
+              <a
+                href={VENUE_MAP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-blue-600 underline underline-offset-2 transition-colors"
+              >
+                SMSU, Marshall, MN
+              </a>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-red-400 rounded-2xl flex items-center justify-center mx-auto mb-3">

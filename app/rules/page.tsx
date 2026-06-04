@@ -2,7 +2,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ClipboardList } from "lucide-react"
 import Link from "next/link"
-import { SUPPORT_EMAIL } from "@/lib/config"
+import { SUPPORT_EMAIL, DEVPOST_FALL_URL } from "@/lib/config"
 
 export default function RulesPage() {
   return (
@@ -145,8 +145,16 @@ export default function RulesPage() {
                   <li className="flex items-start gap-3">
                     <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
                     <span className="text-gray-700">
-                      <strong>Submit on Devpost</strong> – All projects must be submitted through Devpost by the
-                      deadline.
+                      <strong>Submit on Devpost</strong> – All projects must be submitted through{" "}
+                      <a
+                        href={DEVPOST_FALL_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline underline-offset-2 hover:text-blue-700"
+                      >
+                        Devpost
+                      </a>{" "}
+                      by the deadline.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">

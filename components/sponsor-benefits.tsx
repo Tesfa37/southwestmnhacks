@@ -1,25 +1,22 @@
-import { Users, Megaphone, Heart, Target } from "lucide-react"
+import { Users, Target, Heart } from "lucide-react"
 
 const benefits = [
   {
     icon: Users,
-    title: "Meet Emerging Talent",
-    description: "Spend the event among motivated students and early-career builders from across the region.",
-  },
-  {
-    icon: Megaphone,
-    title: "Brand Visibility",
-    description: "Put your brand in front of participants and the local tech community, on-site and on our website and social media.",
-  },
-  {
-    icon: Heart,
-    title: "Community Impact",
-    description: "Invest in tech education and innovation in rural Southwest Minnesota, where opportunities like this are rare.",
+    title: "Student interaction",
+    description:
+      "Face-to-face conversations with students over meals, at your booth, and through mentoring, rather than a name on a banner.",
   },
   {
     icon: Target,
-    title: "Recruiting Pipeline",
-    description: "Build a direct line to interns and new hires who can already ship under pressure.",
+    title: "Workforce pipeline",
+    description:
+      "Recruit college and graduate participants today, and build relationships with younger students entering the field.",
+  },
+  {
+    icon: Heart,
+    title: "Community and STEM impact",
+    description: "Invest in regional technical talent that too often leaves the area, and help keep it here.",
   },
 ]
 
@@ -28,11 +25,15 @@ export function SponsorBenefits() {
     <section className="py-16 px-4">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">What Sponsors Get</h2>
-          <p className="text-lg text-muted-foreground text-balance">Beyond the tier benefits, here's what you gain</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Why sponsor</h2>
+          <p className="text-lg text-muted-foreground text-balance max-w-3xl mx-auto leading-relaxed">
+            College and graduate students are exploring internships and early-career roles now. High school students are
+            the regional STEM pipeline, the next wave of local talent in software, cybersecurity, data, and AI. Your
+            sponsorship reaches both.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {benefits.map((benefit) => (
             <div
               key={benefit.title}

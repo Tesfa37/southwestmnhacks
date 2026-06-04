@@ -2,24 +2,24 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const faqs = [
   {
-    question: "How many people typically attend?",
+    question: "Who attends, and how do sponsors meet them?",
     answer:
-      "We bring together students from SMSU and the surrounding region, community members, and mentors. Our goal is to create a supportive environment where every participant gets hands-on help and attention.",
+      "We bring together college, graduate, and high school students from across the region, along with community members and mentors. Sponsors meet them in person at a networking meal, at a booth, and while mentoring or judging, rather than through a name on a banner.",
   },
   {
     question: "What do sponsor representatives do onsite?",
     answer:
-      "Sponsor reps are welcome to set up a table/booth, talk to attendees about your organization, judge projects, and offer mentorship during the event. You can be as hands-on or hands-off as you'd like - we'll work with you to create the right experience.",
+      "Sponsor reps are welcome to set up a booth or table, talk to students about your organization, mentor teams, and serve on the judging panel. You can be as hands-on or hands-off as you like, and we will work with you to create the right experience.",
   },
   {
-    question: "Can we sponsor a specific track?",
+    question: "Can we sponsor a prize category or challenge?",
     answer:
-      "Platinum sponsors can be the named sponsor of a specific track (Community/Main Street, Student Life, or AI & Automation). This includes prominent branding and speaking time during that track's introduction.",
+      "Yes. Gold and Platinum sponsors can offer a challenge prompt or sponsor a named prize category. We will work with you to define a real-world problem or theme and recognize it during the event.",
   },
   {
     question: "What if we can't sponsor financially?",
     answer:
-      "In-kind sponsorships are incredibly valuable! We accept software licenses, cloud credits, API access, food/beverage donations, swag, prizes, or equipment loans. Contact us to discuss what you can provide.",
+      "In-kind support is incredibly valuable. We accept meals, prizes, t-shirts, snacks and beverages, cloud or software credits, or equipment. Recognition is matched to the value contributed, so contact us to discuss what you can provide.",
   },
 ]
 

@@ -1,5 +1,5 @@
 import { CheckCircle2, Backpack, Upload, Presentation } from "lucide-react"
-import { DEVPOST_FALL_URL } from "@/lib/config"
+import { DEVPOST_FALL_URL, CONSENT_FORM_URL } from "@/lib/config"
 
 const sections = [
   {
@@ -15,6 +15,10 @@ const sections = [
       "Reusable water bottle",
       "Sleeping bag or blanket and a pillow (overnight event)",
       "Toothbrush and basic toiletries",
+      {
+        text: "Under 18: parental consent form completed by your parent or guardian (required for check-in)",
+        href: CONSENT_FORM_URL,
+      },
     ],
   },
   {

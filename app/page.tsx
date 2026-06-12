@@ -1,7 +1,8 @@
-import { Calendar, Clock, MapPin, Users, Lightbulb, Trophy } from "lucide-react"
+import { Calendar, Clock, MapPin, Users, Lightbulb, Trophy, ShieldAlert } from "lucide-react"
 import Image from "next/image"
 import { Header } from "@/components/header"
 import { HomeHero } from "@/components/home-hero"
+import { ConsentShare } from "@/components/consent-share"
 import { Reveal } from "@/components/reveal"
 import { SponsorCtaButton } from "@/components/sponsor-cta-button"
 import { Footer } from "@/components/footer"
@@ -40,8 +41,21 @@ export default function HomePage() {
     },
     {
       question: "What if I'm under 18?",
-      answer:
-        "High school students are welcome. Participants under 18 must have a signed parental consent form on file before check-in. You can find the consent form linked in the registration section.",
+      answer: (
+        <>
+          High school students are welcome — but if you&apos;re under 18, it&apos;s your responsibility to make sure a
+          parent or guardian completes the{" "}
+          <a
+            href={CONSENT_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-700 underline font-semibold"
+          >
+            parental consent form
+          </a>{" "}
+          before check-in. Send it to them today — it only takes a few minutes.
+        </>
+      ),
     },
     {
       question: "What should I bring?",
@@ -232,18 +246,29 @@ export default function HomePage() {
             Open to high school and college students of all skill levels. Whether this is your first hackathon or your
             tenth, you belong here.
           </p>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Participants under 18 must have a signed parental consent form on file before check-in. You can complete the{" "}
-            <a
-              href={CONSENT_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-700 underline font-semibold"
-            >
-              parental consent form
-            </a>{" "}
-            ahead of the event.
-          </p>
+          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-6">
+            <div className="flex items-start gap-4">
+              <div className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+                <ShieldAlert className="size-5" />
+              </div>
+              <div>
+                <p className="text-lg text-gray-800 leading-relaxed">
+                  <span className="font-bold">Under 18? This one&apos;s on you.</span> Send the{" "}
+                  <a
+                    href={CONSENT_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700 underline font-semibold"
+                  >
+                    parental consent form
+                  </a>{" "}
+                  to your parent or guardian and make sure they complete it before check-in — you can&apos;t check in
+                  without it.
+                </p>
+                <ConsentShare />
+              </div>
+            </div>
+          </div>
         </div>
         </Reveal>
       </section>

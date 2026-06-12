@@ -17,8 +17,6 @@ import {
   PARTNERSHIP_LINE,
 } from "@/lib/config"
 
-const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
-
 export default function HomePage() {
   const faqs = [
     {
@@ -328,18 +326,41 @@ export default function HomePage() {
               className="inline-flex hover:opacity-90 transition-opacity"
             >
               <Image
-                src="/aulden-logo.png"
+                src="/aulden-logo.svg"
                 alt="Aulden"
                 width={240}
                 height={80}
-                placeholder="blur"
-                blurDataURL={BLUR}
                 sizes="200px"
                 className="h-16 sm:h-20 w-auto object-contain"
               />
             </a>
           </div>
           <p className="mt-4 text-sm text-gray-600">{PARTNERSHIP_LINE}</p>
+        </div>
+
+        {/* Supported by Visit Marshall */}
+        <div className="bg-white rounded-3xl p-8 sm:p-12 text-center shadow-sm border border-gray-200 mb-8">
+          <span className="inline-block bg-teal-100 text-teal-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+            Supported By
+          </span>
+          <div className="flex justify-center">
+            <a
+              href="https://visitmarshallmn.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Marshall"
+              className="inline-flex hover:opacity-90 transition-opacity"
+            >
+              <Image
+                src="/visit-marshall-logo.png"
+                alt="Visit Marshall"
+                width={300}
+                height={77}
+                sizes="280px"
+                className="h-14 sm:h-16 w-auto object-contain"
+              />
+            </a>
+          </div>
         </div>
 
         {/* Sponsor CTA */}

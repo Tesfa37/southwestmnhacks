@@ -9,8 +9,6 @@ import {
   PARTNERSHIP_LINE,
 } from "@/lib/config"
 
-const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
-
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white mt-20">
@@ -106,7 +104,7 @@ export function Footer() {
               aria-label="Aulden"
               className="inline-flex hover:opacity-90 transition-opacity"
             >
-              <Image src="/aulden-logo-dark.png" alt="Aulden" width={120} height={32} placeholder="blur" blurDataURL={BLUR} sizes="120px" className="h-8 w-auto rounded" />
+              <Image src="/aulden-logo-dark.svg" alt="Aulden" width={120} height={32} sizes="120px" className="h-8 w-auto" />
             </a>
           </div>
           <p className="text-gray-500 max-w-2xl mx-auto">{PARTNERSHIP_LINE}</p>

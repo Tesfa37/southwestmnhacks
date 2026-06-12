@@ -5,7 +5,6 @@ import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion, type Va
 import { AuroraBackground } from "@/components/aurora-background"
 import { CountdownTimer } from "@/components/countdown-timer"
 import { MagneticButton } from "@/components/magnetic-button"
-import { PhotoMarquee } from "@/components/photo-marquee"
 import { RotatingWord } from "@/components/rotating-word"
 import { FloatingStickers } from "@/components/floating-stickers"
 import { KonamiListener } from "@/components/easter-eggs"
@@ -55,7 +54,7 @@ export function HomeHero() {
           <FloatingStickers />
 
           <m.div
-            className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 text-center"
+            className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16 sm:pt-16 sm:pb-20 md:pt-20 text-center"
             variants={container}
             initial={reduceMotion ? false : "hidden"}
             animate="visible"
@@ -90,8 +89,8 @@ export function HomeHero() {
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed text-pretty px-4"
             >
               Southwest Minnesota&apos;s student hackathon returns. Two days to build{" "}
-              <RotatingWord words={["an app", "a game", "a robot", "a website", "something new"]} /> — all skill levels
-              welcome.
+              <RotatingWord words={["your first app", "a game", "an AI tool", "a robot", "new friendships", "your future"]} />{" "}
+              — all skill levels welcome.
             </m.p>
 
             <m.div variants={item} className="flex flex-wrap gap-4 justify-center mb-3 px-4">
@@ -117,15 +116,6 @@ export function HomeHero() {
           </m.p>
           </m.div>
         </div>
-
-        <m.div
-          initial={reduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-10 sm:mt-12"
-        >
-          <PhotoMarquee />
-        </m.div>
 
         <AnimatePresence>
           {secret && (

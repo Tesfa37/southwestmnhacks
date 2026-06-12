@@ -39,14 +39,14 @@ pnpm lint         # Run ESLint
 
 ### Animation System
 - **`motion` library** (framer-motion successor, imports from `motion/react`) — always via `LazyMotion` + `domAnimation` + `m.` components to keep the runtime ~20 kb gz
-- **CSS-only effects** in `app/globals.css`: `animate-aurora-*` (gradient blobs), `animate-marquee` (photo strip), `animate-text-shimmer` (headline gradient); all transform/background-position only and disabled under `prefers-reduced-motion`
+- **CSS-only effects** in `app/globals.css`: `animate-aurora-*` (gradient blobs), `animate-text-shimmer` (headline gradient); all transform/background-position only and disabled under `prefers-reduced-motion`
 - **`prefers-reduced-motion` is honored everywhere**: CSS media query + `useReducedMotion()` in client components
 - `lib/confetti.ts` — tiny hand-rolled canvas confetti (`burstConfetti`, `confettiRain`), used by easter eggs only
 
 ### Component Organization
 - **Page-level components** live in `components/` directory:
   - Layout: `header.tsx`, `footer.tsx`
-  - Homepage hero: `home-hero.tsx` (client) composing `aurora-background.tsx`, `photo-marquee.tsx`, `magnetic-button.tsx`, `rotating-word.tsx`, `floating-stickers.tsx`, `easter-eggs.tsx` (Konami listener)
+  - Homepage hero: `home-hero.tsx` (client) composing `aurora-background.tsx`, `magnetic-button.tsx`, `rotating-word.tsx`, `floating-stickers.tsx`, `easter-eggs.tsx` (Konami listener)
   - Landing page sections: `event-recap.tsx`, `winners.tsx`, `appreciation.tsx` + inline sections in `app/page.tsx` wrapped in `reveal.tsx` (scroll fade-in)
   - Sponsor page: `sponsor-hero.tsx`, `sponsor-benefits.tsx`, `sponsor-day-timeline.tsx`, `sponsor-proof.tsx` (photo + press clipping + `partner-logo-wall.tsx`), `sponsor-tiers.tsx` (cards ↔ compare-table toggle), `sponsor-form.tsx`, `sponsor-faq.tsx`, `floating-sponsor-cta.tsx` (pill that hides once `#tiers` is reached)
   - Resources page: `resources-hero.tsx`, `starter-kits.tsx`, `free-resources.tsx`, `workshops.tsx`, `day-of-checklist.tsx`

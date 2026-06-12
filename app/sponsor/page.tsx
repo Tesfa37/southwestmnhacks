@@ -1,12 +1,13 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SponsorHero } from "@/components/sponsor-hero"
-import { SponsorTiers } from "@/components/sponsor-tiers"
 import { SponsorBenefits } from "@/components/sponsor-benefits"
-import { SponsorEngagement } from "@/components/sponsor-engagement"
+import { SponsorDayTimeline } from "@/components/sponsor-day-timeline"
 import { SponsorProof } from "@/components/sponsor-proof"
+import { SponsorTiers } from "@/components/sponsor-tiers"
 import { SponsorForm } from "@/components/sponsor-form"
 import { SponsorFaq } from "@/components/sponsor-faq"
+import { FloatingSponsorCta } from "@/components/floating-sponsor-cta"
 
 export default function SponsorPage() {
   return (
@@ -15,12 +16,13 @@ export default function SponsorPage() {
       <main className="flex-1">
         <SponsorHero />
         <SponsorBenefits />
-        <SponsorEngagement />
+        <SponsorDayTimeline />
         <SponsorProof />
         <SponsorTiers />
         <SponsorForm />
         <SponsorFaq />
       </main>
+      <FloatingSponsorCta />
       <Footer />
     </div>
   )

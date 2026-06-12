@@ -1,7 +1,8 @@
 import { Calendar, Clock, MapPin, Users, Lightbulb, Trophy } from "lucide-react"
 import Image from "next/image"
 import { Header } from "@/components/header"
-import { CountdownTimer } from "@/components/countdown-timer"
+import { HomeHero } from "@/components/home-hero"
+import { Reveal } from "@/components/reveal"
 import { SponsorCtaButton } from "@/components/sponsor-cta-button"
 import { Footer } from "@/components/footer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -11,8 +12,6 @@ import {
   REGISTRATION_DEADLINE,
   REGISTRATION_FORM_URL,
   VENUE_MAP_URL,
-  DISCORD_INVITE_URL,
-  DISCORD_ENABLED,
   CONSENT_FORM_URL,
   PARTNERSHIP_LINE,
 } from "@/lib/config"
@@ -106,91 +105,52 @@ export default function HomePage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 text-center">
-        <div className="inline-block bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full text-sm font-semibold text-blue-900 mb-6">
-          {EVENT_DATES} •{" "}
-          <a
-            href={VENUE_MAP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:text-blue-700 transition-colors"
-          >
-            SMSU, Marshall, MN
-          </a>
-        </div>
+      <HomeHero />
 
-        <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight text-balance px-2">
-          <span className="bg-gradient-to-r from-orange-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-            {EVENT_NAME}
-          </span>
-        </h1>
-
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed text-pretty px-4">
-          Southwest Minnesota&apos;s student hackathon returns for two days of building, learning, and creating at SMSU.
-          All skill levels welcome.
-        </p>
-
-        <div className="flex flex-wrap gap-4 justify-center mb-3 px-4">
-          <a
-            href={REGISTRATION_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-orange-500 text-white px-8 py-4 rounded-full hover:shadow-lg transition-all font-semibold text-lg"
-          >
-            Register
-          </a>
-          {DISCORD_ENABLED && (
-            <a
-              href={DISCORD_INVITE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold text-lg inline-flex items-center gap-2"
-            >
-              Join the Discord
-            </a>
-          )}
-        </div>
-        <div className="mb-6 px-4">
-          <CountdownTimer />
-        </div>
-        <p className="text-sm text-gray-500 mb-16">Registration closes {REGISTRATION_DEADLINE}.</p>
-
-        {/* 3 Bullet Highlights */}
+      {/* 3 Bullet Highlights */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200">
-            <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-pink-400 rounded-2xl flex items-center justify-center mb-4">
-              <Lightbulb className="w-6 h-6 text-white" />
+          <Reveal>
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 h-full">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-pink-400 rounded-2xl flex items-center justify-center mb-4">
+                <Lightbulb className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Beginner Friendly</h3>
+              <p className="text-gray-600">
+                Open to all skill levels. Mentors and industry professionals are on hand to help you learn.
+              </p>
             </div>
-            <h3 className="text-xl font-bold mb-2">Beginner Friendly</h3>
-            <p className="text-gray-600">
-              Open to all skill levels. Mentors and industry professionals are on hand to help you learn.
-            </p>
-          </div>
+          </Reveal>
 
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center mb-4">
-              <Users className="w-6 h-6 text-white" />
+          <Reveal delay={0.12}>
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 h-full">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl flex items-center justify-center mb-4">
+                <Users className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Build Together</h3>
+              <p className="text-gray-600">
+                Team up with 1 to 4 people, share skills, and build something real over the weekend.
+              </p>
             </div>
-            <h3 className="text-xl font-bold mb-2">Build Together</h3>
-            <p className="text-gray-600">
-              Team up with 1 to 4 people, share skills, and build something real over the weekend.
-            </p>
-          </div>
+          </Reveal>
 
-          <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200">
-            <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl flex items-center justify-center mb-4">
-              <Trophy className="w-6 h-6 text-white" />
+          <Reveal delay={0.24}>
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 h-full">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl flex items-center justify-center mb-4">
+                <Trophy className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Prizes &amp; Mentorship</h3>
+              <p className="text-gray-600">
+                Compete for prizes, learn from mentors, and present what you build to a panel of judges.
+              </p>
             </div>
-            <h3 className="text-xl font-bold mb-2">Prizes &amp; Mentorship</h3>
-            <p className="text-gray-600">
-              Compete for prizes, learn from mentors, and present what you build to a panel of judges.
-            </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* What is a Hackathon */}
       <section id="about" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <Reveal>
         <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl p-12 text-white">
           <h2 className="text-4xl font-bold mb-6">What is a Hackathon?</h2>
           <p className="text-lg leading-relaxed opacity-95 mb-4">
@@ -203,10 +163,12 @@ export default function HomePage() {
             have fun.
           </p>
         </div>
+        </Reveal>
       </section>
 
       {/* Event Details */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <Reveal>
         <div className="bg-white rounded-3xl p-10 shadow-sm border border-gray-200">
           <h2 className="text-3xl font-bold mb-8 text-center">Event Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -258,10 +220,12 @@ export default function HomePage() {
             <p className="text-sm text-gray-500 mt-3">Registration closes {REGISTRATION_DEADLINE}.</p>
           </div>
         </div>
+        </Reveal>
       </section>
 
       {/* Who Can Participate / Minors */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <Reveal>
         <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-gray-200">
           <h2 className="text-3xl font-bold mb-4">Who Can Participate</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
@@ -281,10 +245,12 @@ export default function HomePage() {
             ahead of the event.
           </p>
         </div>
+        </Reveal>
       </section>
 
       {/* FAQ Section */}
       <section id="faq" className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+        <Reveal>
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
         </div>
@@ -303,10 +269,12 @@ export default function HomePage() {
             </AccordionItem>
           ))}
         </Accordion>
+        </Reveal>
       </section>
 
       {/* Sponsors Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <Reveal>
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Our Sponsors</h2>
           <p className="text-lg sm:text-xl text-gray-600">Thank you to the partners who make this possible.</p>
@@ -371,6 +339,7 @@ export default function HomePage() {
           </p>
           <SponsorCtaButton />
         </div>
+        </Reveal>
       </section>
 
       {/* Footer Component */}

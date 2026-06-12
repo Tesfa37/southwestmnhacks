@@ -37,11 +37,18 @@ pnpm lint         # Run ESLint
 - **tw-animate-css** for animations
 - Uses `cn()` utility (`lib/utils.ts`) for conditional class merging
 
+### Animation System
+- **`motion` library** (framer-motion successor, imports from `motion/react`) — always via `LazyMotion` + `domAnimation` + `m.` components to keep the runtime ~20 kb gz
+- **CSS-only effects** in `app/globals.css`: `animate-aurora-*` (gradient blobs), `animate-marquee` (photo strip), `animate-text-shimmer` (headline gradient); all transform/background-position only and disabled under `prefers-reduced-motion`
+- **`prefers-reduced-motion` is honored everywhere**: CSS media query + `useReducedMotion()` in client components
+- `lib/confetti.ts` — tiny hand-rolled canvas confetti (`burstConfetti`, `confettiRain`), used by easter eggs only
+
 ### Component Organization
 - **Page-level components** live in `components/` directory:
   - Layout: `header.tsx`, `footer.tsx`
-  - Landing page sections: `event-recap.tsx`, `winners.tsx`, `appreciation.tsx` + inline sections in `app/page.tsx`
-  - Sponsor page: `sponsor-hero.tsx`, `sponsor-tiers.tsx`, `sponsor-benefits.tsx`, `sponsor-form.tsx`, `sponsor-faq.tsx`
+  - Homepage hero: `home-hero.tsx` (client) composing `aurora-background.tsx`, `photo-marquee.tsx`, `magnetic-button.tsx`, `rotating-word.tsx`, `floating-stickers.tsx`, `easter-eggs.tsx` (Konami listener)
+  - Landing page sections: `event-recap.tsx`, `winners.tsx`, `appreciation.tsx` + inline sections in `app/page.tsx` wrapped in `reveal.tsx` (scroll fade-in)
+  - Sponsor page: `sponsor-hero.tsx`, `sponsor-benefits.tsx`, `sponsor-day-timeline.tsx`, `sponsor-proof.tsx` (photo + press clipping + `partner-logo-wall.tsx`), `sponsor-tiers.tsx` (cards ↔ compare-table toggle), `sponsor-form.tsx`, `sponsor-faq.tsx`, `floating-sponsor-cta.tsx` (pill that hides once `#tiers` is reached)
   - Resources page: `resources-hero.tsx`, `starter-kits.tsx`, `free-resources.tsx`, `workshops.tsx`, `day-of-checklist.tsx`
   - Client wrappers: `sponsor-cta-button.tsx` (wraps `track()` call for server component compatibility)
 - **UI primitives** in `components/ui/` — only `accordion.tsx` and `button.tsx` are kept (all others deleted post-cleanup)
@@ -56,8 +63,9 @@ TypeScript path mapping (`tsconfig.json`) resolves imports:
 
 ### External Services
 - **Vercel Analytics** integrated in root layout (custom event tracking via `track()`)
-- **Google Forms** for sponsor applications (embedded iframe on `/sponsor`)
+- **Sponsor contact is email-only** (`mailto:sponsors@southwestmnhacks.org` links throughout `/sponsor`)
 - **Devpost** for project submissions: https://southwest-mn-hacks.devpost.com/
+- **Press**: Marshall Independent article (March 2026) featured on `/sponsor`, clipping at `public/marshall-independent-article.jpg`
 
 ### Navigation
 - All internal links use Next.js `<Link>` for client-side navigation
@@ -74,7 +82,7 @@ TypeScript path mapping (`tsconfig.json`) resolves imports:
 
 ### Component Architecture
 Pages are composed from isolated section components:
-- `/sponsor` page assembles: SponsorHero → SponsorTiers → SponsorBenefits → SponsorForm → SponsorFaq
+- `/sponsor` page assembles: SponsorHero → SponsorBenefits → SponsorDayTimeline → SponsorProof → SponsorTiers → SponsorForm → SponsorFaq (+ FloatingSponsorCta)
 - `/resources` page assembles: ResourcesHero → StarterKits → FreeResources → Workshops → DayOfChecklist
 
 ### Server vs Client Components

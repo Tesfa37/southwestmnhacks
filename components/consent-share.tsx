@@ -2,15 +2,20 @@
 
 import { useState } from "react"
 import { Mail, Copy, Check } from "lucide-react"
-import { CONSENT_FORM_URL, EVENT_DATES } from "@/lib/config"
+import { CONSENT_FORM_URL, EVENT_DATES, REGISTRATION_DEADLINE, SUPPORT_EMAIL } from "@/lib/config"
 
 const MAILTO = `mailto:?subject=${encodeURIComponent(
-  "Parental consent form — Southwest MN Hacks",
+  "Can you fill out my consent form for Southwest MN Hacks?",
 )}&body=${encodeURIComponent(
-  `Hi! I'm registering for Southwest MN Hacks, a student hackathon on ${EVENT_DATES} at SMSU in Marshall. ` +
-    `Since I'm under 18, a parent or guardian needs to complete this consent form before I can check in:\n\n` +
+  `Hi!\n\n` +
+    `I want to go to Southwest MN Hacks — a free, two-day student hackathon at SMSU in Marshall on ${EVENT_DATES}. ` +
+    `Teams build a project over the weekend with mentors, meals, and prizes, and it runs overnight (I'll pack a sleeping bag).\n\n` +
+    `Since I'm under 18, I need a parent or guardian to complete the consent and medical form before I can check in. ` +
+    `It takes about 5 minutes:\n\n` +
     `${CONSENT_FORM_URL}\n\n` +
-    `It only takes a few minutes. Thank you!`,
+    `It needs to be done by ${REGISTRATION_DEADLINE} — could you fill it out today?\n\n` +
+    `Questions? The organizers are at ${SUPPORT_EMAIL}, and the website is https://southwestmnhacks.org.\n\n` +
+    `Thank you!!`,
 )}`
 
 // Puts the consent form in the student's hands: email it to a parent with a

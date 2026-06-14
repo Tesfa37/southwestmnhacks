@@ -5,6 +5,11 @@ import { Check, Medal, Award, Trophy, Crown, Gift, Minus } from "lucide-react"
 import { LazyMotion, domAnimation, m, type Variants } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { SPONSOR_EMAIL } from "@/lib/config"
+import { hasSponsorIntake, sponsorInquiryUrl } from "@/lib/sponsor"
+
+// When pointing at the intake form, open in a new tab; mailto stays in-place.
+const linkProps = hasSponsorIntake ? { target: "_blank", rel: "noopener noreferrer" } : {}
 
 const tiers = [
   {
@@ -115,10 +120,6 @@ function tierIncludes(tier: (typeof CASH_TIERS)[number], minTier: (typeof CASH_T
   return CASH_TIERS.indexOf(tier) >= CASH_TIERS.indexOf(minTier)
 }
 
-function mailtoFor(name: string, price: string) {
-  return `mailto:sponsors@southwestmnhacks.org?subject=${encodeURIComponent(`Sponsorship inquiry: ${name} (${price})`)}`
-}
-
 export function SponsorTiers() {
   const [view, setView] = useState<"cards" | "compare">("cards")
 
@@ -193,7 +194,7 @@ export function SponsorTiers() {
                     variant={tier.popular ? "default" : "outline"}
                     asChild
                   >
-                    <a href={mailtoFor(tier.name, tier.price)}>Choose {tier.name}</a>
+                    <a href={sponsorInquiryUrl(tier)} {...linkProps}>Choose {tier.name}</a>
                   </Button>
                 </m.div>
               ))}
@@ -255,7 +256,7 @@ export function SponsorTiers() {
                             variant={tier.popular ? "default" : "outline"}
                             asChild
                           >
-                            <a href={mailtoFor(tier.name, tier.price)}>Choose</a>
+                            <a href={sponsorInquiryUrl(tier)} {...linkProps}>Choose</a>
                           </Button>
                         </td>
                       )
@@ -271,7 +272,7 @@ export function SponsorTiers() {
           <p className="mt-6 text-center text-sm text-muted-foreground">
             Prefer in-kind support? We accept meals, prizes, t-shirts, snacks, cloud or software credits, and equipment
             — recognition matched to the value contributed.{" "}
-            <a href="mailto:sponsors@southwestmnhacks.org" className="font-semibold text-orange-600 hover:underline">
+            <a href={`mailto:${SPONSOR_EMAIL}`} className="font-semibold text-orange-600 hover:underline">
               Email us
             </a>
             .

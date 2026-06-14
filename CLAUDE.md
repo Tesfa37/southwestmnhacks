@@ -63,7 +63,7 @@ TypeScript path mapping (`tsconfig.json`) resolves imports:
 
 ### External Services
 - **Vercel Analytics** integrated in root layout (custom event tracking via `track()`)
-- **Sponsor contact is email-only** (`mailto:sponsors@southwestmnhacks.org` links throughout `/sponsor`)
+- **Sponsor contact** is email-only (`SPONSOR_EMAIL` mailto links throughout `/sponsor`) **until `SPONSOR_INTAKE_FORM_URL` is set** in `lib/config.ts`; once set, tier/CTA buttons route to the intake form with the tier prefilled via `?tier=` (helper: `lib/sponsor.ts`). Invoice-default, card-optional — see `docs/sponsor-payments.md`.
 - **Devpost** for project submissions: https://southwest-mn-hacks.devpost.com/
 - **Press**: Marshall Independent article (March 2026) featured on `/sponsor`, clipping at `public/marshall-independent-article.jpg`
 

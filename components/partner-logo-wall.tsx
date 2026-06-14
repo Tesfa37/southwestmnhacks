@@ -2,7 +2,6 @@ import Image from "next/image"
 
 const PARTNERS = [
   { src: "/schwans-logo.png", alt: "Schwan's", href: "https://www.schwanscompany.com", h: "h-10" },
-  { src: "/etm-solutions-logo.jpeg", alt: "ETM Solutions", href: "https://www.etmsolutions.net", h: "h-12" },
   { src: "/aulden-logo.svg", alt: "Aulden", href: "https://getaulden.com", h: "h-9" },
   { src: "/visit-marshall-logo.png", alt: "Visit Marshall", href: "https://visitmarshallmn.com", h: "h-12" },
 ]

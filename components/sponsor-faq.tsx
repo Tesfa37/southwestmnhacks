@@ -21,6 +21,11 @@ const faqs = [
     answer:
       "In-kind support is incredibly valuable. We accept meals, prizes, t-shirts, snacks and beverages, cloud or software credits, or equipment. Recognition is matched to the value contributed, so contact us to discuss what you can provide.",
   },
+  {
+    question: "How does payment work?",
+    answer:
+      "We send an invoice from the Southwest MN Hacks nonprofit, payable by ACH, check, or card on standard net terms — no card is required up front, so it works smoothly with most finance and accounts-payable teams. Smaller and in-kind sponsors who prefer to pay instantly by card can do that too. You'll receive a receipt for your records.",
+  },
 ]
 
 export function SponsorFaq() {

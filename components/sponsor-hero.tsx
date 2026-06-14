@@ -3,7 +3,7 @@
 import { Sparkles, Calendar, MapPin } from "lucide-react"
 import { LazyMotion, domAnimation, m, useReducedMotion, type Variants } from "motion/react"
 import { AuroraBackground } from "@/components/aurora-background"
-import { EVENT_DATES, VENUE, VENUE_MAP_URL, PARTNERSHIP_LINE } from "@/lib/config"
+import { EVENT_DATES, VENUE, VENUE_MAP_URL, PARTNERSHIP_LINE, SPONSOR_EMAIL } from "@/lib/config"
 
 const container: Variants = {
   hidden: {},
@@ -57,7 +57,7 @@ export function SponsorHero() {
               See sponsorship levels
             </a>
             <a
-              href="mailto:sponsors@southwestmnhacks.org"
+              href={`mailto:${SPONSOR_EMAIL}`}
               className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-8 py-4 text-lg font-semibold text-gray-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
             >
               Email us

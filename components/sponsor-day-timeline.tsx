@@ -29,7 +29,7 @@ const STEPS = [
   },
   {
     icon: Gavel,
-    time: "Evening",
+    time: "Next day morning",
     title: "Judge the projects",
     copy: "Serve on the judging panel, watch the final presentations, and award your sponsored prize category to the team that earns it.",
     accent: "from-blue-400 to-teal-400",

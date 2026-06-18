@@ -1,23 +1,22 @@
-import { SPONSOR_EMAIL, SPONSOR_INTAKE_FORM_URL } from "@/lib/config"
+import { TIER_SLUGS } from "@/lib/sponsors/tiers"
 
-// True once a sponsor intake form URL is configured. Used to switch CTAs from
-// the mailto fallback to the form, and to decide whether links open externally.
-export const hasSponsorIntake = SPONSOR_INTAKE_FORM_URL.length > 0
+// The native sponsor flow is always on: CTAs link to the on-site intake at
+// /sponsor/start with the chosen tier preselected. (Kept as a constant so the
+// existing call sites that branch on it keep compiling.)
+export const hasSponsorIntake = true
+
+// Map a tier card's display name (e.g. "In-Kind") to its tier slug ("in_kind").
+function slugForName(name: string): string {
+  const slug = name.toLowerCase().replace(/-/g, "_")
+  return (TIER_SLUGS as string[]).includes(slug) ? slug : ""
+}
 
 /**
- * The destination for a sponsor CTA. With an intake form configured, returns
- * the form URL with the tier prefilled (`?tier=Gold`); otherwise a mailto with
- * a prefilled subject. One function so flipping SPONSOR_INTAKE_FORM_URL
- * rewires every sponsor button at once.
+ * Destination for a sponsor CTA: the on-site guided intake at /sponsor/start,
+ * with the tier preselected via `?tier=`. One function so every sponsor button
+ * points at the same flow.
  */
 export function sponsorInquiryUrl(tier?: { name: string; price?: string }): string {
-  if (hasSponsorIntake) {
-    const url = new URL(SPONSOR_INTAKE_FORM_URL)
-    if (tier) url.searchParams.set("tier", tier.name)
-    return url.toString()
-  }
-  const subject = tier
-    ? `Sponsorship inquiry: ${tier.name}${tier.price ? ` (${tier.price})` : ""}`
-    : "Sponsorship inquiry"
-  return `mailto:${SPONSOR_EMAIL}?subject=${encodeURIComponent(subject)}`
+  const slug = tier ? slugForName(tier.name) : ""
+  return slug ? `/sponsor/start?tier=${slug}` : "/sponsor/start"
 }

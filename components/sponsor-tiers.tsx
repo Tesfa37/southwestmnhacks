@@ -1,15 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
+import { track } from "@vercel/analytics"
 import { Check, Medal, Award, Trophy, Crown, Gift, Minus } from "lucide-react"
 import { LazyMotion, domAnimation, m, type Variants } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { SPONSOR_EMAIL } from "@/lib/config"
-import { hasSponsorIntake, sponsorInquiryUrl } from "@/lib/sponsor"
-
-// When pointing at the intake form, open in a new tab; mailto stays in-place.
-const linkProps = hasSponsorIntake ? { target: "_blank", rel: "noopener noreferrer" } : {}
+import { sponsorInquiryUrl } from "@/lib/sponsor"
 
 const tiers = [
   {
@@ -194,7 +193,12 @@ export function SponsorTiers() {
                     variant={tier.popular ? "default" : "outline"}
                     asChild
                   >
-                    <a href={sponsorInquiryUrl(tier)} {...linkProps}>Choose {tier.name}</a>
+                    <Link
+                      href={sponsorInquiryUrl(tier)}
+                      onClick={() => track("Sponsor Click", { location: "tier-card", tier: tier.name })}
+                    >
+                      Choose {tier.name}
+                    </Link>
                   </Button>
                 </m.div>
               ))}
@@ -256,7 +260,12 @@ export function SponsorTiers() {
                             variant={tier.popular ? "default" : "outline"}
                             asChild
                           >
-                            <a href={sponsorInquiryUrl(tier)} {...linkProps}>Choose</a>
+                            <Link
+                              href={sponsorInquiryUrl(tier)}
+                              onClick={() => track("Sponsor Click", { location: "compare-table", tier: tier.name })}
+                            >
+                              Choose
+                            </Link>
                           </Button>
                         </td>
                       )

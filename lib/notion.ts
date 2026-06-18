@@ -125,11 +125,14 @@ export async function createSponsorRow(input: SponsorRowInput): Promise<string |
   if (!notion) return null
   const dataSourceId = optionalEnv("NOTION_SPONSORS_DATA_SOURCE_ID")!
   try {
+    // The SDK's generated parent/properties unions are unwieldy; values follow
+    // Notion's documented API shapes.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const page = await notion.pages.create({
+    const params: any = {
       parent: { type: "data_source_id", data_source_id: dataSourceId },
-      properties: buildProperties(input) as any,
-    } as any)
+      properties: buildProperties(input),
+    }
+    const page = await notion.pages.create(params)
     return page.id
   } catch (err) {
     console.error("[notion] createSponsorRow failed:", err instanceof Error ? err.message : err)
@@ -163,17 +166,5 @@ export async function updateSponsorRowByCustomerId(stripeCustomerId: string, pat
     await notion.pages.update({ page_id: page.id, properties: buildProperties(patch) as any } as any)
   } catch (err) {
     console.error("[notion] updateSponsorRowByCustomerId failed:", err instanceof Error ? err.message : err)
-  }
-}
-
-/** Update a sponsor row directly by its Notion page id. Best-effort. */
-export async function updateSponsorRow(pageId: string, patch: SponsorRowPatch): Promise<void> {
-  const notion = getNotion()
-  if (!notion) return
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await notion.pages.update({ page_id: pageId, properties: buildProperties(patch) as any } as any)
-  } catch (err) {
-    console.error("[notion] updateSponsorRow failed:", err instanceof Error ? err.message : err)
   }
 }

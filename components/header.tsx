@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { track } from "@vercel/analytics"
-import { MLH_APPROVED, REGISTRATION_FORM_URL } from "@/lib/config"
+import { REGISTRATION_FORM_URL } from "@/lib/config"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -18,15 +18,9 @@ export function Header() {
               href="/"
               className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl font-bold leading-tight whitespace-nowrap"
             >
-              <span className="text-orange-600">Southwest</span>
+              <span className="text-orange-600">Southwest</span>{" "}
               <span className="text-blue-600">MN</span> Hacks
             </Link>
-            {/* MLH Member Event badge, hidden until the application is approved. */}
-            {MLH_APPROVED && (
-              <span className="hidden sm:inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-semibold">
-                MLH Member Event
-              </span>
-            )}
           </div>
 
           {/* Desktop Navigation */}
@@ -39,6 +33,9 @@ export function Header() {
             </Link>
             <Link href="/rules" className="text-gray-700 hover:text-gray-900">
               Rules
+            </Link>
+            <Link href="/safety" className="text-gray-700 hover:text-gray-900">
+              Safety
             </Link>
             <Link href="/recap" className="text-gray-700 hover:text-gray-900">
               Past Events
@@ -93,6 +90,13 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Rules
+            </Link>
+            <Link
+              href="/safety"
+              className="block text-gray-700 hover:text-gray-900 py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Safety
             </Link>
             <Link
               href="/recap"

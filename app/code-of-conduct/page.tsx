@@ -1,204 +1,196 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Shield } from "lucide-react"
-import { MLH_APPROVED, SMSU_DOCS_APPROVED, SUPPORT_EMAIL } from "@/lib/config"
+import { Shield, FileText } from "lucide-react"
+import { SUPPORT_EMAIL, CODE_OF_CONDUCT_PDF, DOCS_UPDATED } from "@/lib/config"
+
+export const metadata: Metadata = {
+  title: { absolute: "Code of Conduct | Southwest MN Hacks" },
+  description:
+    "The Southwest MN Hacks 2.0 Code of Conduct and Overnight Safety Rules: respect, harassment-free environment, prohibited items, overnight conduct, reporting, and enforcement.",
+}
+
+const SECTIONS = [
+  {
+    title: "1. Respect and Inclusion",
+    body: [
+      "I will treat all participants, organizers, mentors, judges, sponsors, SMSU staff, and venue staff with respect. Southwest MN Hacks is a welcoming environment regardless of race, color, religion, national origin, sex, gender identity or expression, sexual orientation, age, disability, marital or family status, veteran status, or any other protected characteristic. Discriminatory language and conduct are not permitted.",
+    ],
+  },
+  {
+    title: "2. Harassment-Free Environment",
+    body: [
+      "Southwest MN Hacks has zero tolerance for harassment. Harassment includes unwelcome verbal, physical, or visual conduct that creates an intimidating, hostile, or offensive environment. Examples include sexual harassment, bullying, intimidation, sustained disruption of sessions, unwanted physical contact, intrusive photography or recording, and stalking.",
+      "Harassment-related concerns must be reported to event organizers, SMSU Public Safety, and SMSU's Title IX office. Southwest MN Hacks will respond to reports in accordance with its incident response procedures.",
+    ],
+  },
+  {
+    title: "3. Alcohol, Drugs, and Weapons",
+    body: [
+      "Alcohol, illegal drugs, tobacco, vaping, cannabis, and other controlled substances are prohibited at the event. Possession, use, or attending while impaired is grounds for immediate removal.",
+      "Firearms, explosives, and other weapons are prohibited at the venue in accordance with SMSU campus policy. This prohibition includes participants who may otherwise hold a carry permit.",
+    ],
+  },
+  {
+    title: "4. Overnight Conduct",
+    body: [
+      "I will remain in event areas during the overnight period and will not roam unaccompanied through the rest of the building or campus. After the building is secured, re-entry to the venue is only through the monitored entrance designated by the organizers, and only after signing back in.",
+      "Quiet hours are observed approximately from midnight to 6:00 AM. During quiet hours, audio must be played through headphones, and conversation should be kept low in and near rest areas. I will follow direction from organizers, SMSU staff, and SMSU Public Safety at all times.",
+    ],
+  },
+  {
+    title: "5. Sleeping and Rest Areas",
+    body: [
+      "Sleeping is permitted only in designated rest areas. Rest area assignments, supervision, and access control will follow the final safety plan approved by Southwest MN Hacks and SMSU Public Safety.",
+      "Photography, video recording, and audio recording in or of rest areas are not permitted at any time. I will not enter a rest area that has not been designated for me, and I will respect any access restrictions posted or communicated by organizers.",
+    ],
+  },
+  {
+    title: "6. Restricted Areas and Property Care",
+    body: [
+      "Areas of the SMSU campus that are not part of the event footprint are off-limits unless I am invited or escorted by an organizer or SMSU staff. This includes custodial and mechanical spaces, locked offices, kitchen areas not designated for participant use, and any room marked as restricted.",
+      "I will treat the venue, its furnishings, and the property of others with care. I will not damage, deface, or modify property, and I will clean up after myself in food and work areas. Hardware and personal items I bring to the event remain my responsibility.",
+    ],
+  },
+  {
+    title: "7. Health, Safety, and Emergencies",
+    body: [
+      "If I feel unwell, am injured, witness an incident, or see something unsafe, I will notify an organizer immediately. In a life-threatening emergency, I or any participant should call 911 directly and then notify an organizer.",
+      "I will cooperate fully with organizers, SMSU staff, and SMSU Public Safety. In the event of a fire alarm or evacuation order, I will exit immediately through the nearest safe route and follow the directions given on-site.",
+    ],
+  },
+  {
+    title: "8. Enforcement Authority and Consequences",
+    body: [
+      "Southwest MN Hacks organizers and SMSU Public Safety have the authority to enforce this Code. Depending on the nature and severity of a violation, consequences may include a warning, restriction of participation, disqualification from prizes and judging, removal from the event without refund, exclusion from future Southwest MN Hacks events, and referral to SMSU Public Safety or local law enforcement.",
+      "For a minor participant who is removed from the event, the parent or guardian or an authorized adult listed at registration will be required to pick up the minor promptly, including at any hour during the overnight period.",
+    ],
+  },
+  {
+    title: "9. Reporting Concerns",
+    body: [
+      "Concerns may be reported to any organizer in person or by text or call to the organizer numbers posted at registration. Concerns involving safety or emergencies must be reported directly to SMSU Public Safety using the contact information posted at the venue. Concerns related to sex- or gender-based misconduct may also be reported through SMSU's Title IX office.",
+    ],
+  },
+]
 
 export default function CodeOfConductPage() {
-  // Gate 2: the public Code of Conduct stays behind a placeholder until the SMSU
-  // participant-document package is approved for publication.
-  if (!SMSU_DOCS_APPROVED) {
-    return (
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">
-          <section className="py-20 px-4 md:py-28 bg-gradient-to-br from-orange-50 via-white to-blue-50">
-            <div className="container max-w-2xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-600 font-medium text-sm mb-6">
-                <Shield className="size-4" />
-                Community Guidelines
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-balance mb-6 leading-tight">Code of Conduct</h1>
-              <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-xl mx-auto leading-relaxed mb-6">
-                Our Code of Conduct and participant waivers will be posted here before registration closes.
-              </p>
-              <p className="text-base text-gray-600">
-                Questions in the meantime? Email{" "}
-                <a href={`mailto:${SUPPORT_EMAIL}`} className="text-blue-600 hover:text-blue-700 underline">
-                  {SUPPORT_EMAIL}
-                </a>
-                .
-              </p>
-            </div>
-          </section>
-        </main>
-        <Footer />
-      </div>
-    )
-  }
-
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="py-20 px-4 md:py-28 bg-gradient-to-br from-orange-50 via-white to-blue-50">
-          <div className="container max-w-4xl mx-auto text-center">
+          <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-600 font-medium text-sm mb-6">
               <Shield className="size-4" />
               Community Guidelines
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-balance mb-6 leading-tight">Code of Conduct</h1>
-            <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
-              SouthwestMN Hacks is dedicated to providing a safe, inclusive, and welcoming experience for everyone.
+            <h1 className="text-4xl md:text-6xl font-bold text-balance mb-6 leading-tight">
+              Code of Conduct &amp; Overnight Safety Rules
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed mb-6">
+              Required for all participants, and countersigned by a parent or guardian for participants under 18. These
+              rules apply at the venue, in any rest areas, on the SMSU campus, and at any event-affiliated location.
             </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={CODE_OF_CONDUCT_PDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 px-6 py-2.5 font-semibold text-white transition-all hover:shadow-lg"
+              >
+                <FileText className="size-4" />
+                Download the PDF
+              </a>
+              <span className="text-sm text-gray-500">{DOCS_UPDATED}</span>
+            </div>
           </div>
         </section>
 
-        {/* TL;DR Section */}
         <section className="py-16 px-4">
           <div className="container max-w-3xl mx-auto">
-            <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 shadow-lg mb-16">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">TL;DR</h2>
+            {/* Event facts */}
+            <p className="text-gray-700 leading-relaxed mb-10">
+              Southwest MN Hacks 2.0 is a 24-hour overnight student hackathon hosted by Southwest MN Hacks, a Minnesota
+              nonprofit corporation, at Southwest Minnesota State University on September 12 and 13, 2026. The venue is
+              the SMSU Upper Conference Center (or an SMSU-designated space), 1501 State Street, Marshall, MN 56258. This
+              Code of Conduct sets the behavior expected of every participant during the event, including the overnight
+              period.
+            </p>
+
+            {/* Attestation */}
+            <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 shadow-lg mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">What you agree to</h2>
               <p className="text-white text-lg leading-relaxed">
-                Be respectful. Harassment and abuse are never tolerated. If you are in a situation that makes you
-                uncomfortable at SouthwestMN Hacks, if the event itself is creating an unsafe or inappropriate
-                environment, or if interacting with a SouthwestMN Hacks representative or event organizer makes you
-                uncomfortable, please report it using the procedures included in this document.
+                &ldquo;I have read and agree to the Southwest MN Hacks 2.0 Code of Conduct and Overnight Safety
+                Rules.&rdquo; You confirm this attestation when you register and again when you check in.
               </p>
             </div>
 
-            {/* Quick Version */}
-            <div className="mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">The Quick Version</h2>
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  SouthwestMN Hacks is dedicated to providing a harassment-free experience for everyone, regardless of
-                  gender, gender identity and expression, age, sexual orientation, disability, physical appearance,
-                  body size, race, ethnicity, nationality, religion, previous hackathon attendance or computing
-                  experience (or lack of any of the aforementioned).
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  We do not tolerate harassment of event participants in any form. Sexual language and imagery is not
-                  appropriate at any event venue, including talks, workshops, parties, social media, and other online
-                  media. Event participants violating these rules may be sanctioned or expelled from the event without
-                  a refund (if applicable) at the discretion of the event organizers.
-                </p>
-              </div>
+            {/* Sections */}
+            <div className="space-y-10">
+              {SECTIONS.map((section) => (
+                <div key={section.title}>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4">{section.title}</h2>
+                  <div className="prose prose-lg max-w-none">
+                    {section.body.map((paragraph, i) => (
+                      <p key={i} className="text-gray-700 leading-relaxed mb-4">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Full Version */}
-            <div className="mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">The Full Version</h2>
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Harassment includes but is not limited to offensive verbal or written comments related to gender,
-                  gender identity and expression, age, sexual orientation, disability, physical appearance, body size,
-                  race, ethnicity, nationality, or religion, sexual images in public spaces, deliberate intimidation,
-                  stalking, following, photography or audio/video recording against reasonable consent, sustained
-                  disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Photography is encouraged, but other participants must be given a reasonable chance to opt out from
-                  being photographed. If they object to the taking of their photograph, comply with their request. It
-                  is inappropriate to take photographs in contexts where people have a reasonable expectation of
-                  privacy (in bathrooms or where participants are sleeping).
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Participants asked to stop any harassing behavior are expected to comply immediately.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  As this is a hackathon, we like to explicitly note that the hacks created at our event are equally
-                  subject to the anti-harassment policy.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Sponsors and partners are also subject to the anti-harassment policy. In particular, sponsors should
-                  not use sexualized images, activities, or other material. Booth staff (including volunteers) should
-                  not use sexualized clothing/uniforms/costumes, or otherwise create a sexualized environment.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  If you are being harassed, notice that someone else is being harassed, or have any other concerns,
-                  please contact a member of the event staff immediately.
-                </p>
-              </div>
+            {/* How to report */}
+            <div className="mt-12 bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">How to report</h2>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700">
+                    <strong>An organizer</strong> — in person, or by text or call to the organizer numbers posted at
+                    registration.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700">
+                    <strong>SMSU Public Safety</strong> — for any safety or emergency concern, using the contact
+                    information posted at the venue. In a life-threatening emergency, call 911 first.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700">
+                    <strong>SMSU&apos;s Title IX office</strong> — for concerns related to sex- or gender-based
+                    misconduct.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700">
+                    <strong>Email</strong> —{" "}
+                    <a
+                      href="mailto:conduct@southwestmnhacks.org"
+                      className="text-blue-600 hover:text-blue-700 underline"
+                    >
+                      conduct@southwestmnhacks.org
+                    </a>{" "}
+                    for non-urgent conduct concerns.
+                  </span>
+                </li>
+              </ul>
+              <p className="text-gray-700 leading-relaxed mt-4">
+                Questions before the event? Email{" "}
+                <a href={`mailto:${SUPPORT_EMAIL}`} className="text-blue-600 hover:text-blue-700 underline">
+                  {SUPPORT_EMAIL}
+                </a>
+                .
+              </p>
             </div>
-
-            {/* Reporting Procedures */}
-            <div className="mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Reporting Procedures</h2>
-              <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm mb-6">
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  If you feel uncomfortable or think there may be a potential violation of the code of conduct, please
-                  report it immediately using one of the following methods:
-                </p>
-                <ul className="space-y-3 mb-4">
-                  <li className="flex items-start gap-3">
-                    <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
-                    <span className="text-gray-700">
-                      <strong>Email:</strong>{" "}
-                      <a
-                        href="mailto:conduct@southwestmnhacks.org"
-                        className="text-blue-600 hover:text-blue-700 underline"
-                      >
-                        conduct@southwestmnhacks.org
-                      </a>
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
-                    <span className="text-gray-700">
-                      <strong>In person:</strong> Reach out to any event organizer or volunteer wearing an event staff
-                      badge
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
-                    <span className="text-gray-700">
-                      <strong>Anonymous report:</strong> You can make an anonymous report via our online form (coming
-                      soon)
-                    </span>
-                  </li>
-                </ul>
-                <p className="text-gray-700 leading-relaxed">
-                  Event staff will be happy to help participants contact campus security or local law enforcement,
-                  provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of
-                  the event. We value your attendance.
-                </p>
-              </div>
-            </div>
-
-            {/* Consequences */}
-            <div className="mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Consequences</h2>
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  If a participant engages in harassing behavior, the event organizers may take any action they deem
-                  appropriate, including warning the offender or expulsion from the event with no refund (if
-                  applicable).
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  If you have been subject to harassing behavior in the past, or notice that someone has violated the
-                  code of conduct, please contact the event organizers so that they can take appropriate action.
-                </p>
-              </div>
-            </div>
-
-            {/* Attribution, only when MLH membership is approved (Gate 1). */}
-            {MLH_APPROVED && (
-              <div className="border-t border-gray-200 pt-8">
-                <p className="text-sm text-gray-500 text-center">
-                  This Code of Conduct is based on the{" "}
-                  <a
-                    href="https://mlh.io/code-of-conduct"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-700 underline"
-                  >
-                    MLH Code of Conduct
-                  </a>
-                  . We are committed to providing a safe and welcoming environment for all participants.
-                </p>
-              </div>
-            )}
           </div>
         </section>
       </main>

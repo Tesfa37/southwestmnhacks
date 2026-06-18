@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SponsorHero } from "@/components/sponsor-hero"
@@ -8,6 +9,12 @@ import { SponsorTiers } from "@/components/sponsor-tiers"
 import { SponsorForm } from "@/components/sponsor-form"
 import { SponsorFaq } from "@/components/sponsor-faq"
 import { FloatingSponsorCta } from "@/components/floating-sponsor-cta"
+
+export const metadata: Metadata = {
+  title: { absolute: "Sponsor | Southwest MN Hacks: Fall 2026" },
+  description:
+    "Sponsor Southwest MN Hacks: Fall 2026 and connect with student builders at SMSU in Marshall, MN. More than logo placement — real sponsor-student interaction and a local workforce pipeline.",
+}
 
 export default function SponsorPage() {
   return (

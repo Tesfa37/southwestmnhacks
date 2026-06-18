@@ -10,7 +10,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 export const metadata: Metadata = {
   metadataBase: new URL("https://southwestmnhacks.org"),
   title: {
-    template: "%s | SouthwestMN Hacks",
+    template: "%s | Southwest MN Hacks",
     default: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
   },
   description:
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
     description:
       "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Register now.",
-    siteName: "SouthwestMN Hacks",
+    siteName: "Southwest MN Hacks",
     images: [
       {
         url: "/og-image.png",

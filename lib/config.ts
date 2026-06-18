@@ -1,27 +1,4 @@
 // Single source of truth for the current event mode, links, and publication gates.
-//
-// Two independent approvals are pending. Each is gated behind its own constant,
-// default false, so it can be turned on from exactly one place when it lands.
-
-/**
- * Gate 1, MLH Member Event application approval.
- * While false, no MLH name, logo, badge, or claim may render anywhere on the
- * public site. Flipping to true reveals the header badge, the MLH Code of
- * Conduct attribution, the MLH data-sharing line in the privacy policy, and any
- * MLH positioning claim. The "first MLH Member Event outside the Twin Cities
- * metro" claim must still be verified against MLH's current Minnesota event list
- * before it is published, even after this flips on.
- */
-export const MLH_APPROVED = false
-
-/**
- * Gate 2, SMSU participant-document package approval.
- * While false, the public Code of Conduct page shows a placeholder and no links
- * to the Adult Waiver, Minor Consent, or Code of Conduct documents render.
- * Flipping to true publishes the own-branded Code of Conduct and the approved
- * participant documents.
- */
-export const SMSU_DOCS_APPROVED = false
 
 // Event identity
 export const EVENT_NAME = "Southwest MN Hacks: Fall 2026"
@@ -37,13 +14,29 @@ export const VENUE_MAP_URL =
 // The home page countdown moves through these: closes -> begins -> underway -> ended.
 export const REGISTRATION_CLOSE_AT = "2026-09-08T23:59:59-05:00"
 export const EVENT_START_AT = "2026-09-12T08:00:00-05:00"
-export const EVENT_END_AT = "2026-09-13T19:30:00-05:00"
+export const EVENT_END_AT = "2026-09-13T10:00:00-05:00"
 
 // Live event assets
 export const REGISTRATION_FORM_URL = "https://forms.gle/tR3nteuQ3CgyHAmW6"
 export const DEVPOST_FALL_URL = "https://southwest-mn-hacks.devpost.com/"
 export const DISCORD_INVITE_URL = "https://discord.gg/3gsH2DTx"
 export const CONSENT_FORM_URL = "https://form.jotform.com/261474955259066"
+
+// Finalized participant documents (PDFs live in /public/docs/). The Code of
+// Conduct route /code-of-conduct is the canonical CoC link reused everywhere
+// (the registration/consent forms link their CoC checkbox to it).
+export const CODE_OF_CONDUCT_PDF = "/docs/code-of-conduct.pdf"
+export const ADULT_WAIVER_PDF = "/docs/adult-waiver.pdf"
+export const MINOR_CONSENT_PDF = "/docs/minor-consent.pdf"
+// Freshness stamp shown near the document links so a stale cached copy can't
+// masquerade as current. Bump when the documents are revised.
+export const DOCS_UPDATED = "Updated June 2026"
+
+// Public Schwan's Company social posts about the first (March 2026) event. Used
+// for restrained past-event proof links and the homepage Event schema `sameAs`.
+export const SCHWANS_LINKEDIN_URL =
+  "https://www.linkedin.com/posts/schwans-company_giving-back-means-showing-up-and-our-is-activity-7449533485758832640-ZW8_/"
+export const SCHWANS_INSTAGRAM_URL = "https://www.instagram.com/p/DXFUPQAiWo3/"
 
 // Discord is hidden for now. Flip to true to show the hero button and the
 // footer link again. The invite URL above stays wired up either way.

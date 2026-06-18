@@ -1,7 +1,13 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Lock } from "lucide-react"
-import { MLH_APPROVED } from "@/lib/config"
+
+export const metadata: Metadata = {
+  title: { absolute: "Privacy Policy | Southwest MN Hacks" },
+  description:
+    "How Southwest MN Hacks collects, uses, and protects participant information for event registration, communication, judging, and operations.",
+}
 
 export default function PrivacyPage() {
   return (
@@ -40,7 +46,7 @@ export default function PrivacyPage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">What Information We Collect</h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  To make SouthwestMN Hacks awesome, we collect some basic info when you register:
+                  To make Southwest MN Hacks awesome, we collect some basic info when you register:
                 </p>
                 <ul className="space-y-3 mb-4">
                   <li className="flex items-start gap-3">
@@ -176,26 +182,6 @@ export default function PrivacyPage() {
                       important information.
                     </div>
                   </li>
-                  {/* MLH data-sharing clause, only when MLH membership is approved (Gate 1). */}
-                  {MLH_APPROVED && (
-                    <li className="flex items-start gap-3">
-                      <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
-                      <div className="text-gray-700">
-                        <strong>Major League Hacking (MLH)</strong> – As an MLH Member Event, we share registration
-                        information (such as your name, email, school, and date of birth) with MLH for the purposes of
-                        administration, ranking, and MLH administration. Please review the{" "}
-                        <a
-                          href="https://mlh.io/privacy"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-700 underline"
-                        >
-                          MLH Privacy Policy
-                        </a>
-                        . You can opt out of sharing your information with MLH by emailing us.
-                      </div>
-                    </li>
-                  )}
                 </ul>
                 <p className="text-gray-700 leading-relaxed">
                   These services have their own privacy policies. We chose them because they're reliable and respected

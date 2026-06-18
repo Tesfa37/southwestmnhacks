@@ -1,5 +1,7 @@
+import type { ReactNode } from "react"
 import { Calendar, Clock, MapPin, Users, Lightbulb, Trophy, ShieldAlert } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { Header } from "@/components/header"
 import { HomeHero } from "@/components/home-hero"
 import { ConsentShare } from "@/components/consent-share"
@@ -15,10 +17,17 @@ import {
   VENUE_MAP_URL,
   CONSENT_FORM_URL,
   PARTNERSHIP_LINE,
+  DEVPOST_FALL_URL,
+  SUPPORT_EMAIL,
+  SCHWANS_LINKEDIN_URL,
+  SCHWANS_INSTAGRAM_URL,
+  ADULT_WAIVER_PDF,
+  MINOR_CONSENT_PDF,
+  DOCS_UPDATED,
 } from "@/lib/config"
 
 export default function HomePage() {
-  const faqs = [
+  const faqs: { question: string; answer: ReactNode; text?: string }[] = [
     {
       question: "Do I need coding experience?",
       answer:
@@ -31,8 +40,7 @@ export default function HomePage() {
     },
     {
       question: "How do I register?",
-      answer:
-        "Fill out the registration form linked throughout this site. Registration closes September 8, 2026, so sign up early to save your spot.",
+      answer: `Fill out the registration form linked throughout this site. Registration closes ${REGISTRATION_DEADLINE}, so sign up early to save your spot.`,
     },
     {
       question: "Can I work alone or do I need a team?",
@@ -40,11 +48,15 @@ export default function HomePage() {
         "Both! You can participate solo or form a team of up to 4 people. We'll also have team formation activities at the start if you want to meet collaborators.",
     },
     {
+      question: "Is AI allowed?",
+      answer:
+        "Yes. AI tools are welcome and encouraged. Use them to learn faster and build more; just be transparent about what you used and make sure you understand your own code.",
+    },
+    {
       question: "What if I'm under 18?",
       answer: (
         <>
-          High school students are welcome — but if you&apos;re under 18, it&apos;s your responsibility to make sure a
-          parent or guardian completes the{" "}
+          High school students are welcome, but if you&apos;re under 18, getting the{" "}
           <a
             href={CONSENT_FORM_URL}
             target="_blank"
@@ -53,9 +65,11 @@ export default function HomePage() {
           >
             parental consent form
           </a>{" "}
-          before check-in. Send it to them today — it only takes a few minutes.
+          done is on you. Send it to a parent or guardian and make sure they complete it before check-in. You
+          can&apos;t check in without it.
         </>
       ),
+      text: "High school students are welcome, but if you're under 18, getting the parental consent form done is on you. Send it to a parent or guardian and make sure they complete it before check-in. You can't check in without it.",
     },
     {
       question: "What should I bring?",
@@ -65,7 +79,26 @@ export default function HomePage() {
     {
       question: "Who can participate?",
       answer:
-        "Open to all students: high school, college, or anyone eager to learn. If you're curious about technology and want to build something, you're welcome.",
+        "Students ages 14 and up are welcome, including high school, community college, college, and university students. Every skill level belongs here; if you're curious about technology and want to build something, you're in.",
+    },
+    {
+      question: "How do I submit my project?",
+      answer: (
+        <>
+          Submit on the{" "}
+          <a
+            href={DEVPOST_FALL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-700 underline font-semibold"
+          >
+            Fall 2026 Devpost
+          </a>{" "}
+          before the deadline. We&apos;ll walk you through it during the event, and mentors are around if you get
+          stuck.
+        </>
+      ),
+      text: "Submit on the Fall 2026 Devpost before the deadline. We'll walk you through it during the event, and mentors are around if you get stuck.",
     },
   ]
 
@@ -74,14 +107,14 @@ export default function HomePage() {
     "@type": "Event",
     name: EVENT_NAME,
     description:
-      "Southwest Minnesota's student hackathon returns for two days of building, learning, and creating at SMSU in Marshall, MN. Free to attend, all skill levels welcome.",
-    startDate: "2026-09-12T09:00:00-05:00",
-    endDate: "2026-09-13T17:00:00-05:00",
+      "Free 24-hour overnight student hackathon for high school and college students at SMSU in Marshall, MN. Beginner friendly, AI encouraged, and open ended.",
+    startDate: "2026-09-12T08:00:00-05:00",
+    endDate: "2026-09-13T10:00:00-05:00",
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
       "@type": "Place",
-      name: "Southwest Minnesota State University",
+      name: "Southwest Minnesota State University – Upper Conference Center",
       address: {
         "@type": "PostalAddress",
         streetAddress: "1501 State St",
@@ -96,7 +129,11 @@ export default function HomePage() {
       "@type": "Organization",
       name: "Southwest MN Hacks",
       url: "https://southwestmnhacks.org",
+      email: SUPPORT_EMAIL,
     },
+    // TODO: replace the Visit Marshall homepage with the specific Fall 2026 listing
+    // URL once available, and add a Marshall Chamber listing here when published.
+    sameAs: [DEVPOST_FALL_URL, "https://visitmarshallmn.com", SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL],
     offers: {
       "@type": "Offer",
       url: REGISTRATION_FORM_URL,
@@ -107,12 +144,30 @@ export default function HomePage() {
     },
   }
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: typeof faq.answer === "string" ? faq.answer : faq.text ?? "",
+      },
+    })),
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50">
       {/* Event Schema Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
+      />
+      {/* FAQ Schema Structured Data (crawlable Q&A for Google / AI search) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* Header Component */}
@@ -173,8 +228,8 @@ export default function HomePage() {
           </p>
           <p className="text-lg leading-relaxed opacity-95">
             Participants spend the time designing, coding, and presenting a project: an app, website, hardware
-            prototype, or creative solution to a real problem. Along the way, you learn new skills, meet mentors, and
-            have fun.
+            prototype, or creative solution to a real problem. Projects are open-ended, and AI tools are welcome and
+            encouraged. Along the way, you learn new skills, meet mentors, and have fun.
           </p>
         </div>
         </Reveal>
@@ -253,7 +308,7 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="text-lg text-gray-800 leading-relaxed">
-                  <span className="font-bold">Under 18? This one&apos;s on you.</span> Send the{" "}
+                  <span className="font-bold">Under 18? Getting your consent form done is on you.</span> Send the{" "}
                   <a
                     href={CONSENT_FORM_URL}
                     target="_blank"
@@ -262,11 +317,47 @@ export default function HomePage() {
                   >
                     parental consent form
                   </a>{" "}
-                  to your parent or guardian and make sure they complete it before check-in — you can&apos;t check in
+                  to a parent or guardian and make sure they complete it before check-in. You can&apos;t check in
                   without it.
                 </p>
                 <ConsentShare />
               </div>
+            </div>
+          </div>
+
+          {/* Read in advance: policy documents */}
+          <div className="mt-6 rounded-2xl border border-gray-200 bg-gray-50 p-6">
+            <p className="font-semibold text-gray-900">Read these before the event</p>
+            <p className="text-sm text-gray-500 mb-4">{DOCS_UPDATED}</p>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              <Link
+                href="/code-of-conduct"
+                className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2"
+              >
+                Code of Conduct &amp; Overnight Safety Rules
+              </Link>
+              <Link
+                href="/safety"
+                className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2"
+              >
+                Safety overview
+              </Link>
+              <a
+                href={ADULT_WAIVER_PDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2"
+              >
+                Adult Waiver (18+)
+              </a>
+              <a
+                href={MINOR_CONSENT_PDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2"
+              >
+                Parent/Guardian Consent (under 18)
+              </a>
             </div>
           </div>
         </div>

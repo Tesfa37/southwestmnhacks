@@ -1,6 +1,7 @@
 import Image from "next/image"
-import { Sparkles, Newspaper, ArrowUpRight } from "lucide-react"
+import { Sparkles, Newspaper, ArrowUpRight, Linkedin, Instagram } from "lucide-react"
 import { PartnerLogoWall } from "@/components/partner-logo-wall"
+import { SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL } from "@/lib/config"
 
 const ARTICLE_URL =
   "https://www.marshallindependent.com/news/local-news/2026/03/two-smsu-alum-host-first-ever-hackathon/"
@@ -34,6 +35,37 @@ export function SponsorProof() {
               after the hackathon. Our goal is to create more of those real connections between students and regional
               organizations.
             </p>
+            <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                Schwan&apos;s posted about the first event
+              </p>
+              <div className="flex flex-col gap-2.5">
+                <a
+                  href={SCHWANS_LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 font-semibold text-orange-600 hover:underline underline-offset-4"
+                >
+                  <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+                    <Linkedin className="size-5" />
+                  </span>
+                  See the LinkedIn post
+                  <ArrowUpRight className="size-4" />
+                </a>
+                <a
+                  href={SCHWANS_INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 font-semibold text-orange-600 hover:underline underline-offset-4"
+                >
+                  <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-pink-100 text-pink-700">
+                    <Instagram className="size-5" />
+                  </span>
+                  See the Instagram post
+                  <ArrowUpRight className="size-4" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 

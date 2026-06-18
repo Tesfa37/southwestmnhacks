@@ -17,9 +17,7 @@ interface Video {
 
 const CATEGORIES: Category[] = ["Before the Event", "Quick References", "Before Demos"]
 
-// All videos are real, verified YouTube links. The "What is a Hackathon?" video
-// is published by Major League Hacking; its source label stays generic ("YouTube")
-// so the MLH name does not render while the MLH gate is off.
+// All videos are real, verified YouTube links.
 const videos: Video[] = [
   // Before the Event
   {

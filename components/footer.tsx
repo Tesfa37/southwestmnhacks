@@ -16,7 +16,7 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
           <div className="lg:col-span-2">
             <div className="text-xl font-bold mb-4">
-              <span className="text-orange-400">Southwest</span>
+              <span className="text-orange-400">Southwest</span>{" "}
               <span className="text-blue-400">MN</span> Hacks
             </div>
             <p className="text-gray-400">Building the future, one hackathon at a time.</p>
@@ -54,6 +54,9 @@ export function Footer() {
               <Link href="/code-of-conduct" className="block text-gray-400 hover:text-white transition-colors">
                 Code of Conduct
               </Link>
+              <Link href="/safety" className="block text-gray-400 hover:text-white transition-colors">
+                Safety & Overnight Rules
+              </Link>
               <Link href="/privacy" className="block text-gray-400 hover:text-white transition-colors">
                 Privacy Policy
               </Link>
@@ -89,7 +92,14 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
-            <p className="text-gray-400 mb-2">{SUPPORT_EMAIL}</p>
+            <p className="mb-2">
+              <a
+                href={`mailto:${SUPPORT_EMAIL}`}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                {SUPPORT_EMAIL}
+              </a>
+            </p>
             <p className="text-gray-400">Questions? Reach out anytime!</p>
           </div>
         </div>
@@ -104,11 +114,11 @@ export function Footer() {
               aria-label="Aulden"
               className="inline-flex hover:opacity-90 transition-opacity"
             >
-              <Image src="/aulden-logo-dark.svg" alt="Aulden" width={120} height={32} sizes="120px" className="h-8 w-auto" />
+              <Image src="/aulden-logo-dark.svg" alt="Aulden" width={180} height={48} sizes="180px" className="h-12 w-auto" />
             </a>
           </div>
           <p className="text-gray-500 max-w-2xl mx-auto">{PARTNERSHIP_LINE}</p>
-          <p className="mt-2">© 2026 SouthwestMN Hacks. All rights reserved.</p>
+          <p className="mt-2">© 2026 Southwest MN Hacks. All rights reserved.</p>
         </div>
       </div>
     </footer>

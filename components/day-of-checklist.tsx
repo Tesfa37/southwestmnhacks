@@ -1,4 +1,4 @@
-import { CheckCircle2, Backpack, Upload, Presentation } from "lucide-react"
+import { CheckCircle2, Backpack, Upload, Presentation, ShieldCheck } from "lucide-react"
 import { DEVPOST_FALL_URL, CONSENT_FORM_URL } from "@/lib/config"
 
 const sections = [
@@ -11,13 +11,30 @@ const sections = [
       "Laptop with charger (required)",
       "Student ID or photo ID",
       "Notebook and pen for brainstorming",
-      "Headphones for focused work",
+      "Headphones for focused work (required during quiet hours)",
       "Reusable water bottle",
       "Sleeping bag or blanket and a pillow (overnight event)",
       "Toothbrush and basic toiletries",
       {
         text: "Under 18: parental consent form completed by your parent or guardian (required for check-in)",
         href: CONSENT_FORM_URL,
+      },
+    ],
+  },
+  {
+    title: "Overnight & Safety",
+    icon: ShieldCheck,
+    accent: "from-blue-400 to-purple-400",
+    check: "text-blue-500",
+    items: [
+      "No alcohol, drugs, tobacco, vaping, cannabis, or weapons (carry permits included)",
+      "Quiet hours run approximately midnight to 6:00 AM",
+      "Sign out and sign back in through the monitored door if you leave",
+      "Sleep only in designated rest areas; no recording in rest areas",
+      "Wear your name tag at all times",
+      {
+        text: "Read the full Code of Conduct & Overnight Safety Rules",
+        href: "/safety",
       },
     ],
   },

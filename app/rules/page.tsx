@@ -1,8 +1,15 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ClipboardList } from "lucide-react"
 import Link from "next/link"
 import { SUPPORT_EMAIL, DEVPOST_FALL_URL } from "@/lib/config"
+
+export const metadata: Metadata = {
+  title: { absolute: "Event Rules | Southwest MN Hacks: Fall 2026" },
+  description:
+    "Rules, eligibility, team size, AI tool policy, project requirements, judging criteria, and submission guidelines for Southwest MN Hacks: Fall 2026.",
+}
 
 export default function RulesPage() {
   return (
@@ -18,7 +25,7 @@ export default function RulesPage() {
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-balance mb-6 leading-tight">Hackathon Rules</h1>
             <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
-              Everything you need to know to compete fairly and have an amazing time at SouthwestMN Hacks.
+              Everything you need to know to compete fairly and have an amazing time at Southwest MN Hacks.
             </p>
           </div>
         </section>
@@ -39,13 +46,19 @@ export default function RulesPage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Eligibility</h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  SouthwestMN Hacks is open to students and recent graduates. Here's who can compete:
+                  Southwest MN Hacks is open to students ages 14 and up, plus recent graduates. Here's who can compete:
                 </p>
                 <ul className="space-y-3 mb-4">
                   <li className="flex items-start gap-3">
                     <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
                     <span className="text-gray-700">
-                      <strong>High school students</strong> – From any grade level
+                      <strong>High school students</strong> – Any grade level, ages 14 and up
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>
+                    <span className="text-gray-700">
+                      <strong>Community college students</strong> – Two-year and technical programs
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
@@ -176,7 +189,7 @@ export default function RulesPage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Use of AI Tools</h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  AI tools are a part of modern development, and we embrace that at SouthwestMN Hacks:
+                  AI tools are a part of modern development, and we embrace that at Southwest MN Hacks:
                 </p>
                 <ul className="space-y-3 mb-4">
                   <li className="flex items-start gap-3">
@@ -220,21 +233,14 @@ export default function RulesPage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Judging Criteria</h2>
               <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Projects will be judged based on four main criteria, each worth 25% of your total score:
+                  Projects are scored on five criteria, matching the Devpost rubric:
                 </p>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Creativity & Innovation (25%)</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Innovation & Creativity (25%)</h3>
                     <p className="text-gray-700">
                       Is the idea unique and original? Does it approach a problem in a new way? We love creative
                       thinking!
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Technical Difficulty (25%)</h3>
-                    <p className="text-gray-700">
-                      What technical skills did you demonstrate? Did you push yourself to learn something new or tackle
-                      a challenging problem?
                     </p>
                   </div>
                   <div>
@@ -245,10 +251,23 @@ export default function RulesPage() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Presentation (25%)</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Technical Execution (20%)</h3>
+                    <p className="text-gray-700">
+                      What technical skills did you demonstrate? Did you push yourself to learn something new or tackle
+                      a challenging problem?
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Presentation & Demo (20%)</h3>
                     <p className="text-gray-700">
                       How well did you communicate your idea? Is your demo compelling? Can people understand what you
                       built and why it matters?
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Completion (10%)</h3>
+                    <p className="text-gray-700">
+                      How finished is the project? Does it actually run and do what you set out to build?
                     </p>
                   </div>
                 </div>
@@ -301,20 +320,26 @@ export default function RulesPage() {
               </div>
             </div>
 
-            {/* Code of Conduct Reference */}
+            {/* Code of Conduct & Overnight Safety Reference */}
             <div className="mb-16">
               <div className="bg-orange-50 border-2 border-orange-200 rounded-2xl p-8">
-                <h2 className="text-2xl md:text-3xl font-bold mb-4">Code of Conduct</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-4">Code of Conduct &amp; Overnight Safety</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   All participants must follow our{" "}
                   <Link href="/code-of-conduct" className="text-blue-600 hover:text-blue-700 underline font-semibold">
-                    Code of Conduct
+                    Code of Conduct and Overnight Safety Rules
                   </Link>
-                  . We're committed to providing a safe, inclusive, and welcoming environment for everyone.
+                  . Because we run overnight, that includes prohibited items (no alcohol, drugs, tobacco, vaping,
+                  cannabis, or weapons), quiet hours, signing out and back in through a monitored door, and rest-area
+                  rules. The{" "}
+                  <Link href="/safety" className="text-blue-600 hover:text-blue-700 underline font-semibold">
+                    Safety &amp; Overnight Rules overview
+                  </Link>{" "}
+                  walks through what to expect.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Violations may result in disqualification and removal from the event. Please take a moment to read
-                  it, it's there to make sure everyone has a great experience.
+                  Violations may result in disqualification and removal from the event. Please take a moment to read it,
+                  it's there to make sure everyone has a safe, great experience.
                 </p>
               </div>
             </div>

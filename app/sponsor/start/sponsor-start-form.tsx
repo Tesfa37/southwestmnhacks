@@ -30,7 +30,7 @@ function preferencesForTier(tier: Tier): PaymentPreference[] {
 }
 
 // Build the upsell note for engagement options a tier doesn't include, grouped by
-// the tier that unlocks them — e.g. "A booth or table is included at Silver and
+// the tier that unlocks them, e.g. "A booth or table is included at Silver and
 // above; …". Returns null when the tier includes everything.
 function engagementUpsell(missing: { label: string; unlockTier: string }[]): string | null {
   if (missing.length === 0) return null
@@ -267,7 +267,7 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
         <Field label="Website" htmlFor="organizationWebsite" error={errors.organizationWebsite}>
           <input id="organizationWebsite" type="url" value={form.organizationWebsite} onChange={(e) => set("organizationWebsite", e.target.value)} placeholder="https://" className={inputCls} autoComplete="url" />
         </Field>
-        <Field label="Logo URL (optional — or we'll follow up for it)" htmlFor="logoUrl" error={errors.logoUrl}>
+        <Field label="Logo URL (optional, or we'll follow up for it)" htmlFor="logoUrl" error={errors.logoUrl}>
           <input id="logoUrl" type="url" value={form.logoUrl} onChange={(e) => set("logoUrl", e.target.value)} placeholder="https://" className={inputCls} />
         </Field>
       </fieldset>
@@ -293,7 +293,7 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
         {errors.paymentPreference && <p className="text-sm text-red-600">{errors.paymentPreference}</p>}
         {recommendInvoice && preference === "PAY_NOW_CARD" && (
           <p className="rounded-xl bg-amber-50 px-3 py-2 text-sm text-amber-800">
-            For larger sponsorships, paying by ACH bank transfer or check helps reduce processing fees — but card is welcome too.
+            For larger sponsorships, paying by ACH bank transfer or check helps reduce processing fees, but card is welcome too.
           </p>
         )}
       </fieldset>
@@ -353,11 +353,11 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
         </Field>
       )}
 
-      {/* Engagement interests — only the options this tier includes; the rest
+      {/* Engagement interests: only the options this tier includes; the rest
           become an upsell note. */}
       {(includedEngagement.length > 0 || engagementNote) && (
         <fieldset className="space-y-2">
-          <legend className="text-lg font-semibold">Optional — get involved</legend>
+          <legend className="text-lg font-semibold">Optional: get involved</legend>
           {includedEngagement.map((o) => (
             <label key={o.flag} className="flex items-center gap-2 text-sm">
               <input

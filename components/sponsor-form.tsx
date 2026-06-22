@@ -8,7 +8,7 @@ export function SponsorForm() {
         <div className="bg-card border border-border rounded-3xl p-8 md:p-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Ready to sponsor?</h2>
           <p className="text-lg text-muted-foreground text-balance mb-8">
-            Tell us a little about your organization and how you&rsquo;d like to proceed — pay now, request an
+            Tell us a little about your organization and how you&rsquo;d like to proceed: pay now, request an
             invoice, or just talk first. Not sure which level fits? Start here or email us.
           </p>
 
@@ -28,7 +28,7 @@ export function SponsorForm() {
           </div>
 
           <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            We invoice from the Southwest MN Hacks nonprofit — pay by ACH, check, or card on standard net terms. Instant
+            We invoice from the Southwest MN Hacks nonprofit. Pay by ACH, check, or card on standard net terms. Instant
             card payment is available for smaller and in-kind sponsorships.
           </p>
         </div>

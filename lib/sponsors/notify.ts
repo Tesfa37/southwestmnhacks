@@ -1,4 +1,4 @@
-// Email notifications via Resend. BEST-EFFORT — if Resend isn't configured or a
+// Email notifications via Resend. BEST-EFFORT: if Resend isn't configured or a
 // send fails, we log and continue so the payment flow never 500s on email.
 //
 // Stripe sends its own invoice + receipt emails for pay-now / invoice paths, so
@@ -48,14 +48,14 @@ export interface NotifyPayload {
 }
 
 function amountLine(amountCents: number | null): string {
-  return amountCents != null ? formatCents(amountCents) : "—"
+  return amountCents != null ? formatCents(amountCents) : "n/a"
 }
 
 function yesNo(v?: boolean): string {
   return v ? "yes" : "no"
 }
 
-/** Internal notification to the organizer — fires on every submission. */
+/** Internal notification to the organizer; fires on every submission. */
 export async function notifyOrganizer(payload: NotifyPayload): Promise<void> {
   const resend = getResend()
   const to = optionalEnv("SPONSOR_NOTIFY_EMAIL")
@@ -65,7 +65,7 @@ export async function notifyOrganizer(payload: NotifyPayload): Promise<void> {
   }
 
   const lines = [
-    `New sponsor submission — ${EVENT_NAME}`,
+    `New sponsor submission for ${EVENT_NAME}`,
     "",
     `Organization:        ${payload.organizationName}`,
     payload.publicSponsorName ? `Public name:         ${payload.publicSponsorName}` : "",
@@ -91,13 +91,13 @@ export async function notifyOrganizer(payload: NotifyPayload): Promise<void> {
 
   try {
     // Resend's SDK returns { data, error } and does NOT throw on API-level
-    // failures (unverified sender, restricted key, etc.) — surface that error
+    // failures (unverified sender, restricted key, etc.); surface that error
     // so a silently-undelivered notification is visible in logs.
     const { error } = await resend.emails.send({
       from: fromAddress(),
       to,
       replyTo: payload.contactEmail,
-      subject: `New sponsor: ${payload.organizationName} — ${tierLabel(payload.tier)}`,
+      subject: `New sponsor: ${payload.organizationName} (${tierLabel(payload.tier)})`,
       text: lines.join("\n"),
     })
     if (error) console.error("[notify] organizer email rejected:", error.message ?? error)
@@ -140,11 +140,11 @@ export async function sendSponsorConfirmation(payload: NotifyPayload): Promise<v
     "",
     nextStep,
     "",
-    `If you have any questions in the meantime, just reply to this email or reach us at ${SPONSOR_EMAIL}.`,
+    `If you have any questions in the meantime, reply to this email or reach us at ${SPONSOR_EMAIL}.`,
     "",
     TAX_NOTICE,
     "",
-    "— Southwest MN Hacks",
+    "The Southwest MN Hacks Team",
   ].join("\n")
 
   try {

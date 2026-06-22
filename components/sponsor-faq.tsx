@@ -24,7 +24,7 @@ const faqs = [
   {
     question: "How does payment work?",
     answer:
-      "We send an invoice from the Southwest MN Hacks nonprofit, payable by ACH, check, or card on standard net terms — no card is required up front, so it works smoothly with most finance and accounts-payable teams. Smaller and in-kind sponsors who prefer to pay instantly by card can do that too. You'll receive a receipt for your records.",
+      "We send an invoice from the Southwest MN Hacks nonprofit, payable by ACH, check, or card on standard net terms, with no card required up front, so it works smoothly with most finance and accounts-payable teams. Smaller and in-kind sponsors who prefer to pay instantly by card can do that too. You'll receive a receipt for your records.",
   },
 ]
 

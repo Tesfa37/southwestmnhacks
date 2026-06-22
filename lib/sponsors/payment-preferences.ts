@@ -1,4 +1,4 @@
-// How a sponsor wants to pay. This is a routing signal, not a charge — it decides
+// How a sponsor wants to pay. This is a routing signal, not a charge; it decides
 // which rail the submission takes (Checkout, Invoice, or record-only follow-up).
 
 export type PaymentPreference =
@@ -31,7 +31,7 @@ export const PAYMENT_PREFERENCES: Record<PaymentPreference, PreferenceConfig> = 
   PAY_NOW_ACH: {
     value: "PAY_NOW_ACH",
     label: "Pay now by bank transfer (ACH)",
-    help: "Pay directly from a U.S. bank account — lower fees than card. Settles in a few business days.",
+    help: "Pay directly from a U.S. bank account, with lower fees than card. Settles in a few business days.",
     conditionalFields: [],
   },
   REQUEST_INVOICE: {

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   robots: { index: false },
 }
 
-// Never trust query params as proof of payment — the webhook is the source of
+// Never trust query params as proof of payment; the webhook is the source of
 // truth. We retrieve the session ONLY to show a friendly, accurate status line.
 export const dynamic = "force-dynamic"
 
@@ -25,7 +25,7 @@ async function paymentStatusLine(sessionId: string): Promise<string> {
     // ACH/bank transfers complete the session but settle later (payment_status
     // stays "unpaid" until the transfer clears).
     if (session.payment_status === "unpaid") {
-      return "Your bank transfer is processing — this can take a few business days. We'll email you when it settles."
+      return "Your bank transfer is processing. This can take a few business days. We'll email you when it settles."
     }
     return "We're finalizing your payment and will email you a receipt shortly."
   } catch {
@@ -40,18 +40,18 @@ export default async function SponsorSuccessPage({
 }) {
   const sp = await searchParams
 
-  let heading = "Thank you — your sponsorship request was received."
+  let heading = "Thank you. Your sponsorship request was received."
   let body = "Our team will follow up shortly with the next steps."
 
   if (sp.session_id) {
-    heading = "Thank you — your sponsorship payment was submitted."
+    heading = "Thank you. Your sponsorship payment was submitted."
     body = await paymentStatusLine(sp.session_id)
   } else if (sp.state === "invoice") {
-    heading = "Thank you — your invoice request was received."
+    heading = "Thank you. Your invoice request was received."
     body =
       "We'll send your sponsorship invoice shortly. You'll be able to pay it securely by card or bank transfer, on standard net terms."
   } else if (sp.pref === "IN_KIND") {
-    heading = "Thank you — your in-kind sponsorship request was received."
+    heading = "Thank you. Your in-kind sponsorship request was received."
     body = "Our team will follow up to coordinate the details of your contribution."
   } else if (sp.pref === "PAY_BY_CHECK") {
     body = "Our team will follow up with remit-to instructions and an invoice for your records."

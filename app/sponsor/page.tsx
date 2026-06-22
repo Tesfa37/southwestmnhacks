@@ -13,7 +13,7 @@ import { FloatingSponsorCta } from "@/components/floating-sponsor-cta"
 export const metadata: Metadata = {
   title: { absolute: "Sponsor | Southwest MN Hacks: Fall 2026" },
   description:
-    "Sponsor Southwest MN Hacks: Fall 2026 and connect with student builders at SMSU in Marshall, MN. More than logo placement — real sponsor-student interaction and a local workforce pipeline.",
+    "Sponsor Southwest MN Hacks: Fall 2026 and connect with student builders at SMSU in Marshall, MN. More than logo placement: real sponsor-student interaction and a local workforce pipeline.",
 }
 
 export default function SponsorPage() {

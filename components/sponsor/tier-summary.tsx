@@ -1,11 +1,12 @@
 import Link from "next/link"
 import { Check } from "lucide-react"
-import { TIERS, formatCents, type Tier } from "@/lib/sponsors/tiers"
+import { TIERS, formatCents, tierBenefitLines, type Tier } from "@/lib/sponsors/tiers"
 
 // The selected-tier card shown at the top of /sponsor/start. `amountOverride` lets
 // the custom tier reflect the amount the sponsor has entered.
 export function TierSummary({ tier, amountCentsOverride }: { tier: Tier; amountCentsOverride?: number | null }) {
   const config = TIERS[tier]
+  const benefitLines = tierBenefitLines(tier)
   const amount =
     typeof amountCentsOverride === "number"
       ? formatCents(amountCentsOverride)
@@ -27,9 +28,9 @@ export function TierSummary({ tier, amountCentsOverride }: { tier: Tier; amountC
           </Link>
         </div>
       </div>
-      {config.keyBenefits.length > 0 && (
+      {benefitLines.length > 0 && (
         <ul className="mt-4 space-y-2">
-          {config.keyBenefits.map((benefit) => (
+          {benefitLines.map((benefit) => (
             <li key={benefit} className="flex items-start gap-2 text-sm text-muted-foreground">
               <Check className="mt-0.5 size-4 shrink-0 text-pink-600" />
               <span>{benefit}</span>

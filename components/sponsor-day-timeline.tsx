@@ -10,7 +10,7 @@ const STEPS = [
     icon: Store,
     time: "Morning",
     title: "Set up your booth",
-    copy: "Your team sets up a booth or table and meets students as they arrive — talk about your organization, what you build, and who you're looking for.",
+    copy: "Your team sets up a booth or table and meets students as they arrive. Talk about your organization, what you build, and who you're looking for.",
     accent: "from-orange-400 to-pink-400",
   },
   {
@@ -24,7 +24,7 @@ const STEPS = [
     icon: HeartHandshake,
     time: "Afternoon",
     title: "Mentor teams",
-    copy: "Walk the floor and mentor teams as they build — answer questions, share how you'd approach the problem, and see how students think under pressure.",
+    copy: "Walk the floor and mentor teams as they build. Answer questions, share how you'd approach the problem, and see how students think under pressure.",
     accent: "from-purple-400 to-blue-400",
   },
   {
@@ -49,7 +49,7 @@ export function SponsorDayTimeline() {
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">A day as a sponsor</h2>
           <p className="text-lg text-muted-foreground text-balance max-w-2xl mx-auto">
-            What your team actually does at the event — as hands-on or hands-off as you like.
+            What your team actually does at the event, as hands-on or hands-off as you like.
           </p>
         </div>
 

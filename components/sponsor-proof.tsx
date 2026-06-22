@@ -82,7 +82,7 @@ export function SponsorProof() {
               &ldquo;Two SMSU alum host first-ever Hackathon&rdquo;
             </h3>
             <p className="leading-relaxed text-muted-foreground">
-              The local press covered our first event — the students, the projects, and the organizations that made it
+              The local press covered our first event: the students, the projects, and the organizations that made it
               happen.
             </p>
             <a

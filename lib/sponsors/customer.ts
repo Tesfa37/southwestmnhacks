@@ -5,7 +5,7 @@
 import type Stripe from "stripe"
 import { getStripe } from "@/lib/stripe"
 import { EVENT_NAME } from "@/lib/config"
-import { META, type SponsorStatus } from "./status"
+import { META, canTransition, type SponsorStatus } from "./status"
 import type { Tier } from "./tiers"
 import type { SponsorIntakeInput } from "./schema"
 
@@ -61,6 +61,13 @@ export async function upsertSponsorCustomer(data: SponsorIntakeInput, computed: 
   let customer: Stripe.Customer
   if (existing.data[0]) {
     // Reuse + overwrite: a sponsor who restarts the form updates one record.
+    // But never DOWNGRADE a settled record — if they already PAID (or the record
+    // is otherwise terminal) and resubmit, keep the existing status rather than
+    // resetting it to a fresh checkout/invoice state.
+    const currentStatus = existing.data[0].metadata?.[META.status] as SponsorStatus | undefined
+    if (currentStatus && !canTransition(currentStatus, computed.status)) {
+      customerMeta[META.status] = currentStatus
+    }
     customer = await stripe.customers.update(existing.data[0].id, {
       name: data.organizationName,
       phone: data.contactPhone || undefined,
@@ -81,6 +88,27 @@ export async function upsertSponsorCustomer(data: SponsorIntakeInput, computed: 
 /** Merge keys into a customer's metadata (Stripe merges; pass "" to clear a key). */
 export async function patchCustomerMeta(customerId: string, patch: Record<string, string>): Promise<void> {
   await getStripe().customers.update(customerId, { metadata: patch })
+}
+
+/**
+ * Write a status (plus optional extra metadata) but never downgrade a settled
+ * record — same monotonic guard the webhook uses (`canTransition`). Returns the
+ * status actually written, so callers can mirror it to Notion / notifications.
+ */
+export async function patchCustomerStatusGuarded(
+  customerId: string,
+  status: SponsorStatus,
+  extraMeta: Record<string, string> = {},
+): Promise<SponsorStatus> {
+  const stripe = getStripe()
+  const customer = await stripe.customers.retrieve(customerId)
+  const current =
+    customer && !("deleted" in customer)
+      ? (customer.metadata?.[META.status] as SponsorStatus | undefined)
+      : undefined
+  const next = canTransition(current, status) ? status : (current as SponsorStatus)
+  await stripe.customers.update(customerId, { metadata: { ...extraMeta, [META.status]: next } })
+  return next
 }
 
 /** Read the current sponsor status off a customer's metadata. */

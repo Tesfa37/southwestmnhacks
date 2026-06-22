@@ -1,11 +1,12 @@
 "use client"
 
 import { useMemo, useState, type ReactNode, type FormEvent } from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { track } from "@vercel/analytics"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { type Tier, TIERS } from "@/lib/sponsors/tiers"
+import { type Tier, TIERS, ENGAGEMENT_OPTIONS } from "@/lib/sponsors/tiers"
 import {
   PAYMENT_PREFERENCES,
   type PaymentPreference,
@@ -19,11 +20,33 @@ import { LegalNotice } from "@/components/sponsor/legal-notice"
 const inputCls =
   "w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm outline-none transition-colors focus:border-orange-400 focus:ring-1 focus:ring-orange-300"
 
-// Which payment preferences make sense for a given tier.
+// Which payment preferences make sense for a given tier, in display order.
+// ACH leads (lowest fees / recommended), then card, then invoice, then the
+// follow-up rails.
 function preferencesForTier(tier: Tier): PaymentPreference[] {
   if (tier === "in_kind") return ["IN_KIND", "TALK_FIRST"]
-  if (tier === "custom") return ["PAY_NOW_CARD", "PAY_NOW_ACH", "REQUEST_INVOICE", "CUSTOM_DISCUSSION", "TALK_FIRST"]
-  return ["PAY_NOW_CARD", "PAY_NOW_ACH", "REQUEST_INVOICE", "PAY_BY_CHECK", "NEED_W9_VENDOR_SETUP", "TALK_FIRST"]
+  if (tier === "custom") return ["PAY_NOW_ACH", "PAY_NOW_CARD", "REQUEST_INVOICE", "CUSTOM_DISCUSSION", "TALK_FIRST"]
+  return ["PAY_NOW_ACH", "PAY_NOW_CARD", "REQUEST_INVOICE", "PAY_BY_CHECK", "NEED_W9_VENDOR_SETUP", "TALK_FIRST"]
+}
+
+// Build the upsell note for engagement options a tier doesn't include, grouped by
+// the tier that unlocks them — e.g. "A booth or table is included at Silver and
+// above; …". Returns null when the tier includes everything.
+function engagementUpsell(missing: { label: string; unlockTier: string }[]): string | null {
+  if (missing.length === 0) return null
+  const byTier = new Map<string, string[]>()
+  for (const o of missing) {
+    const arr = byTier.get(o.unlockTier) ?? []
+    arr.push(o.label)
+    byTier.set(o.unlockTier, arr)
+  }
+  const clauses = [...byTier.entries()].map(([unlock, labels]) => {
+    const list =
+      labels.length === 1 ? labels[0] : `${labels.slice(0, -1).join(", ")} and ${labels[labels.length - 1]}`
+    return `${list} ${labels.length === 1 ? "is" : "are"} included at ${unlock} and above`
+  })
+  const sentence = clauses.join("; ")
+  return `${sentence.charAt(0).toUpperCase()}${sentence.slice(1)}.`
 }
 
 interface FormState {
@@ -117,6 +140,17 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
   const conditional: Set<ConditionalField> = new Set(
     preference ? PAYMENT_PREFERENCES[preference].conditionalFields : [],
   )
+
+  // Engagement options gated to what this tier includes (single source of truth in
+  // tiers.ts). Options the tier doesn't include become an upsell note instead.
+  const engagement = TIERS[tier].engagement
+  const engagementFields: Record<keyof typeof engagement, { checked: boolean; set: (v: boolean) => void }> = {
+    booth: { checked: form.wantsBooth, set: (v) => set("wantsBooth", v) },
+    mentorJudge: { checked: form.wantsMentorOrJudge, set: (v) => set("wantsMentorOrJudge", v) },
+    challenge: { checked: form.interestedInChallengePrize, set: (v) => set("interestedInChallengePrize", v) },
+  }
+  const includedEngagement = ENGAGEMENT_OPTIONS.filter((o) => engagement[o.flag])
+  const engagementNote = engagementUpsell(ENGAGEMENT_OPTIONS.filter((o) => !engagement[o.flag]))
 
   const set = <K extends keyof FormState>(key: K, value: FormState[K]) =>
     setForm((f) => ({ ...f, [key]: value }))
@@ -319,22 +353,32 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
         </Field>
       )}
 
-      {/* Engagement interests */}
-      <fieldset className="space-y-2">
-        <legend className="text-lg font-semibold">Optional — get involved</legend>
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={form.wantsBooth} onChange={(e) => set("wantsBooth", e.target.checked)} className="size-4 rounded border-border" />
-          We'd like a booth or table
-        </label>
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={form.wantsMentorOrJudge} onChange={(e) => set("wantsMentorOrJudge", e.target.checked)} className="size-4 rounded border-border" />
-          We're interested in mentoring or judging (subject to event guidelines)
-        </label>
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={form.interestedInChallengePrize} onChange={(e) => set("interestedInChallengePrize", e.target.checked)} className="size-4 rounded border-border" />
-          We'd like to offer a challenge prompt or prize category
-        </label>
-      </fieldset>
+      {/* Engagement interests — only the options this tier includes; the rest
+          become an upsell note. */}
+      {(includedEngagement.length > 0 || engagementNote) && (
+        <fieldset className="space-y-2">
+          <legend className="text-lg font-semibold">Optional — get involved</legend>
+          {includedEngagement.map((o) => (
+            <label key={o.flag} className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={engagementFields[o.flag].checked}
+                onChange={(e) => engagementFields[o.flag].set(e.target.checked)}
+                className="size-4 rounded border-border"
+              />
+              {o.checkbox}
+            </label>
+          ))}
+          {engagementNote && (
+            <p className="text-sm text-muted-foreground">
+              {engagementNote}{" "}
+              <Link href="/sponsor#tiers" className="font-semibold text-orange-600 hover:underline">
+                Change tier
+              </Link>
+            </p>
+          )}
+        </fieldset>
+      )}
 
       <Field label="Anything else?" htmlFor="notes" error={errors.notes}>
         <textarea id="notes" value={form.notes} onChange={(e) => set("notes", e.target.value)} rows={3} className={inputCls} />

@@ -8,7 +8,7 @@ import { NextResponse } from "next/server"
 import { sponsorIntakeSchema, fieldErrors } from "@/lib/sponsors/schema"
 import { resolveAmountCents, type Tier } from "@/lib/sponsors/tiers"
 import { decideAction } from "@/lib/sponsors/routing"
-import { upsertSponsorCustomer, sharedStripeMetadata, patchCustomerMeta } from "@/lib/sponsors/customer"
+import { upsertSponsorCustomer, sharedStripeMetadata, patchCustomerMeta, patchCustomerStatusGuarded } from "@/lib/sponsors/customer"
 import { createCheckoutSession } from "@/lib/sponsors/checkout"
 import { createSponsorInvoice } from "@/lib/sponsors/invoice"
 import { createSponsorRow, type SponsorRowInput } from "@/lib/notion"
@@ -81,16 +81,16 @@ export async function POST(req: Request) {
         metadata: sharedMeta,
       })
       checkoutUrl = session.url
-      finalStatus = "CHECKOUT_CREATED"
-      await patchCustomerMeta(customerId, { [META.checkoutSessionId]: session.id, [META.status]: finalStatus })
+      // Guarded so a re-submission can't downgrade an already-settled record.
+      finalStatus = await patchCustomerStatusGuarded(customerId, "CHECKOUT_CREATED", {
+        [META.checkoutSessionId]: session.id,
+      })
     } else if (decision.action === "invoice" && amountCents) {
       const invoice = await createSponsorInvoice({ customerId, tier, amountCents, metadata: sharedMeta })
       invoiceUrl = invoice.hostedInvoiceUrl ?? undefined
-      finalStatus = invoice.status
-      await patchCustomerMeta(customerId, {
+      finalStatus = await patchCustomerStatusGuarded(customerId, invoice.status, {
         [META.invoiceId]: invoice.invoiceId,
         [META.invoiceUrl]: invoice.hostedInvoiceUrl ?? "",
-        [META.status]: finalStatus,
       })
     }
     // record-only: the Customer + status are already in place.

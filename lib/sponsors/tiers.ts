@@ -14,6 +14,18 @@ export interface TierConfig {
   recommendsInvoice: boolean
   /** A short benefit summary shown on the /sponsor/start tier card. */
   keyBenefits: string[]
+  /**
+   * Which "get involved" options this tier actually includes. Drives the form's
+   * engagement checkboxes so we never ask a tier about a perk it doesn't get
+   * (e.g. Bronze has no booth). Custom/in-kind are negotiable, so all true.
+   */
+  engagement: EngagementCapabilities
+}
+
+export interface EngagementCapabilities {
+  booth: boolean
+  mentorJudge: boolean
+  challenge: boolean
 }
 
 export const TIERS: Record<Tier, TierConfig> = {
@@ -24,6 +36,7 @@ export const TIERS: Record<Tier, TierConfig> = {
     amountCents: 50000,
     recommendsInvoice: false,
     keyBenefits: ["Logo on the event website", "Recognition during opening remarks"],
+    engagement: { booth: false, mentorJudge: false, challenge: false },
   },
   silver: {
     slug: "silver",
@@ -32,6 +45,7 @@ export const TIERS: Record<Tier, TierConfig> = {
     amountCents: 100000,
     recommendsInvoice: false,
     keyBenefits: ["Everything in Bronze", "Logo on the event t-shirt", "A sponsor booth or table"],
+    engagement: { booth: true, mentorJudge: false, challenge: false },
   },
   gold: {
     slug: "gold",
@@ -44,6 +58,7 @@ export const TIERS: Record<Tier, TierConfig> = {
       "Reserved table at the student networking meal",
       "Option to mentor teams or offer a challenge prompt",
     ],
+    engagement: { booth: true, mentorJudge: true, challenge: true },
   },
   platinum: {
     slug: "platinum",
@@ -56,6 +71,7 @@ export const TIERS: Record<Tier, TierConfig> = {
       "Named sponsor recognition and a seat on the judging panel",
       "Priority access to the opt-in student interest list",
     ],
+    engagement: { booth: true, mentorJudge: true, challenge: true },
   },
   custom: {
     slug: "custom",
@@ -64,6 +80,7 @@ export const TIERS: Record<Tier, TierConfig> = {
     amountCents: null,
     recommendsInvoice: true,
     keyBenefits: ["Recognition matched to the level of support"],
+    engagement: { booth: true, mentorJudge: true, challenge: true },
   },
   in_kind: {
     slug: "in_kind",
@@ -72,8 +89,35 @@ export const TIERS: Record<Tier, TierConfig> = {
     amountCents: null,
     recommendsInvoice: false,
     keyBenefits: ["Meals, prizes, t-shirts, snacks, cloud/software credits, or equipment", "Recognition matched to the value contributed"],
+    engagement: { booth: true, mentorJudge: true, challenge: true },
   },
 }
+
+/**
+ * The "get involved" options, in display order, with the lowest cash tier that
+ * includes each. Drives both the form checkboxes (via TIERS[tier].engagement)
+ * and the upsell note shown to tiers that don't include an option yet.
+ */
+export const ENGAGEMENT_OPTIONS = [
+  { flag: "booth", label: "a booth or table", checkbox: "We'd like a booth or table", unlockTier: "Silver" },
+  {
+    flag: "mentorJudge",
+    label: "mentoring or judging",
+    checkbox: "We're interested in mentoring or judging (subject to event guidelines)",
+    unlockTier: "Gold",
+  },
+  {
+    flag: "challenge",
+    label: "a challenge prompt or prize category",
+    checkbox: "We'd like to offer a challenge prompt or prize category",
+    unlockTier: "Gold",
+  },
+] as const satisfies ReadonlyArray<{
+  flag: keyof EngagementCapabilities
+  label: string
+  checkbox: string
+  unlockTier: string
+}>
 
 /** Custom sponsorships below this are not accepted as automatic payments. */
 export const CUSTOM_MIN_CENTS = 25000

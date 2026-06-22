@@ -90,13 +90,17 @@ export async function notifyOrganizer(payload: NotifyPayload): Promise<void> {
   ].filter(Boolean)
 
   try {
-    await resend.emails.send({
+    // Resend's SDK returns { data, error } and does NOT throw on API-level
+    // failures (unverified sender, restricted key, etc.) — surface that error
+    // so a silently-undelivered notification is visible in logs.
+    const { error } = await resend.emails.send({
       from: fromAddress(),
       to,
       replyTo: payload.contactEmail,
       subject: `New sponsor: ${payload.organizationName} — ${tierLabel(payload.tier)}`,
       text: lines.join("\n"),
     })
+    if (error) console.error("[notify] organizer email rejected:", error.message ?? error)
   } catch (err) {
     console.error("[notify] organizer email failed:", err instanceof Error ? err.message : err)
   }
@@ -144,13 +148,14 @@ export async function sendSponsorConfirmation(payload: NotifyPayload): Promise<v
   ].join("\n")
 
   try {
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: fromAddress(),
       to: payload.contactEmail,
       replyTo: SPONSOR_EMAIL,
       subject,
       text: body,
     })
+    if (error) console.error("[notify] sponsor confirmation rejected:", error.message ?? error)
   } catch (err) {
     console.error("[notify] sponsor confirmation failed:", err instanceof Error ? err.message : err)
   }

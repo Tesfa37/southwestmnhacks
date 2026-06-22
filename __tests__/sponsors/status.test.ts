@@ -31,4 +31,17 @@ describe("canTransition", () => {
     expect(canTransition("PAYMENT_PENDING", "PAID")).toBe(true)
     expect(canTransition("INVOICE_SENT", "INVOICE_PAID")).toBe(true)
   })
+
+  // The re-submit guard (upsertSponsorCustomer / patchCustomerStatusGuarded) uses
+  // canTransition so a second submission with the same email can't reset a record
+  // that already settled. These assert the decision those writers rely on.
+  it("blocks a re-submission from downgrading a settled record", () => {
+    // Paid sponsor re-submits a different tier (fresh checkout/invoice intent).
+    expect(canTransition("PAID", "CHECKOUT_CREATED")).toBe(false)
+    expect(canTransition("PAID", "INVOICE_REQUESTED")).toBe(false)
+    expect(canTransition("INVOICE_PAID", "CHECKOUT_CREATED")).toBe(false)
+    // A not-yet-settled record can still be updated by a re-submission.
+    expect(canTransition("CHECKOUT_CREATED", "INVOICE_REQUESTED")).toBe(true)
+    expect(canTransition("MANUAL_FOLLOW_UP", "CHECKOUT_CREATED")).toBe(true)
+  })
 })

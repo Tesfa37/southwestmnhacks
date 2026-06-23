@@ -7,7 +7,7 @@ export const TAX_NOTICE =
   "Southwest MN Hacks is a nonprofit organization. Sponsorship payments may include recognition or event-related benefits. Please consult your tax advisor regarding deductibility."
 
 export const STUDENT_DATA_NOTICE =
-  "Any resume sharing is opt-in and limited to eligible college and graduate participants. We do not share participant contact information."
+  "Any resume sharing is opt-in. Participants who are 18 or older can opt in themselves, and participants under 18 can opt in only with parent or guardian permission. We do not share participant contact information."
 
 export const AUTHORIZATION_LABEL =
   "I'm authorized to commit my organization to this sponsorship, and I agree to be contacted about it."

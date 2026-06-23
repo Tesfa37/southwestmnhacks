@@ -77,14 +77,60 @@ Unit tests: `pnpm test` (routing, schema, idempotency). End-to-end in test mode:
 
 ## Go-live checklist
 
-1. Activate Stripe for the nonprofit (legal name + **EIN**); switch to **live** keys.
-2. Register the live webhook endpoint (`https://southwestmnhacks.org/api/stripe/webhook`)
-   for the events the handler covers; set the **live** `whsec_` in prod env.
-3. Enable **ACH / US bank transfer** and the hosted invoice payment page; set net
-   terms, invoice memo/footer (EIN, thank-you, check remit-to), and Stripe branding/logo.
+1. Activate Stripe for the nonprofit (legal name + **EIN**); switch to **live** keys. ✅
+2. Register the live webhook endpoint at **`https://www.southwestmnhacks.org/api/stripe/webhook`**
+   (use the **www** host; the apex `southwestmnhacks.org` 307-redirects and Stripe does not
+   follow redirects for webhooks) for the 10 events the handler covers; set the **live**
+   `whsec_` in the Vercel **Production** env. ✅
+3. Enable **ACH / US bank transfer** and the hosted invoice payment page; set net terms,
+   invoice memo/footer (EIN, thank-you, check remit-to), and Stripe branding/logo.
+   See **Live dashboard configuration** below.
 4. Apply for the Stripe **nonprofit discount** (501(c)(3)).
-5. Verify **southwestmnhacks.org** as a Resend sending domain; set `RESEND_FROM_EMAIL`
-   to a branded address; point `SPONSOR_NOTIFY_EMAIL` at the organizer inbox.
-6. Confirm `NOTION_TOKEN` + data source id are set and the integration has access.
+5. Resend sending domain **`notifications.southwestmnhacks.org`** is already verified;
+   `RESEND_FROM_EMAIL` = `Southwest MN Hacks <noreply@notifications.southwestmnhacks.org>`,
+   `SPONSOR_NOTIFY_EMAIL` = organizer inbox. ✅
+6. Confirm `NOTION_TOKEN` + data source id are set and the integration has access. ✅
 7. Confirm receipt wording + UBI handling with the accountant.
 8. Run one small **live** test payment, then refund it.
+
+Note: rolling the live `STRIPE_SECRET_KEY` (e.g. after exposure) requires a **production
+redeploy** to take effect — Vercel snapshots env vars per deployment. Update the value in
+Vercel Production, then redeploy.
+
+## Live dashboard configuration (step by step)
+
+Do all of this with the Stripe dashboard in **Live mode** (the toggle must not say Test/Sandbox).
+
+**A. Turn on bank payment methods**
+- A1 — on-site ACH (the "Pay now by bank transfer (ACH)" option): **Settings → Payment methods**
+  (`dashboard.stripe.com/settings/payment_methods`) → turn on **US bank account**. Card is on by default.
+- A2 — invoices: **Settings → Billing → Invoices** (`dashboard.stripe.com/settings/billing/invoice`)
+  → **Default payment methods** → **Edit payment methods** → under **Bank debits** turn on
+  **ACH Direct Debit**; optionally under **Bank transfer** turn on (virtual account / wire). If
+  Bank transfer is missing, enable it first under Settings → Payment methods.
+
+**B. Invoice settings (net terms, memo, footer with EIN + remit-to)** — same Invoices page:
+- **Default payment terms** → Net 30 (matches `SPONSOR_INVOICE_DAYS_UNTIL_DUE=30`); tick
+  "include a link to a payment page in the invoice email".
+- **Default memo** (optional): "Thank you for sponsoring Southwest MN Hacks."
+- **Default footer**: remit-to + legal, e.g. "Southwest MN Hacks is a 501(c)(3) nonprofit
+  (EIN XX-XXXXXXX). Checks payable to Southwest MN Hacks, <mailing address>. Sponsorship
+  payments may include recognition or event-related benefits; consult your tax advisor
+  regarding deductibility."
+- **Invoice tax information** section (scroll down) → add the **EIN** as a US tax ID.
+
+**C. Branding** — **Settings → Branding** (`dashboard.stripe.com/settings/branding`): upload
+**Icon** (square) and **Logo** (non-square; shows on Checkout + invoice PDFs), PNG/JPG <512kb
+≥128×128; set **Brand color** and **Accent color**.
+
+**D. Public business info** — **Settings → Public details** (`dashboard.stripe.com/settings/public`):
+support email (`sponsors@southwestmnhacks.org`), business mailing address, optional phone, and the
+real site URLs (replace any `example.com` placeholders):
+- Business website → `https://www.southwestmnhacks.org`
+- Customer support URL → `https://www.southwestmnhacks.org/contact`
+- Privacy policy URL → `https://www.southwestmnhacks.org/privacy`
+- Terms of service URL → `https://www.southwestmnhacks.org/terms`
+- (Optional) Checkout Settings → link the refund policy `https://www.southwestmnhacks.org/refunds`.
+
+**E. Verify** — create a small invoice (sandbox or a live one to yourself), open the Hosted
+Invoice Page, confirm ACH appears and the footer/EIN/branding render correctly.

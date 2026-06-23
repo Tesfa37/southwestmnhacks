@@ -63,6 +63,12 @@ export function Footer() {
               <Link href="/rules" className="block text-gray-400 hover:text-white transition-colors">
                 Event Rules
               </Link>
+              <Link href="/terms" className="block text-gray-400 hover:text-white transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="/refunds" className="block text-gray-400 hover:text-white transition-colors">
+                Refund Policy
+              </Link>
             </div>
           </div>
 
@@ -100,7 +106,9 @@ export function Footer() {
                 {SUPPORT_EMAIL}
               </a>
             </p>
-            <p className="text-gray-400">Questions? Reach out anytime!</p>
+            <Link href="/contact" className="block text-gray-400 hover:text-white transition-colors">
+              All Contacts
+            </Link>
           </div>
         </div>
 

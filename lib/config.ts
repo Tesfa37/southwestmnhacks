@@ -45,6 +45,15 @@ export const DISCORD_ENABLED = false
 // Contact
 export const SUPPORT_EMAIL = "support@southwestmnhacks.org"
 export const SPONSOR_EMAIL = "sponsors@southwestmnhacks.org"
+export const PRIVACY_EMAIL = "privacy@southwestmnhacks.org"
+export const CONDUCT_EMAIL = "conduct@southwestmnhacks.org"
+
+// Legal entity + mailing address, used on the Terms, Refund, and Contact pages and
+// the Stripe invoice remit-to. Fill MAILING_ADDRESS with the real remit-to address;
+// while empty, the pages omit the address line rather than showing a placeholder.
+export const LEGAL_ENTITY_NAME = "Southwest MN Hacks"
+export const GOVERNING_STATE = "Minnesota"
+export const MAILING_ADDRESS = "1303 Birch St. Marshall, MN, 56258"
 
 /**
  * Sponsor intake form (Jotform). While empty, the tier and "Ready to sponsor?"

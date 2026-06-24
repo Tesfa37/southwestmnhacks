@@ -9,7 +9,7 @@ const ARTICLE_URL =
 // Trust layer: real event photo + success story, press clipping, partner logos.
 export function SponsorProof() {
   return (
-    <section className="py-16 px-4">
+    <section className="py-16 px-4 overflow-hidden">
       <div className="container max-w-5xl mx-auto">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
           <div className="relative">

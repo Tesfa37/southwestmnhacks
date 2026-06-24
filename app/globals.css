@@ -41,6 +41,7 @@
 
 
 @theme inline {
+  --breakpoint-xs: 30rem; /* 480px — intermediate step below sm (640px) */
   --font-sans: 'Geist', 'Geist Fallback';
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);

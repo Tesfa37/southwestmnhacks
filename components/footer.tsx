@@ -101,7 +101,7 @@ export function Footer() {
             <p className="mb-2">
               <a
                 href={`mailto:${SUPPORT_EMAIL}`}
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors break-all"
               >
                 {SUPPORT_EMAIL}
               </a>

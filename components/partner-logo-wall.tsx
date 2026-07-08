@@ -4,6 +4,7 @@ const PARTNERS = [
   { src: "/schwans-logo.png", alt: "Schwan's", href: "https://www.schwanscompany.com", h: "h-10" },
   { src: "/aulden-logo.svg", alt: "Aulden", href: "https://getaulden.com", h: "h-14" },
   { src: "/visit-marshall-logo.png", alt: "Visit Marshall", href: "https://visitmarshallmn.com", h: "h-12" },
+  { src: "/united-way-logo.png", alt: "United Way of Southwest Minnesota", href: "https://www.unitedwayswmn.org", h: "h-12" },
 ]
 
 // Logos of organizations that have backed the event. Grayscale until hover.

@@ -74,7 +74,7 @@ TypeScript path mapping (`tsconfig.json`) resolves imports:
 
 ### Images
 - Event photos live in `public/images/` — compressed to max 2400px wide at quality 72 (~3 MB total, down from 94 MB)
-- Sponsor logos: `public/schwans-logo.png`, `public/schwans-logo-white.png`, `public/etm-solutions-logo.jpeg`
+- Sponsor/partner logos: `public/schwans-logo.png`, `public/aulden-logo.svg`, `public/aulden-logo-dark.svg`, `public/visit-marshall-logo.png`, `public/united-way-logo.png` (also present but unused: `public/schwans-logo-white.png`, `public/etm-solutions-logo.jpeg`)
 - OG image: `public/og-image.png` (1200x630, generated from SVG spec)
 - Only the first below-the-fold image (`group-photo.jpg` in `event-recap.tsx`) uses `priority`; all others lazy-load by default
 

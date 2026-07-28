@@ -58,9 +58,9 @@ export default function TermsPage() {
                 <Link href="/rules" className="text-blue-600 hover:text-blue-700 underline">
                   Event Rules
                 </Link>
-                , and the required waivers and consent forms. The event is intended for participants age 14 and older.
-                Participants under 18 must have a parent or guardian complete the consent and medical authorization
-                before attending.
+                , and the required waivers and consent forms. The event is intended for students age 14 and older,
+                including recent graduates within one year of graduation. Participants under 18 must have a parent or
+                guardian complete the consent and medical authorization before attending.
               </p>
               <p className="text-gray-700 leading-relaxed">
                 We may update the schedule, format, venue, or activities, and we may remove anyone whose conduct puts

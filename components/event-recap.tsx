@@ -22,7 +22,7 @@ export function EventRecap() {
         <div className="relative aspect-[21/9] rounded-3xl overflow-hidden shadow-lg">
           <Image
             src="/images/group-photo.jpg"
-            alt="All participants gathered at SouthwestMN Hacks, Marshall Edition"
+            alt="All participants gathered at Southwest MN Hacks, March 2026"
             fill
             priority
             placeholder="blur"

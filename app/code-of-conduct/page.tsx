@@ -7,7 +7,7 @@ import { SUPPORT_EMAIL, CODE_OF_CONDUCT_PDF, DOCS_UPDATED } from "@/lib/config"
 export const metadata: Metadata = {
   title: { absolute: "Code of Conduct | Southwest MN Hacks" },
   description:
-    "The Southwest MN Hacks 2.0 Code of Conduct and Overnight Safety Rules: respect, harassment-free environment, prohibited items, overnight conduct, reporting, and enforcement.",
+    "The Southwest MN Hacks: Fall 2026 Code of Conduct and Overnight Safety Rules: respect, harassment-free environment, prohibited items, overnight conduct, reporting, and enforcement.",
 }
 
 const SECTIONS = [
@@ -112,7 +112,7 @@ export default function CodeOfConductPage() {
           <div className="container max-w-3xl mx-auto">
             {/* Event facts */}
             <p className="text-gray-700 leading-relaxed mb-10">
-              Southwest MN Hacks 2.0 is a 24-hour overnight student hackathon hosted by Southwest MN Hacks, a Minnesota
+              Southwest MN Hacks: Fall 2026 is a 24-hour overnight student hackathon hosted by Southwest MN Hacks, a Minnesota
               nonprofit corporation, at Southwest Minnesota State University on September 12 and 13, 2026. The venue is
               the SMSU Upper Conference Center (or an SMSU-designated space), 1501 State Street, Marshall, MN 56258. This
               Code of Conduct sets the behavior expected of every participant during the event, including the overnight
@@ -123,7 +123,7 @@ export default function CodeOfConductPage() {
             <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 shadow-lg mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">What you agree to</h2>
               <p className="text-white text-lg leading-relaxed">
-                &ldquo;I have read and agree to the Southwest MN Hacks 2.0 Code of Conduct and Overnight Safety
+                &ldquo;I have read and agree to the Southwest MN Hacks: Fall 2026 Code of Conduct and Overnight Safety
                 Rules.&rdquo; You confirm this attestation when you register and again when you check in.
               </p>
             </div>

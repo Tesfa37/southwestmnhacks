@@ -36,8 +36,9 @@ export default function RulesPage() {
             <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 shadow-lg mb-16">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">TL;DR</h2>
               <p className="text-white text-lg leading-relaxed">
-                Students only. Teams of 1-4. Build something new during the event. AI tools are fine, just be honest
-                about it. Be creative, have fun, and follow the Code of Conduct.
+                Students ages 14 and up, plus recent grads within 1 year. Teams of 1-4. Build something new during the
+                event. AI tools are fine, just be honest about it. Be creative, have fun, and follow the Code of
+                Conduct.
               </p>
             </div>
 
@@ -282,7 +283,10 @@ export default function RulesPage() {
             <div className="mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Prizes</h2>
               <div className="prose prose-lg max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-4">Here's how prizes work:</p>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  1st, 2nd, and 3rd place teams win prizes, and every submitted project gets recognition on Devpost.
+                  Prize amounts will be announced closer to the event. Here's how prizes work:
+                </p>
                 <ul className="space-y-3 mb-4">
                   <li className="flex items-start gap-3">
                     <span className="inline-block w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mt-2 flex-shrink-0"></span>

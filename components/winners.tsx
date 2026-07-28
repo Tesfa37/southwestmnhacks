@@ -73,7 +73,7 @@ export function Winners() {
           <div className="relative aspect-[4/3] md:aspect-auto min-h-[280px]">
             <Image
               src={first.photo}
-              alt={`${first.team} - Grand Prize winners at SouthwestMN Hacks`}
+              alt={`${first.team} - Grand Prize winners at Southwest MN Hacks`}
               fill
               placeholder="blur"
               blurDataURL={BLUR}
@@ -114,7 +114,7 @@ export function Winners() {
             <div className="relative aspect-[16/9]">
               <Image
                 src={winner.photo}
-                alt={`${winner.team} - ${winner.label} at SouthwestMN Hacks`}
+                alt={`${winner.team} - ${winner.label} at Southwest MN Hacks`}
                 fill
                 placeholder="blur"
                 blurDataURL={BLUR}

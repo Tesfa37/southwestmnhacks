@@ -95,7 +95,12 @@ export default function HomePage() {
     {
       question: "Who can participate?",
       answer:
-        "Students ages 14 and up are welcome, including high school, community college, college, and university students. Every skill level belongs here; if you're curious about technology and want to build something, you're in.",
+        "Students ages 14 and up are welcome, including high school, community college, college, and university students, plus recent graduates within one year of graduation. Every skill level belongs here; if you're curious about technology and want to build something, you're in.",
+    },
+    {
+      question: "Are there prizes?",
+      answer:
+        "Yes. 1st, 2nd, and 3rd place teams win prizes, and every submitted project gets recognition on Devpost. Prize amounts will be announced closer to the event.",
     },
     {
       question: "How do I submit my project?",
@@ -123,7 +128,7 @@ export default function HomePage() {
     "@type": "Event",
     name: EVENT_NAME,
     description:
-      "Free 24-hour overnight student hackathon for high school and college students at SMSU in Marshall, MN. Beginner friendly, AI encouraged, and open ended.",
+      "Free 24-hour overnight student hackathon for students ages 14+ and recent graduates at SMSU in Marshall, MN. Beginner friendly, AI encouraged, and open ended.",
     startDate: EVENT_START_AT,
     endDate: EVENT_END_AT,
     eventStatus: "https://schema.org/EventScheduled",
@@ -269,7 +274,7 @@ export default function HomePage() {
                 <Clock className="w-6 h-6 text-white" />
               </div>
               <div className="font-semibold text-gray-900">Format</div>
-              <div className="text-gray-600">Two-day, overnight</div>
+              <div className="text-gray-600">24-hour overnight</div>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl flex items-center justify-center mx-auto mb-3">
@@ -309,8 +314,9 @@ export default function HomePage() {
         <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-gray-200">
           <h2 className="text-3xl font-bold mb-4">Who Can Participate</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            Open to high school and college students of all skill levels. Whether this is your first hackathon or your
-            tenth, you belong here.
+            Open to students ages 14 and up, from high school through community college and university, plus recent
+            graduates within one year of graduation. Whether this is your first hackathon or your tenth, you belong
+            here.
           </p>
           <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-6">
             <div className="flex items-start gap-4">

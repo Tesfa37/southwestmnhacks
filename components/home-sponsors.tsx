@@ -2,17 +2,50 @@ import Image from "next/image"
 import { HOMEPAGE_PARTNERS, TIER_PILLS, type Partner } from "@/lib/sponsors/partners"
 import { PARTNERSHIP_LINE } from "@/lib/config"
 
-// Aulden's SVG reads small at the shared card scale, so it gets the full box height.
-function logoHeight(partner: Partner) {
-  return partner.tier === "partnership" ? "h-16" : partner.heightClass
+function LogoLink({ partner, heightClass }: { partner: Partner; heightClass: string }) {
+  return (
+    <a
+      href={partner.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={partner.name}
+      className="inline-flex hover:opacity-90 transition-opacity"
+    >
+      <Image
+        src={partner.src}
+        alt={partner.name}
+        width={partner.width}
+        height={partner.height}
+        sizes="280px"
+        className={`${heightClass} w-auto object-contain`}
+      />
+    </a>
+  )
 }
 
-// Homepage sponsor cards: equal compact grid, one card per partner with its tier pill.
+// Homepage sponsors: Aulden keeps its full-width partnership card, the rest
+// cluster in an equal card grid. Both read from lib/sponsors/partners.ts.
 export function HomeSponsors() {
+  const hero = HOMEPAGE_PARTNERS.find((p) => p.tier === "partnership")
+  const rest = HOMEPAGE_PARTNERS.filter((p) => p.tier !== "partnership")
+
   return (
     <>
-      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 md:grid-cols-3 mb-6">
-        {HOMEPAGE_PARTNERS.map((partner) => {
+      {hero && (
+        <div className="bg-white rounded-3xl p-8 sm:p-12 text-center shadow-sm border border-gray-200 mb-8">
+          <span
+            className={`inline-block ${TIER_PILLS[hero.tier].className} px-4 py-1.5 rounded-full text-sm font-semibold mb-6`}
+          >
+            {TIER_PILLS[hero.tier].label}
+          </span>
+          <div className="flex justify-center">
+            <LogoLink partner={hero} heightClass={hero.heightClass} />
+          </div>
+          <p className="mt-4 text-sm text-gray-600">{PARTNERSHIP_LINE}</p>
+        </div>
+      )}
+      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 mb-8">
+        {rest.map((partner) => {
           const pill = TIER_PILLS[partner.tier]
           return (
             <div
@@ -25,28 +58,12 @@ export function HomeSponsors() {
                 {pill.label}
               </span>
               <div className="flex h-16 items-center justify-center">
-                <a
-                  href={partner.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={partner.name}
-                  className="inline-flex hover:opacity-90 transition-opacity"
-                >
-                  <Image
-                    src={partner.src}
-                    alt={partner.name}
-                    width={partner.width}
-                    height={partner.height}
-                    sizes="280px"
-                    className={`${logoHeight(partner)} w-auto object-contain`}
-                  />
-                </a>
+                <LogoLink partner={partner} heightClass={partner.heightClass} />
               </div>
             </div>
           )
         })}
       </div>
-      <p className="text-center text-sm text-gray-600 mb-8">{PARTNERSHIP_LINE}</p>
     </>
   )
 }

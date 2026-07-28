@@ -18,7 +18,10 @@ export const EVENT_END_AT = "2026-09-13T10:00:00-05:00"
 
 // Live event assets
 export const REGISTRATION_FORM_URL = "https://forms.gle/tR3nteuQ3CgyHAmW6"
+// Careful: the two Devpost subdomains differ only in hyphenation.
+// Fall 2026 lives at southwest-mn-hacks; the March 2026 event at southwestmn-hacks.
 export const DEVPOST_FALL_URL = "https://southwest-mn-hacks.devpost.com/"
+export const DEVPOST_SPRING_URL = "https://southwestmn-hacks.devpost.com/"
 export const DISCORD_INVITE_URL = "https://discord.gg/3gsH2DTx"
 export const CONSENT_FORM_URL = "https://form.jotform.com/261474955259066"
 

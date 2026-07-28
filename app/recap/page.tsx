@@ -1,10 +1,17 @@
 import { Sparkles, Brain, BarChart3 } from "lucide-react"
+import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { EventRecap } from "@/components/event-recap"
 import { Winners } from "@/components/winners"
 import { Appreciation } from "@/components/appreciation"
 import { WinnerContinuationBadge } from "@/components/winner-continuation-badge"
+import { RegisterCta } from "@/components/register-cta"
+import { getEventPhase } from "@/lib/event-phase"
+import { EVENT_DATES } from "@/lib/config"
+
+// Re-render hourly so the forward CTA follows the registration phase.
+export const revalidate = 3600
 
 export default function RecapPage() {
   return (
@@ -19,7 +26,7 @@ export default function RecapPage() {
         </div>
         <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black mb-6 leading-tight text-balance px-2">
           <span className="bg-gradient-to-r from-orange-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-            Southwest MN Hacks 2026 Recap
+            Southwest MN Hacks: March 2026 Recap
           </span>
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-pretty px-4">
@@ -51,7 +58,7 @@ export default function RecapPage() {
               <WinnerContinuationBadge />
             </div>
             <p className="text-lg text-gray-700 leading-relaxed">
-              After the awards ceremony, Schwan&apos;s Company invited The Balancers to keep building IT Budget Strategist past the prototype stage. The team accepted and is now developing the tool further as a paid engagement with Schwan&apos;s. A 12-hour hackathon build became real software for a real customer, which is exactly the kind of outcome this event was designed to make possible.
+              After the awards ceremony, Schwan&apos;s Company invited The Balancers to keep building IT Budget Strategist past the prototype stage. The team accepted and went on to continue development as a paid engagement with Schwan&apos;s. A 12-hour hackathon build became real software for a real customer, which is exactly the kind of outcome this event was designed to make possible.
             </p>
           </div>
         </div>
@@ -119,6 +126,25 @@ export default function RecapPage() {
 
       {/* Appreciation */}
       <Appreciation />
+
+      {/* Forward CTA: the next event */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 sm:p-12 text-center text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">The next one: Fall 2026</h2>
+          <p className="text-lg sm:text-xl mb-8 opacity-95">
+            {EVENT_DATES}. Back at SMSU, bigger, and 24 hours long.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <RegisterCta variant="section" location="recap-forward" initialPhase={getEventPhase()} />
+            <Link
+              href="/sponsor"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-white/80 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-white/10"
+            >
+              Become a sponsor
+            </Link>
+          </div>
+        </div>
+      </section>
       </main>
 
       <Footer />

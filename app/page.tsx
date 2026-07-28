@@ -412,6 +412,13 @@ export default function HomePage() {
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Our Sponsors</h2>
           <p className="text-lg sm:text-xl text-gray-600">Thank you to the partners who make this possible.</p>
+          <p className="mt-3 text-gray-600">
+            See how March 2026 went:{" "}
+            <Link href="/recap" className="font-semibold text-blue-600 underline underline-offset-2 hover:text-blue-700">
+              read the recap
+            </Link>
+            .
+          </p>
         </div>
 
         {/* Sponsor cards, driven by lib/sponsors/partners.ts */}

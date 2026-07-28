@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Trophy } from "lucide-react"
-import { WinnerContinuationBadge } from "@/components/winner-continuation-badge"
+import { DEVPOST_SPRING_URL } from "@/lib/config"
 
 // Tiny 1x1 gray JPEG used as blur placeholder while images load
 const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
@@ -88,10 +88,7 @@ export function Winners() {
             </div>
             <h3 className="text-3xl font-black mb-1">{first.team}</h3>
             <p className="text-xl text-gray-700 font-semibold mb-3">{first.project}</p>
-            <p className="text-gray-500 mb-3">{first.members.join(", ")}</p>
-            <div className="mb-6">
-              <WinnerContinuationBadge />
-            </div>
+            <p className="text-gray-500 mb-6">{first.members.join(", ")}</p>
             <a
               href={first.devpost}
               target="_blank"
@@ -145,7 +142,7 @@ export function Winners() {
       {/* View all projects */}
       <div className="text-center">
         <a
-          href="https://southwestmn-hacks.devpost.com/project-gallery"
+          href={`${DEVPOST_SPRING_URL}project-gallery`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:scale-105 transition-all"

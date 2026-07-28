@@ -7,7 +7,7 @@ import { Check, Medal, Award, Trophy, Crown, Gift, Minus, type LucideIcon } from
 import { LazyMotion, domAnimation, m, useReducedMotion, type Variants } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { SPONSOR_EMAIL } from "@/lib/config"
+import { SPONSOR_EMAIL, SPONSOR_DEADLINE } from "@/lib/config"
 import { sponsorInquiryUrl } from "@/lib/sponsor"
 import {
   TIERS,
@@ -51,6 +51,12 @@ export function SponsorTiers() {
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Sponsorship levels</h2>
           <p className="text-lg text-muted-foreground text-balance">Choose a level that works for your organization</p>
+          <p className="mt-4 inline-flex rounded-full bg-amber-100 px-4 py-1.5 text-sm font-semibold text-amber-900">
+            Commit by {SPONSOR_DEADLINE} to lock in full benefits
+          </p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Later sponsors still receive all digital and day-of benefits.
+          </p>
         </div>
 
         {/* Cards / Compare toggle */}

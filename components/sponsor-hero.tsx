@@ -3,7 +3,7 @@
 import { Sparkles, Calendar, MapPin } from "lucide-react"
 import { LazyMotion, domAnimation, m, useReducedMotion, type Variants } from "motion/react"
 import { AuroraBackground } from "@/components/aurora-background"
-import { EVENT_DATES, VENUE, VENUE_MAP_URL, PARTNERSHIP_LINE, SPONSOR_EMAIL, SPONSOR_DEADLINE } from "@/lib/config"
+import { EVENT_DATES, VENUE, VENUE_MAP_URL, SPONSOR_EMAIL } from "@/lib/config"
 
 const container: Variants = {
   hidden: {},
@@ -79,11 +79,6 @@ export function SponsorHero() {
                 {VENUE}
               </a>
             </div>
-            <p className="mt-3 text-sm font-medium text-foreground">
-              Commit by {SPONSOR_DEADLINE} to lock in full benefits, including your logo on the event t-shirt and the
-              option to present a challenge prompt. Later sponsors still receive all digital and day-of benefits.
-            </p>
-            <p className="mt-3 text-sm text-muted-foreground">{PARTNERSHIP_LINE}</p>
           </m.div>
         </m.div>
       </LazyMotion>

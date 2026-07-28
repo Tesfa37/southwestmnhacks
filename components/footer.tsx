@@ -14,13 +14,15 @@ export function Footer() {
   return (
     <footer className="bg-gray-900 text-white mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8 mb-8">
           <div className="lg:col-span-2">
             <div className="text-xl font-bold mb-4">
               <span className="text-orange-400">Southwest</span>{" "}
               <span className="text-blue-400">MN</span> Hacks
             </div>
-            <p className="text-gray-400">Building the future, one hackathon at a time.</p>
+            <p className="text-gray-400">
+              A free 24-hour hackathon for southwest Minnesota&apos;s next generation of builders.
+            </p>
           </div>
 
           <div>
@@ -43,7 +45,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
+            <h4 className="font-semibold mb-4">Participants</h4>
             <div className="space-y-2">
               <Link href="/code-of-conduct" className="block text-gray-400 hover:text-white transition-colors">
                 Code of Conduct
@@ -51,11 +53,17 @@ export function Footer() {
               <Link href="/safety" className="block text-gray-400 hover:text-white transition-colors">
                 Safety & Overnight Rules
               </Link>
-              <Link href="/privacy" className="block text-gray-400 hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
               <Link href="/rules" className="block text-gray-400 hover:text-white transition-colors">
                 Event Rules
+              </Link>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Legal</h4>
+            <div className="space-y-2">
+              <Link href="/privacy" className="block text-gray-400 hover:text-white transition-colors">
+                Privacy Policy
               </Link>
               <Link href="/terms" className="block text-gray-400 hover:text-white transition-colors">
                 Terms of Service
@@ -120,7 +128,7 @@ export function Footer() {
             </a>
           </div>
           <p className="text-gray-500 max-w-2xl mx-auto">{PARTNERSHIP_LINE}</p>
-          <p className="mt-2">© 2026 Southwest MN Hacks. All rights reserved.</p>
+          <p className="mt-2">© {new Date().getFullYear()} Southwest MN Hacks. All rights reserved.</p>
         </div>
       </div>
     </footer>

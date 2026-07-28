@@ -122,7 +122,7 @@ export function SponsorTiers() {
                       asChild
                     >
                       <Link
-                        href={sponsorInquiryUrl({ name: cfg.label })}
+                        href={sponsorInquiryUrl(slug)}
                         onClick={() => track("Sponsor Click", { location: "tier-card", tier: cfg.label })}
                       >
                         Choose {cfg.label}
@@ -208,7 +208,7 @@ export function SponsorTiers() {
                             asChild
                           >
                             <Link
-                              href={sponsorInquiryUrl({ name: TIERS[slug].label })}
+                              href={sponsorInquiryUrl(slug)}
                               onClick={() => track("Sponsor Click", { location: "compare-table", tier: TIERS[slug].label })}
                             >
                               Choose

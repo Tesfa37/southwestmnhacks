@@ -1,9 +1,8 @@
 import Image from "next/image"
 import { Trophy } from "lucide-react"
 import { DEVPOST_SPRING_URL } from "@/lib/config"
+import { BLUR_DATA_URL } from "@/lib/images"
 
-// Tiny 1x1 gray JPEG used as blur placeholder while images load
-const BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAB/9k="
 
 const winners = [
   {
@@ -76,7 +75,7 @@ export function Winners() {
               alt={`${first.team} - Grand Prize winners at Southwest MN Hacks`}
               fill
               placeholder="blur"
-              blurDataURL={BLUR}
+              blurDataURL={BLUR_DATA_URL}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               className="object-cover"
             />
@@ -114,7 +113,7 @@ export function Winners() {
                 alt={`${winner.team} - ${winner.label} at Southwest MN Hacks`}
                 fill
                 placeholder="blur"
-                blurDataURL={BLUR}
+                blurDataURL={BLUR_DATA_URL}
                 sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 600px"
                 className="object-cover"
               />

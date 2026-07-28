@@ -62,15 +62,6 @@ export const LEGAL_ENTITY_NAME = "Southwest MN Hacks"
 export const GOVERNING_STATE = "Minnesota"
 export const MAILING_ADDRESS = "1303 Birch St. Marshall, MN, 56258"
 
-/**
- * Sponsor intake form (Jotform). While empty, the tier and "Ready to sponsor?"
- * buttons fall back to the SPONSOR_EMAIL mailto. When set, those buttons link
- * here with the chosen tier prefilled via `?tier=`. To activate: build the
- * form, set the tier field's Unique Name to "tier", then paste the form URL
- * here. See docs/sponsor-payments.md.
- */
-export const SPONSOR_INTAKE_FORM_URL = ""
-
 // Host framing. Used wherever the host/partner is described. No SMSU sponsorship
 // implication, no SMSU or Mustangs logo.
 export const PARTNERSHIP_LINE =

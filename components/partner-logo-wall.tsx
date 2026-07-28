@@ -1,11 +1,5 @@
 import Image from "next/image"
-
-const PARTNERS = [
-  { src: "/schwans-logo.png", alt: "Schwan's", href: "https://www.schwanscompany.com", h: "h-10" },
-  { src: "/aulden-logo.svg", alt: "Aulden", href: "https://getaulden.com", h: "h-14" },
-  { src: "/visit-marshall-logo.png", alt: "Visit Marshall", href: "https://visitmarshallmn.com", h: "h-12" },
-  { src: "/united-way-logo.png", alt: "United Way of Southwest Minnesota", href: "https://www.unitedwayswmn.org", h: "h-12" },
-]
+import { PARTNERS } from "@/lib/sponsors/partners"
 
 // Logos of organizations that have backed the event. Grayscale until hover.
 export function PartnerLogoWall() {
@@ -17,20 +11,20 @@ export function PartnerLogoWall() {
       <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
         {PARTNERS.map((partner) => (
           <a
-            key={partner.alt}
+            key={partner.name}
             href={partner.href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={partner.alt}
+            aria-label={partner.name}
             className="opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
           >
             <Image
               src={partner.src}
-              alt={partner.alt}
-              width={160}
-              height={48}
-              sizes="160px"
-              className={`${partner.h} w-auto object-contain`}
+              alt={partner.name}
+              width={partner.width}
+              height={partner.height}
+              sizes="200px"
+              className={`${partner.wallHeightClass} w-auto object-contain`}
             />
           </a>
         ))}

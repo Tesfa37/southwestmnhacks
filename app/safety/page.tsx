@@ -23,6 +23,7 @@ import {
 } from "@/lib/config"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/safety" },
   title: { absolute: "Safety & Overnight Rules | Southwest MN Hacks: Fall 2026" },
   description:
     "What to expect overnight at Southwest MN Hacks: Fall 2026 — prohibited items, quiet hours, overnight access, rest areas, emergencies, reporting, and rules for minors. The full Code of Conduct is the binding version.",

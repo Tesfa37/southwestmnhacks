@@ -6,6 +6,7 @@ import { Scale } from "lucide-react"
 import { EVENT_NAME, LEGAL_ENTITY_NAME, GOVERNING_STATE, SUPPORT_EMAIL, SPONSOR_EMAIL } from "@/lib/config"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: { absolute: "Terms of Service | Southwest MN Hacks" },
   description:
     "The terms that govern use of the Southwest MN Hacks website, event participation, and sponsorships.",

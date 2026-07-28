@@ -6,6 +6,7 @@ import Link from "next/link"
 import { SUPPORT_EMAIL, DEVPOST_FALL_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/rules" },
   title: { absolute: "Event Rules | Southwest MN Hacks: Fall 2026" },
   description:
     "Rules, eligibility, team size, AI tool policy, project requirements, judging criteria, and submission guidelines for Southwest MN Hacks: Fall 2026.",

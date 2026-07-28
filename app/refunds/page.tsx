@@ -6,6 +6,7 @@ import { Receipt } from "lucide-react"
 import { EVENT_NAME, LEGAL_ENTITY_NAME, SPONSOR_EMAIL } from "@/lib/config"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/refunds" },
   title: { absolute: "Refund & Cancellation Policy | Southwest MN Hacks" },
   description:
     "How sponsorship payments, in-kind contributions, and event cancellations are handled for Southwest MN Hacks.",

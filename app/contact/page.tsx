@@ -13,6 +13,7 @@ import {
 } from "@/lib/config"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: { absolute: "Contact | Southwest MN Hacks" },
   description: "How to reach the Southwest MN Hacks team for support, sponsorship, privacy, and conduct questions.",
 }

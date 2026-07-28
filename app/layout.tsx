@@ -9,6 +9,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://southwestmnhacks.org"),
+  alternates: { canonical: "/" },
   title: {
     template: "%s | Southwest MN Hacks",
     default: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",

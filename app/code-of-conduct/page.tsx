@@ -5,6 +5,7 @@ import { Shield, FileText } from "lucide-react"
 import { SUPPORT_EMAIL, CODE_OF_CONDUCT_PDF, DOCS_UPDATED } from "@/lib/config"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/code-of-conduct" },
   title: { absolute: "Code of Conduct | Southwest MN Hacks" },
   description:
     "The Southwest MN Hacks: Fall 2026 Code of Conduct and Overnight Safety Rules: respect, harassment-free environment, prohibited items, overnight conduct, reporting, and enforcement.",

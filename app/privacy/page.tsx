@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer"
 import { Lock } from "lucide-react"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: { absolute: "Privacy Policy | Southwest MN Hacks" },
   description:
     "How Southwest MN Hacks collects, uses, and protects participant and sponsor information for registration, communication, judging, operations, and payments (processed by Stripe).",

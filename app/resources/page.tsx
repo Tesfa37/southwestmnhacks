@@ -8,6 +8,7 @@ import { Workshops } from "@/components/workshops"
 import { DayOfChecklist } from "@/components/day-of-checklist"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/resources" },
   title: { absolute: "Tools & Workshops | Southwest MN Hacks: Fall 2026" },
   description:
     "Free beginner-friendly tools, workshops, AI resources, coding guides, and project submission instructions for Southwest MN Hacks: Fall 2026.",

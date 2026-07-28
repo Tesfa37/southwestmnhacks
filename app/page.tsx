@@ -1,9 +1,9 @@
 import type { ReactNode } from "react"
 import { Calendar, Clock, MapPin, Users, Lightbulb, Trophy, ShieldAlert } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { HomeHero } from "@/components/home-hero"
+import { HomeSponsors } from "@/components/home-sponsors"
 import { ConsentShare } from "@/components/consent-share"
 import { Reveal } from "@/components/reveal"
 import { SponsorCtaButton } from "@/components/sponsor-cta-button"
@@ -16,7 +16,6 @@ import {
   REGISTRATION_FORM_URL,
   VENUE_MAP_URL,
   CONSENT_FORM_URL,
-  PARTNERSHIP_LINE,
   DEVPOST_FALL_URL,
   SUPPORT_EMAIL,
   SCHWANS_LINKEDIN_URL,
@@ -396,81 +395,8 @@ export default function HomePage() {
           <p className="text-lg sm:text-xl text-gray-600">Thank you to the partners who make this possible.</p>
         </div>
 
-        {/* Run in partnership with Aulden */}
-        <div className="bg-white rounded-3xl p-8 sm:p-12 text-center shadow-sm border border-gray-200 mb-8">
-          <span className="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-            In Partnership With
-          </span>
-          <div className="flex justify-center">
-            <a
-              href="https://getaulden.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Aulden"
-              className="inline-flex hover:opacity-90 transition-opacity"
-            >
-              <Image
-                src="/aulden-logo.svg"
-                alt="Aulden"
-                width={240}
-                height={80}
-                sizes="200px"
-                className="h-16 sm:h-20 w-auto object-contain"
-              />
-            </a>
-          </div>
-          <p className="mt-4 text-sm text-gray-600">{PARTNERSHIP_LINE}</p>
-        </div>
-
-        {/* Supported by Visit Marshall */}
-        <div className="bg-white rounded-3xl p-8 sm:p-12 text-center shadow-sm border border-gray-200 mb-8">
-          <span className="inline-block bg-teal-100 text-teal-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-            Supported By
-          </span>
-          <div className="flex justify-center">
-            <a
-              href="https://visitmarshallmn.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Marshall"
-              className="inline-flex hover:opacity-90 transition-opacity"
-            >
-              <Image
-                src="/visit-marshall-logo.png"
-                alt="Visit Marshall"
-                width={300}
-                height={77}
-                sizes="280px"
-                className="h-14 sm:h-16 w-auto object-contain"
-              />
-            </a>
-          </div>
-        </div>
-
-        {/* Event Presence Sponsor: United Way of Southwest Minnesota */}
-        <div className="bg-white rounded-3xl p-8 sm:p-12 text-center shadow-sm border border-gray-200 mb-8">
-          <span className="inline-block bg-purple-100 text-purple-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-            Event Presence Sponsor
-          </span>
-          <div className="flex justify-center">
-            <a
-              href="https://www.unitedwayswmn.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="United Way of Southwest Minnesota"
-              className="inline-flex hover:opacity-90 transition-opacity"
-            >
-              <Image
-                src="/united-way-logo.png"
-                alt="United Way of Southwest Minnesota"
-                width={294}
-                height={101}
-                sizes="280px"
-                className="h-14 sm:h-16 w-auto object-contain"
-              />
-            </a>
-          </div>
-        </div>
+        {/* Sponsor cards, driven by lib/sponsors/partners.ts */}
+        <HomeSponsors />
 
         {/* Sponsor CTA */}
         <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 sm:p-12 text-center text-white">

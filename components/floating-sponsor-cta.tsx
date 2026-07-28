@@ -10,14 +10,24 @@ export function FloatingSponsorCta() {
   const reduceMotion = useReducedMotion()
 
   useEffect(() => {
-    function onScroll() {
-      const tiers = document.getElementById("tiers")
+    // Resolve once; #tiers is server-rendered and never unmounts on /sponsor.
+    const tiers = document.getElementById("tiers")
+    let frame = 0
+    function update() {
+      frame = 0
       const tiersReached = tiers !== null && tiers.getBoundingClientRect().top < window.innerHeight * 0.5
       setVisible(window.scrollY > 600 && !tiersReached)
     }
-    onScroll()
+    function onScroll() {
+      // Coalesce scroll events into one layout read per frame.
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+    update()
     window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      if (frame) cancelAnimationFrame(frame)
+    }
   }, [])
 
   return (

@@ -16,6 +16,70 @@ const STICKERS = [
 const REPEL_RADIUS = 140
 const REPEL_FORCE = 44
 
+// One shared pointermove listener for all stickers: the latest pointer position
+// is applied in a single rAF, and each sticker's rect is cached (recomputed on
+// resize/scroll) instead of a forced layout read per pointer event per sticker.
+type Subscriber = {
+  el: HTMLSpanElement
+  rect: DOMRect | null
+  apply: (dx: number, dy: number) => void
+}
+
+const subscribers = new Set<Subscriber>()
+let pointer: { x: number; y: number } | null = null
+let frame = 0
+let listening = false
+
+function flush() {
+  frame = 0
+  if (!pointer) return
+  for (const sub of subscribers) {
+    sub.rect ??= sub.el.getBoundingClientRect()
+    const dx = sub.rect.left + sub.rect.width / 2 - pointer.x
+    const dy = sub.rect.top + sub.rect.height / 2 - pointer.y
+    const dist = Math.hypot(dx, dy)
+    if (dist < REPEL_RADIUS && dist > 0) {
+      const force = (1 - dist / REPEL_RADIUS) * REPEL_FORCE
+      sub.apply((dx / dist) * force, (dy / dist) * force)
+    } else {
+      sub.apply(0, 0)
+    }
+  }
+}
+
+function onMove(e: PointerEvent) {
+  if (e.pointerType !== "mouse") return
+  pointer = { x: e.clientX, y: e.clientY }
+  if (!frame) frame = requestAnimationFrame(flush)
+}
+
+function invalidateRects() {
+  for (const sub of subscribers) sub.rect = null
+}
+
+function subscribe(sub: Subscriber) {
+  subscribers.add(sub)
+  if (!listening) {
+    listening = true
+    window.addEventListener("pointermove", onMove, { passive: true })
+    window.addEventListener("resize", invalidateRects, { passive: true })
+    window.addEventListener("scroll", invalidateRects, { passive: true })
+  }
+  return () => {
+    subscribers.delete(sub)
+    if (subscribers.size === 0 && listening) {
+      listening = false
+      window.removeEventListener("pointermove", onMove)
+      window.removeEventListener("resize", invalidateRects)
+      window.removeEventListener("scroll", invalidateRects)
+      if (frame) {
+        cancelAnimationFrame(frame)
+        frame = 0
+      }
+    }
+  }
+}
+
 function Sticker({ emoji, className, bobDuration }: (typeof STICKERS)[number]) {
   const ref = useRef<HTMLSpanElement>(null)
   const reduceMotion = useReducedMotion()
@@ -23,24 +87,15 @@ function Sticker({ emoji, className, bobDuration }: (typeof STICKERS)[number]) {
   const y = useSpring(0, { stiffness: 150, damping: 14 })
 
   useEffect(() => {
-    if (reduceMotion) return
-    function onMove(e: PointerEvent) {
-      if (e.pointerType !== "mouse" || !ref.current) return
-      const rect = ref.current.getBoundingClientRect()
-      const dx = rect.left + rect.width / 2 - e.clientX
-      const dy = rect.top + rect.height / 2 - e.clientY
-      const dist = Math.hypot(dx, dy)
-      if (dist < REPEL_RADIUS && dist > 0) {
-        const force = (1 - dist / REPEL_RADIUS) * REPEL_FORCE
-        x.set((dx / dist) * force)
-        y.set((dy / dist) * force)
-      } else {
-        x.set(0)
-        y.set(0)
-      }
-    }
-    window.addEventListener("pointermove", onMove, { passive: true })
-    return () => window.removeEventListener("pointermove", onMove)
+    if (reduceMotion || !ref.current) return
+    return subscribe({
+      el: ref.current,
+      rect: null,
+      apply: (dx, dy) => {
+        x.set(dx)
+        y.set(dy)
+      },
+    })
   }, [reduceMotion, x, y])
 
   return (

@@ -194,6 +194,7 @@ export default function HomePage() {
       {/* Header Component */}
       <Header />
 
+      <main id="main" className="flex-1">
       {/* Hero Section */}
       <HomeHero />
 
@@ -426,6 +427,7 @@ export default function HomePage() {
         </div>
         </Reveal>
       </section>
+      </main>
 
       {/* Footer Component */}
       <Footer />

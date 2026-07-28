@@ -54,6 +54,8 @@ export function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 text-gray-700 hover:text-gray-900 flex-shrink-0"
             aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -61,7 +63,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 space-y-3 border-t border-gray-200 pt-4">
+          <div id="mobile-nav" className="lg:hidden mt-4 pb-4 space-y-3 border-t border-gray-200 pt-4">
             <Link
               href="/resources"
               className="block text-gray-700 hover:text-gray-900 py-2"

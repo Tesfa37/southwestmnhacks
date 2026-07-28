@@ -20,7 +20,7 @@ export default function SponsorPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <SponsorHero />
         <SponsorBenefits />
         <SponsorDayTimeline />

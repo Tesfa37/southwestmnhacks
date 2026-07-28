@@ -16,7 +16,7 @@ export function PartnerLogoWall() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={partner.name}
-            className="opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+            className="transition-all duration-300 [@media(hover:hover)]:opacity-70 [@media(hover:hover)]:grayscale [@media(hover:hover)]:hover:opacity-100 [@media(hover:hover)]:hover:grayscale-0 focus-visible:opacity-100 focus-visible:grayscale-0"
           >
             <Image
               src={partner.src}

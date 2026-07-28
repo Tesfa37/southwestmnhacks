@@ -17,7 +17,7 @@ export default function ResourcesPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <ResourcesHero />
         <StarterKits />
         <FreeResources />

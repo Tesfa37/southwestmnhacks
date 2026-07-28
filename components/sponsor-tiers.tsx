@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { track } from "@vercel/analytics"
 import { Check, Medal, Award, Trophy, Crown, Gift, Minus, type LucideIcon } from "lucide-react"
-import { LazyMotion, domAnimation, m, type Variants } from "motion/react"
+import { LazyMotion, domAnimation, m, useReducedMotion, type Variants } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { SPONSOR_EMAIL } from "@/lib/config"
@@ -42,6 +42,7 @@ const cardVariants: Variants = {
 
 export function SponsorTiers() {
   const [view, setView] = useState<"cards" | "compare">("cards")
+  const reduceMotion = useReducedMotion()
   const compareRows = tierCompareRows()
 
   return (
@@ -59,6 +60,7 @@ export function SponsorTiers() {
               <button
                 key={option}
                 onClick={() => setView(option)}
+                aria-pressed={view === option}
                 className={cn(
                   "rounded-full px-6 py-2 text-sm font-semibold transition-colors",
                   view === option ? "bg-gray-900 text-white" : "text-muted-foreground hover:text-foreground",
@@ -82,7 +84,7 @@ export function SponsorTiers() {
                     key={slug}
                     custom={i}
                     variants={cardVariants}
-                    initial="hidden"
+                    initial={reduceMotion ? false : "hidden"}
                     whileInView="visible"
                     viewport={{ once: true, margin: "-10% 0px" }}
                     className={cn(
@@ -132,12 +134,15 @@ export function SponsorTiers() {
             </div>
           ) : (
             <m.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
               className="overflow-x-auto rounded-3xl border border-border bg-card shadow-sm"
             >
               <table className="w-full min-w-[720px] text-sm">
+                <caption className="sr-only">
+                  Benefits included at each sponsorship level
+                </caption>
                 <thead>
                   <tr className="border-b border-border">
                     <th className="sticky left-0 bg-card p-4 text-left font-semibold">Benefit</th>
@@ -161,19 +166,30 @@ export function SponsorTiers() {
                 <tbody>
                   {compareRows.map((row, i) => (
                     <tr key={row.label} className={cn("border-b border-border last:border-0", i % 2 === 1 && "bg-muted/30")}>
-                      <td className="sticky left-0 bg-inherit p-4 text-left font-medium text-foreground">{row.label}</td>
+                      <th scope="row" className="sticky left-0 bg-inherit p-4 text-left font-medium text-foreground">
+                        {row.label}
+                      </th>
                       {CASH_TIERS.map((slug, col) => (
                         <td key={slug} className="p-4 text-center">
                           {row.values ? (
                             row.values[col] ? (
                               <span className="font-semibold">{row.values[col]}</span>
                             ) : (
-                              <Minus className="mx-auto size-4 text-gray-300" />
+                              <>
+                                <Minus aria-hidden="true" className="mx-auto size-4 text-gray-300" />
+                                <span className="sr-only">Not included</span>
+                              </>
                             )
                           ) : tierIncludes(slug, row.minTier!) ? (
-                            <Check className="mx-auto size-5 text-pink-600" />
+                            <>
+                              <Check aria-hidden="true" className="mx-auto size-5 text-pink-600" />
+                              <span className="sr-only">Included</span>
+                            </>
                           ) : (
-                            <Minus className="mx-auto size-4 text-gray-300" />
+                            <>
+                              <Minus aria-hidden="true" className="mx-auto size-4 text-gray-300" />
+                              <span className="sr-only">Not included</span>
+                            </>
                           )}
                         </td>
                       ))}

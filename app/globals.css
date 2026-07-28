@@ -89,6 +89,29 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Visible keyboard focus everywhere; outline-ring above only sets the color. */
+  :focus-visible {
+    outline: 2px solid oklch(0.577 0.245 27.325);
+    outline-offset: 2px;
+  }
+}
+
+/* Hidden until keyboard-focused, then a fixed pill in the top-left corner. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: #111827;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transform: translateY(-200%);
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 /* --- Hero motion (aurora blobs, headline shimmer) --- */
@@ -131,7 +154,8 @@
   .animate-aurora-1,
   .animate-aurora-2,
   .animate-aurora-3,
-  .animate-text-shimmer {
+  .animate-text-shimmer,
+  .animate-ping {
     animation: none;
   }
 }

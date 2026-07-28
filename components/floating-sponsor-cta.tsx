@@ -1,12 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { LazyMotion, domAnimation, m, AnimatePresence } from "motion/react"
+import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion } from "motion/react"
 
 // Floating "Become a sponsor" pill: appears once the hero is scrolled past and
 // hides again when the tiers section it links to is reached.
 export function FloatingSponsorCta() {
   const [visible, setVisible] = useState(false)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     function onScroll() {
@@ -25,9 +26,9 @@ export function FloatingSponsorCta() {
         {visible && (
           <m.a
             href="#tiers"
-            initial={{ opacity: 0, y: 24 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 24 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: 24 }}
             transition={{ duration: 0.3 }}
             className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-6 py-3.5 font-semibold text-white shadow-xl shadow-pink-500/25 transition-transform hover:scale-105"
           >

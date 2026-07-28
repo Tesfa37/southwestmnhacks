@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { Store, Utensils, HeartHandshake, Gavel, Shield } from "lucide-react"
-import { LazyMotion, domAnimation, m, useScroll, useSpring } from "motion/react"
+import { LazyMotion, domAnimation, m, useReducedMotion, useScroll, useSpring } from "motion/react"
 import { cn } from "@/lib/utils"
 
 const STEPS = [
@@ -40,6 +40,7 @@ const STEPS = [
 // steps fade in alternating left/right on desktop, stacked on mobile.
 export function SponsorDayTimeline() {
   const ref = useRef<HTMLDivElement>(null)
+  const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 60%"] })
   const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
 
@@ -58,7 +59,7 @@ export function SponsorDayTimeline() {
             {/* Spine */}
             <div className="absolute left-6 top-0 h-full w-0.5 bg-border md:left-1/2 md:-translate-x-1/2" />
             <m.div
-              style={{ scaleY }}
+              style={reduceMotion ? undefined : { scaleY }}
               className="absolute left-6 top-0 h-full w-0.5 origin-top bg-gradient-to-b from-orange-500 via-pink-500 to-blue-500 md:left-1/2 md:-translate-x-1/2"
             />
 
@@ -68,7 +69,7 @@ export function SponsorDayTimeline() {
                 return (
                   <m.div
                     key={step.title}
-                    initial={{ opacity: 0, y: 24 }}
+                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-15% 0px" }}
                     transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}

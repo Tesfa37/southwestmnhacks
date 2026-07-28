@@ -11,6 +11,7 @@ export default function RecapPage() {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50">
       <Header />
 
+      <main id="main" className="flex-1">
       {/* Recap intro */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
         <div className="inline-block bg-gradient-to-r from-orange-100 to-pink-100 px-4 py-2 rounded-full text-sm font-semibold text-orange-900 mb-6">
@@ -118,6 +119,7 @@ export default function RecapPage() {
 
       {/* Appreciation */}
       <Appreciation />
+      </main>
 
       <Footer />
     </div>

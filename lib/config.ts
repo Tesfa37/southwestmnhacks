@@ -46,8 +46,21 @@ export const SCHWANS_INSTAGRAM_URL = "https://www.instagram.com/p/DXFUPQAiWo3/"
 export const DISCORD_ENABLED = false
 
 // Sponsor commitment deadline for full benefits (t-shirt logo, challenge prompt).
-// Display copy only; nothing auto-gates on this date.
-export const SPONSOR_DEADLINE = "August 28, 2026"
+// Display copy only; nothing auto-gates on this date. Both display formats
+// derive from the ISO date so they can never drift apart.
+export const SPONSOR_DEADLINE_ISO = "2026-08-28"
+const sponsorDeadline = new Date(`${SPONSOR_DEADLINE_ISO}T12:00:00-05:00`)
+export const SPONSOR_DEADLINE = sponsorDeadline.toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "America/Chicago",
+})
+export const SPONSOR_DEADLINE_SHORT = sponsorDeadline.toLocaleDateString("en-US", {
+  month: "short",
+  day: "numeric",
+  timeZone: "America/Chicago",
+})
 
 // Contact
 export const SUPPORT_EMAIL = "support@southwestmnhacks.org"

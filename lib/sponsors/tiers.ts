@@ -3,6 +3,8 @@
 // surface (the /sponsor cards + compare table, the /sponsor/start summary, emails,
 // and invoices) renders from the data here so the offer can never drift apart.
 
+import { SPONSOR_DEADLINE_SHORT } from "../config"
+
 export type Tier = "bronze" | "silver" | "gold" | "platinum" | "custom" | "in_kind"
 
 export interface TierConfig {
@@ -53,7 +55,7 @@ export const TIERS: Record<Tier, TierConfig> = {
     tagline: "Event Presence Sponsor",
     amountCents: 100000,
     recommendsInvoice: false,
-    benefits: ["Logo on the event t-shirt (commit by Aug 28)", "Sponsor booth or table"],
+    benefits: [`Logo on the event t-shirt (commit by ${SPONSOR_DEADLINE_SHORT})`, "Sponsor booth or table"],
     repCount: 2,
     engagement: { booth: true, mentorJudge: false, challenge: false },
   },
@@ -67,7 +69,7 @@ export const TIERS: Record<Tier, TierConfig> = {
       "Reserved table at the student networking meal",
       "Short speaking slot",
       "Mentor teams onsite",
-      "Sponsor a challenge prompt or prize category (commit by Aug 28)",
+      `Sponsor a challenge prompt or prize category (commit by ${SPONSOR_DEADLINE_SHORT})`,
     ],
     repCount: 4,
     engagement: { booth: true, mentorJudge: true, challenge: true },

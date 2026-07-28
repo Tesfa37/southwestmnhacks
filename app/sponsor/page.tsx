@@ -23,10 +23,10 @@ export default function SponsorPage() {
       <Header />
       <main id="main" className="flex-1">
         <SponsorHero />
-        <SponsorBenefits />
-        <SponsorDayTimeline />
         <SponsorProof />
+        <SponsorBenefits />
         <SponsorTiers />
+        <SponsorDayTimeline />
         <SponsorForm />
         <SponsorFaq />
       </main>

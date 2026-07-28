@@ -1,10 +1,15 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { SPONSOR_DEADLINE } from "@/lib/config"
 
 const faqs = [
   {
     question: "Who attends, and how do sponsors meet them?",
     answer:
       "We bring together college, graduate, and high school students from across the region, along with community members and mentors. Sponsors meet them in person at a networking meal, at a booth, and while mentoring or judging, rather than through a name on a banner.",
+  },
+  {
+    question: "When do we need to decide?",
+    answer: `Committing by ${SPONSOR_DEADLINE} guarantees every benefit in your tier: printed t-shirt logo placement and, for Gold and above, a sponsored challenge prompt. We welcome sponsors after that date too. You'll receive all digital and day-of benefits, but print and challenge-prompt deadlines will have passed.`,
   },
   {
     question: "What do sponsor representatives do onsite?",
@@ -24,7 +29,7 @@ const faqs = [
   {
     question: "How does payment work?",
     answer:
-      "We send an invoice from the Southwest MN Hacks nonprofit, payable by ACH, check, or card on standard net terms, with no card required up front, so it works smoothly with most finance and accounts-payable teams. Smaller and in-kind sponsors who prefer to pay instantly by card can do that too. You'll receive a receipt for your records.",
+      "We send an invoice from the Southwest MN Hacks nonprofit, payable by ACH, check, or card on standard net terms. No card is required up front, so it works smoothly with most finance and accounts-payable teams. Smaller and in-kind sponsors who prefer to pay instantly by card can do that too. You'll receive a receipt for your records.",
   },
 ]
 

@@ -42,6 +42,10 @@ export const SCHWANS_INSTAGRAM_URL = "https://www.instagram.com/p/DXFUPQAiWo3/"
 // footer link again. The invite URL above stays wired up either way.
 export const DISCORD_ENABLED = false
 
+// Sponsor commitment deadline for full benefits (t-shirt logo, challenge prompt).
+// Display copy only; nothing auto-gates on this date.
+export const SPONSOR_DEADLINE = "August 28, 2026"
+
 // Contact
 export const SUPPORT_EMAIL = "support@southwestmnhacks.org"
 export const SPONSOR_EMAIL = "sponsors@southwestmnhacks.org"

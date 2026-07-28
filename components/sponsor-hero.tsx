@@ -3,7 +3,7 @@
 import { Sparkles, Calendar, MapPin } from "lucide-react"
 import { LazyMotion, domAnimation, m, useReducedMotion, type Variants } from "motion/react"
 import { AuroraBackground } from "@/components/aurora-background"
-import { EVENT_DATES, VENUE, VENUE_MAP_URL, PARTNERSHIP_LINE, SPONSOR_EMAIL } from "@/lib/config"
+import { EVENT_DATES, VENUE, VENUE_MAP_URL, PARTNERSHIP_LINE, SPONSOR_EMAIL, SPONSOR_DEADLINE } from "@/lib/config"
 
 const container: Variants = {
   hidden: {},
@@ -49,7 +49,7 @@ export function SponsorHero() {
             is more than an advertising buy. Sponsors meet students in person, over a networking meal, at a booth, while
             mentoring teams, and while judging projects.
           </m.p>
-          <m.div variants={item} className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <m.div variants={item} className="mt-8 flex flex-col items-center justify-center gap-3">
             <a
               href="#tiers"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white transition-shadow hover:shadow-lg hover:shadow-pink-500/25"
@@ -58,9 +58,9 @@ export function SponsorHero() {
             </a>
             <a
               href={`mailto:${SPONSOR_EMAIL}`}
-              className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-8 py-4 text-lg font-semibold text-gray-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
+              className="text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
             >
-              Email us
+              or email {SPONSOR_EMAIL}
             </a>
           </m.div>
           <m.div variants={item} className="mt-10 pt-8 border-t border-border max-w-2xl mx-auto">
@@ -79,6 +79,10 @@ export function SponsorHero() {
                 {VENUE}
               </a>
             </div>
+            <p className="mt-3 text-sm font-medium text-foreground">
+              Commit by {SPONSOR_DEADLINE} to lock in full benefits, including your logo on the event t-shirt and the
+              option to present a challenge prompt. Later sponsors still receive all digital and day-of benefits.
+            </p>
             <p className="mt-3 text-sm text-muted-foreground">{PARTNERSHIP_LINE}</p>
           </m.div>
         </m.div>

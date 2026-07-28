@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { SPONSOR_EMAIL } from "@/lib/config"
+import { SPONSOR_EMAIL, SPONSOR_DEADLINE } from "@/lib/config"
 
 export function SponsorForm() {
   return (
@@ -7,9 +7,12 @@ export function SponsorForm() {
       <div className="container max-w-3xl mx-auto">
         <div className="bg-card border border-border rounded-3xl p-8 md:p-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Ready to sponsor?</h2>
-          <p className="text-lg text-muted-foreground text-balance mb-8">
+          <p className="text-lg text-muted-foreground text-balance mb-4">
             Tell us a little about your organization and how you&rsquo;d like to proceed: pay now, request an
             invoice, or just talk first. Not sure which level fits? Start here or email us.
+          </p>
+          <p className="text-sm font-medium text-foreground mb-8">
+            Full-benefit commitment deadline: {SPONSOR_DEADLINE}.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">

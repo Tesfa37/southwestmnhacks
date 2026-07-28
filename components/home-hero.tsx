@@ -4,16 +4,15 @@ import { useRef, useState } from "react"
 import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion, type Variants } from "motion/react"
 import { AuroraBackground } from "@/components/aurora-background"
 import { CountdownTimer } from "@/components/countdown-timer"
-import { MagneticButton } from "@/components/magnetic-button"
 import { RotatingWord } from "@/components/rotating-word"
 import { FloatingStickers } from "@/components/floating-stickers"
 import { KonamiListener } from "@/components/easter-eggs"
+import { RegisterCta, useEventPhase } from "@/components/register-cta"
 import { burstConfetti } from "@/lib/confetti"
 import {
   EVENT_NAME,
   EVENT_DATES,
   REGISTRATION_DEADLINE,
-  REGISTRATION_FORM_URL,
   VENUE_MAP_URL,
   DISCORD_INVITE_URL,
   DISCORD_ENABLED,
@@ -31,6 +30,7 @@ const item: Variants = {
 
 export function HomeHero() {
   const reduceMotion = useReducedMotion()
+  const phase = useEventPhase()
   const clickCount = useRef(0)
   const [secret, setSecret] = useState(false)
 
@@ -88,13 +88,19 @@ export function HomeHero() {
               variants={item}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed text-pretty px-4"
             >
-              Southwest Minnesota&apos;s student hackathon returns. Two days to build{" "}
-              <RotatingWord words={["your first app", "a game", "an AI tool", "a robot", "new friendships", "your future"]} />{" "}
-              — all skill levels welcome.
+              {phase === "ended" ? (
+                <>Southwest Minnesota&apos;s student hackathon is a wrap. Thanks to every builder who showed up — see what they made.</>
+              ) : (
+                <>
+                  Southwest Minnesota&apos;s student hackathon returns. 24 hours to build{" "}
+                  <RotatingWord words={["your first app", "a game", "an AI tool", "a robot", "new friendships", "your future"]} />{" "}
+                  — all skill levels welcome.
+                </>
+              )}
             </m.p>
 
             <m.div variants={item} className="flex flex-wrap gap-4 justify-center mb-3 px-4">
-              <MagneticButton href={REGISTRATION_FORM_URL}>Register</MagneticButton>
+              <RegisterCta variant="hero" location="home-hero" />
             {DISCORD_ENABLED && (
               <a
                 href={DISCORD_INVITE_URL}
@@ -111,9 +117,11 @@ export function HomeHero() {
             <CountdownTimer />
           </m.div>
 
-          <m.p variants={item} className="text-sm text-gray-500">
-            Registration closes {REGISTRATION_DEADLINE}.
-          </m.p>
+          {phase === "open" && (
+            <m.p variants={item} className="text-sm text-gray-500">
+              Registration closes {REGISTRATION_DEADLINE}.
+            </m.p>
+          )}
           </m.div>
         </div>
 

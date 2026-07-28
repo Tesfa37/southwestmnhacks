@@ -6,14 +6,19 @@ import { HomeHero } from "@/components/home-hero"
 import { HomeSponsors } from "@/components/home-sponsors"
 import { ConsentShare } from "@/components/consent-share"
 import { Reveal } from "@/components/reveal"
+import { RegisterCta } from "@/components/register-cta"
 import { SponsorCtaButton } from "@/components/sponsor-cta-button"
 import { Footer } from "@/components/footer"
+import { getEventPhase } from "@/lib/event-phase"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import {
   EVENT_NAME,
   EVENT_DATES,
   REGISTRATION_DEADLINE,
   REGISTRATION_FORM_URL,
+  REGISTRATION_CLOSE_AT,
+  EVENT_START_AT,
+  EVENT_END_AT,
   VENUE_MAP_URL,
   CONSENT_FORM_URL,
   DEVPOST_FALL_URL,
@@ -25,7 +30,19 @@ import {
   DOCS_UPDATED,
 } from "@/lib/config"
 
+// Re-render hourly so date-driven copy and schema stay current without a deploy.
+export const revalidate = 3600
+
 export default function HomePage() {
+  const phase = getEventPhase()
+
+  const registerAnswer =
+    phase === "open"
+      ? `Fill out the registration form linked throughout this site. Registration closes ${REGISTRATION_DEADLINE}, so sign up early to save your spot.`
+      : phase === "ended"
+        ? "Fall 2026 has wrapped. See what students built on Devpost, and check back for our next event."
+        : "Registration for Fall 2026 has closed. Follow the projects on Devpost, and check back for our next event."
+
   const faqs: { question: string; answer: ReactNode; text?: string }[] = [
     {
       question: "Do I need coding experience?",
@@ -39,7 +56,7 @@ export default function HomePage() {
     },
     {
       question: "How do I register?",
-      answer: `Fill out the registration form linked throughout this site. Registration closes ${REGISTRATION_DEADLINE}, so sign up early to save your spot.`,
+      answer: registerAnswer,
     },
     {
       question: "Can I work alone or do I need a team?",
@@ -107,8 +124,8 @@ export default function HomePage() {
     name: EVENT_NAME,
     description:
       "Free 24-hour overnight student hackathon for high school and college students at SMSU in Marshall, MN. Beginner friendly, AI encouraged, and open ended.",
-    startDate: "2026-09-12T08:00:00-05:00",
-    endDate: "2026-09-13T10:00:00-05:00",
+    startDate: EVENT_START_AT,
+    endDate: EVENT_END_AT,
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
@@ -130,16 +147,16 @@ export default function HomePage() {
       url: "https://southwestmnhacks.org",
       email: SUPPORT_EMAIL,
     },
-    // TODO: replace the Visit Marshall homepage with the specific Fall 2026 listing
-    // URL once available, and add a Marshall Chamber listing here when published.
     sameAs: [DEVPOST_FALL_URL, "https://visitmarshallmn.com", SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL],
     offers: {
       "@type": "Offer",
       url: REGISTRATION_FORM_URL,
       price: "0",
       priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
+      availability:
+        phase === "open" ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
       validFrom: "2026-06-01T00:00:00-05:00",
+      validThrough: REGISTRATION_CLOSE_AT,
     },
   }
 
@@ -277,15 +294,10 @@ export default function HomePage() {
             </div>
           </div>
           <div className="text-center mt-8">
-            <a
-              href={REGISTRATION_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:scale-105 transition-all"
-            >
-              Register Now
-            </a>
-            <p className="text-sm text-gray-500 mt-3">Registration closes {REGISTRATION_DEADLINE}.</p>
+            <RegisterCta variant="section" location="event-details" initialPhase={phase} />
+            {phase === "open" && (
+              <p className="text-sm text-gray-500 mt-3">Registration closes {REGISTRATION_DEADLINE}.</p>
+            )}
           </div>
         </div>
         </Reveal>

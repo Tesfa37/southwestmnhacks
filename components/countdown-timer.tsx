@@ -1,11 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { REGISTRATION_CLOSE_AT, EVENT_START_AT, EVENT_END_AT } from "@/lib/config"
-
-const CLOSE_MS = new Date(REGISTRATION_CLOSE_AT).getTime()
-const START_MS = new Date(EVENT_START_AT).getTime()
-const END_MS = new Date(EVENT_END_AT).getTime()
+import { CLOSE_MS, START_MS, END_MS } from "@/lib/event-phase"
 
 type Unit = { label: string; value: number }
 

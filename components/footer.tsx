@@ -1,8 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
+import { RegisterCta } from "@/components/register-cta"
+import { getEventPhase } from "@/lib/event-phase"
 import {
   SUPPORT_EMAIL,
-  REGISTRATION_FORM_URL,
   DEVPOST_FALL_URL,
   DISCORD_INVITE_URL,
   DISCORD_ENABLED,
@@ -25,14 +26,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
-              <a
-                href={REGISTRATION_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-gray-400 hover:text-white transition-colors"
-              >
-                Register
-              </a>
+              <RegisterCta variant="footer-link" location="footer" initialPhase={getEventPhase()} />
               <Link href="/resources" className="block text-gray-400 hover:text-white transition-colors">
                 Resources
               </Link>

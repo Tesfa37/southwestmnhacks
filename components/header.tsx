@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { track } from "@vercel/analytics"
-import { REGISTRATION_FORM_URL } from "@/lib/config"
+import { RegisterCta } from "@/components/register-cta"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -47,15 +47,7 @@ export function Header() {
             >
               Sponsor
             </Link>
-            <a
-              href={REGISTRATION_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track('Register Click', { location: 'header-desktop' })}
-              className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-semibold"
-            >
-              Register
-            </a>
+            <RegisterCta variant="header-desktop" location="header-desktop" />
           </div>
 
           <button
@@ -112,15 +104,11 @@ export function Header() {
             >
               Sponsor
             </Link>
-            <a
-              href={REGISTRATION_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => { track('Register Click', { location: 'header-mobile' }); setMobileMenuOpen(false) }}
-              className="block bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-3 rounded-full hover:shadow-lg transition-all font-semibold text-center"
-            >
-              Register
-            </a>
+            <RegisterCta
+              variant="header-mobile"
+              location="header-mobile"
+              onNavigate={() => setMobileMenuOpen(false)}
+            />
           </div>
         )}
       </div>

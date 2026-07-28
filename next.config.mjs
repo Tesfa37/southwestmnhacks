@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     // Restrict generated widths so images are never served at 3840px.
     // Next.js picks the smallest srcset entry >= the rendered width.

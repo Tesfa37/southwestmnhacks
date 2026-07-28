@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { SPONSOR_EMAIL } from "@/lib/config"
+import { SPONSOR_EMAIL, SPONSOR_DEADLINE_SHORT } from "@/lib/config"
 import { LegalNotice } from "@/components/sponsor/legal-notice"
 import { getStripe } from "@/lib/stripe"
 
@@ -66,6 +66,20 @@ export default async function SponsorSuccessPage({
         <div className="container mx-auto max-w-lg text-center">
           <h1 className="mb-3 text-3xl font-bold text-balance">{heading}</h1>
           <p className="mb-6 text-muted-foreground text-balance">{body}</p>
+          <div className="mb-8 rounded-3xl border border-border bg-card p-6 text-left">
+            <h2 className="mb-3 text-lg font-bold">What happens next</h2>
+            <ol className="list-decimal space-y-2 pl-5 text-sm text-muted-foreground">
+              <li>You&apos;ll get a confirmation email from us with your receipt or invoice details.</li>
+              <li>
+                Reply to that email with your logo (SVG or high-resolution transparent PNG) so we can add you to the
+                site and, by {SPONSOR_DEADLINE_SHORT}, the event t-shirt.
+              </li>
+              <li>
+                As the event approaches we&apos;ll coordinate your on-site representatives, booth setup, and any
+                challenge prompt or prize category.
+              </li>
+            </ol>
+          </div>
           <p className="mb-8 text-sm text-muted-foreground">
             Questions? Email{" "}
             <a href={`mailto:${SPONSOR_EMAIL}`} className="font-semibold text-orange-600 hover:underline">
@@ -73,9 +87,14 @@ export default async function SponsorSuccessPage({
             </a>
             .
           </p>
-          <Button asChild className="rounded-full bg-orange-600 px-8 hover:bg-orange-700">
-            <Link href="/">Back to home</Link>
-          </Button>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Button asChild className="rounded-full bg-orange-600 px-8 hover:bg-orange-700">
+              <Link href="/">Back to home</Link>
+            </Button>
+            <Button asChild variant="outline" className="rounded-full px-8">
+              <Link href="/sponsor">Back to the sponsor page</Link>
+            </Button>
+          </div>
           <LegalNotice className="mt-10 text-left" />
         </div>
       </main>

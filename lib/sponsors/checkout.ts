@@ -41,7 +41,7 @@ export async function createCheckoutSession(input: CheckoutInput): Promise<{ id:
     // Metadata does NOT propagate from Session to PaymentIntent automatically.
     payment_intent_data: { metadata: input.metadata },
     success_url: `${base}/sponsor/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${base}/sponsor/cancel`,
+    cancel_url: `${base}/sponsor/cancel?tier=${input.tier}`,
   })
 
   return { id: session.id, url: session.url }

@@ -16,7 +16,8 @@ export default async function SponsorStartPage({
   searchParams: Promise<{ tier?: string }>
 }) {
   const sp = await searchParams
-  const tier = tierFromSlug(sp.tier) ?? "gold"
+  // No default tier: arrivals without ?tier= choose inside the form.
+  const tier = tierFromSlug(sp.tier) ?? null
 
   return (
     <div className="flex min-h-screen flex-col">

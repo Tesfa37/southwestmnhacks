@@ -3,8 +3,17 @@ import { Check } from "lucide-react"
 import { TIERS, formatCents, tierBenefitLines, type Tier } from "@/lib/sponsors/tiers"
 
 // The selected-tier card shown at the top of /sponsor/start. `amountOverride` lets
-// the custom tier reflect the amount the sponsor has entered.
-export function TierSummary({ tier, amountCentsOverride }: { tier: Tier; amountCentsOverride?: number | null }) {
+// the custom tier reflect the amount the sponsor has entered. `onChangeTier`
+// switches tiers in-page (keeping form input) instead of navigating away.
+export function TierSummary({
+  tier,
+  amountCentsOverride,
+  onChangeTier,
+}: {
+  tier: Tier
+  amountCentsOverride?: number | null
+  onChangeTier?: () => void
+}) {
   const config = TIERS[tier]
   const benefitLines = tierBenefitLines(tier)
   const amount =
@@ -23,9 +32,19 @@ export function TierSummary({ tier, amountCentsOverride }: { tier: Tier; amountC
         </div>
         <div className="text-right">
           <p className="text-2xl font-bold">{amount}</p>
-          <Link href="/sponsor#tiers" className="text-sm font-semibold text-orange-600 hover:underline">
-            Change tier
-          </Link>
+          {onChangeTier ? (
+            <button
+              type="button"
+              onClick={onChangeTier}
+              className="text-sm font-semibold text-orange-600 hover:underline"
+            >
+              Change tier
+            </button>
+          ) : (
+            <Link href="/sponsor#tiers" className="text-sm font-semibold text-orange-600 hover:underline">
+              Change tier
+            </Link>
+          )}
         </div>
       </div>
       {benefitLines.length > 0 && (

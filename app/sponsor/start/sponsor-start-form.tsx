@@ -6,13 +6,15 @@ import { useRouter } from "next/navigation"
 import { track } from "@vercel/analytics"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { type Tier, TIERS, ENGAGEMENT_OPTIONS } from "@/lib/sponsors/tiers"
+import { type Tier, TIERS, TIER_SLUGS, ENGAGEMENT_OPTIONS, formatCents, tierPriceLabel } from "@/lib/sponsors/tiers"
+import { sponsorIntakeSchema, fieldErrors } from "@/lib/sponsors/schema"
 import {
   PAYMENT_PREFERENCES,
+  isPayNow,
   type PaymentPreference,
   type ConditionalField,
 } from "@/lib/sponsors/payment-preferences"
-import { AUTHORIZATION_LABEL } from "@/lib/sponsors/legal"
+import { AUTHORIZATION_LABEL, CONTACT_CONSENT_LABEL } from "@/lib/sponsors/legal"
 import { TierSummary } from "@/components/sponsor/tier-summary"
 import { PaymentPreferenceCards } from "@/components/sponsor/payment-preference-cards"
 import { LegalNotice } from "@/components/sponsor/legal-notice"
@@ -124,18 +126,99 @@ function Field({
   )
 }
 
-export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
+// Map schema error keys to the form element ids they anchor to.
+const ERROR_FIELD_IDS: Record<string, string> = {
+  customAmountCents: "customAmount",
+  paymentPreference: "payment-preference",
+  consentToBeContacted: "consentToBeContacted",
+}
+
+// The visual top-to-bottom field order, so scroll-to-error picks the first one.
+const FIELD_ORDER = [
+  "customAmountCents",
+  "organizationName",
+  "publicSponsorName",
+  "organizationWebsite",
+  "logoUrl",
+  "contactName",
+  "contactEmail",
+  "contactPhone",
+  "paymentPreference",
+  "billingEmail",
+  "billingContactName",
+  "billingAddress",
+  "city",
+  "state",
+  "zip",
+  "purchaseOrderNumber",
+  "inKindDescription",
+  "notes",
+  "consentToBeContacted",
+]
+
+function scrollToFirstError(errorKeys: string[]) {
+  const first = FIELD_ORDER.find((key) => errorKeys.includes(key)) ?? errorKeys[0]
+  if (!first) return
+  const el = document.getElementById(ERROR_FIELD_IDS[first] ?? first)
+  if (!el) return
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  el.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" })
+  if (el instanceof HTMLElement && el.tagName !== "FIELDSET") el.focus({ preventScroll: true })
+}
+
+export function SponsorStartForm({ initialTier }: { initialTier: Tier | null }) {
   const router = useRouter()
-  const tier = initialTier
+  const [tier, setTier] = useState<Tier | null>(initialTier)
   const [form, setForm] = useState<FormState>(EMPTY)
   const [preference, setPreference] = useState<PaymentPreference | null>(
-    tier === "in_kind" ? "IN_KIND" : null,
+    initialTier === "in_kind" ? "IN_KIND" : null,
   )
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
 
-  const options = useMemo(() => preferencesForTier(tier), [tier])
+  // Preference options differ per tier, so switching tiers resets the choice
+  // (a stale preference could reveal fields the new tier never offers).
+  function chooseTier(next: Tier) {
+    setTier(next)
+    setPreference(next === "in_kind" ? "IN_KIND" : null)
+    setErrors({})
+    setFormError(null)
+  }
+
+  const options = useMemo(() => preferencesForTier(tier ?? "bronze"), [tier])
+
+  if (tier === null) {
+    return (
+      <div className="rounded-3xl border border-border bg-card p-6">
+        <h2 className="mb-1 text-xl font-bold">Choose your level</h2>
+        <p className="mb-5 text-sm text-muted-foreground">
+          Pick the tier that fits. You can change it any time before submitting, or{" "}
+          <Link href="/sponsor#tiers" className="font-semibold text-orange-600 hover:underline">
+            compare all levels
+          </Link>
+          .
+        </p>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {TIER_SLUGS.map((slug) => (
+            <button
+              key={slug}
+              type="button"
+              onClick={() => chooseTier(slug)}
+              className="flex items-baseline justify-between gap-3 rounded-2xl border border-border bg-background px-4 py-3.5 text-left transition-colors hover:border-orange-400 hover:bg-orange-50/50"
+            >
+              <span>
+                <span className="block font-semibold">{TIERS[slug].label}</span>
+                <span className="block text-xs text-muted-foreground">{TIERS[slug].tagline}</span>
+              </span>
+              <span className="shrink-0 font-bold">{tierPriceLabel(slug)}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   const recommendInvoice = TIERS[tier].recommendsInvoice
   const conditional: Set<ConditionalField> = new Set(
     preference ? PAYMENT_PREFERENCES[preference].conditionalFields : [],
@@ -160,6 +243,9 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
       ? Math.round(parseFloat(form.customAmountDollars) * 100)
       : undefined
 
+  // Amount shown on the pay-now submit button so the price sits next to the action.
+  const payNowAmountCents = tier === "custom" ? customAmountCents : TIERS[tier].amountCents
+
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
     setFormError(null)
@@ -167,10 +253,10 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
 
     if (!preference) {
       setErrors({ paymentPreference: "Please choose how you'd like to proceed." })
+      scrollToFirstError(["paymentPreference"])
       return
     }
 
-    setSubmitting(true)
     track("Sponsor Start Submit", { tier, preference })
 
     const payload = {
@@ -201,6 +287,19 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
       consentToBeContacted: form.consentToBeContacted,
     }
 
+    // Mirror the server's validation locally so errors appear instantly and the
+    // page scrolls to the first problem instead of failing at the bottom.
+    const parsed = sponsorIntakeSchema.safeParse(payload)
+    if (!parsed.success) {
+      const fields = fieldErrors(parsed.error)
+      setErrors(fields)
+      setFormError("Please fix the highlighted fields.")
+      scrollToFirstError(Object.keys(fields))
+      return
+    }
+
+    setSubmitting(true)
+
     try {
       const res = await fetch("/api/sponsors/create", {
         method: "POST",
@@ -213,6 +312,7 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
         if (data?.error === "validation" && data.fields) {
           setErrors(data.fields)
           setFormError("Please fix the highlighted fields.")
+          scrollToFirstError(Object.keys(data.fields))
         } else {
           setFormError(data?.message || "Something went wrong. Please try again.")
         }
@@ -237,7 +337,7 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
 
   return (
     <form onSubmit={onSubmit} className="space-y-8" noValidate>
-      <TierSummary tier={tier} amountCentsOverride={customAmountCents} />
+      <TierSummary tier={tier} amountCentsOverride={customAmountCents} onChangeTier={() => setTier(null)} />
 
       {tier === "custom" && (
         <Field label="Sponsorship amount (USD)" htmlFor="customAmount" error={errors.customAmountCents}>
@@ -287,7 +387,7 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
       </fieldset>
 
       {/* Payment preference */}
-      <fieldset className="space-y-3">
+      <fieldset id="payment-preference" className="space-y-3 scroll-mt-24">
         <legend className="text-lg font-semibold">How would you like to proceed?</legend>
         <PaymentPreferenceCards options={options} value={preference} onChange={setPreference} recommendInvoice={recommendInvoice} />
         {errors.paymentPreference && <p className="text-sm text-red-600">{errors.paymentPreference}</p>}
@@ -302,7 +402,12 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
       {conditional.has("billing") && (
         <fieldset className="space-y-4">
           <legend className="text-lg font-semibold">Billing details</legend>
-          <Field label="Billing email" htmlFor="billingEmail" required error={errors.billingEmail}>
+          <Field
+            label="Billing email"
+            htmlFor="billingEmail"
+            required={preference === "REQUEST_INVOICE" || preference === "PAY_BY_CHECK"}
+            error={errors.billingEmail}
+          >
             <input id="billingEmail" type="email" value={form.billingEmail} onChange={(e) => set("billingEmail", e.target.value)} className={inputCls} />
           </Field>
           <Field label="Billing contact name" htmlFor="billingContactName" error={errors.billingContactName}>
@@ -385,8 +490,12 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
       </Field>
 
       <label className="flex items-start gap-2 text-sm">
-        <input type="checkbox" checked={form.consentToBeContacted} onChange={(e) => set("consentToBeContacted", e.target.checked)} className="mt-0.5 size-4 rounded border-border" />
-        <span>{AUTHORIZATION_LABEL}</span>
+        <input id="consentToBeContacted" type="checkbox" checked={form.consentToBeContacted} onChange={(e) => set("consentToBeContacted", e.target.checked)} className="mt-0.5 size-4 rounded border-border scroll-mt-24" />
+        <span>
+          {preference === "TALK_FIRST" || preference === "CUSTOM_DISCUSSION"
+            ? CONTACT_CONSENT_LABEL
+            : AUTHORIZATION_LABEL}
+        </span>
       </label>
       {errors.consentToBeContacted && <p className="text-sm text-red-600">{errors.consentToBeContacted}</p>}
 
@@ -398,9 +507,20 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier }) {
         </div>
       )}
 
-      <Button type="submit" disabled={submitting} className={cn("w-full rounded-full bg-orange-600 py-6 text-base hover:bg-orange-700", submitting && "opacity-70")}>
-        {submitting ? "Submitting…" : "Continue"}
-      </Button>
+      <div className="space-y-2">
+        <Button type="submit" disabled={submitting} className={cn("w-full rounded-full bg-orange-600 py-6 text-base hover:bg-orange-700", submitting && "opacity-70")}>
+          {submitting
+            ? "Submitting…"
+            : preference && isPayNow(preference)
+              ? `Continue to secure payment${payNowAmountCents != null ? ` · ${formatCents(payNowAmountCents)}` : ""}`
+              : "Submit request"}
+        </Button>
+        {preference && isPayNow(preference) && (
+          <p className="text-center text-xs text-muted-foreground">
+            You&apos;ll be redirected to Stripe&apos;s secure checkout. Nothing is charged until you confirm there.
+          </p>
+        )}
+      </div>
     </form>
   )
 }

@@ -54,9 +54,10 @@ export const sponsorIntakeSchema = z
     notes: optionalText,
     sourcePage: optionalText,
 
-    // Authorization checkbox — must be checked.
+    // Consent checkbox — must be checked. (Label differs by payment preference:
+    // authorization for committing preferences, contact consent for talk-first.)
     consentToBeContacted: z.literal(true, {
-      message: "Please confirm you're authorized to commit your organization.",
+      message: "Please confirm to continue.",
     }),
   })
   .superRefine((data, ctx) => {

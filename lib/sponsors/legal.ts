@@ -12,6 +12,10 @@ export const STUDENT_DATA_NOTICE =
 export const AUTHORIZATION_LABEL =
   "I'm authorized to commit my organization to this sponsorship, and I agree to be contacted about it."
 
+// Lighter consent for the talk-first / discussion preferences, where nothing is
+// being committed yet.
+export const CONTACT_CONSENT_LABEL = "I agree to be contacted about this sponsorship inquiry."
+
 // Appended to invoice memos/footers. The nonprofit's EIN and remit-to address are
 // filled in at go-live (see docs/sponsor-payments.md).
 export const INVOICE_FOOTER_NOTE =

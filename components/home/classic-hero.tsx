@@ -28,7 +28,7 @@ const item: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] } },
 }
 
-export function HomeHero() {
+export function ClassicHero() {
   const reduceMotion = useReducedMotion()
   const phase = useEventPhase()
   const clickCount = useRef(0)

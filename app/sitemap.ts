@@ -2,7 +2,7 @@ import { MetadataRoute } from "next"
 
 // Bump when a page's content meaningfully changes. A fixed date is an honest
 // signal; `new Date()` at build time told crawlers every page changed daily.
-const SITE_UPDATED = new Date("2026-07-28")
+const SITE_UPDATED = new Date("2026-08-27")
 const RECAP_UPDATED = new Date("2026-04-15")
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -35,6 +35,11 @@ export const MINOR_CONSENT_PDF = "/docs/minor-consent.pdf"
 // masquerade as current. Bump when the documents are revised.
 export const DOCS_UPDATED = "Updated June 2026"
 
+// Marshall Independent coverage of the March 2026 event. Shared by the sponsor
+// proof section and the homepage press module.
+export const MARSHALL_ARTICLE_URL =
+  "https://www.marshallindependent.com/news/local-news/2026/03/two-smsu-alum-host-first-ever-hackathon/"
+
 // Public Schwan's Company social posts about the first (March 2026) event. Used
 // for restrained past-event proof links and the homepage Event schema `sameAs`.
 export const SCHWANS_LINKEDIN_URL =

@@ -150,11 +150,22 @@
   animation: text-shimmer 6s ease-in-out infinite;
 }
 
+/* Sponsor logo marquee. The list is rendered twice, so -50% is one seamless lap. */
+@keyframes logo-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-logo-marquee {
+  animation: logo-marquee 40s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-aurora-1,
   .animate-aurora-2,
   .animate-aurora-3,
   .animate-text-shimmer,
+  .animate-logo-marquee,
   .animate-ping {
     animation: none;
   }

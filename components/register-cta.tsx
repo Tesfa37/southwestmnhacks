@@ -14,6 +14,8 @@ interface RegisterCtaProps {
   location: string
   /** Server call sites pass their render-time phase so SSR HTML and hydration agree. */
   initialPhase?: EventPhase
+  /** Renders the closed/live helper text in light-on-dark colors. Pills are unaffected. */
+  onDark?: boolean
   /** header-mobile: close the menu on tap. */
   onNavigate?: () => void
 }
@@ -43,7 +45,7 @@ const CLOSED_PILL_CLASSES = {
   section: "inline-block bg-gray-200 text-gray-600 px-8 py-4 rounded-full font-semibold text-lg cursor-default",
 } as const
 
-export function RegisterCta({ variant, location, initialPhase = "open", onNavigate }: RegisterCtaProps) {
+export function RegisterCta({ variant, location, initialPhase = "open", onNavigate, onDark = false }: RegisterCtaProps) {
   const phase = useEventPhase(initialPhase)
 
   if (phase === "open") {
@@ -126,20 +128,24 @@ export function RegisterCta({ variant, location, initialPhase = "open", onNaviga
     return <span className="block text-gray-500">Registration closed</span>
   }
   if (variant === "hero" || variant === "section") {
+    const helperText = onDark ? "text-sm text-white/60" : "text-sm text-gray-500"
+    const helperLink = onDark
+      ? "underline underline-offset-2 hover:text-white/80"
+      : "underline underline-offset-2 hover:text-gray-700"
     return (
       <span className="inline-flex flex-col items-center gap-3">
         <span className={CLOSED_PILL_CLASSES.section}>Registration closed</span>
-        <span className="text-sm text-gray-500">
+        <span className={helperText}>
           <a
             href={DEVPOST_FALL_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:text-gray-700"
+            className={helperLink}
           >
             Follow the event on Devpost
           </a>{" "}
           ·{" "}
-          <Link href="/contact" className="underline underline-offset-2 hover:text-gray-700">
+          <Link href="/contact" className={helperLink}>
             Questions? Contact us
           </Link>
         </span>

@@ -20,7 +20,7 @@ const MAILTO = `mailto:?subject=${encodeURIComponent(
 
 // Puts the consent form in the student's hands: email it to a parent with a
 // prefilled message, or copy the link to send it any other way.
-export function ConsentShare() {
+export function ConsentShare({ onDark = false }: { onDark?: boolean }) {
   const [copied, setCopied] = useState(false)
 
   async function copyLink() {
@@ -44,9 +44,13 @@ export function ConsentShare() {
       </a>
       <button
         onClick={copyLink}
-        className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
+        className={
+          onDark
+            ? "inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/30 hover:bg-white/15"
+            : "inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
+        }
       >
-        {copied ? <Check className="size-4 text-green-600" /> : <Copy className="size-4" />}
+        {copied ? <Check className={onDark ? "size-4 text-green-400" : "size-4 text-green-600"} /> : <Copy className="size-4" />}
         {copied ? "Copied!" : "Copy form link"}
       </button>
     </div>

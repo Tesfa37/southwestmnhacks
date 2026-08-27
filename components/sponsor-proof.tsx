@@ -1,10 +1,7 @@
 import Image from "next/image"
 import { Sparkles, Newspaper, ArrowUpRight, Linkedin, Instagram } from "lucide-react"
 import { PartnerLogoWall } from "@/components/partner-logo-wall"
-import { SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL } from "@/lib/config"
-
-const ARTICLE_URL =
-  "https://www.marshallindependent.com/news/local-news/2026/03/two-smsu-alum-host-first-ever-hackathon/"
+import { SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL, MARSHALL_ARTICLE_URL as ARTICLE_URL } from "@/lib/config"
 
 // Trust layer: real event photo + success story, press clipping, partner logos.
 export function SponsorProof() {

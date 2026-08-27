@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/sponsor/start", "/sponsor/success", "/sponsor/cancel"],
+      disallow: ["/sponsor/start", "/sponsor/success", "/sponsor/cancel", "/preview"],
     },
     sitemap: "https://southwestmnhacks.org/sitemap.xml",
   }

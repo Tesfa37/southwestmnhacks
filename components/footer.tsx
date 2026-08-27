@@ -8,6 +8,8 @@ import {
   DISCORD_INVITE_URL,
   DISCORD_ENABLED,
   PARTNERSHIP_LINE,
+  LEGAL_ENTITY_NAME,
+  MAILING_ADDRESS,
 } from "@/lib/config"
 
 export function Footer() {
@@ -129,6 +131,9 @@ export function Footer() {
           </div>
           <p className="text-gray-500 max-w-2xl mx-auto">{PARTNERSHIP_LINE}</p>
           <p className="mt-2">© {new Date().getFullYear()} Southwest MN Hacks. All rights reserved.</p>
+          <p className="mt-1 text-gray-500">
+            {LEGAL_ENTITY_NAME} &middot; {MAILING_ADDRESS}
+          </p>
         </div>
       </div>
     </footer>

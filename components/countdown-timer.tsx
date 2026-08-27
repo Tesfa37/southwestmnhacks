@@ -25,7 +25,7 @@ function Pill({ children, tone }: { children: React.ReactNode; tone: "live" | "e
   )
 }
 
-export function CountdownTimer() {
+export function CountdownTimer({ tone = "light" }: { tone?: "light" | "dark" }) {
   // null until mounted so the server and first client render match (no hydration mismatch).
   const [now, setNow] = useState<number | null>(null)
 
@@ -68,7 +68,13 @@ export function CountdownTimer() {
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">{label}</p>
+      <p
+        className={`text-sm font-semibold uppercase tracking-wider ${
+          tone === "dark" ? "text-white/60" : "text-gray-500"
+        }`}
+      >
+        {label}
+      </p>
       <div className="flex gap-2 sm:gap-3">
         {units.map((u) => (
           <div

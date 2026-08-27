@@ -6,11 +6,34 @@ import Link from "next/link"
 import { track } from "@vercel/analytics"
 import { RegisterCta } from "@/components/register-cta"
 
-export function Header() {
+// Light is the default everywhere; the homepage's cinematic stage passes "dark".
+const HEADER_CLASSES = {
+  light: {
+    nav: "bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50",
+    link: "text-gray-700 hover:text-gray-900",
+    mobileLink: "block text-gray-700 hover:text-gray-900 py-2",
+    logoOrange: "text-orange-600",
+    logoBlue: "text-blue-600",
+    menuButton: "lg:hidden p-2 text-gray-700 hover:text-gray-900 flex-shrink-0",
+    mobileDivider: "lg:hidden mt-4 pb-4 space-y-3 border-t border-gray-200 pt-4",
+  },
+  dark: {
+    nav: "bg-[#0a0a12]/80 backdrop-blur-sm border-b border-white/10 sticky top-0 z-50",
+    link: "text-white/80 hover:text-white",
+    mobileLink: "block text-white/80 hover:text-white py-2",
+    logoOrange: "text-orange-400",
+    logoBlue: "text-blue-400",
+    menuButton: "lg:hidden p-2 text-white/80 hover:text-white flex-shrink-0",
+    mobileDivider: "lg:hidden mt-4 pb-4 space-y-3 border-t border-white/10 pt-4",
+  },
+} as const
+
+export function Header({ variant = "light" }: { variant?: "light" | "dark" }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const c = HEADER_CLASSES[variant]
 
   return (
-    <nav className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+    <nav className={c.nav}>
       <div className="max-w-6xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-3 flex-shrink-0">
@@ -18,32 +41,32 @@ export function Header() {
               href="/"
               className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl font-bold leading-tight whitespace-nowrap"
             >
-              <span className="text-orange-600">Southwest</span>{" "}
-              <span className="text-blue-600">MN</span> Hacks
+              <span className={c.logoOrange}>Southwest</span>{" "}
+              <span className={c.logoBlue}>MN</span> Hacks
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
-            <Link href="/resources" className="text-gray-700 hover:text-gray-900">
+            <Link href="/resources" className={c.link}>
               Resources
             </Link>
-            <Link href="/#faq" className="text-gray-700 hover:text-gray-900">
+            <Link href="/#faq" className={c.link}>
               FAQ
             </Link>
-            <Link href="/rules" className="text-gray-700 hover:text-gray-900">
+            <Link href="/rules" className={c.link}>
               Rules
             </Link>
-            <Link href="/safety" className="text-gray-700 hover:text-gray-900">
+            <Link href="/safety" className={c.link}>
               Safety
             </Link>
-            <Link href="/recap" className="text-gray-700 hover:text-gray-900">
+            <Link href="/recap" className={c.link}>
               Past Events
             </Link>
             <Link
               href="/sponsor"
               onClick={() => track('Sponsor Click', { location: 'header-desktop' })}
-              className="text-gray-700 hover:text-gray-900"
+              className={c.link}
             >
               Sponsor
             </Link>
@@ -52,7 +75,7 @@ export function Header() {
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:text-gray-900 flex-shrink-0"
+            className={c.menuButton}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav"
@@ -63,38 +86,38 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div id="mobile-nav" className="lg:hidden mt-4 pb-4 space-y-3 border-t border-gray-200 pt-4">
+          <div id="mobile-nav" className={c.mobileDivider}>
             <Link
               href="/resources"
-              className="block text-gray-700 hover:text-gray-900 py-2"
+              className={c.mobileLink}
               onClick={() => setMobileMenuOpen(false)}
             >
               Resources
             </Link>
             <Link
               href="/#faq"
-              className="block text-gray-700 hover:text-gray-900 py-2"
+              className={c.mobileLink}
               onClick={() => setMobileMenuOpen(false)}
             >
               FAQ
             </Link>
             <Link
               href="/rules"
-              className="block text-gray-700 hover:text-gray-900 py-2"
+              className={c.mobileLink}
               onClick={() => setMobileMenuOpen(false)}
             >
               Rules
             </Link>
             <Link
               href="/safety"
-              className="block text-gray-700 hover:text-gray-900 py-2"
+              className={c.mobileLink}
               onClick={() => setMobileMenuOpen(false)}
             >
               Safety
             </Link>
             <Link
               href="/recap"
-              className="block text-gray-700 hover:text-gray-900 py-2"
+              className={c.mobileLink}
               onClick={() => setMobileMenuOpen(false)}
             >
               Past Events
@@ -102,7 +125,7 @@ export function Header() {
             <Link
               href="/sponsor"
               onClick={() => { track('Sponsor Click', { location: 'header-mobile' }); setMobileMenuOpen(false) }}
-              className="block text-gray-700 hover:text-gray-900 py-2"
+              className={c.mobileLink}
             >
               Sponsor
             </Link>

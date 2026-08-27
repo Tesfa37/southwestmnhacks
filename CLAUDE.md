@@ -36,7 +36,8 @@ pnpm test         # Vitest (__tests__/)
 ### Sponsor funnel (live payments)
 - Tier cards / compare table -> `/sponsor/start?tier=` (helper: `sponsorInquiryUrl(slug)` in `lib/sponsor.ts`) -> `POST /api/sponsors/create` -> Stripe Customer -> Checkout / Invoice / record-only -> Notion row -> Resend notifications. Server-authoritative pricing in `lib/sponsors/tiers.ts`.
 - `SPONSOR_DEADLINE` (config) = commit-by date for full benefits (t-shirt, challenge prompt); copy-only, nothing auto-gates on it.
-- Sponsor logos: `lib/sponsors/partners.ts` is the single source for BOTH the homepage grid (`components/home-sponsors.tsx`) and the `/sponsor` wall (`components/partner-logo-wall.tsx`). Schwan's has `current: false` - flip to `true` when they confirm for Fall 2026.
+- Sponsor logos: `lib/sponsors/partners.ts` is the single source for the homepage grid (`components/home-sponsors.tsx`), the `/sponsor` wall (`components/partner-logo-wall.tsx`), and the hero strip (`components/home/sponsor-strip.tsx`). All three render one logo via `components/partner-logo.tsx`, which links it only when `href` is set (omit `href` when we hold a logo but have no confirmed URL). `PartnerTier` = the four cash tiers plus four non-cash kinds: `partnership` (single-slot hero card), `supported_by`, `campus_partner`, `in_kind` (mirrors the funnel tier in `tiers.ts`). **Tier is data, never displayed** — no surface renders a tier label; its only behavioural use is picking the hero card. Don't reintroduce per-card pills: nine partners across seven tiers meant colour grouped nothing, and the labels are sponsor-sales language aimed at students.
+- **Partner display order is the hand-picked `PARTNERS` array order, deliberately NOT tier-ranked. Do not add a sort.** Each entry's `width`/`height` must be the asset's true pixel size or `object-contain` letterboxes it.
 - Devpost URLs (careful, near-identical): Fall = `southwest-mn-hacks.devpost.com` (`DEVPOST_FALL_URL`), March = `southwestmn-hacks.devpost.com` (`DEVPOST_SPRING_URL`).
 
 ### Styling & animation
@@ -48,8 +49,11 @@ pnpm test         # Vitest (__tests__/)
 - `lib/images.ts` exports the shared `BLUR_DATA_URL` placeholder
 
 ### Component organization
-- Layout: `header.tsx` (client), `footer.tsx` (server + client RegisterCta island)
-- Homepage hero: `home-hero.tsx` composing `aurora-background`, `rotating-word`, `floating-stickers` (shared single pointermove listener), `easter-eggs`
+- Layout: `header.tsx` (client, `variant="light"|"dark"` — homepage passes dark), `footer.tsx` (server + client RegisterCta island; dark, carries the legal/address line)
+- Homepage: `components/home/home-stage.tsx` is the whole page body, composed of `photo-hero` (+ optional `hero-video` ambient loop from `public/videos/`, eligibility: no reduced-motion, md+ viewport, no data-saver; pause button included), `highlight-cards`, `press-outcome`, `what-is-hackathon`, `event-details`, `people-proof`, `participate`, `home-faq` (exports `buildFaqs(phase)` for the FAQ JSON-LD), `sponsors-section`. Optional props: `hero="classic"` swaps in `classic-hero` (aurora + shimmer wordmark), `sponsorStrip="static"|"marquee"` adds `sponsor-strip` under the hero. `stats-strip.tsx` + `lib/event-stats.ts` are dormant (numbers intentionally off the homepage).
+- **Homepage theming: one tree, two skins.** `HomeStage` takes `tone="light"|"dark"` and every section reads its classes from `components/home/tone.ts`. Light is the site's existing vocabulary and must keep matching `/recap`, `/sponsor`, `/resources`; dark is the cinematic stage. Production (`app/page.tsx`) is `tone="light"`. Add new theme-varying classes to `tone.ts` as a `Record<Tone, string>` rather than inlining a ternary. `photo-hero` is dark in both tones on purpose: white type over a scrimmed photo is the only combination that holds WCAG AA.
+- Homepage design candidates live on `/preview/home` (`daylight`, `classic`, `cinematic`, `record`, plus `strip/*` and `video/*`). All are noindex + robots-disallowed; a winner is a one-line change in `app/page.tsx`.
+- Dark-stage vocabulary: cards `bg-white/5 ring-1 ring-white/10`, body `text-white/70`, muted `text-white/50`, links `text-blue-400 hover:text-blue-300`, frosted-over-photo `bg-black/55 backdrop-blur-sm ring-1 ring-white/15`. Shared components take opt-in props with light defaults: Header `variant`, CountdownTimer `tone`, RegisterCta `onDark`, ConsentShare `onDark` — never restyle their default branches.
 - Recap sections: `event-recap.tsx`, `winners.tsx`, `appreciation.tsx` (used on `/recap` only)
 - Sponsor page: `sponsor-hero`, `sponsor-benefits`, `sponsor-day-timeline`, `sponsor-proof` (+ `partner-logo-wall`), `sponsor-tiers`, `sponsor-form`, `sponsor-faq`, `floating-sponsor-cta`
 - UI primitives in `components/ui/`: only `accordion.tsx` and `button.tsx`
@@ -75,5 +79,4 @@ pnpm test         # Vitest (__tests__/)
 ## Future TODO
 - Regenerate `public/og-image.png` from the SVG spec with correct "Southwest MN Hacks" spacing
 - Set up Discord server and Instagram, then flip `DISCORD_ENABLED` in `lib/config.ts`
-- Flip Schwan's `current: true` in `lib/sponsors/partners.ts` once confirmed for Fall 2026
 - After the Fall event: build the Fall recap (consider `/recap/fall-2026` and per-event recap slugs)

@@ -3,13 +3,19 @@ import Link from "next/link"
 const GROUPS = [
   {
     heading: "Page designs",
-    blurb: "Four complete homepages. Pick one; switching production to it is a one-line change.",
+    blurb: "The Record is live at /. The others are kept comparable in case the direction changes.",
     items: [
       {
-        href: "/preview/home/daylight",
-        name: "Daylight · currently live at /",
+        href: "/preview/home/record",
+        name: "The Record · currently live at /",
         description:
-          "The photo hero kept, everything below it back in the site's own light vocabulary: cream-to-blue ground, white cards, gray text, blue-600 links. Matches /recap, /sponsor, and /resources.",
+          "Paper ground, mono labels, an orange evidence stamp on every real artifact, and a full-bleed sponsor marquee under the hero. Headings run on Geist like the rest of the site; only the hero headline uses Archivo.",
+      },
+      {
+        href: "/preview/home/daylight",
+        name: "Daylight",
+        description:
+          "The photo hero kept, everything below it in the site's older light vocabulary: cream-to-blue ground, white cards, gray text, blue-600 links.",
       },
       {
         href: "/preview/home/classic",
@@ -22,12 +28,6 @@ const GROUPS = [
         name: "Cinematic · dark stage",
         description:
           "The dark version, kept here for comparison. Strongest hero, but it's the one that reads as a different site from every other page.",
-      },
-      {
-        href: "/preview/home/record",
-        name: "The Record · daylight editorial",
-        description:
-          "An independent take: paper ground, Archivo display type, mono labels, and an orange evidence stamp on every real artifact. Light, but a different typographic voice than the rest of the site.",
       },
     ],
   },
@@ -90,7 +90,7 @@ export default function PreviewIndex() {
           <Link href="/" className="font-semibold text-blue-400 underline underline-offset-2 hover:text-blue-300">
             the live homepage
           </Link>
-          , which currently serves Daylight.
+          , which currently serves The Record.
         </p>
 
         {GROUPS.map((group) => (

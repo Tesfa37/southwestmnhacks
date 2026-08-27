@@ -1,4 +1,6 @@
-import { HomeStage } from "@/components/home/home-stage"
+import { RecordHome } from "@/components/home-record/record-home"
+// The FAQ copy is shared with the JSON-LD below, so the schema always matches
+// what RecordFaq actually renders.
 import { buildFaqs } from "@/components/home/home-faq"
 import { getEventPhase } from "@/lib/event-phase"
 import {
@@ -88,7 +90,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <HomeStage phase={phase} tone="light" />
+      <RecordHome phase={phase} />
     </>
   )
 }

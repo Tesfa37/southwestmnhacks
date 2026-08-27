@@ -1,9 +1,9 @@
-// Type and action tokens for The Record preview.
+// Type and action tokens for The Record, the live homepage (app/page.tsx).
 
 /**
  * Display face for the h1 and the section h2s only, roughly nine elements.
- * Archivo is loaded (scoped) by the preview route, which sets --font-archivo on
- * the page wrapper; the fallback stack keeps headings sane if it is ever missing.
+ * Archivo is loaded in app/layout.tsx, which sets --font-archivo on the body;
+ * the fallback stack keeps headings sane if it is ever missing.
  *
  * Deliberately NOT used for card titles or anything below section level: body,
  * card headings, mono eyebrows, and all UI stay on the site's own fonts, so this

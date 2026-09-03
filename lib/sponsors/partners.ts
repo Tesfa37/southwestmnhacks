@@ -43,25 +43,31 @@ export interface Partner {
  */
 export const PARTNERS: Partner[] = [
   {
+    // viewBox trimmed to the artwork: the original 4096x1738 box was ~57% empty
+    // padding, which next/image reserved, so the mark rendered at ~64% of its
+    // height class. Same classes as before now read materially larger.
     name: "Aulden",
     href: "https://getaulden.com",
     src: "/aulden-logo.svg",
-    width: 4096,
-    height: 1738,
+    width: 2742,
+    height: 1119,
     tier: "partnership",
     heightClass: "h-16 sm:h-20",
     wallHeightClass: "h-14",
     current: true,
   },
   {
+    // CJ Schwan's mark, cropped from the square 1x1 export they sent: that file
+    // was 70% transparent padding, which next/image would size from. At 3.02:1
+    // this sits between MNSP and Visit Marshall, so it carries near-full height.
     name: "Schwan's",
     href: "https://www.schwanscompany.com",
     src: "/schwans-logo.png",
-    width: 2778,
-    height: 490,
+    width: 972,
+    height: 322,
     tier: "gold",
-    heightClass: "h-8 sm:h-10",
-    wallHeightClass: "h-10",
+    heightClass: "h-14 sm:h-16",
+    wallHeightClass: "h-14",
     current: true,
   },
   {

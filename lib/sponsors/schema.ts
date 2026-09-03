@@ -5,7 +5,7 @@
 
 import { z } from "zod"
 import { TIER_SLUGS, CUSTOM_MIN_CENTS, formatCents } from "./tiers"
-import { PAYMENT_PREFERENCE_VALUES } from "./payment-preferences"
+import { PAYMENT_PREFERENCE_VALUES, requiresBillingEmail } from "./payment-preferences"
 
 // Optional free-text -> undefined when blank.
 const optionalText = z.string().trim().max(1000).optional().or(z.literal("")).transform((v) => (v ? v : undefined))
@@ -62,14 +62,15 @@ export const sponsorIntakeSchema = z
     }),
   })
   .superRefine((data, ctx) => {
-    if (data.paymentPreference === "REQUEST_INVOICE" || data.paymentPreference === "PAY_BY_CHECK") {
-      if (!data.billingEmail) {
-        ctx.addIssue({
-          code: "custom",
-          path: ["billingEmail"],
-          message: "A billing email is required so we can send the invoice.",
-        })
-      }
+    // Invoice, check, and W-9 / vendor setup all route through accounts payable.
+    // Derived from conditionalFields so this cannot drift from the form section
+    // the same preference reveals.
+    if (requiresBillingEmail(data.paymentPreference) && !data.billingEmail) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["billingEmail"],
+        message: "A billing email is required so we can reach your accounts payable team.",
+      })
     }
 
     if (data.paymentPreference === "IN_KIND" || data.tier === "in_kind") {

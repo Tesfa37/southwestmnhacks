@@ -80,3 +80,11 @@ export const PAYMENT_PREFERENCE_VALUES = Object.keys(PAYMENT_PREFERENCES) as [
 export function isPayNow(p: PaymentPreference): boolean {
   return p === "PAY_NOW_CARD" || p === "PAY_NOW_ACH"
 }
+
+// Preferences that route the sponsorship through accounts payable, so we need an
+// AP address to reach. NOTE: conditionalFields is no longer form-only — it is now
+// read by server-side validation too. Adding "billing" to a preference reveals the
+// billing section AND makes billingEmail required for it in schema.ts.
+export function requiresBillingEmail(p: PaymentPreference): boolean {
+  return PAYMENT_PREFERENCES[p].conditionalFields.includes("billing")
+}

@@ -11,6 +11,7 @@ import { sponsorIntakeSchema, fieldErrors } from "@/lib/sponsors/schema"
 import {
   PAYMENT_PREFERENCES,
   isPayNow,
+  requiresBillingEmail,
   type PaymentPreference,
   type ConditionalField,
 } from "@/lib/sponsors/payment-preferences"
@@ -405,7 +406,7 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier | null }) 
           <Field
             label="Billing email"
             htmlFor="billingEmail"
-            required={preference === "REQUEST_INVOICE" || preference === "PAY_BY_CHECK"}
+            required={!!preference && requiresBillingEmail(preference)}
             error={errors.billingEmail}
           >
             <input id="billingEmail" type="email" value={form.billingEmail} onChange={(e) => set("billingEmail", e.target.value)} className={inputCls} />

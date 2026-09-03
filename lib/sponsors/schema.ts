@@ -11,8 +11,9 @@ import { PAYMENT_PREFERENCE_VALUES } from "./payment-preferences"
 const optionalText = z.string().trim().max(1000).optional().or(z.literal("")).transform((v) => (v ? v : undefined))
 // Optional URL that also accepts an empty string.
 const optionalUrl = z.string().trim().url().or(z.literal("")).optional().transform((v) => (v ? v : undefined))
-// Optional email that also accepts an empty string.
-const optionalEmail = z.string().trim().email().or(z.literal("")).optional().transform((v) => (v ? v : undefined))
+// Optional email that also accepts an empty string. Capped like contactEmail — it
+// is written to customer.email, and Stripe allows up to 512 characters there.
+const optionalEmail = z.string().trim().email().max(320).or(z.literal("")).optional().transform((v) => (v ? v : undefined))
 
 export const sponsorIntakeSchema = z
   .object({

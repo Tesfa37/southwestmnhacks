@@ -29,6 +29,11 @@ export async function createSponsorInvoice(input: InvoiceInput): Promise<Invoice
 
   // Create the (draft) invoice first so we can attach the line item to it
   // explicitly, rather than relying on pending-item auto-attach behavior.
+  // Stripe has no CC: the hosted invoice goes to customer.email and nowhere else.
+  // InvoiceCreateParams carries no cc/bcc/additional-recipient field (stripe@22),
+  // invoices.sendInvoice takes only `expand`, and Invoice.customer_email is
+  // read-only. upsertSponsorCustomer therefore points customer.email at the
+  // billing address; the contact stays on the customer metadata and Notion row.
   const invoice = await stripe.invoices.create({
     customer: input.customerId,
     collection_method: "send_invoice",

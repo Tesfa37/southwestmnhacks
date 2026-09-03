@@ -56,26 +56,39 @@ export async function upsertSponsorCustomer(data: SponsorIntakeInput, computed: 
     [META.createdAt]: new Date().toISOString(),
   })
 
-  const existing = await stripe.customers.list({ email: data.contactEmail, limit: 1 })
+  // Stripe mails the hosted invoice to customer.email and nowhere else, so the
+  // billing/AP address has to win whenever the sponsor gives us one.
+  const effectiveEmail = data.billingEmail || data.contactEmail
+
+  // The stored email may be either address, so look up the effective one first and
+  // fall back to the contact email — a sponsor who adds a billing address on a
+  // second submission should update their record, not spawn a duplicate.
+  let existing: Stripe.Customer | undefined = (
+    await stripe.customers.list({ email: effectiveEmail, limit: 1 })
+  ).data[0]
+  if (!existing && effectiveEmail !== data.contactEmail) {
+    existing = (await stripe.customers.list({ email: data.contactEmail, limit: 1 })).data[0]
+  }
 
   let customer: Stripe.Customer
-  if (existing.data[0]) {
+  if (existing) {
     // Reuse + overwrite: a sponsor who restarts the form updates one record.
     // But never DOWNGRADE a settled record — if they already PAID (or the record
     // is otherwise terminal) and resubmit, keep the existing status rather than
     // resetting it to a fresh checkout/invoice state.
-    const currentStatus = existing.data[0].metadata?.[META.status] as SponsorStatus | undefined
+    const currentStatus = existing.metadata?.[META.status] as SponsorStatus | undefined
     if (currentStatus && !canTransition(currentStatus, computed.status)) {
       customerMeta[META.status] = currentStatus
     }
-    customer = await stripe.customers.update(existing.data[0].id, {
+    customer = await stripe.customers.update(existing.id, {
+      email: effectiveEmail,
       name: data.organizationName,
       phone: data.contactPhone || undefined,
       metadata: customerMeta,
     })
   } else {
     customer = await stripe.customers.create({
-      email: data.contactEmail,
+      email: effectiveEmail,
       name: data.organizationName,
       phone: data.contactPhone || undefined,
       metadata: customerMeta,

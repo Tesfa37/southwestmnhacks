@@ -60,7 +60,9 @@ export const PARTNERS: Partner[] = [
     // CJ Schwan's mark, cropped from the square 1x1 export they sent: that file
     // was 70% transparent padding, which next/image would size from. At 3.02:1
     // this sits between MNSP and Visit Marshall, so it carries near-full height.
-    name: "Schwan's",
+    // Name is alt/aria text only, never rendered as visible copy: it matches the
+    // mark, while prose elsewhere on the site still says "Schwan's".
+    name: "CJ Schwan's",
     href: "https://www.schwanscompany.com",
     src: "/schwans-logo.png",
     width: 972,

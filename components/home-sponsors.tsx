@@ -16,7 +16,7 @@ function LogoLink({ partner, heightClass }: { partner: Partner; heightClass: str
 // Homepage sponsors: Aulden keeps its full-width partnership card, the rest
 // cluster in equal cards in PARTNERS order (hand-picked, not tier-ranked: don't sort).
 //
-// No tier labels. Nine partners across seven tiers meant a pill per card, which
+// No tier labels. Ten partners across seven tiers meant a pill per card, which
 // grouped nothing and put sponsor-sales vocabulary in front of students. The
 // hierarchy that remains is the hero card plus the array order, both deliberate.
 //

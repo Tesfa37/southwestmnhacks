@@ -4,7 +4,7 @@ import type { CashTier } from "./tiers"
  * Non-cash relationship kinds plus the cash tiers a logo can carry.
  * `in_kind` mirrors the funnel tier of the same name in ./tiers.ts.
  *
- * This is DATA, not display. No surface renders a tier label: with nine partners
+ * This is DATA, not display. No surface renders a tier label: with ten partners
  * across seven tiers, a pill per card grouped nothing and used sponsor-sales
  * vocabulary on a page read by students. The only behavioural use is picking the
  * hero card (`tier === "partnership"` in components/home-sponsors.tsx).
@@ -68,6 +68,27 @@ export const PARTNERS: Partner[] = [
     width: 972,
     height: 322,
     tier: "gold",
+    heightClass: "h-14 sm:h-16",
+    wallHeightClass: "h-14",
+    current: true,
+  },
+  {
+    // The Foundation is the grantmaker, not the utility, so the name and alt text
+    // say so. The Otter Tail *Corporation* Foundation is a separate entity (the
+    // parent company's, funding the Fargo/Moorhead area): do not "correct" this to it.
+    // Keyed to transparent from the white-background JPEG they publish, the only
+    // Foundation lockup they offer. Ask for a vector if we ever get a brand contact.
+    // The gift landed between the Silver and Gold rungs. There is no tier between
+    // them and this field never renders, so it carries the honest floor: the array
+    // position above United Way is what encodes the ranking.
+    name: "Otter Tail Power Company Foundation",
+    href: "https://www.otpco.com",
+    src: "/otter-tail-foundation-logo.png",
+    width: 1200,
+    height: 606,
+    tier: "silver",
+    // Dense stacked lockup (mark + wordmark + "POWER COMPANY" + "FOUNDATION"), so it
+    // takes the full height of the card's logo well and stays at h-14 on the wall.
     heightClass: "h-14 sm:h-16",
     wallHeightClass: "h-14",
     current: true,

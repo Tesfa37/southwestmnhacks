@@ -4,7 +4,7 @@ import { getEventPhase } from "@/lib/event-phase"
 import { PreviewChip } from "../../preview-chip"
 
 const MODES: Record<string, { mode: "static" | "marquee"; label: string }> = {
-  static: { mode: "static", label: "Static · all nine logos at once" },
+  static: { mode: "static", label: "Static · all ten logos at once" },
   marquee: { mode: "marquee", label: "Marquee · slowly circulating" },
 }
 

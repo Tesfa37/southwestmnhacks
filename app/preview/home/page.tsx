@@ -37,7 +37,7 @@ const GROUPS = [
     items: [
       {
         href: "/preview/home/strip/static",
-        name: "Static · all nine at once",
+        name: "Static · all ten at once",
         description:
           "One quiet row, every sponsor visible the whole time. No motion to suppress for reduced-motion users.",
       },

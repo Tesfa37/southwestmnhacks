@@ -7,12 +7,12 @@ import { CountdownTimer } from "@/components/countdown-timer"
 import { RotatingWord } from "@/components/rotating-word"
 import { FloatingStickers } from "@/components/floating-stickers"
 import { KonamiListener } from "@/components/easter-eggs"
-import { RegisterCta, useEventPhase } from "@/components/register-cta"
+import { WaitlistCta, WaitlistNote, useEventPhase } from "@/components/waitlist-cta"
 import { burstConfetti } from "@/lib/confetti"
 import {
   EVENT_NAME,
   EVENT_DATES,
-  REGISTRATION_DEADLINE,
+  WAITLIST_DEADLINE,
   VENUE_MAP_URL,
   DISCORD_INVITE_URL,
   DISCORD_ENABLED,
@@ -100,7 +100,7 @@ export function ClassicHero() {
             </m.p>
 
             <m.div variants={item} className="flex flex-wrap gap-4 justify-center mb-3 px-4">
-              <RegisterCta variant="hero" location="home-hero" />
+              <WaitlistCta variant="hero" location="home-hero" />
             {DISCORD_ENABLED && (
               <a
                 href={DISCORD_INVITE_URL}
@@ -118,9 +118,10 @@ export function ClassicHero() {
           </m.div>
 
           {phase === "open" && (
-            <m.p variants={item} className="text-sm text-gray-500">
-              Registration closes {REGISTRATION_DEADLINE}.
-            </m.p>
+            <m.div variants={item} className="flex flex-col items-center gap-2 px-4">
+              <WaitlistNote className="text-center" />
+              <p className="text-sm text-gray-500">The waitlist closes {WAITLIST_DEADLINE}.</p>
+            </m.div>
           )}
           </m.div>
         </div>

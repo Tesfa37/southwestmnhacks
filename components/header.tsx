@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { track } from "@vercel/analytics"
-import { RegisterCta } from "@/components/register-cta"
+import { WaitlistCta } from "@/components/waitlist-cta"
 
 // Light is the default everywhere; the homepage's cinematic stage passes "dark".
 const HEADER_CLASSES = {
@@ -70,7 +70,7 @@ export function Header({ variant = "light" }: { variant?: "light" | "dark" }) {
             >
               Sponsor
             </Link>
-            <RegisterCta variant="header-desktop" location="header-desktop" />
+            <WaitlistCta variant="header-desktop" location="header-desktop" />
           </div>
 
           <button
@@ -129,7 +129,7 @@ export function Header({ variant = "light" }: { variant?: "light" | "dark" }) {
             >
               Sponsor
             </Link>
-            <RegisterCta
+            <WaitlistCta
               variant="header-mobile"
               location="header-mobile"
               onNavigate={() => setMobileMenuOpen(false)}

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
   },
   description:
-    "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Register now.",
+    "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Join the waitlist.",
   keywords: [
     "hackathon",
     "Marshall MN",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     url: "https://southwestmnhacks.org",
     title: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
     description:
-      "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Register now.",
+      "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Join the waitlist.",
     siteName: "Southwest MN Hacks",
     images: [
       {
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
     description:
-      "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Register now.",
+      "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Join the waitlist.",
     images: ["/og-image.png"],
   },
   robots: {

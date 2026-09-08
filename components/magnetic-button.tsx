@@ -6,7 +6,7 @@ import { LazyMotion, domAnimation, m, useReducedMotion, useSpring } from "motion
 
 const MAX_PULL = 8
 
-// Register CTA that springs a few pixels toward the pointer on hover.
+// Waitlist CTA that springs a few pixels toward the pointer on hover.
 // Pointer-events only, so it stays inert on touch and under reduced motion.
 export function MagneticButton({
   href,

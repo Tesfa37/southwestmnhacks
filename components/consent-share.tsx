@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Mail, Copy, Check } from "lucide-react"
-import { CONSENT_FORM_URL, EVENT_DATES, REGISTRATION_DEADLINE, SUPPORT_EMAIL } from "@/lib/config"
+import { CONSENT_FORM_URL, EVENT_DATES, WAITLIST_DEADLINE, SUPPORT_EMAIL } from "@/lib/config"
 
 const MAILTO = `mailto:?subject=${encodeURIComponent(
   "Can you fill out my consent form for Southwest MN Hacks?",
@@ -13,7 +13,7 @@ const MAILTO = `mailto:?subject=${encodeURIComponent(
     `Since I'm under 18, I need a parent or guardian to complete the consent and medical form before I can check in. ` +
     `It takes about 5 minutes:\n\n` +
     `${CONSENT_FORM_URL}\n\n` +
-    `It needs to be done by ${REGISTRATION_DEADLINE} — could you fill it out today?\n\n` +
+    `It needs to be done by ${WAITLIST_DEADLINE} — could you fill it out today?\n\n` +
     `Questions? The organizers are at ${SUPPORT_EMAIL}, and the website is https://southwestmnhacks.org.\n\n` +
     `Thank you!!`,
 )}`

@@ -3,7 +3,7 @@ import { Reveal } from "@/components/reveal"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { BODY, FAQ_CHEVRON, FAQ_ITEM, type Tone } from "@/components/home/tone"
 import type { EventPhase } from "@/lib/event-phase"
-import { CONSENT_FORM_URL, DEVPOST_FALL_URL, REGISTRATION_DEADLINE } from "@/lib/config"
+import { CONSENT_FORM_URL, DEVPOST_FALL_URL, WAITLIST_DEADLINE } from "@/lib/config"
 
 export interface HomeFaq {
   question: string
@@ -13,12 +13,12 @@ export interface HomeFaq {
 
 // Shared by the FAQ accordion and the FAQPage JSON-LD in app/page.tsx.
 export function buildFaqs(phase: EventPhase): HomeFaq[] {
-  const registerAnswer =
+  const waitlistAnswer =
     phase === "open"
-      ? `Fill out the registration form linked throughout this site. Registration closes ${REGISTRATION_DEADLINE}, so sign up early to save your spot.`
+      ? `Fill out the waitlist form linked throughout this site. It adds you to the waitlist rather than confirming a spot; we'll email you if one opens up. The waitlist closes ${WAITLIST_DEADLINE}, so join early — it's first come, first served.`
       : phase === "ended"
         ? "Fall 2026 has wrapped. See what students built on Devpost, and check back for our next event."
-        : "Registration for Fall 2026 has closed. Follow the projects on Devpost, and check back for our next event."
+        : "The Fall 2026 waitlist has closed. Follow the projects on Devpost, and check back for our next event."
 
   return [
     {
@@ -32,8 +32,8 @@ export function buildFaqs(phase: EventPhase): HomeFaq[] {
         "It's completely free! We provide meals, snacks, and the resources you need to build your project.",
     },
     {
-      question: "How do I register?",
-      answer: registerAnswer,
+      question: "How do I join the waitlist?",
+      answer: waitlistAnswer,
     },
     {
       question: "Can I work alone or do I need a team?",

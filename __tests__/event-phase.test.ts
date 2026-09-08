@@ -2,11 +2,11 @@ import { describe, it, expect } from "vitest"
 import { getEventPhase, CLOSE_MS, START_MS, END_MS } from "../lib/event-phase"
 
 describe("getEventPhase", () => {
-  it("is open before registration closes", () => {
+  it("is open before the waitlist closes", () => {
     expect(getEventPhase(CLOSE_MS - 1)).toBe("open")
   })
 
-  it("is closed at and after the registration close instant", () => {
+  it("is closed at and after the waitlist close instant", () => {
     expect(getEventPhase(CLOSE_MS)).toBe("closed")
     expect(getEventPhase(START_MS - 1)).toBe("closed")
   })

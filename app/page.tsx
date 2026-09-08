@@ -5,8 +5,8 @@ import { buildFaqs } from "@/components/home/home-faq"
 import { getEventPhase } from "@/lib/event-phase"
 import {
   EVENT_NAME,
-  REGISTRATION_FORM_URL,
-  REGISTRATION_CLOSE_AT,
+  WAITLIST_FORM_URL,
+  WAITLIST_CLOSE_AT,
   EVENT_START_AT,
   EVENT_END_AT,
   SUPPORT_EMAIL,
@@ -54,13 +54,17 @@ export default function HomePage() {
     sameAs: [DEVPOST_FALL_URL, "https://visitmarshallmn.com", SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL],
     offers: {
       "@type": "Offer",
-      url: REGISTRATION_FORM_URL,
+      url: WAITLIST_FORM_URL,
       price: "0",
       priceCurrency: "USD",
+      // Sign-ups are waitlist-only while open, so LimitedAvailability is the
+      // honest signal: a student can join the line, not claim a seat.
       availability:
-        phase === "open" ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
+        phase === "open"
+          ? "https://schema.org/LimitedAvailability"
+          : "https://schema.org/SoldOut",
       validFrom: "2026-06-01T00:00:00-05:00",
-      validThrough: REGISTRATION_CLOSE_AT,
+      validThrough: WAITLIST_CLOSE_AT,
     },
   }
 

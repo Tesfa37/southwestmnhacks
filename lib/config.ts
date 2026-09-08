@@ -3,7 +3,7 @@
 // Event identity
 export const EVENT_NAME = "Southwest MN Hacks: Fall 2026"
 export const EVENT_DATES = "September 12 to 13, 2026"
-export const REGISTRATION_DEADLINE = "September 8, 2026"
+export const WAITLIST_DEADLINE = "September 8, 2026"
 export const VENUE = "Southwest Minnesota State University, Marshall, MN"
 
 // Google Maps deep link to the venue (Upper Conference Center, SMSU).
@@ -12,12 +12,17 @@ export const VENUE_MAP_URL =
 
 // Countdown targets as fixed instants (Central Time, CDT = UTC-5 in September).
 // The home page countdown moves through these: closes -> begins -> underway -> ended.
-export const REGISTRATION_CLOSE_AT = "2026-09-08T23:59:59-05:00"
+export const WAITLIST_CLOSE_AT = "2026-09-08T23:59:59-05:00"
 export const EVENT_START_AT = "2026-09-12T08:00:00-05:00"
 export const EVENT_END_AT = "2026-09-13T10:00:00-05:00"
 
 // Live event assets
-export const REGISTRATION_FORM_URL = "https://forms.gle/tR3nteuQ3CgyHAmW6"
+// The sign-up form is a WAITLIST, not a confirmed seat: submitting it places a
+// student in line and organizers email them if a spot opens. WAITLIST_NOTE is
+// the one place that expectation is worded; every CTA renders it verbatim.
+export const WAITLIST_FORM_URL = "https://forms.gle/tR3nteuQ3CgyHAmW6"
+export const WAITLIST_NOTE =
+  "Submitting the form adds you to the waitlist, not a confirmed spot. We'll email you if one opens up."
 // Careful: the two Devpost subdomains differ only in hyphenation.
 // Fall 2026 lives at southwest-mn-hacks; the March 2026 event at southwestmn-hacks.
 export const DEVPOST_FALL_URL = "https://southwest-mn-hacks.devpost.com/"
@@ -27,7 +32,7 @@ export const CONSENT_FORM_URL = "https://form.jotform.com/261474955259066"
 
 // Finalized participant documents (PDFs live in /public/docs/). The Code of
 // Conduct route /code-of-conduct is the canonical CoC link reused everywhere
-// (the registration/consent forms link their CoC checkbox to it).
+// (the waitlist/consent forms link their CoC checkbox to it).
 export const CODE_OF_CONDUCT_PDF = "/docs/code-of-conduct.pdf"
 export const ADULT_WAIVER_PDF = "/docs/adult-waiver.pdf"
 export const MINOR_CONSENT_PDF = "/docs/minor-consent.pdf"

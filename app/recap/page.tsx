@@ -6,11 +6,11 @@ import { EventRecap } from "@/components/event-recap"
 import { Winners } from "@/components/winners"
 import { Appreciation } from "@/components/appreciation"
 import { WinnerContinuationBadge } from "@/components/winner-continuation-badge"
-import { RegisterCta } from "@/components/register-cta"
+import { WaitlistCta } from "@/components/waitlist-cta"
 import { getEventPhase } from "@/lib/event-phase"
-import { EVENT_DATES } from "@/lib/config"
+import { EVENT_DATES, WAITLIST_NOTE } from "@/lib/config"
 
-// Re-render hourly so the forward CTA follows the registration phase.
+// Re-render hourly so the forward CTA follows the waitlist phase.
 export const revalidate = 3600
 
 export default function RecapPage() {
@@ -135,7 +135,7 @@ export default function RecapPage() {
             {EVENT_DATES}. Back at SMSU, bigger, and 24 hours long.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <RegisterCta variant="section" location="recap-forward" initialPhase={getEventPhase()} />
+            <WaitlistCta variant="section" location="recap-forward" initialPhase={getEventPhase()} onDark />
             <Link
               href="/sponsor"
               className="inline-flex items-center gap-2 rounded-full border-2 border-white/80 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-white/10"
@@ -143,6 +143,9 @@ export default function RecapPage() {
               Become a sponsor
             </Link>
           </div>
+          {getEventPhase() === "open" && (
+            <p className="mx-auto mt-5 max-w-md text-sm text-pretty opacity-90">{WAITLIST_NOTE}</p>
+          )}
         </div>
       </section>
       </main>

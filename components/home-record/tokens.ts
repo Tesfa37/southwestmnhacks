@@ -24,7 +24,7 @@ export const MUTED = "text-[#5B6472]"
 
 /**
  * Card- and section-level actions. The middle tier of three:
- *   filled gradient pill (RegisterCta) > this > inline underlined text link.
+ *   filled gradient pill (WaitlistCta) > this > inline underlined text link.
  *
  * Deliberately an outline rather than a filled bubble. On an evidence-first page,
  * a solid colour button makes a press citation look like advertising. Use this

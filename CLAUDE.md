@@ -25,11 +25,11 @@ pnpm test         # Vitest (__tests__/)
 - `resources`, `rules`, `safety`, `code-of-conduct`, `privacy`, `terms`, `refunds`, `contact`
 - `not-found.tsx` (styled 404), `error.tsx` (minimal boundary)
 - `sitemap.ts` (fixed `SITE_UPDATED` dates - bump when content changes), `robots.ts` (sponsor flow disallowed), `manifest.ts`
-- Registration is an external Google Form (`REGISTRATION_FORM_URL` in `lib/config.ts`); there is no `/register` route.
+- Sign-ups are **waitlist-only**: an external Google Form (`WAITLIST_FORM_URL` in `lib/config.ts`); there is no `/register` route. `WAITLIST_NOTE` in the same file is the single wording of "this adds you to the waitlist, not a confirmed spot" — every surface renders it verbatim, never a paraphrase.
 
 ### Event-phase gating (important pattern)
-- `lib/event-phase.ts` - `getEventPhase()` returns `"open" | "closed" | "live" | "ended"` from `REGISTRATION_CLOSE_AT` / `EVENT_START_AT` / `EVENT_END_AT` in `lib/config.ts`. Single source of truth for date logic (the countdown timer imports its MS constants from here).
-- `components/register-cta.tsx` - the ONLY way to render a Register CTA. Variants: header-desktop, header-mobile, hero, section, footer-link. Automatically switches to "Registration closed" after Sept 8 and to Devpost-gallery CTAs after the event. Server call sites pass `initialPhase={getEventPhase()}`; client sites use the hook default.
+- `lib/event-phase.ts` - `getEventPhase()` returns `"open" | "closed" | "live" | "ended"` from `WAITLIST_CLOSE_AT` / `EVENT_START_AT` / `EVENT_END_AT` in `lib/config.ts`. Single source of truth for date logic (the countdown timer imports its MS constants from here).
+- `components/waitlist-cta.tsx` - the ONLY way to render a sign-up CTA. `WaitlistCta` variants: header-desktop, header-mobile, hero, section, footer-link; the open-phase label is always "Join the waitlist". Automatically switches to "Waitlist closed" after Sept 8 and to Devpost-gallery CTAs after the event. Server call sites pass `initialPhase={getEventPhase()}`; client sites use the hook default. The same file exports `WaitlistNote` (the `WAITLIST_NOTE` sentence); it is a *sibling*, not part of the CTA, so each surface places it in its own layout — render it wherever a live CTA appears (`phase === "open"`).
 - Homepage and recap use ISR (hourly) so server-rendered JSON-LD (`offers.availability`, `validThrough`) and phase-conditional copy stay current.
 - QA: set `NEXT_PUBLIC_EVENT_PHASE=closed|live|ended` in `.env.local` to preview a phase. **Never set it in the Vercel environment** - it hard-locks the deployed site.
 
@@ -64,6 +64,7 @@ pnpm test         # Vitest (__tests__/)
 - Eligibility: students ages 14+, high school through university, plus recent graduates within 1 year
 - Brand: "Southwest MN Hacks" (spaced). Known exception: `public/og-image.png` still reads "SouthwestMN Hacks" - regenerating it from `public/og-image.svg` is an open task.
 - Prizes: structure published (1st/2nd/3rd + Devpost recognition), amounts "announced closer to the event"
+- Sign-up: "Join the waitlist" / "Waitlist closed" - never "Register" or "Registration closed". "Registration" still appears on the legal and safety pages, where it correctly means the intake/check-in process for students who get a spot.
 
 ### Images
 - `next.config.mjs` configures the optimizer (webp, restricted `deviceSizes`); intrinsic width/height still required
@@ -71,7 +72,7 @@ pnpm test         # Vitest (__tests__/)
 - SEO: every indexable page sets `alternates.canonical`; recap OG image is the March group photo, Fall pages use `/og-image.png`
 
 ### External services
-- Vercel Analytics `track()`: `Register Click` and `Sponsor Click` events with `location` prop; `Devpost Click` post-event
+- Vercel Analytics `track()`: `Waitlist Click` (renamed from `Register Click` when sign-ups became waitlist-only — pre-rename data lives under the old name) and `Sponsor Click` events with `location` prop; `Devpost Click` post-event
 - Stripe (live) + Notion + Resend for the sponsor pipeline; secrets in `.env.local` / Vercel env
 
 ### TypeScript

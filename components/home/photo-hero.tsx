@@ -2,11 +2,11 @@ import Image from "next/image"
 import { Reveal } from "@/components/reveal"
 import { CountdownTimer } from "@/components/countdown-timer"
 import { KonamiListener } from "@/components/easter-eggs"
-import { RegisterCta } from "@/components/register-cta"
+import { WaitlistCta, WaitlistNote } from "@/components/waitlist-cta"
 import { HeroVideo } from "@/components/home/hero-video"
 import { BLUR_DATA_URL } from "@/lib/images"
 import type { EventPhase } from "@/lib/event-phase"
-import { EVENT_NAME, EVENT_DATES, REGISTRATION_DEADLINE, VENUE_MAP_URL } from "@/lib/config"
+import { EVENT_NAME, EVENT_DATES, WAITLIST_DEADLINE, VENUE_MAP_URL } from "@/lib/config"
 
 const DEFAULT_CAPTION = "Pictured: our March 2026 event at SMSU. Real students, real judges, real sponsors."
 
@@ -74,7 +74,7 @@ export function PhotoHero({
           <p className="text-sm text-white/80 mb-8 px-4">{caption}</p>
 
           <div className="flex flex-wrap gap-4 justify-center mb-6 px-4">
-            <RegisterCta variant="hero" location="home-hero" initialPhase={phase} onDark />
+            <WaitlistCta variant="hero" location="home-hero" initialPhase={phase} onDark />
           </div>
 
           <div className="rounded-3xl bg-black/45 backdrop-blur-md ring-1 ring-white/15 px-5 py-4 mb-4">
@@ -82,7 +82,10 @@ export function PhotoHero({
           </div>
 
           {phase === "open" && (
-            <p className="text-sm text-white/80">Registration closes {REGISTRATION_DEADLINE}.</p>
+            <>
+              <WaitlistNote onDark className="mx-auto" />
+              <p className="mt-2 text-sm text-white/80">The waitlist closes {WAITLIST_DEADLINE}.</p>
+            </>
           )}
         </Reveal>
       </div>

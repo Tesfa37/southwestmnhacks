@@ -1,10 +1,10 @@
 import { Reveal } from "@/components/reveal"
 import { CountdownTimer } from "@/components/countdown-timer"
-import { RegisterCta } from "@/components/register-cta"
+import { WaitlistCta, WaitlistNote } from "@/components/waitlist-cta"
 import { CARD_TITLE, DISPLAY, MUTED } from "@/components/home-record/tokens"
 import {
   EVENT_DATES,
-  REGISTRATION_DEADLINE,
+  WAITLIST_DEADLINE,
   VENUE,
   VENUE_MAP_URL,
 } from "@/lib/config"
@@ -51,7 +51,7 @@ const DETAILS: { label: string; value: React.ReactNode }[] = [
 ]
 
 // The format in three plain columns, then the logistics as labeled rows with
-// the countdown and the register CTA. No stamps here: plans aren't artifacts.
+// the countdown and the waitlist CTA. No stamps here: plans aren't artifacts.
 export function RecordDetails({ phase }: { phase: EventPhase }) {
   return (
     <section aria-label="Event format and details" className="bg-white border-y border-gray-200">
@@ -88,9 +88,12 @@ export function RecordDetails({ phase }: { phase: EventPhase }) {
 
               <div className="flex flex-col items-center text-center gap-6">
                 <CountdownTimer />
-                <RegisterCta variant="section" location="record-details" initialPhase={phase} />
+                <WaitlistCta variant="section" location="record-details" initialPhase={phase} />
                 {phase === "open" && (
-                  <p className={`text-sm ${MUTED}`}>Registration closes {REGISTRATION_DEADLINE}.</p>
+                  <div className="flex flex-col items-center gap-2">
+                    <WaitlistNote />
+                    <p className={`text-sm ${MUTED}`}>The waitlist closes {WAITLIST_DEADLINE}.</p>
+                  </div>
                 )}
               </div>
             </div>

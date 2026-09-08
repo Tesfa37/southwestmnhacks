@@ -1,8 +1,8 @@
-import { REGISTRATION_CLOSE_AT, EVENT_START_AT, EVENT_END_AT } from "./config"
+import { WAITLIST_CLOSE_AT, EVENT_START_AT, EVENT_END_AT } from "./config"
 
 export type EventPhase = "open" | "closed" | "live" | "ended"
 
-export const CLOSE_MS = new Date(REGISTRATION_CLOSE_AT).getTime()
+export const CLOSE_MS = new Date(WAITLIST_CLOSE_AT).getTime()
 export const START_MS = new Date(EVENT_START_AT).getTime()
 export const END_MS = new Date(EVENT_END_AT).getTime()
 

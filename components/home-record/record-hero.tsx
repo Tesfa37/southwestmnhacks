@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Reveal } from "@/components/reveal"
-import { RegisterCta } from "@/components/register-cta"
+import { WaitlistCta, WaitlistNote } from "@/components/waitlist-cta"
 import { EvidenceStamp } from "@/components/home-record/evidence-stamp"
 import { ACTION_PILL, DISPLAY, MUTED } from "@/components/home-record/tokens"
 import { BLUR_DATA_URL } from "@/lib/images"
@@ -44,12 +44,15 @@ export function RecordHero({ phase }: { phase: EventPhase }) {
           )}
         </p>
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-4 mb-12">
-          <RegisterCta variant="hero" location="record-hero" initialPhase={phase} />
+        <div
+          className={`flex flex-wrap items-center gap-x-6 gap-y-4 ${phase === "open" ? "mb-4" : "mb-12"}`}
+        >
+          <WaitlistCta variant="hero" location="record-hero" initialPhase={phase} />
           <a href="#receipts" className={ACTION_PILL}>
             See the proof from March
           </a>
         </div>
+        {phase === "open" && <WaitlistNote className="mb-12" />}
       </Reveal>
 
       {/* Exhibit A: the March group photo with the first stamp. */}

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 }
 
 const MAILBOXES: { email: string; label: string; note: string }[] = [
-  { email: SUPPORT_EMAIL, label: "General & participant support", note: "Questions about the event, registration, or the site." },
+  { email: SUPPORT_EMAIL, label: "General & participant support", note: "Questions about the event, the waitlist, or the site." },
   { email: SPONSOR_EMAIL, label: "Sponsorship & billing", note: "Becoming a sponsor, invoices, receipts, and payment questions." },
   { email: PRIVACY_EMAIL, label: "Privacy & data requests", note: "Access, correction, or deletion of your information." },
   { email: CONDUCT_EMAIL, label: "Code of Conduct reports", note: "Safety concerns or conduct issues at the event." },

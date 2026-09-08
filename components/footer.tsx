@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { RegisterCta } from "@/components/register-cta"
+import { WaitlistCta } from "@/components/waitlist-cta"
 import { getEventPhase } from "@/lib/event-phase"
 import {
   SUPPORT_EMAIL,
@@ -30,7 +30,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
-              <RegisterCta variant="footer-link" location="footer" initialPhase={getEventPhase()} />
+              <WaitlistCta variant="footer-link" location="footer" initialPhase={getEventPhase()} />
               <Link href="/resources" className="block text-gray-400 hover:text-white transition-colors">
                 Resources
               </Link>

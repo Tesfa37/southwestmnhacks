@@ -8,8 +8,8 @@ The first event ran March 21, 2026 with front-page local press coverage. **South
 
 ## What the platform does
 
-- **Event marketing and registration funnel**, including rules, safety, code of conduct, refunds, terms, privacy, resources, contact, and event recap pages.
-- **Date-driven registration states.** The site derives an event phase (`open`, `closed`, `live`, `ended`) from configured timestamps at request time, and every registration surface renders accordingly. A `NEXT_PUBLIC_EVENT_PHASE` override exists for local QA only.
+- **Event marketing and waitlist funnel**, including rules, safety, code of conduct, refunds, terms, privacy, resources, contact, and event recap pages.
+- **Date-driven waitlist states.** The site derives an event phase (`open`, `closed`, `live`, `ended`) from configured timestamps at request time, and every waitlist surface renders accordingly. A `NEXT_PUBLIC_EVENT_PHASE` override exists for local QA only.
 - **Native sponsor intake with real payments.** Sponsors pick a tier ($500, $1,000, $2,000, $5,000, custom amount, or in-kind) and a payment preference, and the server routes the submission to the right rail:
   - **Stripe Checkout** (card or ACH) for pay-now sponsors
   - **Stripe Invoicing** (draft-first by default, configurable net terms) for invoice requests

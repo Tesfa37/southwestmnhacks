@@ -63,7 +63,7 @@ export function CountdownTimer({ tone = "light" }: { tone?: "light" | "dark" }) 
   }
 
   const beforeClose = now < CLOSE_MS
-  const label = beforeClose ? "Registration closes in" : "Event begins in"
+  const label = beforeClose ? "Waitlist closes in" : "Event begins in"
   const units = unitsUntil(beforeClose ? CLOSE_MS : START_MS, now)
 
   return (

@@ -5,16 +5,16 @@ import Link from "next/link"
 import { track } from "@vercel/analytics"
 import { MagneticButton } from "@/components/magnetic-button"
 import { getEventPhase, type EventPhase } from "@/lib/event-phase"
-import { REGISTRATION_FORM_URL, DEVPOST_FALL_URL } from "@/lib/config"
+import { WAITLIST_FORM_URL, WAITLIST_NOTE, DEVPOST_FALL_URL } from "@/lib/config"
 
 type Variant = "header-desktop" | "header-mobile" | "hero" | "section" | "footer-link"
 
-interface RegisterCtaProps {
+interface WaitlistCtaProps {
   variant: Variant
   location: string
   /** Server call sites pass their render-time phase so SSR HTML and hydration agree. */
   initialPhase?: EventPhase
-  /** Renders the closed/live helper text in light-on-dark colors. Pills are unaffected. */
+  /** Renders the waitlist/closed/live helper text in light-on-dark colors. Pills are unaffected. */
   onDark?: boolean
   /** header-mobile: close the menu on tap. */
   onNavigate?: () => void
@@ -29,6 +29,9 @@ const subscribeNever = () => () => {}
 export function useEventPhase(initialPhase: EventPhase = "open"): EventPhase {
   return useSyncExternalStore(subscribeNever, getEventPhase, () => initialPhase)
 }
+
+/** Sign-ups are waitlist-only, so every open-phase CTA says so on the button. */
+const OPEN_LABEL = "Join the waitlist"
 
 const PILL_CLASSES = {
   "header-desktop":
@@ -45,42 +48,58 @@ const CLOSED_PILL_CLASSES = {
   section: "inline-block bg-gray-200 text-gray-600 px-8 py-4 rounded-full font-semibold text-lg cursor-default",
 } as const
 
-export function RegisterCta({ variant, location, initialPhase = "open", onNavigate, onDark = false }: RegisterCtaProps) {
+const HELPER_TEXT = {
+  light: "text-sm text-gray-500",
+  dark: "text-sm text-white/70",
+} as const
+
+/**
+ * The one place the waitlist expectation is spelled out. Rendered as a sibling
+ * rather than inside the CTA so each surface places it in its own layout; show
+ * it wherever a live CTA appears (phase "open").
+ */
+export function WaitlistNote({ onDark = false, className = "" }: { onDark?: boolean; className?: string }) {
+  return (
+    <p className={`${HELPER_TEXT[onDark ? "dark" : "light"]} max-w-md text-pretty ${className}`}>{WAITLIST_NOTE}</p>
+  )
+}
+
+export function WaitlistCta({ variant, location, initialPhase = "open", onNavigate, onDark = false }: WaitlistCtaProps) {
   const phase = useEventPhase(initialPhase)
 
   if (phase === "open") {
     if (variant === "hero") {
       return (
-        <MagneticButton href={REGISTRATION_FORM_URL} onClick={() => track("Register Click", { location })}>
-          Register
+        <MagneticButton href={WAITLIST_FORM_URL} onClick={() => track("Waitlist Click", { location })}>
+          {OPEN_LABEL}
         </MagneticButton>
       )
     }
     if (variant === "footer-link") {
       return (
         <a
-          href={REGISTRATION_FORM_URL}
+          href={WAITLIST_FORM_URL}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => track("Register Click", { location })}
+          onClick={() => track("Waitlist Click", { location })}
           className="block text-gray-400 hover:text-white transition-colors"
         >
-          Register
+          {OPEN_LABEL}
         </a>
       )
     }
     return (
       <a
-        href={REGISTRATION_FORM_URL}
+        href={WAITLIST_FORM_URL}
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => {
-          track("Register Click", { location })
+          track("Waitlist Click", { location })
           onNavigate?.()
         }}
         className={PILL_CLASSES[variant]}
       >
-        Register
+        {OPEN_LABEL}
       </a>
     )
   }
@@ -123,18 +142,18 @@ export function RegisterCta({ variant, location, initialPhase = "open", onNaviga
     )
   }
 
-  // closed / live: registration is over but the event hasn't ended.
+  // closed / live: the waitlist is shut but the event hasn't ended.
   if (variant === "footer-link") {
-    return <span className="block text-gray-500">Registration closed</span>
+    return <span className="block text-gray-500">Waitlist closed</span>
   }
   if (variant === "hero" || variant === "section") {
-    const helperText = onDark ? "text-sm text-white/60" : "text-sm text-gray-500"
+    const helperText = HELPER_TEXT[onDark ? "dark" : "light"]
     const helperLink = onDark
-      ? "underline underline-offset-2 hover:text-white/80"
+      ? "underline underline-offset-2 hover:text-white/90"
       : "underline underline-offset-2 hover:text-gray-700"
     return (
       <span className="inline-flex flex-col items-center gap-3">
-        <span className={CLOSED_PILL_CLASSES.section}>Registration closed</span>
+        <span className={CLOSED_PILL_CLASSES.section}>Waitlist closed</span>
         <span className={helperText}>
           <a
             href={DEVPOST_FALL_URL}
@@ -152,5 +171,5 @@ export function RegisterCta({ variant, location, initialPhase = "open", onNaviga
       </span>
     )
   }
-  return <span className={CLOSED_PILL_CLASSES[variant]}>Registration closed</span>
+  return <span className={CLOSED_PILL_CLASSES[variant]}>Waitlist closed</span>
 }

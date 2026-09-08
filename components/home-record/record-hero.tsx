@@ -52,7 +52,7 @@ export function RecordHero({ phase }: { phase: EventPhase }) {
             See the proof from March
           </a>
         </div>
-        {phase === "open" && <WaitlistNote className="mb-12" />}
+        {phase === "open" && <WaitlistNote initialPhase={phase} className="mb-12" />}
       </Reveal>
 
       {/* Exhibit A: the March group photo with the first stamp. */}

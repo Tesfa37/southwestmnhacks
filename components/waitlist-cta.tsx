@@ -5,7 +5,7 @@ import Link from "next/link"
 import { track } from "@vercel/analytics"
 import { MagneticButton } from "@/components/magnetic-button"
 import { getEventPhase, type EventPhase } from "@/lib/event-phase"
-import { WAITLIST_FORM_URL, WAITLIST_NOTE, DEVPOST_FALL_URL } from "@/lib/config"
+import { WAITLIST_FORM_URL, WAITLIST_NOTE, WAITLIST_DEADLINE, DEVPOST_FALL_URL } from "@/lib/config"
 
 type Variant = "header-desktop" | "header-mobile" | "hero" | "section" | "footer-link"
 
@@ -53,14 +53,43 @@ const HELPER_TEXT = {
   dark: "text-sm text-white/70",
 } as const
 
+interface HelperProps {
+  /** Server call sites pass their render-time phase, exactly like WaitlistCta. */
+  initialPhase?: EventPhase
+  onDark?: boolean
+  /** Replaces the light/dark colour preset outright (no Tailwind precedence games). */
+  colorClassName?: string
+  className?: string
+}
+
 /**
  * The one place the waitlist expectation is spelled out. Rendered as a sibling
  * rather than inside the CTA so each surface places it in its own layout; show
  * it wherever a live CTA appears (phase "open").
+ *
+ * Self-gating on the phase, not just on the caller's server-side check: pages are
+ * ISR'd hourly, so a cached page can outlive the waitlist. The server gate can
+ * only ever over-render (phases move forward), and this removes the excess on
+ * hydration so the sentence can never sit under a "Waitlist closed" button.
  */
-export function WaitlistNote({ onDark = false, className = "" }: { onDark?: boolean; className?: string }) {
+export function WaitlistNote({ initialPhase = "open", onDark = false, colorClassName, className = "" }: HelperProps) {
+  const phase = useEventPhase(initialPhase)
+  if (phase !== "open") return null
   return (
-    <p className={`${HELPER_TEXT[onDark ? "dark" : "light"]} max-w-md text-pretty ${className}`}>{WAITLIST_NOTE}</p>
+    <p className={`${colorClassName ?? HELPER_TEXT[onDark ? "dark" : "light"]} max-w-md text-pretty ${className}`}>
+      {WAITLIST_NOTE}
+    </p>
+  )
+}
+
+/** The closing date, gated the same way and for the same reason. */
+export function WaitlistDeadline({ initialPhase = "open", onDark = false, colorClassName, className = "" }: HelperProps) {
+  const phase = useEventPhase(initialPhase)
+  if (phase !== "open") return null
+  return (
+    <p className={`${colorClassName ?? HELPER_TEXT[onDark ? "dark" : "light"]} ${className}`}>
+      The waitlist closes {WAITLIST_DEADLINE}.
+    </p>
   )
 }
 

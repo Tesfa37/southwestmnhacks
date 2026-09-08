@@ -6,9 +6,9 @@ import { EventRecap } from "@/components/event-recap"
 import { Winners } from "@/components/winners"
 import { Appreciation } from "@/components/appreciation"
 import { WinnerContinuationBadge } from "@/components/winner-continuation-badge"
-import { WaitlistCta } from "@/components/waitlist-cta"
+import { WaitlistCta, WaitlistNote } from "@/components/waitlist-cta"
 import { getEventPhase } from "@/lib/event-phase"
-import { EVENT_DATES, WAITLIST_NOTE } from "@/lib/config"
+import { EVENT_DATES } from "@/lib/config"
 
 // Re-render hourly so the forward CTA follows the waitlist phase.
 export const revalidate = 3600
@@ -143,9 +143,11 @@ export default function RecapPage() {
               Become a sponsor
             </Link>
           </div>
-          {getEventPhase() === "open" && (
-            <p className="mx-auto mt-5 max-w-md text-sm text-pretty opacity-90">{WAITLIST_NOTE}</p>
-          )}
+          <WaitlistNote
+            initialPhase={getEventPhase()}
+            colorClassName="text-sm text-current opacity-90"
+            className="mx-auto mt-5"
+          />
         </div>
       </section>
       </main>

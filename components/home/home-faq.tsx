@@ -15,7 +15,7 @@ export interface HomeFaq {
 export function buildFaqs(phase: EventPhase): HomeFaq[] {
   const waitlistAnswer =
     phase === "open"
-      ? `Fill out the waitlist form linked throughout this site. It adds you to the waitlist rather than confirming a spot; we'll email you if one opens up. The waitlist closes ${WAITLIST_DEADLINE}, so join early — it's first come, first served.`
+      ? `Fill out the waitlist form linked throughout this site. It adds you to the waitlist rather than confirming a spot; we'll email you if we're able to offer you a spot. The waitlist closes ${WAITLIST_DEADLINE}, so join early — it's first come, first served.`
       : phase === "ended"
         ? "Fall 2026 has wrapped. See what students built on Devpost, and check back for our next event."
         : "The Fall 2026 waitlist has closed. Follow the projects on Devpost, and check back for our next event."
@@ -58,11 +58,12 @@ export function buildFaqs(phase: EventPhase): HomeFaq[] {
           >
             parental consent form
           </a>{" "}
-          done is on you. Send it to a parent or guardian and make sure they complete it before check-in. You
-          can&apos;t check in without it.
+          done is on you. There is no separate deadline for it: if you&apos;re offered a spot off the waitlist, a
+          parent or guardian has to complete it before you check in, and you can&apos;t check in without it. Send it
+          to them early so you&apos;re ready.
         </>
       ),
-      text: "High school students are welcome, but if you're under 18, getting the parental consent form done is on you. Send it to a parent or guardian and make sure they complete it before check-in. You can't check in without it.",
+      text: "High school students are welcome, but if you're under 18, getting the parental consent form done is on you. There is no separate deadline for it: if you're offered a spot off the waitlist, a parent or guardian has to complete it before you check in, and you can't check in without it. Send it to them early so you're ready.",
     },
     {
       question: "What should I bring?",

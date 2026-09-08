@@ -1,9 +1,9 @@
 import { Calendar, Clock, MapPin, Users } from "lucide-react"
 import { Reveal } from "@/components/reveal"
-import { WaitlistCta, WaitlistNote } from "@/components/waitlist-cta"
+import { WaitlistCta, WaitlistDeadline, WaitlistNote } from "@/components/waitlist-cta"
 import { BODY, HEADING, MUTED, SURFACE, type Tone } from "@/components/home/tone"
 import type { EventPhase } from "@/lib/event-phase"
-import { EVENT_DATES, WAITLIST_DEADLINE, VENUE_MAP_URL } from "@/lib/config"
+import { EVENT_DATES, VENUE_MAP_URL } from "@/lib/config"
 
 export function EventDetails({ phase, tone }: { phase: EventPhase; tone: Tone }) {
   return (
@@ -59,8 +59,12 @@ export function EventDetails({ phase, tone }: { phase: EventPhase; tone: Tone })
           />
           {phase === "open" && (
             <>
-              <WaitlistNote onDark={tone === "dark"} className="mx-auto mt-3" />
-              <p className={`text-sm ${MUTED[tone]} mt-2`}>The waitlist closes {WAITLIST_DEADLINE}.</p>
+              <WaitlistNote initialPhase={phase} onDark={tone === "dark"} className="mx-auto mt-3" />
+              <WaitlistDeadline
+                initialPhase={phase}
+                colorClassName={`text-sm ${MUTED[tone]}`}
+                className="mt-2"
+              />
             </>
           )}
         </div>

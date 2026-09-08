@@ -1,13 +1,8 @@
 import { Reveal } from "@/components/reveal"
 import { CountdownTimer } from "@/components/countdown-timer"
-import { WaitlistCta, WaitlistNote } from "@/components/waitlist-cta"
+import { WaitlistCta, WaitlistDeadline, WaitlistNote } from "@/components/waitlist-cta"
 import { CARD_TITLE, DISPLAY, MUTED } from "@/components/home-record/tokens"
-import {
-  EVENT_DATES,
-  WAITLIST_DEADLINE,
-  VENUE,
-  VENUE_MAP_URL,
-} from "@/lib/config"
+import { EVENT_DATES, VENUE, VENUE_MAP_URL } from "@/lib/config"
 import type { EventPhase } from "@/lib/event-phase"
 
 const FORMAT = [
@@ -91,8 +86,8 @@ export function RecordDetails({ phase }: { phase: EventPhase }) {
                 <WaitlistCta variant="section" location="record-details" initialPhase={phase} />
                 {phase === "open" && (
                   <div className="flex flex-col items-center gap-2">
-                    <WaitlistNote />
-                    <p className={`text-sm ${MUTED}`}>The waitlist closes {WAITLIST_DEADLINE}.</p>
+                    <WaitlistNote initialPhase={phase} />
+                    <WaitlistDeadline initialPhase={phase} colorClassName={`text-sm ${MUTED}`} />
                   </div>
                 )}
               </div>

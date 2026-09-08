@@ -3,7 +3,6 @@
 // Event identity
 export const EVENT_NAME = "Southwest MN Hacks: Fall 2026"
 export const EVENT_DATES = "September 12 to 13, 2026"
-export const WAITLIST_DEADLINE = "September 8, 2026"
 export const VENUE = "Southwest Minnesota State University, Marshall, MN"
 
 // Google Maps deep link to the venue (Upper Conference Center, SMSU).
@@ -11,18 +10,28 @@ export const VENUE_MAP_URL =
   "https://www.google.com/maps/search/?api=1&query=Upper+Conference+Center+Southwest+Minnesota+State+University+Marshall+MN"
 
 // Countdown targets as fixed instants (Central Time, CDT = UTC-5 in September).
-// The home page countdown moves through these: closes -> begins -> underway -> ended.
-export const WAITLIST_CLOSE_AT = "2026-09-08T23:59:59-05:00"
 export const EVENT_START_AT = "2026-09-12T08:00:00-05:00"
 export const EVENT_END_AT = "2026-09-13T10:00:00-05:00"
 
+// The waitlist deliberately OUTLIVES the Sept 8 registration deadline and runs
+// right up to the moment doors open — that is the entire point of having one.
+// Aliased to EVENT_START_AT rather than copied so the two instants can never
+// drift apart. Two consequences of the equality, both intended:
+//   - the "closed" phase is unreachable (getEventPhase tests "live" first);
+//   - the countdown never shows "Event begins in", because closing the waitlist
+//     and opening the doors are the same instant.
+// To close the waitlist earlier, replace this with its own literal; both of the
+// above come back automatically.
+export const WAITLIST_CLOSE_AT = EVENT_START_AT
+export const WAITLIST_DEADLINE = "when doors open at 8 AM on September 12"
+
 // Live event assets
 // The sign-up form is a WAITLIST, not a confirmed seat: submitting it places a
-// student in line and organizers email them if a spot opens. WAITLIST_NOTE is
+// student in line and organizers email them only if a spot can be offered. WAITLIST_NOTE is
 // the one place that expectation is worded; every CTA renders it verbatim.
 export const WAITLIST_FORM_URL = "https://forms.gle/tR3nteuQ3CgyHAmW6"
 export const WAITLIST_NOTE =
-  "Submitting the form adds you to the waitlist, not a confirmed spot. We'll email you if one opens up."
+  "Submitting the form adds you to the waitlist, not a confirmed spot. We'll email you if we're able to offer you a spot."
 // Careful: the two Devpost subdomains differ only in hyphenation.
 // Fall 2026 lives at southwest-mn-hacks; the March 2026 event at southwestmn-hacks.
 export const DEVPOST_FALL_URL = "https://southwest-mn-hacks.devpost.com/"

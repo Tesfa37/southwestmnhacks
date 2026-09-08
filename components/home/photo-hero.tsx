@@ -2,11 +2,11 @@ import Image from "next/image"
 import { Reveal } from "@/components/reveal"
 import { CountdownTimer } from "@/components/countdown-timer"
 import { KonamiListener } from "@/components/easter-eggs"
-import { WaitlistCta, WaitlistNote } from "@/components/waitlist-cta"
+import { WaitlistCta, WaitlistDeadline, WaitlistNote } from "@/components/waitlist-cta"
 import { HeroVideo } from "@/components/home/hero-video"
 import { BLUR_DATA_URL } from "@/lib/images"
 import type { EventPhase } from "@/lib/event-phase"
-import { EVENT_NAME, EVENT_DATES, WAITLIST_DEADLINE, VENUE_MAP_URL } from "@/lib/config"
+import { EVENT_NAME, EVENT_DATES, VENUE_MAP_URL } from "@/lib/config"
 
 const DEFAULT_CAPTION = "Pictured: our March 2026 event at SMSU. Real students, real judges, real sponsors."
 
@@ -83,8 +83,12 @@ export function PhotoHero({
 
           {phase === "open" && (
             <>
-              <WaitlistNote onDark className="mx-auto" />
-              <p className="mt-2 text-sm text-white/80">The waitlist closes {WAITLIST_DEADLINE}.</p>
+              <WaitlistNote initialPhase={phase} onDark className="mx-auto" />
+              <WaitlistDeadline
+                initialPhase={phase}
+                colorClassName="text-sm text-white/80"
+                className="mt-2"
+              />
             </>
           )}
         </Reveal>

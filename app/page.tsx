@@ -15,8 +15,12 @@ import {
   SCHWANS_INSTAGRAM_URL,
 } from "@/lib/config"
 
-// Re-render hourly so date-driven copy and schema stay current without a deploy.
-export const revalidate = 3600
+// Re-render every 5 minutes so date-driven copy and schema stay current without a
+// deploy. Was hourly; tightened for event weekend because the server-rendered bits
+// that can't self-correct on the client (the FAQ answers built by buildFaqs(phase)
+// and the Event JSON-LD offer) would otherwise sit stale for up to an hour after
+// the waitlist closes at 8 AM Sept 12. Safe to put back to 3600 after the event.
+export const revalidate = 300
 
 export default function HomePage() {
   const phase = getEventPhase()

@@ -13,17 +13,15 @@ export const VENUE_MAP_URL =
 export const EVENT_START_AT = "2026-09-12T08:00:00-05:00"
 export const EVENT_END_AT = "2026-09-13T10:00:00-05:00"
 
-// The waitlist deliberately OUTLIVES the Sept 8 registration deadline and runs
-// right up to the moment doors open — that is the entire point of having one.
-// Aliased to EVENT_START_AT rather than copied so the two instants can never
-// drift apart. Two consequences of the equality, both intended:
-//   - the "closed" phase is unreachable (getEventPhase tests "live" first);
-//   - the countdown never shows "Event begins in", because closing the waitlist
-//     and opening the doors are the same instant.
-// To close the waitlist earlier, replace this with its own literal; both of the
-// above come back automatically.
-export const WAITLIST_CLOSE_AT = EVENT_START_AT
-export const WAITLIST_DEADLINE = "when doors open at 8 AM on September 12"
+// THE WAITLIST IS CLOSED. It ran past the Sept 8 registration deadline and shut
+// at the instant below; sign-ups are over. This previously aliased EVENT_START_AT
+// (running right up to doors), and carrying its own earlier literal is exactly how
+// that arrangement was meant to be ended. Two things come back automatically:
+//   - the "closed" phase is reachable again (it is the live phase right now);
+//   - the countdown shows "Event begins in", counting to doors on Sept 12.
+// Must stay <= EVENT_START_AT; the ordering is asserted in the phase tests.
+export const WAITLIST_CLOSE_AT = "2026-09-09T08:20:00-05:00"
+export const WAITLIST_DEADLINE = "September 9, 2026"
 
 // Live event assets
 // The sign-up form is a WAITLIST, not a confirmed seat: submitting it places a

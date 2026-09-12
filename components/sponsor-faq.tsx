@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     question: "When do we need to decide?",
-    answer: `Committing by ${SPONSOR_DEADLINE} guarantees every benefit in your tier: printed t-shirt logo placement and, for Gold and above, a sponsored challenge prompt. We welcome sponsors after that date too. You'll receive all digital and day-of benefits, but print and challenge-prompt deadlines will have passed.`,
+    answer: `The ${SPONSOR_DEADLINE} deadline that guaranteed every benefit in a tier — printed t-shirt logo placement and, for Gold and above, a sponsored challenge prompt — has passed. We still welcome sponsors: you'll receive all digital and day-of benefits, though the print and challenge-prompt deadlines are behind us.`,
   },
   {
     question: "What do sponsor representatives do onsite?",

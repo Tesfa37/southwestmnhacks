@@ -52,10 +52,10 @@ export function SponsorTiers() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Sponsorship levels</h2>
           <p className="text-lg text-muted-foreground text-balance">Choose a level that works for your organization</p>
           <p className="mt-4 inline-flex rounded-full bg-amber-100 px-4 py-1.5 text-sm font-semibold text-amber-900">
-            Commit by {SPONSOR_DEADLINE} to lock in full benefits
+            The {SPONSOR_DEADLINE} full-benefit deadline has passed
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Later sponsors still receive all digital and day-of benefits.
+            Sponsors are still welcome and still receive all digital and day-of benefits.
           </p>
         </div>
 

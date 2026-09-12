@@ -72,7 +72,8 @@ export default async function SponsorSuccessPage({
               <li>You&apos;ll get a confirmation email from us with your receipt or invoice details.</li>
               <li>
                 Reply to that email with your logo (SVG or high-resolution transparent PNG) so we can add you to the
-                site and, by {SPONSOR_DEADLINE_SHORT}, the event t-shirt.
+                site. The {SPONSOR_DEADLINE_SHORT} t-shirt print deadline has passed, so this year&apos;s shirt is
+                already at the printer.
               </li>
               <li>
                 As the event approaches we&apos;ll coordinate your on-site representatives, booth setup, and any

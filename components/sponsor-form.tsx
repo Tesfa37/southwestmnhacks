@@ -12,7 +12,8 @@ export function SponsorForm() {
             invoice, or just talk first. Not sure which level fits? Start here or email us.
           </p>
           <p className="text-sm font-medium text-foreground mb-8">
-            Full-benefit commitment deadline: {SPONSOR_DEADLINE}.
+            The full-benefit commitment deadline ({SPONSOR_DEADLINE}) has passed. Sponsors are still
+            welcome and still receive all digital and day-of benefits.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">

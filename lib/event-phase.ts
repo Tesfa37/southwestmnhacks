@@ -90,3 +90,36 @@ export function subscribeToBoundaries(onChange: () => void): () => void {
     if (timer !== undefined) clearTimeout(timer)
   }
 }
+
+export type SubmissionState = "counting" | "closed"
+
+/**
+ * Are Devpost submissions still open? Unlike getEventPhase and
+ * areChallengesRevealed, this is deliberately NOT override-aware: under
+ * NEXT_PUBLIC_EVENT_PHASE the real clock still yields a sensible countdown,
+ * and the only consumer already sits inside the phase-gated Event Hub.
+ */
+export function getSubmissionState(now: number = Date.now()): SubmissionState {
+  return now >= SUBMISSION_MS ? "closed" : "counting"
+}
+
+// Urgency thresholds for the submission countdown, measured back from the
+// deadline: the sticky bar appears at the first, the red treatment at the second.
+export const SUBMISSION_STICKY_MS = 3 * 60 * 60 * 1000
+export const SUBMISSION_URGENT_MS = 60 * 60 * 1000
+
+/**
+ * Split a remaining duration into display parts, clamped at zero.
+ *
+ * `hours` is WHOLE hours, not hours-within-a-day: doors to deadline is exactly
+ * 24h, so a days field would read 00 for the entire event. One format covers
+ * "26:14:03" before doors and "07:22:09" overnight.
+ */
+export function splitCountdown(ms: number): { hours: number; minutes: number; seconds: number } {
+  const total = Math.max(0, ms)
+  return {
+    hours: Math.floor(total / 3_600_000),
+    minutes: Math.floor((total % 3_600_000) / 60_000),
+    seconds: Math.floor((total % 60_000) / 1_000),
+  }
+}

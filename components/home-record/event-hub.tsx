@@ -5,6 +5,9 @@ import { track } from "@vercel/analytics"
 import { Reveal } from "@/components/reveal"
 import { HubSchedule } from "@/components/home-record/hub-schedule"
 import { HubChallenges } from "@/components/home-record/hub-challenges"
+import { SubmissionCountdown } from "@/components/home-record/submission-countdown"
+import { SubmissionStickyBar } from "@/components/home-record/submission-sticky-bar"
+import { useSubmissionCountdown } from "@/components/home-record/use-submission-countdown"
 import { useEventPhase } from "@/components/waitlist-cta"
 import { ACTION_PILL, CARD_TITLE, DISPLAY, MUTED } from "@/components/home-record/tokens"
 import { QUICK_LINKS, SUBMISSION_CHECKLIST } from "@/lib/event-hub"
@@ -27,6 +30,9 @@ export function EventHub({
   initialRevealed: boolean
 }) {
   const phase = useEventPhase(initialPhase)
+  // One clock for the card, the button, and the sticky bar: read once here so
+  // the 8:00 AM swap is atomic across all three.
+  const countdown = useSubmissionCountdown()
 
   // Present from the waitlist closing (so students arriving can plan) until the
   // event ends, when the wrap-up homepage takes over.
@@ -39,6 +45,8 @@ export function EventHub({
       aria-label="Event Hub"
       className="scroll-mt-24 bg-white border-y border-gray-200"
     >
+      <SubmissionStickyBar countdown={countdown} />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <Reveal>
           <div className="mb-10 max-w-2xl">
@@ -64,17 +72,26 @@ export function EventHub({
                 <p className="text-2xl sm:text-3xl font-black tracking-tight text-orange-900">
                   {SUBMISSION_DEADLINE}
                 </p>
-                <p className={`mt-2 text-sm ${MUTED}`}>Submit your project on Devpost before the deadline.</p>
+                <SubmissionCountdown countdown={countdown} />
+                <p className={`text-sm ${MUTED}`}>
+                  {countdown.state === "closed"
+                    ? "The deadline has passed. Judging is underway."
+                    : "Submit your project on Devpost before the deadline."}
+                </p>
               </div>
 
               <a
                 href={DEVPOST_FALL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => track("Devpost Click", { location: "event-hub-submit" })}
+                onClick={() =>
+                  track("Devpost Click", {
+                    location: countdown.state === "closed" ? "event-hub-view" : "event-hub-submit",
+                  })
+                }
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-600 to-pink-600 px-8 py-4 text-lg font-semibold text-white transition-all hover:shadow-lg hover:from-orange-700 hover:to-pink-700"
               >
-                Submit on Devpost
+                {countdown.state === "closed" ? "View submissions on Devpost" : "Submit on Devpost"}
               </a>
             </div>
 

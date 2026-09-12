@@ -13,6 +13,20 @@ export const VENUE_MAP_URL =
 export const EVENT_START_AT = "2026-09-12T08:00:00-05:00"
 export const EVENT_END_AT = "2026-09-13T10:00:00-05:00"
 
+// Event-day instants driving the Event Hub (components/home-record/event-hub.tsx).
+// The challenge prompts stay hidden until the reveal so the homepage can't scoop
+// the opening ceremony; the submission deadline is two hours before doors close,
+// leaving demos and judging in between.
+// Ordering invariant, asserted in __tests__/event-hub.test.ts:
+//   WAITLIST_CLOSE_AT <= EVENT_START_AT < CHALLENGES_REVEAL_AT
+//     < SUBMISSION_DEADLINE_AT < EVENT_END_AT
+export const CHALLENGES_REVEAL_AT = "2026-09-12T10:00:00-05:00"
+export const SUBMISSION_DEADLINE_AT = "2026-09-13T08:00:00-05:00"
+// Display forms of SUBMISSION_DEADLINE_AT. Kept beside the instant so the copy
+// and the gate can never drift apart.
+export const SUBMISSION_DEADLINE = "8:00 AM Sunday, September 13"
+export const SUBMISSION_DEADLINE_SHORT = "8:00 AM Sunday"
+
 // THE WAITLIST IS CLOSED. It ran past the Sept 8 registration deadline and shut
 // at the instant below; sign-ups are over. This previously aliased EVENT_START_AT
 // (running right up to doors), and carrying its own earlier literal is exactly how

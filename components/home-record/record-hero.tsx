@@ -1,9 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Reveal } from "@/components/reveal"
-import { WaitlistCta, WaitlistNote } from "@/components/waitlist-cta"
+import { RecordHeroCopy } from "@/components/home-record/record-hero-copy"
 import { EvidenceStamp } from "@/components/home-record/evidence-stamp"
-import { ACTION_PILL, DISPLAY, MUTED } from "@/components/home-record/tokens"
+import { MUTED } from "@/components/home-record/tokens"
 import { BLUR_DATA_URL } from "@/lib/images"
 import { VENUE_MAP_URL } from "@/lib/config"
 import type { EventPhase } from "@/lib/event-phase"
@@ -27,32 +27,9 @@ export function RecordHero({ phase }: { phase: EventPhase }) {
           </a>
         </p>
 
-        <h1
-          className={`${DISPLAY} text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.95] text-balance mb-6 max-w-4xl`}
-        >
-          24 hours to build something real.
-        </h1>
-
-        <p className={`text-lg sm:text-xl ${MUTED} leading-relaxed max-w-2xl mb-8 text-pretty`}>
-          {phase === "ended" ? (
-            <>Fall 2026 is a wrap. Thanks to every student who showed up. See what they built.</>
-          ) : (
-            <>
-              Southwest Minnesota&apos;s free overnight student hackathon returns to SMSU. Beginner friendly, ages 14
-              and up, high school through college.
-            </>
-          )}
-        </p>
-
-        <div
-          className={`flex flex-wrap items-center gap-x-6 gap-y-4 ${phase === "open" ? "mb-4" : "mb-12"}`}
-        >
-          <WaitlistCta variant="hero" location="record-hero" initialPhase={phase} />
-          <a href="#receipts" className={ACTION_PILL}>
-            See the proof from March
-          </a>
-        </div>
-        {phase === "open" && <WaitlistNote initialPhase={phase} className="mb-12" />}
+        {/* Headline, supporting line, and actions live in a client island so
+            they swap the instant the event goes live, without a refresh. */}
+        <RecordHeroCopy initialPhase={phase} />
       </Reveal>
 
       {/* Exhibit A: the March group photo with the first stamp. */}

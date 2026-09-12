@@ -4,7 +4,12 @@ import { useSyncExternalStore } from "react"
 import Link from "next/link"
 import { track } from "@vercel/analytics"
 import { MagneticButton } from "@/components/magnetic-button"
-import { getEventPhase, type EventPhase } from "@/lib/event-phase"
+import {
+  getEventPhase,
+  areChallengesRevealed,
+  subscribeToBoundaries,
+  type EventPhase,
+} from "@/lib/event-phase"
 import { WAITLIST_FORM_URL, WAITLIST_NOTE, WAITLIST_DEADLINE, DEVPOST_FALL_URL } from "@/lib/config"
 
 type Variant = "header-desktop" | "header-mobile" | "hero" | "section" | "footer-link"
@@ -20,14 +25,27 @@ interface WaitlistCtaProps {
   onNavigate?: () => void
 }
 
-const subscribeNever = () => () => {}
-
 /**
  * Server render and hydration use initialPhase (so SSR HTML always matches);
  * after hydration the client re-evaluates against the real clock.
+ *
+ * Subscribed to the real boundary instants, so a tab left open across doors-open
+ * or the event end re-renders on its own. getEventPhase returns one of four
+ * string literals, so React compares snapshots by value and bails out when the
+ * phase hasn't moved.
  */
 export function useEventPhase(initialPhase: EventPhase = "open"): EventPhase {
-  return useSyncExternalStore(subscribeNever, getEventPhase, () => initialPhase)
+  return useSyncExternalStore(subscribeToBoundaries, getEventPhase, () => initialPhase)
+}
+
+/**
+ * Have the challenge prompts been revealed? Shares the boundary timer with
+ * useEventPhase, so this gate — which isn't a phase change — still flips in an
+ * already-open tab. Callers pass the server's answer as `initial` so SSR and
+ * hydration agree, the same contract as initialPhase above.
+ */
+export function useChallengesRevealed(initial: boolean): boolean {
+  return useSyncExternalStore(subscribeToBoundaries, areChallengesRevealed, () => initial)
 }
 
 /** Sign-ups are waitlist-only, so every open-phase CTA says so on the button. */

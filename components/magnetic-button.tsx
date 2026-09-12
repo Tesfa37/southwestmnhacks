@@ -12,10 +12,16 @@ export function MagneticButton({
   href,
   children,
   onClick,
+  newTab = true,
 }: {
   href: string
   children: React.ReactNode
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
+  /**
+   * Off-site destinations (the default) open in a new tab. Pass false for
+   * same-page anchors, where a new tab would be nonsense.
+   */
+  newTab?: boolean
 }) {
   const ref = useRef<HTMLAnchorElement>(null)
   const reduceMotion = useReducedMotion()
@@ -41,8 +47,8 @@ export function MagneticButton({
       <m.a
         ref={ref}
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={newTab ? "_blank" : undefined}
+        rel={newTab ? "noopener noreferrer" : undefined}
         style={{ x, y }}
         onClick={onClick}
         onPointerMove={handlePointerMove}

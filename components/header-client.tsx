@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { track } from "@vercel/analytics"
-import { WaitlistCta } from "@/components/waitlist-cta"
+import { WaitlistCta, useEventPhase } from "@/components/waitlist-cta"
 import type { EventPhase } from "@/lib/event-phase"
 
 // Light is the default everywhere; the homepage's cinematic stage passes "dark".
@@ -38,6 +38,9 @@ export function HeaderClient({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const c = HEADER_CLASSES[variant]
+  // Only during the event itself: the hub is what participants in the room
+  // want one tap away. Appears on its own when doors open.
+  const isLive = useEventPhase(initialPhase) === "live"
 
   return (
     <nav className={c.nav}>
@@ -55,6 +58,11 @@ export function HeaderClient({
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
+            {isLive && (
+              <Link href="/#event-hub" className={`${c.link} font-semibold`}>
+                Event Hub
+              </Link>
+            )}
             <Link href="/resources" className={c.link}>
               Resources
             </Link>
@@ -94,6 +102,15 @@ export function HeaderClient({
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div id="mobile-nav" className={c.mobileDivider}>
+            {isLive && (
+              <Link
+                href="/#event-hub"
+                className={`${c.mobileLink} font-semibold`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Event Hub
+              </Link>
+            )}
             <Link
               href="/resources"
               className={c.mobileLink}

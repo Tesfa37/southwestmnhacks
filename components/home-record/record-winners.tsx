@@ -41,7 +41,7 @@ export function RecordWinners() {
         <Reveal>
           <div className="mb-10 max-w-2xl">
             <p className={`font-mono text-xs font-semibold uppercase tracking-[0.14em] ${MUTED} mb-3`}>Results</p>
-            <h2 className={`${DISPLAY} text-3xl sm:text-4xl font-black mb-3`}>What students built last time.</h2>
+            <h2 className={`${DISPLAY} text-3xl sm:text-4xl font-black mb-3`}>What students built in March.</h2>
             <p className={`text-lg ${MUTED}`}>
               Real teams, real names, real code. Every project links to its public Devpost page.
             </p>

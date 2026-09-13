@@ -7,6 +7,8 @@ import { RecordPress } from "@/components/home-record/record-press"
 import { Receipts } from "@/components/home-record/receipts"
 import { RecordDetails } from "@/components/home-record/record-details"
 import { RecordPeople } from "@/components/home-record/record-people"
+import { RecordJudges } from "@/components/home-record/record-judges"
+import { FallResults } from "@/components/home-record/fall-results"
 import { RecordWinners } from "@/components/home-record/record-winners"
 import { RecordFaq } from "@/components/home-record/record-faq"
 import { RecordSponsors } from "@/components/home-record/record-sponsors"
@@ -34,6 +36,10 @@ export function RecordHome({ phase }: { phase: EventPhase }) {
         <Receipts />
         <RecordDetails phase={phase} />
         <RecordPeople />
+        {/* Fall judging sits directly above Fall results; RecordWinners
+            stays beneath both as the March record. */}
+        <RecordJudges />
+        <FallResults />
         <RecordWinners />
         <RecordFaq phase={phase} />
 

@@ -8,6 +8,10 @@ import { SCHEDULE } from "@/lib/event-hub"
  * long activity cell is the usual source of horizontal overflow. A
  * grid-cols-[time_1fr] <dl> wraps the activity text instead, so nothing ever
  * needs a sideways scroller. Same row shape as record-details.tsx.
+ *
+ * The "when" column is 7.5rem rather than the 5.5rem used elsewhere because it
+ * holds relative labels ("After presentations") alongside clock times; those
+ * wrap onto a second line and still leave room for the activity at 390px.
  */
 export function HubSchedule() {
   return (
@@ -21,7 +25,10 @@ export function HubSchedule() {
 
           <dl className="space-y-3">
             {day.rows.map((row) => (
-              <div key={row.time} className="grid grid-cols-[5.5rem_1fr] gap-x-4">
+              // Keyed on both fields: the "when" column now carries free-text
+              // labels as well as clock times, so times alone are no longer
+              // guaranteed unique.
+              <div key={`${row.time}-${row.activity}`} className="grid grid-cols-[7.5rem_1fr] gap-x-4">
                 <dt
                   className={`font-mono text-xs font-semibold uppercase tracking-[0.14em] pt-0.5 ${
                     row.deadline ? "text-orange-700" : MUTED

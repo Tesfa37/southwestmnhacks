@@ -5,6 +5,10 @@
 // the sponsor. THE THREE SCHWAN'S PROMPTS ARE VERBATIM AS PROVIDED — do not
 // paraphrase, trim, or "tighten" them; they are the brief students are judged
 // against. The bonus challenge is likewise as written.
+//
+// The bonus was rewritten mid-event: the RFID/QR hardware hit technical and
+// networking limits, so the challenge is now built around the LED display that
+// does work, with the other hardware explicitly optional.
 
 import { DEVPOST_FALL_URL, SUPPORT_EMAIL } from "./config"
 
@@ -44,9 +48,12 @@ export const SCHEDULE: ScheduleDay[] = [
     date: "September 13",
     rows: [
       { time: "8:00 AM", activity: "Devpost submissions due", deadline: true },
-      { time: "8:30 AM", activity: "Project demos and judging" },
-      { time: "9:30 AM", activity: "Awards ceremony" },
-      { time: "10:00 AM", activity: "Event ends" },
+      { time: "8:00–9:00 AM", activity: "Judges review submitted projects" },
+      { time: "9:00 AM", activity: "Participant presentations begin" },
+      // Relative, not clocked: presentations start at 9:00, so promising a
+      // fixed awards time would be a promise broken in front of the room.
+      { time: "After presentations", activity: "Awards" },
+      { time: "After awards", activity: "Event concludes" },
     ],
   },
 ]
@@ -104,12 +111,16 @@ export const CHALLENGES: Challenge[] = [
  * challenge. Rendered apart from CHALLENGES so that reads visually.
  */
 export const BONUS_CHALLENGE: Challenge = {
-  id: "rfid-qr-led",
-  title: "RFID + QR + LED Interactive System",
+  id: "interactive-led-display",
+  title: "Interactive LED Display",
   body: [
-    "Using RFID, a QR code scanner, and LEDs, create an interactive system where scanning or identifying something triggers a meaningful physical response.",
-    "Your solution could explore identification, access control, tracking, status indicators, check-ins, games, alerts, or another creative use. The LEDs should communicate useful information or react meaningfully to what is scanned or detected.",
-    "There is no single correct solution. Use the hardware creatively and build something that demonstrates a clear interaction between the digital and physical world.",
+    "The LED display is live and available for teams to build with.",
+    "Create a project where something happening in your application causes a meaningful message, status, alert, result, or other output to appear on the event LED display.",
+    "Your project itself can be anything: a web application, game, check-in system, dashboard, notification system, competition, voting tool, AI application, or another creative idea. The LED should be a meaningful part of the experience rather than simply displaying static text.",
+    // Do not trim this paragraph. It is the one that tells a team who has spent
+    // the night fighting the reader that they are not being marked down for it.
+    "RFID and QR integration are optional. We originally planned for the challenge to include RFID and QR hardware, but we experienced technical and networking limitations with parts of that setup during the event. You will not be penalized for not using them. If you are able to incorporate RFID, QR scanning, or another physical interaction successfully, that can be part of your solution.",
+    "The goal is to demonstrate a creative connection between your software and the physical LED display.",
   ],
 }
 

@@ -129,6 +129,41 @@ describe("schedule", () => {
     expect(deadlineRows[0].activity).toBe("Devpost submissions due")
   })
 
+  it("no longer promises a clock time for awards or the close", () => {
+    const sunday = SCHEDULE[1].rows
+    const times = sunday.map((row) => row.time)
+
+    // The 8:30 demos and 9:30 awards slots were dropped: presentations begin at
+    // 9:00, so a 9:30 awards time would be a promise the morning can't keep.
+    expect(times).not.toContain("8:30 AM")
+    expect(times).not.toContain("9:30 AM")
+
+    expect(times).toContain("After presentations")
+    expect(times).toContain("After awards")
+    expect(sunday.find((row) => row.time === "After presentations")?.activity).toBe("Awards")
+    expect(sunday.find((row) => row.time === "After awards")?.activity).toBe("Event concludes")
+  })
+
+  it("keeps the Sunday morning running order", () => {
+    const sunday = SCHEDULE[1].rows
+    const order = ["8:00 AM", "8:00–9:00 AM", "9:00 AM", "After presentations", "After awards"]
+
+    expect(sunday.map((row) => row.time)).toEqual(order)
+    expect(sunday.find((row) => row.time === "8:00–9:00 AM")?.activity).toBe(
+      "Judges review submitted projects",
+    )
+    expect(sunday.find((row) => row.time === "9:00 AM")?.activity).toBe(
+      "Participant presentations begin",
+    )
+  })
+
+  it("never leaks the 11:00 AM end buffer into public copy", () => {
+    // EVENT_END_AT is slack for a late-running ceremony, not an advertised time.
+    const text = SCHEDULE.flatMap((day) => day.rows.map((row) => `${row.time} ${row.activity}`)).join(" ")
+
+    expect(text).not.toContain("11:00")
+  })
+
   it("does not break the opening ceremony into per-speaker rows", () => {
     const activities = SCHEDULE.flatMap((day) => day.rows.map((row) => row.activity)).join(" ")
 
@@ -150,7 +185,18 @@ describe("challenges", () => {
 
   it("keeps the bonus challenge separate from the sponsor prompts", () => {
     expect(CHALLENGES.map((challenge) => challenge.id)).not.toContain(BONUS_CHALLENGE.id)
-    expect(BONUS_CHALLENGE.title).toBe("RFID + QR + LED Interactive System")
+    expect(BONUS_CHALLENGE.title).toBe("Interactive LED Display")
+  })
+
+  it("keeps the bonus challenge's no-penalty reassurance", () => {
+    // The RFID/QR hardware failed mid-event; this sentence is why the prompt was
+    // rewritten and is the easiest thing to lose in a later trim.
+    const body = BONUS_CHALLENGE.body.join(" ")
+
+    expect(body).toContain("RFID and QR integration are optional")
+    expect(body).toContain("You will not be penalized for not using them")
+    expect(body).toContain("The LED display is live")
+    expect(BONUS_CHALLENGE.body).toHaveLength(5)
   })
 
   it("carries the five capability questions on the first prompt", () => {
@@ -182,5 +228,21 @@ describe("submission and links", () => {
     const internal = QUICK_LINKS.filter((link) => !link.external).map((link) => link.href)
 
     expect(internal).toEqual(["/resources", "/code-of-conduct", "/rules", "/safety"])
+  })
+})
+
+describe("nextBoundary does not depend on declaration order", () => {
+  it("returns the soonest upcoming instant, not the first one listed", () => {
+    // Regression guard: BOUNDARIES is sorted at module init. Without that, a
+    // config where a later-declared constant falls earlier than an
+    // earlier-declared one would arm the timer for the wrong instant and skip
+    // a wake — the phase would then only update for components that happen to
+    // run their own interval.
+    const all = [CLOSE_MS, START_MS, CHALLENGES_MS, SUBMISSION_MS, END_MS]
+
+    for (const probe of all) {
+      const soonest = all.filter((b) => b > probe).sort((a, b) => a - b)[0] ?? null
+      expect(nextBoundary(probe)).toBe(soonest)
+    }
   })
 })

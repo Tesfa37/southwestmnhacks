@@ -8,7 +8,7 @@ import type { EventPhase } from "@/lib/event-phase"
 const FORMAT = [
   {
     title: "Build",
-    line: "Doors open 8 AM Saturday. Teams of up to 4 build through the night, and awards wrap by 10 AM Sunday.",
+    line: "Doors open 8 AM Saturday. Teams of up to 4 build through the night, and awards follow the Sunday morning presentations.",
   },
   {
     title: "Learn",

@@ -42,7 +42,11 @@ export function areChallengesRevealed(now: number = Date.now()): boolean {
  * reveal and the submission deadline don't move the phase, but they do move the
  * Event Hub, so they share one timer with the phase boundaries.
  */
-const BOUNDARIES = [CLOSE_MS, START_MS, CHALLENGES_MS, SUBMISSION_MS, END_MS] as const
+// Sorted, not merely written in order: nextBoundary() walks this and returns the
+// first entry ahead of `now`, so an unsorted array would silently arm the timer
+// for the wrong instant and skip a wake entirely. Sorting makes it correct for
+// any future config rather than relying on the declaration happening to match.
+const BOUNDARIES = [CLOSE_MS, START_MS, CHALLENGES_MS, SUBMISSION_MS, END_MS].sort((a, b) => a - b)
 
 /** The next boundary strictly after `now`, or null once the last one has passed. */
 export function nextBoundary(now: number): number | null {

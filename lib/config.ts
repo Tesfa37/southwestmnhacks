@@ -11,12 +11,15 @@ export const VENUE_MAP_URL =
 
 // Countdown targets as fixed instants (Central Time, CDT = UTC-5 in September).
 export const EVENT_START_AT = "2026-09-12T08:00:00-05:00"
-export const EVENT_END_AT = "2026-09-13T10:00:00-05:00"
+// 11:00 AM, not 10:00: the Sunday schedule no longer promises a clock time for
+// awards, so this is a buffer against a late-running ceremony rather than the
+// advertised end. Nothing public shows this instant.
+export const EVENT_END_AT = "2026-09-13T11:00:00-05:00"
 
 // Event-day instants driving the Event Hub (components/home-record/event-hub.tsx).
 // The challenge prompts stay hidden until the reveal so the homepage can't scoop
-// the opening ceremony; the submission deadline is two hours before doors close,
-// leaving demos and judging in between.
+// the opening ceremony; the submission deadline leaves the rest of the morning
+// for judging, presentations and awards.
 // Ordering invariant, asserted in __tests__/event-hub.test.ts:
 //   WAITLIST_CLOSE_AT <= EVENT_START_AT < CHALLENGES_REVEAL_AT
 //     < SUBMISSION_DEADLINE_AT < EVENT_END_AT

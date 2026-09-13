@@ -61,7 +61,7 @@ pnpm test         # Vitest (__tests__/)
 - UI primitives in `components/ui/`: only `accordion.tsx` and `button.tsx`
 
 ### Canonical copy (keep consistent everywhere)
-- Duration: "24-hour overnight hackathon" (doors 8 AM Sat, awards wrap by 10 AM Sun)
+- Duration: "24-hour overnight hackathon" (doors 8 AM Sat, Devpost submissions due 8 AM Sun, awards after the Sunday presentations — no clock time is promised for awards or the close)
 - Eligibility: students ages 14+, high school through university, plus recent graduates within 1 year
 - Brand: "Southwest MN Hacks" (spaced). Known exception: `public/og-image.png` still reads "SouthwestMN Hacks" - regenerating it from `public/og-image.svg` is an open task.
 - Prizes: structure published (1st/2nd/3rd + Devpost recognition), amounts "announced closer to the event"

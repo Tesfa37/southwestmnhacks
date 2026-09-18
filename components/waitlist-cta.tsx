@@ -152,40 +152,39 @@ export function WaitlistCta({ variant, location, initialPhase = "open", onNaviga
   }
 
   if (phase === "ended") {
+    // Internal destination on purpose: /projects owns the browsable archive,
+    // with Devpost as the linked source per project rather than the primary
+    // "see the projects" experience living off-site.
     const label = variant === "hero" || variant === "section" ? "See what students built" : "See the projects"
     if (variant === "hero") {
       return (
-        <MagneticButton href={DEVPOST_FALL_URL} onClick={() => track("Devpost Click", { location })}>
+        <MagneticButton href="/projects" newTab={false} onClick={() => track("Projects Click", { location })}>
           {label}
         </MagneticButton>
       )
     }
     if (variant === "footer-link") {
       return (
-        <a
-          href={DEVPOST_FALL_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => track("Devpost Click", { location })}
+        <Link
+          href="/projects"
+          onClick={() => track("Projects Click", { location })}
           className="block text-gray-400 hover:text-white transition-colors"
         >
           {label}
-        </a>
+        </Link>
       )
     }
     return (
-      <a
-        href={DEVPOST_FALL_URL}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href="/projects"
         onClick={() => {
-          track("Devpost Click", { location })
+          track("Projects Click", { location })
           onNavigate?.()
         }}
         className={PILL_CLASSES[variant]}
       >
         {label}
-      </a>
+      </Link>
     )
   }
 

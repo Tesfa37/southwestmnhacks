@@ -1,54 +1,11 @@
-import Image from "next/image"
+import Link from "next/link"
 import { Reveal } from "@/components/reveal"
-import { EvidenceStamp } from "@/components/home-record/evidence-stamp"
-import { ACTION_PILL, CARD_TITLE, DISPLAY, MUTED } from "@/components/home-record/tokens"
-import { BLUR_DATA_URL } from "@/lib/images"
+import { ProjectCard } from "@/components/home-record/project-card"
+import { ACTION_PILL, DISPLAY, MUTED } from "@/components/home-record/tokens"
 import { DEVPOST_FALL_URL } from "@/lib/config"
-import { FALL_PROJECTS, getFallWinners, type FallProject } from "@/lib/fall-2026"
+import { FALL_PROJECTS, getFallWinners } from "@/lib/fall-2026"
 
 const GALLERY_URL = `${DEVPOST_FALL_URL}project-gallery`
-
-/**
- * One card shape for every case, so a project looks identical in the winners
- * list and the full list apart from its stamp.
- *
- * `photo` is optional throughout: winner photographs generally do not exist on
- * the day, and a missing image must render a neutral box rather than a broken
- * one or a collapsed card.
- */
-function ProjectCard({ project, award }: { project: FallProject; award?: string }) {
-  return (
-    <figure className="flex flex-col rounded-xl bg-[#FAFAF8] ring-1 ring-gray-200 overflow-hidden">
-      {project.photo ? (
-        <div className="relative aspect-video">
-          <Image
-            src={project.photo}
-            alt={`${project.project} at Southwest MN Hacks Fall 2026`}
-            fill
-            placeholder="blur"
-            blurDataURL={BLUR_DATA_URL}
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover"
-          />
-        </div>
-      ) : null}
-
-      <figcaption className="flex flex-col flex-1 p-6">
-        <EvidenceStamp>{award ? `${award} · Fall 2026` : "Fall 2026 · SMSU"}</EvidenceStamp>
-        <h3 className={`${CARD_TITLE} text-xl font-extrabold mt-2`}>{project.project}</h3>
-        <p className={`text-sm ${MUTED} mb-4 mt-1 flex-1`}>{project.members.join(", ")}</p>
-        <a
-          href={project.devpost}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${ACTION_PILL} w-fit`}
-        >
-          Project on Devpost
-        </a>
-      </figcaption>
-    </figure>
-  )
-}
 
 function GalleryLink({ className = "" }: { className?: string }) {
   return (
@@ -71,8 +28,11 @@ function GalleryLink({ className = "" }: { className?: string }) {
  * Fall 2026 results, above the March section.
  *
  * Announced state is derived from getFallWinners() — there is no flag to
- * forget and no parallel winners array to drift out of sync. Assigning six ids
+ * forget and no parallel winners array to drift out of sync. Assigning ids
  * in FALL_AWARDS is the whole announcement.
+ *
+ * This section only previews the winners; the full 12-project directory lives
+ * on the permanent /projects page rather than being dumped here in full.
  */
 export function FallResults() {
   const winners = getFallWinners()
@@ -106,28 +66,31 @@ export function FallResults() {
           </Reveal>
         ) : (
           <>
-            {announced && (
+            {announced ? (
               <Reveal delay={0.05}>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {winners.map(({ award, project }) => (
                     <ProjectCard key={`${award}-${project.id}`} project={project} award={award} />
+                  ))}
+                </div>
+              </Reveal>
+            ) : (
+              <Reveal delay={0.05}>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {FALL_PROJECTS.slice(0, 3).map((project) => (
+                    <ProjectCard key={project.id} project={project} />
                   ))}
                 </div>
               </Reveal>
             )}
 
             <Reveal delay={0.1}>
-              {announced && (
-                <h3 className={`${CARD_TITLE} text-xl font-extrabold mb-6`}>All Fall 2026 projects</h3>
-              )}
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {FALL_PROJECTS.map((project) => (
-                  <ProjectCard key={project.id} project={project} />
-                ))}
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Link href="/projects" className={ACTION_PILL}>
+                  Browse all {FALL_PROJECTS.length} projects
+                </Link>
+                <GalleryLink />
               </div>
-
-              <GalleryLink className="mt-6" />
             </Reveal>
           </>
         )}

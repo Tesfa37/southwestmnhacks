@@ -8,8 +8,13 @@ import { SPONSOR_EMAIL } from "@/lib/config"
 import { SponsorStartForm } from "./sponsor-start-form"
 
 export const metadata: Metadata = {
-  title: { absolute: "Start your sponsorship | Southwest MN Hacks" },
-  description: "Confirm your sponsorship of Southwest MN Hacks.",
+  // Static (not phase-derived) because Next metadata resolves ahead of the
+  // component body, but this matches what actually renders today: sponsorship
+  // for Fall 2026 is closed, and this route's live form only reactivates for
+  // a future event's open sponsorship window.
+  title: { absolute: "Sponsorship closed for Fall 2026 | Southwest MN Hacks" },
+  description:
+    "Sponsorship for Southwest MN Hacks: Fall 2026 has closed. Contact us about supporting a future event.",
   robots: { index: false },
 }
 

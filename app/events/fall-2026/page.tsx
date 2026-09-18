@@ -230,7 +230,7 @@ export default function FallRecapPage() {
               >
                 Spring 2026
               </Link>{" "}
-              to 13 teams this time. Prof. Oluleye Babatunde, who mentored and judged the very first event in March,
+              to 13 teams this time. Oluleye Babatunde, who mentored and judged the very first event in March,
               returned to the panel for Fall &mdash; the kind of continuity this organization is built around.
             </p>
             <p className="text-lg text-[#5B6472] leading-relaxed">

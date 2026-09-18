@@ -41,7 +41,7 @@ export function TierSummary({
               Change tier
             </button>
           ) : (
-            <Link href="/sponsor#tiers" className="text-sm font-semibold text-orange-600 hover:underline">
+            <Link href="/sponsor" className="text-sm font-semibold text-orange-600 hover:underline">
               Change tier
             </Link>
           )}

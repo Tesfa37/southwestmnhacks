@@ -194,8 +194,8 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier | null }) 
         <h2 className="mb-1 text-xl font-bold">Choose your level</h2>
         <p className="mb-5 text-sm text-muted-foreground">
           Pick the tier that fits. You can change it any time before submitting, or{" "}
-          <Link href="/sponsor#tiers" className="font-semibold text-orange-600 hover:underline">
-            compare all levels
+          <Link href="/sponsor" className="font-semibold text-orange-600 hover:underline">
+            see sponsorship info
           </Link>
           .
         </p>
@@ -477,7 +477,7 @@ export function SponsorStartForm({ initialTier }: { initialTier: Tier | null }) 
           {engagementNote && (
             <p className="text-sm text-muted-foreground">
               {engagementNote}{" "}
-              <Link href="/sponsor#tiers" className="font-semibold text-orange-600 hover:underline">
+              <Link href="/sponsor" className="font-semibold text-orange-600 hover:underline">
                 Change tier
               </Link>
             </p>

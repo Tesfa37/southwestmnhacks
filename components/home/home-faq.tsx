@@ -17,8 +17,8 @@ export function buildFaqs(phase: EventPhase): HomeFaq[] {
     phase === "open"
       ? `Fill out the waitlist form linked throughout this site. It adds you to the waitlist rather than confirming a spot; we'll email you if we're able to offer you a spot. The waitlist closes ${WAITLIST_DEADLINE}, so join early — it's first come, first served.`
       : phase === "ended"
-        ? "Fall 2026 has wrapped. See what students built on Devpost, and check back for our next event."
-        : "The Fall 2026 waitlist has closed. Follow the projects on Devpost, and check back for our next event."
+        ? "Fall 2026 has wrapped. See what students built on Devpost, or browse the project archive on this site."
+        : "The Fall 2026 waitlist has closed. Follow the projects on Devpost for updates."
 
   return [
     {
@@ -78,26 +78,45 @@ export function buildFaqs(phase: EventPhase): HomeFaq[] {
     {
       question: "Are there prizes?",
       answer:
-        "Yes. 1st, 2nd, and 3rd place teams win prizes, and every submitted project gets recognition on Devpost. Prize amounts will be announced closer to the event.",
+        phase === "ended"
+          ? "Yes. 1st, 2nd, and 3rd place teams won prizes, and every submitted project earned recognition on Devpost."
+          : "Yes. 1st, 2nd, and 3rd place teams win prizes, and every submitted project gets recognition on Devpost.",
     },
     {
       question: "How do I submit my project?",
-      answer: (
-        <>
-          Submit on the{" "}
-          <a
-            href={DEVPOST_FALL_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline font-semibold"
-          >
-            Fall 2026 Devpost
-          </a>{" "}
-          before the deadline. We&apos;ll walk you through it during the event, and mentors are around if you get
-          stuck.
-        </>
-      ),
-      text: "Submit on the Fall 2026 Devpost before the deadline. We'll walk you through it during the event, and mentors are around if you get stuck.",
+      answer:
+        phase === "ended" ? (
+          <>
+            Fall 2026 submissions are closed. Browse everything the teams built on the{" "}
+            <a
+              href={DEVPOST_FALL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline font-semibold"
+            >
+              Fall 2026 Devpost gallery
+            </a>
+            .
+          </>
+        ) : (
+          <>
+            Submit on the{" "}
+            <a
+              href={DEVPOST_FALL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline font-semibold"
+            >
+              Fall 2026 Devpost
+            </a>{" "}
+            before the deadline. We&apos;ll walk you through it during the event, and mentors are around if you get
+            stuck.
+          </>
+        ),
+      text:
+        phase === "ended"
+          ? "Fall 2026 submissions are closed. Browse everything the teams built on the Fall 2026 Devpost gallery."
+          : "Submit on the Fall 2026 Devpost before the deadline. We'll walk you through it during the event, and mentors are around if you get stuck.",
     },
   ]
 }

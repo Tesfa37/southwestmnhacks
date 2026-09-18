@@ -6,7 +6,6 @@ import { getEventPhase } from "@/lib/event-phase"
 import {
   EVENT_NAME,
   WAITLIST_FORM_URL,
-  WAITLIST_CLOSE_AT,
   EVENT_START_AT,
   EVENT_END_AT,
   SUPPORT_EMAIL,
@@ -15,12 +14,9 @@ import {
   SCHWANS_INSTAGRAM_URL,
 } from "@/lib/config"
 
-// Re-render every 5 minutes so date-driven copy and schema stay current without a
-// deploy. Was hourly; tightened for event weekend because the server-rendered bits
-// that can't self-correct on the client (the FAQ answers built by buildFaqs(phase)
-// and the Event JSON-LD offer) would otherwise sit stale for up to an hour after
-// the waitlist closes at 8 AM Sept 12. Safe to put back to 3600 after the event.
-export const revalidate = 300
+// Hourly: the event has ended, so nothing here is time-sensitive on a 5-minute
+// window anymore. Restores the pre-event-weekend default.
+export const revalidate = 3600
 
 export default function HomePage() {
   const phase = getEventPhase()
@@ -58,7 +54,10 @@ export default function HomePage() {
     sameAs: [DEVPOST_FALL_URL, "https://visitmarshallmn.com", SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL],
     offers: {
       "@type": "Offer",
-      url: WAITLIST_FORM_URL,
+      // Only points at the waitlist form while it's actually open; once
+      // sign-ups are closed or the event has ended, the offer's own URL
+      // should not send crawlers or assistants to a dead sign-up funnel.
+      url: phase === "open" ? WAITLIST_FORM_URL : DEVPOST_FALL_URL,
       price: "0",
       priceCurrency: "USD",
       // Sign-ups are waitlist-only while open, so LimitedAvailability is the
@@ -68,7 +67,7 @@ export default function HomePage() {
           ? "https://schema.org/LimitedAvailability"
           : "https://schema.org/SoldOut",
       validFrom: "2026-06-01T00:00:00-05:00",
-      validThrough: WAITLIST_CLOSE_AT,
+      validThrough: EVENT_END_AT,
     },
   }
 

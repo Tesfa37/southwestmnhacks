@@ -2,8 +2,9 @@ import { MetadataRoute } from "next"
 
 // Bump when a page's content meaningfully changes. A fixed date is an honest
 // signal; `new Date()` at build time told crawlers every page changed daily.
-const SITE_UPDATED = new Date("2026-09-12")
-const RECAP_UPDATED = new Date("2026-04-15")
+const SITE_UPDATED = new Date("2026-09-18")
+const FALL_RECAP_UPDATED = new Date("2026-09-18")
+const SPRING_RECAP_UPDATED = new Date("2026-04-15")
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://southwestmnhacks.org"
@@ -16,16 +17,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/recap`,
-      lastModified: RECAP_UPDATED,
+      url: `${baseUrl}/events`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/events/fall-2026`,
+      lastModified: FALL_RECAP_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/events/spring-2026`,
+      lastModified: SPRING_RECAP_UPDATED,
       changeFrequency: "yearly",
       priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/projects`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/sponsor`,
       lastModified: SITE_UPDATED,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.6,
     },
     {
       url: `${baseUrl}/resources`,

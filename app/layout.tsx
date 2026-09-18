@@ -15,10 +15,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: {
     template: "%s | Southwest MN Hacks",
-    default: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
+    default: "Southwest MN Hacks | Student Hackathons in Marshall, MN",
   },
   description:
-    "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Join the waitlist.",
+    "Southwest MN Hacks builds southwest Minnesota's student technology community through hackathons, mentorship, and real-world problem solving. See how Fall 2026 went.",
   keywords: [
     "hackathon",
     "Marshall MN",
@@ -37,24 +37,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://southwestmnhacks.org",
-    title: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
+    title: "Southwest MN Hacks | Student Hackathons in Marshall, MN",
     description:
-      "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Join the waitlist.",
+      "Southwest MN Hacks builds southwest Minnesota's student technology community through hackathons, mentorship, and real-world problem solving. See how Fall 2026 went.",
     siteName: "Southwest MN Hacks",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Southwest MN Hacks: Fall 2026",
+        alt: "Southwest MN Hacks",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Southwest MN Hacks: Fall 2026 | SMSU, Marshall, MN",
+    title: "Southwest MN Hacks | Student Hackathons in Marshall, MN",
     description:
-      "Southwest Minnesota's student hackathon returns September 12 to 13, 2026 at SMSU in Marshall, MN. Free to attend, all skill levels welcome. Join the waitlist.",
+      "Southwest MN Hacks builds southwest Minnesota's student technology community through hackathons, mentorship, and real-world problem solving. See how Fall 2026 went.",
     images: ["/og-image.png"],
   },
   robots: {

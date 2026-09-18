@@ -16,7 +16,7 @@ const FORMAT = [
   },
   {
     title: "Win",
-    line: "1st, 2nd, and 3rd place take prizes, and every submitted project gets recognition on Devpost. Amounts announced closer to the event.",
+    line: "1st, 2nd, and 3rd place take prizes, and every submitted project gets recognition on Devpost.",
   },
 ]
 

@@ -9,9 +9,9 @@ import { BLUR_DATA_URL } from "@/lib/images"
 const PEOPLE = [
   {
     src: "/images/babatunde.jpg",
-    alt: "Prof. Oluleye Babatunde mentoring students at the March 2026 hackathon",
-    name: "Prof. Oluleye Babatunde",
-    role: "Assistant Professor of Computer Science, SMSU",
+    alt: "Oluleye Babatunde mentoring students at the March 2026 hackathon",
+    name: "Oluleye Babatunde",
+    role: "Professor of Computer Science, Southwest Minnesota State University",
     line: "Mentored students throughout the event and served as a judge.",
   },
   {
@@ -38,7 +38,7 @@ export function RecordPeople() {
           <p className={`font-mono text-xs font-semibold uppercase tracking-[0.14em] ${MUTED} mb-3`}>In the room</p>
           <h2 className={`${DISPLAY} text-3xl sm:text-4xl font-black mb-3`}>Professors, judges, and sponsors showed up.</h2>
           <p className={`text-lg ${MUTED}`}>
-            Named, photographed, and coming back for Fall. They&apos;re why students leave with more than a project.
+            Named and photographed. They&apos;re why students leave with more than a project.
           </p>
         </div>
 

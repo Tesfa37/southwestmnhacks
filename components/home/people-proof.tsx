@@ -15,9 +15,9 @@ interface Person {
 const PEOPLE: Person[] = [
   {
     src: "/images/babatunde.jpg",
-    alt: "Prof. Oluleye Babatunde mentoring students at the March 2026 hackathon",
-    name: "Prof. Oluleye Babatunde",
-    role: "Assistant Professor of Computer Science, SMSU",
+    alt: "Oluleye Babatunde mentoring students at the March 2026 hackathon",
+    name: "Oluleye Babatunde",
+    role: "Professor of Computer Science, Southwest Minnesota State University",
     line: "Mentored students throughout the event and served as a judge.",
   },
   {

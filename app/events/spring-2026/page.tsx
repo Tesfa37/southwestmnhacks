@@ -6,14 +6,12 @@ import { EventRecap } from "@/components/event-recap"
 import { Winners } from "@/components/winners"
 import { Appreciation } from "@/components/appreciation"
 import { WinnerContinuationBadge } from "@/components/winner-continuation-badge"
-import { WaitlistCta, WaitlistNote } from "@/components/waitlist-cta"
-import { getEventPhase } from "@/lib/event-phase"
-import { EVENT_DATES } from "@/lib/config"
 
-// Re-render hourly so the forward CTA follows the waitlist phase.
-export const revalidate = 3600
+// Re-render occasionally; nothing here is date-driven anymore now that the
+// forward CTA points at another permanent recap instead of a live CTA.
+export const revalidate = 86400
 
-export default function RecapPage() {
+export default function SpringRecapPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50">
       <Header />
@@ -26,7 +24,7 @@ export default function RecapPage() {
         </div>
         <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black mb-6 leading-tight text-balance px-2">
           <span className="bg-gradient-to-r from-orange-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-            Southwest MN Hacks: March 2026 Recap
+            Southwest MN Hacks: Spring 2026 Recap
           </span>
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-pretty px-4">
@@ -127,27 +125,27 @@ export default function RecapPage() {
       {/* Appreciation */}
       <Appreciation />
 
-      {/* Forward CTA: the next event */}
+      {/* Forward: the story continued into Fall 2026, which already happened */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-blue-500 rounded-3xl p-8 sm:p-12 text-center text-white">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">The next one: Fall 2026</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">The story continued.</h2>
           <p className="text-lg sm:text-xl mb-8 opacity-95">
-            {EVENT_DATES}. Back at SMSU, bigger, and 24 hours long.
+            Southwest MN Hacks returned that September for Fall 2026 at SMSU, 24 hours long.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <WaitlistCta variant="section" location="recap-forward" initialPhase={getEventPhase()} onDark />
             <Link
-              href="/sponsor"
+              href="/events/fall-2026"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-semibold text-gray-900 transition-all hover:shadow-lg hover:scale-105"
+            >
+              See the Fall 2026 recap
+            </Link>
+            <Link
+              href="/events"
               className="inline-flex items-center gap-2 rounded-full border-2 border-white/80 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-white/10"
             >
-              Become a sponsor
+              Browse all events
             </Link>
           </div>
-          <WaitlistNote
-            initialPhase={getEventPhase()}
-            colorClassName="text-sm text-current opacity-90"
-            className="mx-auto mt-5"
-          />
         </div>
       </section>
       </main>

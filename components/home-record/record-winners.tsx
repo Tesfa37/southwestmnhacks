@@ -6,7 +6,8 @@ import { ACTION_PILL, CARD_TITLE, DISPLAY, MUTED } from "@/components/home-recor
 import { BLUR_DATA_URL } from "@/lib/images"
 import { DEVPOST_SPRING_URL } from "@/lib/config"
 
-// Top three from March; data matches components/winners.tsx on /recap.
+// All five placements from March; data matches components/winners.tsx on
+// /events/spring-2026 exactly, so the two never drift apart.
 const WINNERS = [
   {
     stamp: "Grand Prize · March 2026",
@@ -32,6 +33,22 @@ const WINNERS = [
     devpost: "https://devpost.com/software/knowledgeflow",
     photo: "/images/3rd-place.jpg",
   },
+  {
+    stamp: "4th Place · March 2026",
+    team: "REDT",
+    project: "IT Budgeting and Forecasting Software",
+    members: "Abenezer Legesse, Esrom Tadesse",
+    devpost: "https://devpost.com/software/it-budgeting-and-forecasting-software-6qvnm8",
+    photo: "/images/4th-place.jpg",
+  },
+  {
+    stamp: "5th Place · March 2026",
+    team: "Triple B",
+    project: "SplendIT",
+    members: "Hemi Woertink, Noah Blodgett, Seeton Erickson",
+    devpost: "https://devpost.com/software/splendit",
+    photo: "/images/5th-place.jpg",
+  },
 ]
 
 export function RecordWinners() {
@@ -47,7 +64,7 @@ export function RecordWinners() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {WINNERS.map((winner) => (
               <figure key={winner.team} className="flex flex-col rounded-xl bg-[#FAFAF8] ring-1 ring-gray-200 overflow-hidden">
                 <div className="relative aspect-video">
@@ -94,7 +111,7 @@ export function RecordWinners() {
               Devpost gallery
             </a>
             , and the full story is in the{" "}
-            <Link href="/recap" className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2">
+            <Link href="/events/spring-2026" className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2">
               recap
             </Link>
             .

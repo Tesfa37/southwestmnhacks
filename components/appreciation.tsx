@@ -5,8 +5,8 @@ import { BLUR_DATA_URL } from "@/lib/images"
 
 const honorees = [
   {
-    name: "Prof. Oluleye Babatunde",
-    title: "Assistant Professor of Computer Science, SMSU",
+    name: "Oluleye Babatunde",
+    title: "Professor of Computer Science, Southwest Minnesota State University",
     photo: "/images/babatunde.jpg",
     recognition:
       "Came on his weekend off to mentor students throughout the event and served as a judge. His presence and guidance made a real difference for participants working through tough problems.",

@@ -286,7 +286,7 @@ export default function RulesPage() {
               <div className="prose prose-lg max-w-none">
                 <p className="text-gray-700 leading-relaxed mb-4">
                   1st, 2nd, and 3rd place teams win prizes, and every submitted project gets recognition on Devpost.
-                  Prize amounts will be announced closer to the event. Here's how prizes work:
+                  Prize amounts are not published publicly. Here's how prizes work:
                 </p>
                 <ul className="space-y-3 mb-4">
                   <li className="flex items-start gap-3">

@@ -31,14 +31,17 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
               <WaitlistCta variant="footer-link" location="footer" initialPhase={getEventPhase()} />
+              <Link href="/projects" className="block text-gray-400 hover:text-white transition-colors">
+                Projects
+              </Link>
+              <Link href="/events" className="block text-gray-400 hover:text-white transition-colors">
+                Past Events
+              </Link>
               <Link href="/resources" className="block text-gray-400 hover:text-white transition-colors">
                 Resources
               </Link>
               <Link href="/#faq" className="block text-gray-400 hover:text-white transition-colors">
                 FAQ
-              </Link>
-              <Link href="/recap" className="block text-gray-400 hover:text-white transition-colors">
-                Past Events
               </Link>
               <Link href="/sponsor" className="block text-gray-400 hover:text-white transition-colors">
                 Sponsor

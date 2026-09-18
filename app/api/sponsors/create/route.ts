@@ -14,11 +14,27 @@ import { createSponsorInvoice } from "@/lib/sponsors/invoice"
 import { createSponsorRow, type SponsorRowInput } from "@/lib/notion"
 import { notifyOrganizer, sendSponsorConfirmation, type NotifyPayload } from "@/lib/sponsors/notify"
 import { META, type SponsorStatus } from "@/lib/sponsors/status"
+import { getEventPhase } from "@/lib/event-phase"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
 export async function POST(req: Request) {
+  // Fall 2026 has ended: the public checkout/invoice flow is retired along
+  // with the "Start your sponsorship" UI. This is the authoritative gate — the
+  // UI not linking here anymore is not sufficient on its own, since this route
+  // is directly reachable regardless of what the client renders.
+  if (getEventPhase() === "ended") {
+    return NextResponse.json(
+      {
+        error: "sponsorship_closed",
+        message:
+          "Sponsorship for Fall 2026 has closed. Contact sponsors@southwestmnhacks.org about supporting a future event.",
+      },
+      { status: 410 },
+    )
+  }
+
   let body: unknown
   try {
     body = await req.json()

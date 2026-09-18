@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { track } from "@vercel/analytics"
 import { MagneticButton } from "@/components/magnetic-button"
 import { WaitlistCta, WaitlistNote, useEventPhase } from "@/components/waitlist-cta"
@@ -65,9 +66,15 @@ export function RecordHeroCopy({ initialPhase }: { initialPhase: EventPhase }) {
         ) : (
           <>
             <WaitlistCta variant="hero" location="record-hero" initialPhase={phase} />
-            <a href="#receipts" className={ACTION_PILL}>
-              See the proof from March
-            </a>
+            {phase === "ended" ? (
+              <Link href="/events/fall-2026" className={ACTION_PILL}>
+                Read the Fall 2026 recap
+              </Link>
+            ) : (
+              <a href="#receipts" className={ACTION_PILL}>
+                See the proof from March
+              </a>
+            )}
           </>
         )}
       </div>

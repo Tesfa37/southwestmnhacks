@@ -32,7 +32,7 @@ export function RecordHero({ phase }: { phase: EventPhase }) {
         <figure className="relative overflow-hidden rounded-xl">
           <div className="relative aspect-[3/2] sm:aspect-[2/1] lg:aspect-[21/9]">
             <Image
-              src="/images/fall-2026/Group_photo_1.jpg"
+              src="/images/fall-2026/Group_photo_4.jpg"
               alt="All participants of Southwest MN Hacks: Fall 2026 gathered at SMSU"
               fill
               priority

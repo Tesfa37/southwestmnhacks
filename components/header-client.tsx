@@ -63,20 +63,14 @@ export function HeaderClient({
                 Event Hub
               </Link>
             )}
+            <Link href="/projects" className={c.link}>
+              Projects
+            </Link>
+            <Link href="/events" className={c.link}>
+              Past Events
+            </Link>
             <Link href="/resources" className={c.link}>
               Resources
-            </Link>
-            <Link href="/#faq" className={c.link}>
-              FAQ
-            </Link>
-            <Link href="/rules" className={c.link}>
-              Rules
-            </Link>
-            <Link href="/safety" className={c.link}>
-              Safety
-            </Link>
-            <Link href="/recap" className={c.link}>
-              Past Events
             </Link>
             <Link
               href="/sponsor"
@@ -84,6 +78,9 @@ export function HeaderClient({
               className={c.link}
             >
               Sponsor
+            </Link>
+            <Link href="/contact" className={c.link}>
+              Contact
             </Link>
             <WaitlistCta variant="header-desktop" location="header-desktop" initialPhase={initialPhase} />
           </div>
@@ -112,6 +109,20 @@ export function HeaderClient({
               </Link>
             )}
             <Link
+              href="/projects"
+              className={c.mobileLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Projects
+            </Link>
+            <Link
+              href="/events"
+              className={c.mobileLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Past Events
+            </Link>
+            <Link
               href="/resources"
               className={c.mobileLink}
               onClick={() => setMobileMenuOpen(false)}
@@ -119,39 +130,18 @@ export function HeaderClient({
               Resources
             </Link>
             <Link
-              href="/#faq"
-              className={c.mobileLink}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              FAQ
-            </Link>
-            <Link
-              href="/rules"
-              className={c.mobileLink}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Rules
-            </Link>
-            <Link
-              href="/safety"
-              className={c.mobileLink}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Safety
-            </Link>
-            <Link
-              href="/recap"
-              className={c.mobileLink}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Past Events
-            </Link>
-            <Link
               href="/sponsor"
               onClick={() => { track('Sponsor Click', { location: 'header-mobile' }); setMobileMenuOpen(false) }}
               className={c.mobileLink}
             >
               Sponsor
+            </Link>
+            <Link
+              href="/contact"
+              className={c.mobileLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
             </Link>
             <WaitlistCta
               variant="header-mobile"

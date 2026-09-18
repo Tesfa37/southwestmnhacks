@@ -22,7 +22,7 @@ export const FALL_JUDGES: Judge[] = [
   {
     name: "Alex Polfliet",
     role: "Senior Software Engineer, Amazon",
-    photo: "/images/fall-2026/Alex.jfif",
+    photo: "/images/fall-2026/Alex.jpg",
   },
   {
     // Corrected title: "Professor," not "Assistant Professor."
@@ -33,7 +33,7 @@ export const FALL_JUDGES: Judge[] = [
   {
     name: "Mandar Chaudhari",
     role: "Full-Stack and Machine Learning Engineer",
-    photo: "/images/fall-2026/Mandar.jfif",
+    photo: "/images/fall-2026/Mandar.jpg",
   },
 ]
 

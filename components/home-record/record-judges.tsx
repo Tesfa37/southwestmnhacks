@@ -23,7 +23,8 @@ export function RecordJudges() {
           </p>
           <h2 className={`${DISPLAY} text-3xl sm:text-4xl font-black mb-3`}>Who judged Fall 2026.</h2>
           <p className={`text-lg ${MUTED}`}>
-            Industry engineers and faculty reviewed every submission and picked the winners.
+            Industry engineers and faculty reviewed every submission and picked the winners — including Prof.
+            Babatunde, back on the panel since mentoring and judging the very first event in March.
           </p>
         </div>
 

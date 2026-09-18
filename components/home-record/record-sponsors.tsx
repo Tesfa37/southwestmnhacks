@@ -29,7 +29,9 @@ export function RecordSponsors() {
         <HomeSponsors />
 
         <div className="rounded-xl bg-[#14181F] p-8 sm:p-12 text-center text-white">
-          <h3 className={`${DISPLAY} text-2xl sm:text-3xl font-extrabold mb-3`}>Want your name on the next one?</h3>
+          <h3 className={`${DISPLAY} text-2xl sm:text-3xl font-extrabold mb-3`}>
+            Interested in supporting a future Southwest MN Hacks event?
+          </h3>
           <p className="text-white/70 text-lg mb-8 max-w-xl mx-auto">
             Help us support the next generation of student builders in Southwest Minnesota.
           </p>

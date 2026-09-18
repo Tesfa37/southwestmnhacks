@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { RecordHero } from "@/components/home-record/record-hero"
+import { FallStats } from "@/components/home-record/fall-stats"
 import { EventHub } from "@/components/home-record/event-hub"
 import { SponsorStrip } from "@/components/home/sponsor-strip"
 import { RecordPress } from "@/components/home-record/record-press"
@@ -30,16 +31,18 @@ export function RecordHome({ phase }: { phase: EventPhase }) {
 
       <main id="main" className="flex-1">
         <RecordHero phase={phase} />
+        <FallStats />
         <EventHub initialPhase={phase} initialRevealed={challengesRevealed} />
         <SponsorStrip tone="light" mode="marquee" />
-        <RecordPress />
-        <Receipts />
         <RecordDetails phase={phase} />
-        <RecordPeople />
-        {/* Fall judging sits directly above Fall results; RecordWinners
-            stays beneath both as the March record. */}
+        {/* Fall 2026 (the latest event) leads; the Spring 2026 archive
+            (Press, Receipts, People, Winners) follows as previous-event
+            history, never ahead of the current results. */}
         <RecordJudges />
         <FallResults />
+        <RecordPress />
+        <Receipts />
+        <RecordPeople />
         <RecordWinners />
         <RecordFaq phase={phase} />
 

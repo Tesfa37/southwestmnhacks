@@ -23,19 +23,25 @@ export interface ProjectCardData {
  * `photo` is optional throughout: winner photographs generally do not exist on
  * the day, and a missing image must render a neutral box rather than a broken
  * one or a collapsed card.
+ *
+ * `showPhoto` (default true) lets a listing suppress photos uniformly even for
+ * projects that have one — /projects does this, so all 22 cards share one
+ * shape instead of the 5 with photos looking different from the 17 without.
  */
 export function ProjectCard({
   project,
   award,
   eventLabel = "Fall 2026",
+  showPhoto = true,
 }: {
   project: ProjectCardData
   award?: string
   eventLabel?: string
+  showPhoto?: boolean
 }) {
   return (
     <figure className="flex flex-col rounded-xl bg-[#FAFAF8] ring-1 ring-gray-200 overflow-hidden">
-      {project.photo ? (
+      {showPhoto && project.photo ? (
         <div className="relative aspect-video">
           <Image
             src={project.photo}

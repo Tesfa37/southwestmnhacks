@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { ProjectListRow } from "@/components/home-record/project-list-row"
+import { ProjectCard } from "@/components/home-record/project-card"
 import { DEVPOST_FALL_URL, DEVPOST_SPRING_URL } from "@/lib/config"
 import { getAllProjects, EVENT_LABELS, type EventSlug } from "@/lib/projects"
 
@@ -79,9 +79,15 @@ export default function ProjectsPage() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project) => (
-                  <ProjectListRow key={project.id} project={project} award={project.placement} eventLabel={label} />
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    award={project.placement}
+                    eventLabel={label}
+                    showPhoto={false}
+                  />
                 ))}
               </div>
             </section>

@@ -32,8 +32,13 @@ export function RecordJudges() {
           {FALL_JUDGES.map((judge) => (
             <figure key={judge.name} className="rounded-xl bg-white ring-1 ring-gray-200 overflow-hidden">
               {/* Same aspect box whichever way it is filled, so a photo card and
-                  a monogram card are exactly the same height side by side. */}
-              <div className="relative aspect-video">
+                  a monogram card are exactly the same height side by side.
+                  4:3, not 16:9: Alex and Mandar's photos are square headshots,
+                  and a 16:9 crop of a square image only keeps its center 56% —
+                  a visibly tight, zoomed-in crop. 4:3 keeps 75%, a normal-looking
+                  headshot crop, while still cropping Babatunde's wide event
+                  photo (2400x1119) reasonably on the sides. */}
+              <div className="relative aspect-[4/3]">
                 {judge.photo ? (
                   <Image
                     src={judge.photo}

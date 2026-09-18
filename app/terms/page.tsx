@@ -72,13 +72,14 @@ export default function TermsPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Sponsorships and payments</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Sponsorship amounts, tiers, and benefits are described on our{" "}
+                Sponsorship opportunities, when open, are described on our{" "}
                 <Link href="/sponsor" className="text-blue-600 hover:text-blue-700 underline">
                   sponsor page
                 </Link>
-                . Payments are processed by Stripe. You can pay by card or bank transfer, or request an invoice on
-                standard net terms. Benefits that depend on the event (such as booth space, speaking slots, or judging)
-                are provided as described, and we will work with you if anything needs to change.
+                . When we are accepting sponsorships, payments are processed by Stripe: you can pay by card or bank
+                transfer, or request an invoice on standard net terms. Benefits that depend on the event (such as
+                booth space, speaking slots, or judging) are provided as described, and we will work with you if
+                anything needs to change.
               </p>
               <p className="text-gray-700 leading-relaxed">
                 Sponsorship payments are <strong>generally non-refundable once paid</strong>. Unpaid invoices may be

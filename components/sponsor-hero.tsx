@@ -33,7 +33,7 @@ export function SponsorHero() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-100 text-pink-600 font-medium text-sm mb-6"
           >
             <Sparkles className="size-4" />
-            Southwest MN Hacks &middot; Fall 2026
+            Southwest MN Hacks
           </m.div>
           <m.h1 variants={item} className="text-4xl md:text-6xl font-bold text-balance mb-6 leading-tight">
             More than{" "}
@@ -51,23 +51,20 @@ export function SponsorHero() {
           </m.p>
           <m.div variants={item} className="mt-8 flex flex-col items-center justify-center gap-3">
             <a
-              href="#tiers"
+              href={`mailto:${SPONSOR_EMAIL}`}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white transition-shadow hover:shadow-lg hover:shadow-pink-500/25"
             >
-              See sponsorship levels
+              Get in touch about sponsoring
             </a>
-            <a
-              href={`mailto:${SPONSOR_EMAIL}`}
-              className="text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
-            >
-              or email {SPONSOR_EMAIL}
-            </a>
+            <span className="text-sm text-muted-foreground">
+              {SPONSOR_EMAIL}
+            </span>
           </m.div>
           <m.div variants={item} className="mt-10 pt-8 border-t border-border max-w-2xl mx-auto">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm font-medium text-foreground">
               <span className="inline-flex items-center gap-2">
                 <Calendar className="size-4 text-orange-600" />
-                {EVENT_DATES}
+                Most recently: {EVENT_DATES}
               </span>
               <a
                 href={VENUE_MAP_URL}

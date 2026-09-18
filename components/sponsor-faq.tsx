@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { SPONSOR_DEADLINE } from "@/lib/config"
+import { SPONSOR_EMAIL } from "@/lib/config"
 
 const faqs = [
   {
@@ -8,28 +8,28 @@ const faqs = [
       "We bring together college, graduate, and high school students from across the region, along with community members and mentors. Sponsors meet them in person at a networking meal, at a booth, and while mentoring or judging, rather than through a name on a banner.",
   },
   {
-    question: "When do we need to decide?",
-    answer: `The ${SPONSOR_DEADLINE} deadline that guaranteed every benefit in a tier — printed t-shirt logo placement and, for Gold and above, a sponsored challenge prompt — has passed. We still welcome sponsors: you'll receive all digital and day-of benefits, though the print and challenge-prompt deadlines are behind us.`,
+    question: "Is Southwest MN Hacks currently taking new sponsorships?",
+    answer:
+      "Not right now. Fall 2026 has already happened, and we don't have a next event on the calendar yet. If you'd like to support whatever comes next, reach out and we'll follow up once planning opens.",
   },
   {
     question: "What do sponsor representatives do onsite?",
     answer:
-      "Sponsor reps are welcome to set up a booth or table, talk to students about your organization, mentor teams, and serve on the judging panel. You can be as hands-on or hands-off as you like, and we will work with you to create the right experience.",
+      "At past events, sponsor reps set up a booth or table, talked to students about their organization, mentored teams, and served on the judging panel — as hands-on or hands-off as they liked. We'd build the same kind of experience with a future sponsor.",
   },
   {
     question: "Can we sponsor a prize category or challenge?",
     answer:
-      "Yes. Gold and Platinum sponsors can offer a challenge prompt or sponsor a named prize category. We will work with you to define a real-world problem or theme and recognize it during the event.",
+      "Yes, that's an option we offer higher sponsorship levels once a new event is being planned. We'll work with you to define a real-world problem or theme and recognize it during the event.",
   },
   {
     question: "What if we can't sponsor financially?",
     answer:
-      "In-kind support is incredibly valuable. We accept meals, prizes, t-shirts, snacks and beverages, cloud or software credits, or equipment. Recognition is matched to the value contributed, so contact us to discuss what you can provide.",
+      "In-kind support is incredibly valuable. We accept meals, prizes, t-shirts, snacks and beverages, cloud or software credits, or equipment. Recognition is matched to the value contributed, so contact us to discuss what you could provide for a future event.",
   },
   {
     question: "How does payment work?",
-    answer:
-      "We send an invoice from the Southwest MN Hacks nonprofit, payable by ACH, check, or card on standard net terms. No card is required up front, so it works smoothly with most finance and accounts-payable teams. Smaller and in-kind sponsors who prefer to pay instantly by card can do that too. You'll receive a receipt for your records.",
+    answer: `Once a new event is confirmed, we send an invoice from the Southwest MN Hacks nonprofit, payable by ACH, check, or card on standard net terms. Smaller and in-kind sponsors who prefer to pay instantly by card can do that too. Email ${SPONSOR_EMAIL} to start that conversation.`,
   },
 ]
 

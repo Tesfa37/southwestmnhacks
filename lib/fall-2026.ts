@@ -22,20 +22,18 @@ export const FALL_JUDGES: Judge[] = [
   {
     name: "Alex Polfliet",
     role: "Senior Software Engineer, Amazon",
-    initials: "AP",
+    photo: "/images/fall-2026/Alex.jfif",
   },
   {
-    // "Prof." prefix and the exact role string match how he is already
-    // published in record-people.tsx and appreciation.tsx. One person must not
-    // carry two different titles across the site; a test pins this.
-    name: "Prof. Oluleye Babatunde",
-    role: "Assistant Professor of Computer Science, SMSU",
+    // Corrected title: "Professor," not "Assistant Professor."
+    name: "Oluleye Babatunde",
+    role: "Professor of Computer Science, Southwest Minnesota State University",
     photo: "/images/babatunde.jpg",
   },
   {
     name: "Mandar Chaudhari",
     role: "Full-Stack and Machine Learning Engineer",
-    initials: "MC",
+    photo: "/images/fall-2026/Mandar.jfif",
   },
 ]
 
@@ -59,6 +57,21 @@ export const DEVPOST_PROJECT_BASE = "https://devpost.com/software/"
 
 export const EXPECTED_FALL_PROJECT_COUNT = 12
 
+/**
+ * Headline metrics for the homepage stats strip. Teams is a confirmed
+ * organizer count, not derived from FALL_PROJECTS.length (12 submitted, but
+ * one additional team did not ship a submission). Judges is derived from
+ * FALL_JUDGES so the two can never drift apart.
+ */
+export const FALL_STATS = {
+  hours: 24,
+  teams: 13,
+  projects: EXPECTED_FALL_PROJECT_COUNT,
+  get judges() {
+    return FALL_JUDGES.length
+  },
+}
+
 /** All 12 submissions. Canonical — awards resolve against this array. */
 export const FALL_PROJECTS: FallProject[] = [
   {
@@ -66,6 +79,7 @@ export const FALL_PROJECTS: FallProject[] = [
     project: "Alignt",
     members: ["Ranjan Khadka", "Alina Ivashchenko", "Ayush Singh", "Asli Oktay"],
     devpost: `${DEVPOST_PROJECT_BASE}alignt`,
+    photo: "/images/fall-2026/2nd place.jpg",
   },
   {
     id: "askbusi",
@@ -86,6 +100,7 @@ export const FALL_PROJECTS: FallProject[] = [
     project: "Bridgeline",
     members: ["Ali Muhammad Nathani", "Bucky2OP Patil", "sanikhan17 sani", "Lexi Weems"],
     devpost: `${DEVPOST_PROJECT_BASE}will-name-it-later-n7daxl`,
+    photo: "/images/fall-2026/1st place.jpg",
   },
   {
     id: "skillscope-ai",
@@ -129,8 +144,11 @@ export const FALL_PROJECTS: FallProject[] = [
     devpost: `${DEVPOST_PROJECT_BASE}talent-radar-tceosh`,
   },
   {
+    // Devpost slug is "keystone-39f7dp", but the submitted title (confirmed on
+    // the live Devpost gallery) is "Optimize Prime" — "keystone" only appears
+    // in the tagline ("Find your keystones before they walk out the door").
     id: "keystone-39f7dp",
-    project: "Keystone",
+    project: "Optimize Prime",
     members: ["Marco Perozo", "Matias Birbuet", "Abdul Mughees", "Saishal Shrestha"],
     devpost: `${DEVPOST_PROJECT_BASE}keystone-39f7dp`,
   },
@@ -139,6 +157,7 @@ export const FALL_PROJECTS: FallProject[] = [
     project: "Foresight",
     members: ["Anirudra J Rayamajhi", "Aashish Gaire", "Ayush Gaire", "Bibek Subedi"],
     devpost: `${DEVPOST_PROJECT_BASE}foresight-4dwhsb`,
+    photo: "/images/fall-2026/3rd place.jpg",
   },
 ]
 
@@ -164,11 +183,23 @@ export const AWARD_ORDER: FallAward[] = [
 ]
 
 /**
- * Award → FallProject["id"]. EMPTY until judging is final; assigning ids here
- * is the entire announcement. There is no separate "announced" flag and no
- * second winners array: the site derives both from getFallWinners().
+ * Award → FallProject["id"]. Assigning an id here is the entire announcement;
+ * there is no separate "announced" flag and no second winners array — the site
+ * derives both from getFallWinners().
+ *
+ * A single project can hold more than one award: Skillbridge placed 4th AND
+ * won the Creative Award, so it is listed under both keys below. That is
+ * intentional, not a data error — getFallWinners() resolves each award
+ * independently, so the same project's card renders once per award it holds.
  */
-export const FALL_AWARDS: Partial<Record<FallAward, string>> = {}
+export const FALL_AWARDS: Partial<Record<FallAward, string>> = {
+  "1st Place": "will-name-it-later-n7daxl", // Bridgeline
+  "2nd Place": "alignt", // Alignt
+  "3rd Place": "foresight-4dwhsb", // Foresight
+  "4th Place": "skillbridge-1if6sq", // Skillbridge
+  "5th Place": "sunny-days-childcare", // Sunny Days Childcare
+  "Creative Award": "skillbridge-1if6sq", // Skillbridge (also 4th Place)
+}
 
 /**
  * Awards resolved against FALL_PROJECTS, in AWARD_ORDER.

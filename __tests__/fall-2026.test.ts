@@ -15,17 +15,18 @@ describe("judges", () => {
   it("lists the three Fall judges in the supplied order", () => {
     expect(FALL_JUDGES.map((judge) => judge.name)).toEqual([
       "Alex Polfliet",
-      "Prof. Oluleye Babatunde",
+      "Oluleye Babatunde",
       "Mandar Chaudhari",
     ])
   })
 
   it("matches the title already published for Babatunde elsewhere on the site", () => {
-    // record-people.tsx and appreciation.tsx both say this. One person showing
-    // two different titles across the site reads as an error, so it is pinned.
+    // record-people.tsx, appreciation.tsx, and components/home/people-proof.tsx
+    // all say this. One person showing two different titles across the site
+    // reads as an error, so it is pinned.
     const babatunde = FALL_JUDGES.find((judge) => judge.name.includes("Babatunde"))
 
-    expect(babatunde?.role).toBe("Assistant Professor of Computer Science, SMSU")
+    expect(babatunde?.role).toBe("Professor of Computer Science, Southwest Minnesota State University")
   })
 
   it("gives every judge a name and a role", () => {
@@ -117,9 +118,9 @@ describe("the gallery link", () => {
 })
 
 describe("awards", () => {
-  it("is empty until judging is final", () => {
-    expect(Object.keys(FALL_AWARDS)).toHaveLength(0)
-    expect(getFallWinners()).toEqual([])
+  it("announces all six awards", () => {
+    expect(AWARD_ORDER.every((award) => FALL_AWARDS[award])).toBe(true)
+    expect(getFallWinners()).toHaveLength(6)
   })
 
   it("only ever references a project that exists", () => {
@@ -131,10 +132,24 @@ describe("awards", () => {
     }
   })
 
-  it("never gives one project two awards", () => {
-    const assigned = Object.values(FALL_AWARDS)
+  it("allows Skillbridge to hold both 4th Place and the Creative Award", () => {
+    // The only project confirmed to win two awards. Any other repeat would be
+    // a data error, so this checks the exception by name rather than
+    // asserting every award id is globally unique.
+    expect(FALL_AWARDS["4th Place"]).toBe("skillbridge-1if6sq")
+    expect(FALL_AWARDS["Creative Award"]).toBe("skillbridge-1if6sq")
 
-    expect(new Set(assigned).size).toBe(assigned.length)
+    const assigned = Object.values(FALL_AWARDS) as string[]
+    const counts = new Map<string, number>()
+    for (const id of assigned) counts.set(id, (counts.get(id) ?? 0) + 1)
+
+    for (const [id, count] of counts) {
+      if (id === "skillbridge-1if6sq") {
+        expect(count).toBe(2)
+      } else {
+        expect(count).toBe(1)
+      }
+    }
   })
 
   it("orders resolved winners by AWARD_ORDER, not object key order", () => {

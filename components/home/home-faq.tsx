@@ -79,8 +79,8 @@ export function buildFaqs(phase: EventPhase): HomeFaq[] {
       question: "Are there prizes?",
       answer:
         phase === "ended"
-          ? "Yes. 1st, 2nd, and 3rd place teams won prizes, and every submitted project earned recognition on Devpost."
-          : "Yes. 1st, 2nd, and 3rd place teams win prizes, and every submitted project gets recognition on Devpost.",
+          ? "Yes. The top 5 teams won prizes, one team took the Creative Award for the bonus challenge, and every submitted project earned recognition on Devpost."
+          : "Yes. The top 5 teams win prizes, one team takes the Creative Award for the bonus challenge, and every submitted project gets recognition on Devpost.",
     },
     {
       question: "How do I submit my project?",

@@ -285,8 +285,9 @@ export default function RulesPage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Prizes</h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  1st, 2nd, and 3rd place teams win prizes, and every submitted project gets recognition on Devpost.
-                  Prize amounts are not published publicly. Here's how prizes work:
+                  The top 5 teams win prizes, one team takes the Creative Award for the bonus challenge, and every
+                  submitted project gets recognition on Devpost. Prize amounts are not published publicly. Here's how
+                  prizes work:
                 </p>
                 <ul className="space-y-3 mb-4">
                   <li className="flex items-start gap-3">

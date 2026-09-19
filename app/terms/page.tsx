@@ -44,7 +44,7 @@ export default function TermsPage() {
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Who we are</h2>
               <p className="text-gray-700 leading-relaxed">
                 {LEGAL_ENTITY_NAME} is a nonprofit organization based in {GOVERNING_STATE} that runs {EVENT_NAME}, a
-                student hackathon hosted at Southwest Minnesota State University in Marshall, Minnesota.
+                student hackathon held at Southwest Minnesota State University in Marshall, Minnesota.
               </p>
             </div>
 

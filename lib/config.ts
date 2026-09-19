@@ -109,7 +109,9 @@ export const LEGAL_ENTITY_NAME = "Southwest MN Hacks"
 export const GOVERNING_STATE = "Minnesota"
 export const MAILING_ADDRESS = "1303 Birch St. Marshall, MN, 56258"
 
-// Host framing. Used wherever the host/partner is described. No SMSU sponsorship
-// implication, no SMSU or Mustangs logo.
+// Host framing. Used wherever the host/partner is described. The nonprofit is
+// always the host; SMSU is always the venue and nothing more. Keep "venue" in
+// its own sentence — "hosted at SMSU" reads as though the university runs the
+// event. No SMSU sponsorship implication, no SMSU or Mustangs logo.
 export const PARTNERSHIP_LINE =
-  "Run by the Southwest MN Hacks nonprofit in partnership with Aulden, hosted at SMSU."
+  "Run by the Southwest MN Hacks nonprofit in partnership with Aulden. SMSU provides the venue."

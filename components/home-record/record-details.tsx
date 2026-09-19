@@ -16,7 +16,7 @@ const FORMAT = [
   },
   {
     title: "Win",
-    line: "1st, 2nd, and 3rd place take prizes, and every submitted project gets recognition on Devpost.",
+    line: "The top 5 teams take prizes, one team takes the Creative Award for the bonus challenge, and every submitted project gets recognition on Devpost.",
   },
 ]
 

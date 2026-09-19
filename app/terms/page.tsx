@@ -46,6 +46,16 @@ export default function TermsPage() {
                 {LEGAL_ENTITY_NAME} is a nonprofit organization based in {GOVERNING_STATE} that runs {EVENT_NAME}, a
                 student hackathon held at Southwest Minnesota State University in Marshall, Minnesota.
               </p>
+              {/* The venue relationship is easy to mistake for an institutional one:
+                  SMSU supplies the space, its faculty judge, and an SMSU student club
+                  is a listed partner. This states the limit without denying any of
+                  that — a flat "not affiliated" would be untrue. */}
+              <p className="text-gray-700 leading-relaxed mt-4">
+                {LEGAL_ENTITY_NAME} is an independent organization. It is not part of, controlled by, or acting on
+                behalf of Southwest Minnesota State University. SMSU provides the venue; it does not organize,
+                sponsor, or endorse the event. SMSU student organizations, faculty, and staff who take part do so as
+                partners, judges, mentors, or volunteers in their own capacity, not on the university's behalf.
+              </p>
             </div>
 
             <div>
@@ -157,7 +167,7 @@ export default function TermsPage() {
             </div>
 
             <div className="border-t border-gray-200 pt-8">
-              <p className="text-sm text-gray-500">Last updated: June 23, 2026</p>
+              <p className="text-sm text-gray-500">Last updated: September 19, 2026</p>
             </div>
           </div>
         </section>

@@ -3,7 +3,15 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Scale } from "lucide-react"
-import { EVENT_NAME, LEGAL_ENTITY_NAME, GOVERNING_STATE, SUPPORT_EMAIL, SPONSOR_EMAIL } from "@/lib/config"
+import {
+  EVENT_NAME,
+  LEGAL_ENTITY_NAME,
+  GOVERNING_STATE,
+  SUPPORT_EMAIL,
+  SPONSOR_EMAIL,
+  EIN,
+  MAILING_ADDRESS,
+} from "@/lib/config"
 
 export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
@@ -54,7 +62,16 @@ export default function TermsPage() {
                 {LEGAL_ENTITY_NAME} is an independent organization. It is not part of, controlled by, or acting on
                 behalf of Southwest Minnesota State University. SMSU provides the venue; it does not organize,
                 sponsor, or endorse the event. SMSU student organizations, faculty, and staff who take part do so as
-                partners, judges, mentors, or volunteers in their own capacity, not on the university's behalf.
+                partners, judges, mentors, or volunteers in their own capacity, not on the university&apos;s behalf.
+              </p>
+              <p className="text-gray-700 leading-relaxed mt-4">
+                {LEGAL_ENTITY_NAME} is a {GOVERNING_STATE} nonprofit corporation, tax-exempt under section 501(c)(3)
+                of the Internal Revenue Code, EIN {EIN}. Our mailing address is {MAILING_ADDRESS}. More about the
+                organization, its programs, and its history is on our{" "}
+                <Link href="/about" className="text-blue-600 hover:text-blue-700 underline">
+                  About page
+                </Link>
+                .
               </p>
             </div>
 

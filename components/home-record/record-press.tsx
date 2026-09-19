@@ -3,11 +3,20 @@ import { ArrowUpRight, Linkedin, Instagram } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { EvidenceStamp } from "@/components/home-record/evidence-stamp"
 import { ACTION_PILL, DISPLAY, MUTED } from "@/components/home-record/tokens"
-import { MARSHALL_ARTICLE_URL, SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL } from "@/lib/config"
+import {
+  MARSHALL_ARTICLE_SPRING_URL,
+  MARSHALL_ARTICLE_FALL_URL,
+  SCHWANS_LINKEDIN_URL,
+  SCHWANS_INSTAGRAM_URL,
+} from "@/lib/config"
 
 // The strongest artifact gets its own band rather than a slot in a card row:
 // it is the only receipt with a physical object to show, and pairing that scan
 // with stage photos in a 3-up grid made the row read as mismatched.
+//
+// Only the March headline is quoted. The September article is linked and dated
+// but never quoted: its headline calls the event an SMSU hackathon, and
+// reproducing that here would undo the host framing the rest of the site keeps.
 export function RecordPress() {
   return (
     <section
@@ -22,17 +31,21 @@ export function RecordPress() {
                 In the press
               </p>
               <h2 className={`${DISPLAY} text-3xl sm:text-4xl font-black mb-4`}>
-                The local paper covered it.
+                The local paper covered both.
               </h2>
               <p className={`text-lg ${MUTED} leading-relaxed mb-4`}>
                 &ldquo;Two SMSU alum host first-ever Hackathon.&rdquo; The Marshall Independent reported on the March
                 event. Afterwards Schwan&apos;s invited the grand-prize team to keep building their project as a paid
-                engagement.
+                engagement. The paper came back for the September event too.
               </p>
               {/* Tighter than a row of text links: pills carry their own padding. */}
               <div className="flex flex-wrap items-center gap-2 mb-5">
-                <a href={MARSHALL_ARTICLE_URL} target="_blank" rel="noopener noreferrer" className={ACTION_PILL}>
-                  Read the article
+                <a href={MARSHALL_ARTICLE_SPRING_URL} target="_blank" rel="noopener noreferrer" className={ACTION_PILL}>
+                  Read the March article
+                  <ArrowUpRight className="size-4" />
+                </a>
+                <a href={MARSHALL_ARTICLE_FALL_URL} target="_blank" rel="noopener noreferrer" className={ACTION_PILL}>
+                  Read the September article
                   <ArrowUpRight className="size-4" />
                 </a>
                 <a href={SCHWANS_LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className={ACTION_PILL}>
@@ -44,11 +57,14 @@ export function RecordPress() {
                   Schwan&apos;s on Instagram
                 </a>
               </div>
-              <EvidenceStamp>Marshall Independent &middot; March 2026</EvidenceStamp>
+              <div className="flex flex-wrap items-center gap-2">
+                <EvidenceStamp>Marshall Independent &middot; March 2026</EvidenceStamp>
+                <EvidenceStamp>Marshall Independent &middot; September 2026</EvidenceStamp>
+              </div>
             </div>
 
             <a
-              href={MARSHALL_ARTICLE_URL}
+              href={MARSHALL_ARTICLE_SPRING_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Read the Marshall Independent article about the hackathon"

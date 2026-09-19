@@ -10,6 +10,7 @@ import {
   PARTNERSHIP_LINE,
   LEGAL_ENTITY_NAME,
   MAILING_ADDRESS,
+  EIN,
 } from "@/lib/config"
 
 export function Footer() {
@@ -31,6 +32,9 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
               <WaitlistCta variant="footer-link" location="footer" initialPhase={getEventPhase()} />
+              <Link href="/about" className="block text-gray-400 hover:text-white transition-colors">
+                About
+              </Link>
               <Link href="/projects" className="block text-gray-400 hover:text-white transition-colors">
                 Projects
               </Link>
@@ -134,8 +138,19 @@ export function Footer() {
           </div>
           <p className="text-gray-500 max-w-2xl mx-auto">{PARTNERSHIP_LINE}</p>
           <p className="mt-2">© {new Date().getFullYear()} Southwest MN Hacks. All rights reserved.</p>
-          <p className="mt-1 text-gray-500">
+          {/* The legal identity block. Nonprofit verifiers look for the legal
+              name, a full street address, and the EIN together, so keep them in
+              one place and readable — this was text-gray-500 (the lowest
+              contrast in the footer) when a verifier reported being unable to
+              find an address at all. */}
+          <address className="mt-1 not-italic text-gray-400">
             {LEGAL_ENTITY_NAME} &middot; {MAILING_ADDRESS}
+          </address>
+          <p className="mt-1 text-gray-400">
+            A Minnesota nonprofit corporation and 501(c)(3) organization &middot; EIN {EIN} &middot;{" "}
+            <Link href="/about" className="underline hover:text-white transition-colors">
+              About us
+            </Link>
           </p>
         </div>
       </div>

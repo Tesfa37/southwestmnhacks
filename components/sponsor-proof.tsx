@@ -1,7 +1,12 @@
 import Image from "next/image"
 import { Sparkles, Newspaper, ArrowUpRight, Linkedin, Instagram } from "lucide-react"
 import { PartnerLogoWall } from "@/components/partner-logo-wall"
-import { SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL, MARSHALL_ARTICLE_URL as ARTICLE_URL } from "@/lib/config"
+import {
+  SCHWANS_LINKEDIN_URL,
+  SCHWANS_INSTAGRAM_URL,
+  MARSHALL_ARTICLE_SPRING_URL as ARTICLE_URL,
+  MARSHALL_ARTICLE_FALL_URL,
+} from "@/lib/config"
 
 // Trust layer: real event photo + success story, press clipping, partner logos.
 export function SponsorProof() {
@@ -80,17 +85,30 @@ export function SponsorProof() {
             </h3>
             <p className="leading-relaxed text-muted-foreground">
               The local press covered our first event: the students, the projects, and the organizations that made it
-              happen.
+              happen. They covered the September event as well.
             </p>
-            <a
-              href={ARTICLE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-semibold text-orange-600 hover:underline underline-offset-4"
-            >
-              Read the article
-              <ArrowUpRight className="size-4" />
-            </a>
+            {/* Only the March headline is quoted above. The September article is
+                linked but not quoted — its headline attributes the event to SMSU. */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              <a
+                href={ARTICLE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-semibold text-orange-600 hover:underline underline-offset-4"
+              >
+                Read the March article
+                <ArrowUpRight className="size-4" />
+              </a>
+              <a
+                href={MARSHALL_ARTICLE_FALL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-semibold text-orange-600 hover:underline underline-offset-4"
+              >
+                Read the September article
+                <ArrowUpRight className="size-4" />
+              </a>
+            </div>
           </div>
           <a
             href={ARTICLE_URL}

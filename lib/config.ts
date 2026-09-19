@@ -116,6 +116,8 @@ export const MAILING_ADDRESS = "1303 Birch St. Marshall, MN, 56258"
 // institutional wordmark or the Mustangs athletics mark. The "Math and Computer
 // Science Club, SMSU" badge in lib/sponsors/partners.ts is a deliberate
 // exception, not a violation: the student club is a real partner, the university
-// is not. Credit the club, never the institution behind it.
+// is not. Credit the club, never the institution behind it — including in the
+// link, which points at the club's own page even though it sits on an smsu.edu
+// subdomain.
 export const PARTNERSHIP_LINE =
   "Run by the Southwest MN Hacks nonprofit in partnership with Aulden. SMSU provides the venue."

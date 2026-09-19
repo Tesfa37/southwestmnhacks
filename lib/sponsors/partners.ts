@@ -155,11 +155,16 @@ export const PARTNERS: Partner[] = [
     // card's logo well is a fixed h-16 box.
     //
     // The partner is the student club, not the university. Name the club first and
-    // keep "SMSU" as the locator, and point `href` at the club's own page — never
-    // at an smsu.edu institutional or department page, which would credit the
-    // university for a club's support.
+    // keep "SMSU" as the locator.
+    //
+    // `href` must be the club's OWN page. It being on an smsu.edu subdomain is not
+    // the problem and is not a bug to fix — the club's page is hosted on the campus
+    // portal, so mysmsuapp.smsu.edu is correct. What's forbidden is pointing at an
+    // institutional page: this previously linked the university's Mathematics and
+    // Computer Science *department*, which credited SMSU for a student club's
+    // support. Judge the target by whose page it is, not by the domain.
     name: "Math and Computer Science Club, SMSU",
-    href: "https://www.smsu.edu/academics/departments/mathematicscomputerscience/",
+    href: "https://mysmsuapp.smsu.edu/CSClub/",
     src: "/smsu-math-cs-club-logo.png",
     width: 653,
     height: 653,

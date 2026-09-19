@@ -71,6 +71,7 @@ pnpm test         # Vitest (__tests__/)
 
 ### Organization identity (`lib/config.ts`)
 - `LEGAL_ENTITY_NAME`, `EIN`, `ORG_FOUNDED`/`ORG_FOUNDED_DISPLAY`, `MISSION`, `TAX_STATUS_LINE`, and the structured `ORG_ADDRESS` are the single source for every surface that states who the nonprofit is: `/about`, `/terms`, `/contact`, the footer, the Stripe invoice footer (`lib/sponsors/legal.ts`), and the Organization JSON-LD.
+- **The mailing address is a residence.** It is displayed on `/about` and `/contact` only — Google's verification guidance accepts Contact *or* About *or* a site-wide footer, so two named pages plus the JSON-LD is deliberate restraint, not an oversight. **Do not add it back to the footer** or to other pages. The EIN carries no such constraint (it is public for a 501(c)(3)) and stays in the footer sitewide.
 - **`ORG_ADDRESS` (1303 Birch St) is the ORGANIZATION's address; SMSU's 1501 State St is the VENUE.** Never swap them. The venue address belongs only to the Event schema's `location`; a verifier reading the university's address as ours is the bug that caused the failed verification.
 - `MAILING_ADDRESS` is derived from `ORG_ADDRESS` — edit the parts, not the one-line string.
 - `MISSION` is rendered verbatim on `/about`, as the Organization schema `description`, and inside all three `app/layout.tsx` descriptions. Edit it once.

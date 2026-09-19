@@ -10,7 +10,6 @@ import {
   SUPPORT_EMAIL,
   SPONSOR_EMAIL,
   EIN,
-  MAILING_ADDRESS,
 } from "@/lib/config"
 
 export const metadata: Metadata = {
@@ -66,12 +65,11 @@ export default function TermsPage() {
               </p>
               <p className="text-gray-700 leading-relaxed mt-4">
                 {LEGAL_ENTITY_NAME} is a {GOVERNING_STATE} nonprofit corporation, tax-exempt under section 501(c)(3)
-                of the Internal Revenue Code, EIN {EIN}. Our mailing address is {MAILING_ADDRESS}. More about the
-                organization, its programs, and its history is on our{" "}
+                of the Internal Revenue Code, EIN {EIN}. Our mailing address and organization details are on our{" "}
                 <Link href="/about" className="text-blue-600 hover:text-blue-700 underline">
                   About page
                 </Link>
-                .
+                , along with our mission, programs, and history.
               </p>
             </div>
 

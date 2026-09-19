@@ -9,7 +9,6 @@ import {
   DISCORD_ENABLED,
   PARTNERSHIP_LINE,
   LEGAL_ENTITY_NAME,
-  MAILING_ADDRESS,
   EIN,
 } from "@/lib/config"
 
@@ -138,16 +137,13 @@ export function Footer() {
           </div>
           <p className="text-gray-500 max-w-2xl mx-auto">{PARTNERSHIP_LINE}</p>
           <p className="mt-2">© {new Date().getFullYear()} Southwest MN Hacks. All rights reserved.</p>
-          {/* The legal identity block. Nonprofit verifiers look for the legal
-              name, a full street address, and the EIN together, so keep them in
-              one place and readable — this was text-gray-500 (the lowest
-              contrast in the footer) when a verifier reported being unable to
-              find an address at all. */}
-          <address className="mt-1 not-italic text-gray-400">
-            {LEGAL_ENTITY_NAME} &middot; {MAILING_ADDRESS}
-          </address>
+          {/* Legal identity, minus the street address. Google's own guidance
+              accepts the address on Contact OR About OR the footer, so it lives
+              on /about and /contact only — the mailing address is a residence,
+              and every-page display is more exposure than verification needs. */}
           <p className="mt-1 text-gray-400">
-            A Minnesota nonprofit corporation and 501(c)(3) organization &middot; EIN {EIN} &middot;{" "}
+            {LEGAL_ENTITY_NAME} &middot; A Minnesota nonprofit corporation and 501(c)(3) organization &middot; EIN{" "}
+            {EIN} &middot;{" "}
             <Link href="/about" className="underline hover:text-white transition-colors">
               About us
             </Link>

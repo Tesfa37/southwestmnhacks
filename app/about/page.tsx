@@ -8,7 +8,6 @@ import {
   EIN,
   GOVERNING_STATE,
   LEGAL_ENTITY_NAME,
-  MAILING_ADDRESS,
   MARSHALL_ARTICLE_FALL_URL,
   MARSHALL_ARTICLE_SPRING_URL,
   MISSION,
@@ -237,7 +236,7 @@ export default function AboutPage() {
                 <Link href="/contact" className={LINK}>
                   Get in touch
                 </Link>
-                . Mail reaches us at {MAILING_ADDRESS}.
+                .
               </p>
             </div>
           </div>

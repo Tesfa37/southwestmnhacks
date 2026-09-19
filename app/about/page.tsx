@@ -170,8 +170,8 @@ export default function AboutPage() {
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Who runs it</h2>
               <p className="text-gray-700 leading-relaxed">
                 Southwest MN Hacks was founded and is run by <strong>Bityana Yishak</strong> and{" "}
-                <strong>Tesfatsion Desta</strong>, Co-Founders. Faculty, engineers, and regional employers contribute
-                as mentors, judges, and sponsors.
+                <strong>Tesfatsion Desta</strong>, Co-Founders. Nobody draws a salary from the organization. Faculty,
+                engineers, and regional employers contribute as mentors, judges, and sponsors.
               </p>
               <p className="text-gray-700 leading-relaxed mt-4">
                 Southwest MN Hacks is an independent organization. Our events are held at Southwest Minnesota State

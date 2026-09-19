@@ -80,7 +80,7 @@ export default function ContactPage() {
             </div>
 
             <p className="text-sm text-gray-500 text-center mt-10 leading-relaxed">
-              {LEGAL_ENTITY_NAME} is a nonprofit run by students in southwestern Minnesota. We read every message and
+              {LEGAL_ENTITY_NAME} is a nonprofit based in southwestern Minnesota. We read every message and
               reply as soon as we can.
             </p>
           </div>

@@ -153,6 +153,11 @@ export const PARTNERS: Partner[] = [
   {
     // Square badge (1:1), not a wordmark: h-16 is the ceiling because the homepage
     // card's logo well is a fixed h-16 box.
+    //
+    // The partner is the student club, not the university. Name the club first and
+    // keep "SMSU" as the locator, and point `href` at the club's own page — never
+    // at an smsu.edu institutional or department page, which would credit the
+    // university for a club's support.
     name: "Math and Computer Science Club, SMSU",
     href: "https://www.smsu.edu/academics/departments/mathematicscomputerscience/",
     src: "/smsu-math-cs-club-logo.png",

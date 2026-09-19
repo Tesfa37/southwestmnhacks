@@ -112,6 +112,10 @@ export const MAILING_ADDRESS = "1303 Birch St. Marshall, MN, 56258"
 // Host framing. Used wherever the host/partner is described. The nonprofit is
 // always the host; SMSU is always the venue and nothing more. Keep "venue" in
 // its own sentence — "hosted at SMSU" reads as though the university runs the
-// event. No SMSU sponsorship implication, no SMSU or Mustangs logo.
+// event. Never imply SMSU sponsorship, and never render the university's
+// institutional wordmark or the Mustangs athletics mark. The "Math and Computer
+// Science Club, SMSU" badge in lib/sponsors/partners.ts is a deliberate
+// exception, not a violation: the student club is a real partner, the university
+// is not. Credit the club, never the institution behind it.
 export const PARTNERSHIP_LINE =
   "Run by the Southwest MN Hacks nonprofit in partnership with Aulden. SMSU provides the venue."

@@ -72,6 +72,9 @@ export function HeaderClient({
             <Link href="/resources" className={c.link}>
               Resources
             </Link>
+            <Link href="/about" className={c.link}>
+              About
+            </Link>
             <Link
               href="/sponsor"
               onClick={() => track('Sponsor Click', { location: 'header-desktop' })}
@@ -128,6 +131,13 @@ export function HeaderClient({
               onClick={() => setMobileMenuOpen(false)}
             >
               Resources
+            </Link>
+            <Link
+              href="/about"
+              className={c.mobileLink}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About
             </Link>
             <Link
               href="/sponsor"

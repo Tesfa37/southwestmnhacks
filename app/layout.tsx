@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, Archivo } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import { MISSION } from "@/lib/config"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
@@ -17,8 +18,9 @@ export const metadata: Metadata = {
     template: "%s | Southwest MN Hacks",
     default: "Southwest MN Hacks | Student Hackathons in Marshall, MN",
   },
-  description:
-    "Southwest MN Hacks builds southwest Minnesota's student technology community through hackathons, mentorship, and real-world problem solving. See how Fall 2026 went.",
+  // MISSION is the same sentence rendered as visible copy on /about and as the
+  // Organization schema's `description`, so the three can't drift.
+  description: `${MISSION} See how Fall 2026 went.`,
   keywords: [
     "hackathon",
     "Marshall MN",
@@ -38,8 +40,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://southwestmnhacks.org",
     title: "Southwest MN Hacks | Student Hackathons in Marshall, MN",
-    description:
-      "Southwest MN Hacks builds southwest Minnesota's student technology community through hackathons, mentorship, and real-world problem solving. See how Fall 2026 went.",
+    description: `${MISSION} See how Fall 2026 went.`,
     siteName: "Southwest MN Hacks",
     images: [
       {
@@ -53,8 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Southwest MN Hacks | Student Hackathons in Marshall, MN",
-    description:
-      "Southwest MN Hacks builds southwest Minnesota's student technology community through hackathons, mentorship, and real-world problem solving. See how Fall 2026 went.",
+    description: `${MISSION} See how Fall 2026 went.`,
     images: ["/og-image.png"],
   },
   robots: {

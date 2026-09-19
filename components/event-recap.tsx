@@ -38,7 +38,7 @@ export function EventRecap() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base md:text-lg">
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Southwest Minnesota&apos;s first-ever student hackathon, hosted in Marshall</span>
+            <span>Southwest Minnesota&apos;s first-ever student hackathon, held in Marshall</span>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
@@ -58,7 +58,7 @@ export function EventRecap() {
           </div>
           <div className="flex items-start gap-3">
             <span className="text-yellow-300 font-bold mt-0.5">&#8226;</span>
-            <span>Hosted by Aulden at the Upper Conference Center, SMSU</span>
+            <span>Held at the Upper Conference Center, SMSU, in partnership with Aulden</span>
           </div>
         </div>
       </div>

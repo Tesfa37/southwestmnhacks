@@ -2,13 +2,13 @@ import { RecordHome } from "@/components/home-record/record-home"
 // The FAQ copy is shared with the JSON-LD below, so the schema always matches
 // what RecordFaq actually renders.
 import { buildFaqs } from "@/components/home/home-faq"
+import { ORG_SCHEMA_ID, OrgSchema } from "@/components/org-schema"
 import { getEventPhase } from "@/lib/event-phase"
 import {
   EVENT_NAME,
   WAITLIST_FORM_URL,
   EVENT_START_AT,
   EVENT_END_AT,
-  SUPPORT_EMAIL,
   DEVPOST_FALL_URL,
   SCHWANS_LINKEDIN_URL,
   SCHWANS_INSTAGRAM_URL,
@@ -45,12 +45,10 @@ export default function HomePage() {
       },
     },
     image: ["https://southwestmnhacks.org/og-image.png"],
-    organizer: {
-      "@type": "Organization",
-      name: "Southwest MN Hacks",
-      url: "https://southwestmnhacks.org",
-      email: SUPPORT_EMAIL,
-    },
+    // References the NGO node emitted by <OrgSchema /> rather than repeating a
+    // name/url stub, so the Event and the organization resolve to one entity.
+    // The organization's own address lives there; `location` above is the venue.
+    organizer: { "@id": ORG_SCHEMA_ID },
     sameAs: [DEVPOST_FALL_URL, "https://visitmarshallmn.com", SCHWANS_LINKEDIN_URL, SCHWANS_INSTAGRAM_URL],
     offers: {
       "@type": "Offer",
@@ -86,6 +84,9 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Organization (NGO) Schema — the nonprofit itself, with its own address
+          and EIN. The Event's `organizer` points at this node's @id. */}
+      <OrgSchema />
       {/* Event Schema Structured Data */}
       <script
         type="application/ld+json"

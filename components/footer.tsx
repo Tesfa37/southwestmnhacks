@@ -9,7 +9,7 @@ import {
   DISCORD_ENABLED,
   PARTNERSHIP_LINE,
   LEGAL_ENTITY_NAME,
-  MAILING_ADDRESS,
+  EIN,
 } from "@/lib/config"
 
 export function Footer() {
@@ -31,6 +31,9 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
               <WaitlistCta variant="footer-link" location="footer" initialPhase={getEventPhase()} />
+              <Link href="/about" className="block text-gray-400 hover:text-white transition-colors">
+                About
+              </Link>
               <Link href="/projects" className="block text-gray-400 hover:text-white transition-colors">
                 Projects
               </Link>
@@ -134,8 +137,16 @@ export function Footer() {
           </div>
           <p className="text-gray-500 max-w-2xl mx-auto">{PARTNERSHIP_LINE}</p>
           <p className="mt-2">© {new Date().getFullYear()} Southwest MN Hacks. All rights reserved.</p>
-          <p className="mt-1 text-gray-500">
-            {LEGAL_ENTITY_NAME} &middot; {MAILING_ADDRESS}
+          {/* Legal identity, minus the street address. Google's own guidance
+              accepts the address on Contact OR About OR the footer, so it lives
+              on /about and /contact only — the mailing address is a residence,
+              and every-page display is more exposure than verification needs. */}
+          <p className="mt-1 text-gray-400">
+            {LEGAL_ENTITY_NAME} &middot; A Minnesota nonprofit corporation and 501(c)(3) organization &middot; EIN{" "}
+            {EIN} &middot;{" "}
+            <Link href="/about" className="underline hover:text-white transition-colors">
+              About us
+            </Link>
           </p>
         </div>
       </div>

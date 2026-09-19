@@ -22,6 +22,7 @@ pnpm test         # Vitest (__tests__/)
 - `page.tsx` - Main landing page (server component, ISR `revalidate = 3600`)
 - `recap/page.tsx` - March 2026 recap (ISR), metadata in `recap/layout.tsx`
 - `sponsor/page.tsx` + `sponsor/start|success|cancel` - sponsor funnel (see below)
+- `about/page.tsx` - **the organization's page**, as opposed to the event pages that are the rest of the site. Carries the mission, programs, dated history, founders, and the legal identity block (legal name, 501(c)(3), EIN, full street address). Built for nonprofit verification (Google for Nonprofits rejected an application because none of this was on the site), so **do not thin out the "Organization details" block for visual balance** — name, status, EIN and street address must stay together and rendered as text.
 - `resources`, `rules`, `safety`, `code-of-conduct`, `privacy`, `terms`, `refunds`, `contact`
 - `not-found.tsx` (styled 404), `error.tsx` (minimal boundary)
 - `sitemap.ts` (fixed `SITE_UPDATED` dates - bump when content changes), `robots.ts` (sponsor flow disallowed), `manifest.ts`
@@ -63,9 +64,21 @@ pnpm test         # Vitest (__tests__/)
 ### Canonical copy (keep consistent everywhere)
 - Duration: "24-hour overnight hackathon" (doors 8 AM Sat, Devpost submissions due 8 AM Sun, awards after the Sunday presentations — no clock time is promised for awards or the close)
 - Eligibility: students ages 14+, high school through university, plus recent graduates within 1 year
+- **Never describe the ORGANIZATION as student-run, student-founded, or run by students.** The founders are professionals in their fields; that framing undersells the nonprofit to sponsors, grant-makers and verifiers. Say "a nonprofit based in southwestern Minnesota", name the Co-Founders, and state that nobody draws a salary. This is about the *organization* only — the **events** are still student hackathons for students ages 14+, and that wording stays (see Eligibility above).
 - Brand: "Southwest MN Hacks" (spaced). Known exception: `public/og-image.png` still reads "SouthwestMN Hacks" - regenerating it from `public/og-image.svg` is an open task.
-- Prizes: structure published (1st/2nd/3rd + Devpost recognition), amounts "announced closer to the event"
+- Prizes: structure published (top 5 placements + one Creative Award for the bonus challenge + Devpost recognition for every submission), amounts "announced closer to the event". Never write the structure as 1st/2nd/3rd only — `lib/fall-2026.ts` carries all six Fall awards. March 2026 had five placements and no Creative Award, so `/events/spring-2026` copy stays top-5-only.
+- Host: the Southwest MN Hacks nonprofit hosts the event; SMSU provides the venue and nothing more. Never write "hosted at SMSU" or credit a partner as host — `app/code-of-conduct/page.tsx` has the model sentence, and `PARTNERSHIP_LINE` in `lib/config.ts` is the short form. The Marshall Independent headline ("Two SMSU alum host first-ever Hackathon") is a verbatim quote and is exempt. `/terms` "Who we are" carries the independence statement; it stops short of "not affiliated" on purpose, because an SMSU student club is a listed partner and SMSU faculty judge.
 - Sign-up: "Join the waitlist" / "Waitlist closed" - never "Register" or "Registration closed". "Registration" still appears on the legal and safety pages, where it correctly means the intake/check-in process for students who get a spot.
+
+### Organization identity (`lib/config.ts`)
+- `LEGAL_ENTITY_NAME`, `EIN`, `ORG_FOUNDED`/`ORG_FOUNDED_DISPLAY`, `MISSION`, `TAX_STATUS_LINE`, and the structured `ORG_ADDRESS` are the single source for every surface that states who the nonprofit is: `/about`, `/terms`, `/contact`, the footer, the Stripe invoice footer (`lib/sponsors/legal.ts`), and the Organization JSON-LD.
+- **The mailing address is a residence.** It is displayed on `/about` and `/contact` only — Google's verification guidance accepts Contact *or* About *or* a site-wide footer, so two named pages plus the JSON-LD is deliberate restraint, not an oversight. **Do not add it back to the footer** or to other pages. The EIN carries no such constraint (it is public for a 501(c)(3)) and stays in the footer sitewide.
+- **`ORG_ADDRESS` (1303 Birch St) is the ORGANIZATION's address; SMSU's 1501 State St is the VENUE.** Never swap them. The venue address belongs only to the Event schema's `location`; a verifier reading the university's address as ours is the bug that caused the failed verification.
+- `MAILING_ADDRESS` is derived from `ORG_ADDRESS` — edit the parts, not the one-line string.
+- `MISSION` is rendered verbatim on `/about`, as the Organization schema `description`, and inside all three `app/layout.tsx` descriptions. Edit it once.
+- `components/org-schema.tsx` emits the `NGO` node on `/` and `/about` under a stable `@id`; the homepage Event's `organizer` references that `@id` rather than repeating a stub.
+- 501(c)(3) status is stated, never turned into a deductibility promise — `lib/sponsors/legal.ts` still forbids calling sponsorships "donations" or "fully tax deductible", because sponsorships carry benefits.
+- Press: `MARSHALL_ARTICLE_SPRING_URL` / `MARSHALL_ARTICLE_FALL_URL` (near-identical URLs, like the Devpost pair). **The March headline is quoted verbatim; the September headline never is** — it calls the event an SMSU hackathon, which contradicts the host framing above. Cite and link it, don't reproduce it.
 
 ### Images
 - `next.config.mjs` configures the optimizer (webp, restricted `deviceSizes`); intrinsic width/height still required

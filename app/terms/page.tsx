@@ -3,7 +3,14 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Scale } from "lucide-react"
-import { EVENT_NAME, LEGAL_ENTITY_NAME, GOVERNING_STATE, SUPPORT_EMAIL, SPONSOR_EMAIL } from "@/lib/config"
+import {
+  EVENT_NAME,
+  LEGAL_ENTITY_NAME,
+  GOVERNING_STATE,
+  SUPPORT_EMAIL,
+  SPONSOR_EMAIL,
+  EIN,
+} from "@/lib/config"
 
 export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
@@ -44,7 +51,25 @@ export default function TermsPage() {
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Who we are</h2>
               <p className="text-gray-700 leading-relaxed">
                 {LEGAL_ENTITY_NAME} is a nonprofit organization based in {GOVERNING_STATE} that runs {EVENT_NAME}, a
-                student hackathon hosted at Southwest Minnesota State University in Marshall, Minnesota.
+                student hackathon held at Southwest Minnesota State University in Marshall, Minnesota.
+              </p>
+              {/* The venue relationship is easy to mistake for an institutional one:
+                  SMSU supplies the space, its faculty judge, and an SMSU student club
+                  is a listed partner. This states the limit without denying any of
+                  that — a flat "not affiliated" would be untrue. */}
+              <p className="text-gray-700 leading-relaxed mt-4">
+                {LEGAL_ENTITY_NAME} is an independent organization. It is not part of, controlled by, or acting on
+                behalf of Southwest Minnesota State University. SMSU provides the venue; it does not organize,
+                sponsor, or endorse the event. SMSU student organizations, faculty, and staff who take part do so as
+                partners, judges, mentors, or volunteers in their own capacity, not on the university&apos;s behalf.
+              </p>
+              <p className="text-gray-700 leading-relaxed mt-4">
+                {LEGAL_ENTITY_NAME} is a {GOVERNING_STATE} nonprofit corporation, tax-exempt under section 501(c)(3)
+                of the Internal Revenue Code, EIN {EIN}. Our mailing address and organization details are on our{" "}
+                <Link href="/about" className="text-blue-600 hover:text-blue-700 underline">
+                  About page
+                </Link>
+                , along with our mission, programs, and history.
               </p>
             </div>
 
@@ -157,7 +182,7 @@ export default function TermsPage() {
             </div>
 
             <div className="border-t border-gray-200 pt-8">
-              <p className="text-sm text-gray-500">Last updated: June 23, 2026</p>
+              <p className="text-sm text-gray-500">Last updated: September 19, 2026</p>
             </div>
           </div>
         </section>

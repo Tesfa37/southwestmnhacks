@@ -24,7 +24,7 @@ export default function PrivacyPage() {
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-balance mb-6 leading-tight">Privacy Policy</h1>
             <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
-              We're a student-run hackathon that takes your privacy seriously. Here's the straightforward story of how
+              We're a nonprofit that takes your privacy seriously. Here's the straightforward story of how
               we handle your data.
             </p>
           </div>
@@ -427,7 +427,7 @@ export default function PrivacyPage() {
                   </li>
                 </ul>
                 <p className="text-gray-700 leading-relaxed">
-                  Seriously, just reach out. We're students too, and we get it. Your data, your choice.
+                  Seriously, just reach out. Your data, your choice.
                 </p>
               </div>
             </div>
@@ -478,7 +478,7 @@ export default function PrivacyPage() {
             {/* Footer Note */}
             <div className="border-t border-gray-200 pt-8">
               <p className="text-sm text-gray-500 text-center leading-relaxed">
-                This is a student-run event organized by passionate students in southwestern Minnesota. We take your
+                Southwest MN Hacks is a nonprofit based in southwestern Minnesota. We take your
                 privacy seriously, but we also keep things simple and straightforward. If something in this policy
                 doesn't make sense, please reach out, we're happy to explain in plain English!
               </p>

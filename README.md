@@ -1,6 +1,6 @@
 # Southwest MN Hacks
 
-Production website and sponsor platform for [Southwest MN Hacks](https://southwestmnhacks.org), a 501(c)(3) nonprofit hackathon serving southwest Minnesota, run in partnership with Aulden and hosted at Southwest Minnesota State University.
+Production website and sponsor platform for [Southwest MN Hacks](https://southwestmnhacks.org), a 501(c)(3) nonprofit hackathon serving southwest Minnesota, run in partnership with Aulden. Events are held at Southwest Minnesota State University, which provides the venue.
 
 The first event ran March 21, 2026 with front-page local press coverage. **Southwest MN Hacks: Fall 2026** runs September 12 and 13, 2026 at SMSU.
 

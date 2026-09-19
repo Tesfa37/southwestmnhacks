@@ -4,7 +4,7 @@ import { Reveal } from "@/components/reveal"
 import { BAND, BODY_STRONG, HEADING, LINK, MUTED, type Tone } from "@/components/home/tone"
 import { BLUR_DATA_URL } from "@/lib/images"
 import {
-  MARSHALL_ARTICLE_URL,
+  MARSHALL_ARTICLE_SPRING_URL,
   SCHWANS_LINKEDIN_URL,
   SCHWANS_INSTAGRAM_URL,
   PARTNERSHIP_LINE,
@@ -75,7 +75,7 @@ export function PressOutcome({ tone }: { tone: Tone }) {
                 their project as a paid engagement.
               </p>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-                <a href={MARSHALL_ARTICLE_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                <a href={MARSHALL_ARTICLE_SPRING_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
                   Read the article
                   <ArrowUpRight className="size-4" />
                 </a>
@@ -93,7 +93,7 @@ export function PressOutcome({ tone }: { tone: Tone }) {
               </p>
             </div>
             <a
-              href={MARSHALL_ARTICLE_URL}
+              href={MARSHALL_ARTICLE_SPRING_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Read the Marshall Independent article about the hackathon"

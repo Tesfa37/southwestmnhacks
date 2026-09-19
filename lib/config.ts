@@ -64,10 +64,18 @@ export const MINOR_CONSENT_PDF = "/docs/minor-consent.pdf"
 // masquerade as current. Bump when the documents are revised.
 export const DOCS_UPDATED = "Updated June 2026"
 
-// Marshall Independent coverage of the March 2026 event. Shared by the sponsor
-// proof section and the homepage press module.
-export const MARSHALL_ARTICLE_URL =
+// Marshall Independent coverage, one article per event. Shared by the sponsor
+// proof section and the homepage press module. Careful, the URLs are similar:
+// Spring = .../2026/03/two-smsu-alum-host..., Fall = .../2026/09/students-participate...
+//
+// The Spring headline is quoted verbatim on the site because it credits "SMSU
+// alum" — alumni, not the institution. The Fall headline is NOT: it calls the
+// event an SMSU hackathon, which contradicts the host framing above. Cite and
+// link the Fall article, never reproduce its headline.
+export const MARSHALL_ARTICLE_SPRING_URL =
   "https://www.marshallindependent.com/news/local-news/2026/03/two-smsu-alum-host-first-ever-hackathon/"
+export const MARSHALL_ARTICLE_FALL_URL =
+  "https://www.marshallindependent.com/news/local-news/2026/09/students-participate-in-2nd-smsu-hackathon/"
 
 // Public Schwan's Company social posts about the first (March 2026) event. Used
 // for restrained past-event proof links and the homepage Event schema `sameAs`.
@@ -102,14 +110,61 @@ export const SPONSOR_EMAIL = "sponsors@southwestmnhacks.org"
 export const PRIVACY_EMAIL = "privacy@southwestmnhacks.org"
 export const CONDUCT_EMAIL = "conduct@southwestmnhacks.org"
 
-// Legal entity + mailing address, used on the Terms, Refund, and Contact pages and
-// the Stripe invoice remit-to. Fill MAILING_ADDRESS with the real remit-to address;
-// while empty, the pages omit the address line rather than showing a placeholder.
+// Legal entity identity. Rendered on /about, /contact, /terms and the footer, and
+// fed to the Organization JSON-LD in components/org-schema.tsx. Nonprofit
+// verifiers (Google for Nonprofits, TechSoup) look for the legal name, a full
+// street address, and the EIN together, so these travel as one block.
 export const LEGAL_ENTITY_NAME = "Southwest MN Hacks"
 export const GOVERNING_STATE = "Minnesota"
-export const MAILING_ADDRESS = "1303 Birch St. Marshall, MN, 56258"
 
-// Host framing. Used wherever the host/partner is described. No SMSU sponsorship
-// implication, no SMSU or Mustangs logo.
+/**
+ * The ORGANIZATION's address — not the event venue. SMSU's 1501 State St is the
+ * venue and belongs only to the Event schema's `location`. Never use one where
+ * the other belongs: a verifier that reads the university's address as ours
+ * fails the check, which is exactly what happened before this existed.
+ */
+export const ORG_ADDRESS = {
+  street: "1303 Birch St",
+  city: "Marshall",
+  region: "MN",
+  postalCode: "56258",
+  country: "US",
+} as const
+
+/** One-line form for the footer, the contact card, and the invoice remit-to. */
+export const MAILING_ADDRESS = `${ORG_ADDRESS.street}, ${ORG_ADDRESS.city}, ${ORG_ADDRESS.region} ${ORG_ADDRESS.postalCode}`
+
+/** Federal tax ID, public for a 501(c)(3) and required for nonprofit verification. */
+export const EIN = "41-4690636"
+
+/** ISO incorporation date with the State of Minnesota, 16 days before the first event. */
+export const ORG_FOUNDED = "2026-03-05"
+export const ORG_FOUNDED_DISPLAY = "March 5, 2026"
+
+/**
+ * One sentence, reused as the visible mission on /about, the Organization
+ * schema `description`, and the meta description in app/layout.tsx, so the three
+ * can never drift.
+ */
+export const MISSION =
+  "Southwest MN Hacks builds southwest Minnesota's student technology community through hackathons, mentorship, and real-world problem solving."
+
+/**
+ * Status only. Do NOT extend this into a deductibility promise: sponsorships
+ * carry benefits and are not fully deductible, which lib/sponsors/legal.ts
+ * depends on staying true.
+ */
+export const TAX_STATUS_LINE = `${LEGAL_ENTITY_NAME} is a ${GOVERNING_STATE} nonprofit corporation and a tax-exempt 501(c)(3) organization. EIN ${EIN}.`
+
+// Host framing. Used wherever the host/partner is described. The nonprofit is
+// always the host; SMSU is always the venue and nothing more. Keep "venue" in
+// its own sentence — "hosted at SMSU" reads as though the university runs the
+// event. Never imply SMSU sponsorship, and never render the university's
+// institutional wordmark or the Mustangs athletics mark. The "Math and Computer
+// Science Club, SMSU" badge in lib/sponsors/partners.ts is a deliberate
+// exception, not a violation: the student club is a real partner, the university
+// is not. Credit the club, never the institution behind it — including in the
+// link, which points at the club's own page even though it sits on an smsu.edu
+// subdomain.
 export const PARTNERSHIP_LINE =
-  "Run by the Southwest MN Hacks nonprofit in partnership with Aulden, hosted at SMSU."
+  "Run by the Southwest MN Hacks nonprofit in partnership with Aulden. SMSU provides the venue."

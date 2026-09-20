@@ -83,6 +83,25 @@ export const SCHWANS_LINKEDIN_URL =
   "https://www.linkedin.com/posts/schwans-company_giving-back-means-showing-up-and-our-is-activity-7449533485758832640-ZW8_/"
 export const SCHWANS_INSTAGRAM_URL = "https://www.instagram.com/p/DXFUPQAiWo3/"
 
+// The nonprofit's OWN social profiles. Careful: these are not the SCHWANS_*
+// constants above, which are a sponsor's posts about the March event. These
+// three feed the footer, /contact, and the Organization schema's `sameAs` —
+// verifiers read sameAs to corroborate that the org is who it claims to be, so
+// keep them canonical absolute https URLs with no tracking or `?hl=` query.
+// TODO: swap in the canonical facebook.com/<page-name> URL. The /share/ link
+// below is a redirect: it resolves for a human, but a verifier reading sameAs
+// may not follow it, and share links can be regenerated.
+export const FACEBOOK_URL = "https://www.facebook.com/share/14tYvHFQjTo/"
+export const INSTAGRAM_URL = "https://www.instagram.com/southwestmnhacks26/"
+export const LINKEDIN_URL = "https://www.linkedin.com/company/southwest-mn-hacks/"
+
+/** Render order for every surface that lists all three. */
+export const SOCIAL_LINKS = [
+  { label: "Facebook", href: FACEBOOK_URL },
+  { label: "Instagram", href: INSTAGRAM_URL },
+  { label: "LinkedIn", href: LINKEDIN_URL },
+] as const
+
 // Discord is hidden for now. Flip to true to show the hero button and the
 // footer link again. The invite URL above stays wired up either way.
 export const DISCORD_ENABLED = false

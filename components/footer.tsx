@@ -10,6 +10,7 @@ import {
   PARTNERSHIP_LINE,
   LEGAL_ENTITY_NAME,
   EIN,
+  SOCIAL_LINKS,
 } from "@/lib/config"
 
 export function Footer() {
@@ -95,6 +96,17 @@ export function Footer() {
                   Discord
                 </a>
               )}
+              {SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-gray-400 hover:text-white transition-colors"
+                >
+                  {social.label}
+                </a>
+              ))}
               <a
                 href={DEVPOST_FALL_URL}
                 target="_blank"

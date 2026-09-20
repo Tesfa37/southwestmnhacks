@@ -124,4 +124,4 @@ shadcn/ui is configured with:
 Only `accordion` and `button` are currently installed. To add new components, follow existing patterns in `components/ui/`.
 
 ## Future TODO
-- Set up Discord server and Instagram, then re-add links to footer
+- Set up the Discord server, then re-add its link to the footer

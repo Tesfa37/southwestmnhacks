@@ -78,6 +78,7 @@ pnpm test         # Vitest (__tests__/)
 - `MISSION` is rendered verbatim on `/about`, as the Organization schema `description`, and inside all three `app/layout.tsx` descriptions. Edit it once.
 - `components/org-schema.tsx` emits the `NGO` node on `/` and `/about` under a stable `@id`; the homepage Event's `organizer` references that `@id` rather than repeating a stub.
 - 501(c)(3) status is stated, never turned into a deductibility promise — `lib/sponsors/legal.ts` still forbids calling sponsorships "donations" or "fully tax deductible", because sponsorships carry benefits.
+- Social: `FACEBOOK_URL` / `INSTAGRAM_URL` / `LINKEDIN_URL` are the **nonprofit's own** profiles, rendered via `SOCIAL_LINKS` in the footer and on `/contact`, and fed to the Organization `sameAs`. Do not confuse them with `SCHWANS_INSTAGRAM_URL` / `SCHWANS_LINKEDIN_URL` directly above them — those are a *sponsor's* posts about the March event and belong to the Event node's `sameAs`, not the org's.
 - Press: `MARSHALL_ARTICLE_SPRING_URL` / `MARSHALL_ARTICLE_FALL_URL` (near-identical URLs, like the Devpost pair). **The March headline is quoted verbatim; the September headline never is** — it calls the event an SMSU hackathon, which contradicts the host framing above. Cite and link it, don't reproduce it.
 
 ### Images
@@ -94,5 +95,6 @@ pnpm test         # Vitest (__tests__/)
 
 ## Future TODO
 - Regenerate `public/og-image.png` from the SVG spec with correct "Southwest MN Hacks" spacing
-- Set up Discord server and Instagram, then flip `DISCORD_ENABLED` in `lib/config.ts`
+- Set up the Discord server, then flip `DISCORD_ENABLED` in `lib/config.ts`
+- Swap `FACEBOOK_URL` for the canonical `facebook.com/<page-name>` URL (it is currently a `/share/` redirect, which is a weak `sameAs` signal)
 - After the Fall event: build the Fall recap (consider `/recap/fall-2026` and per-event recap slugs)

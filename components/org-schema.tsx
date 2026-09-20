@@ -1,6 +1,9 @@
 import {
   EIN,
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
   LEGAL_ENTITY_NAME,
+  LINKEDIN_URL,
   MARSHALL_ARTICLE_FALL_URL,
   MARSHALL_ARTICLE_SPRING_URL,
   MISSION,
@@ -43,8 +46,17 @@ export const organizationSchema = {
     postalCode: ORG_ADDRESS.postalCode,
     addressCountry: ORG_ADDRESS.country,
   },
-  // Independent press coverage, the strongest third-party evidence available.
-  sameAs: [MARSHALL_ARTICLE_SPRING_URL, MARSHALL_ARTICLE_FALL_URL],
+  // What a verifier reads to corroborate that this org is real and is who it
+  // says it is: independent press coverage first, then our own official
+  // profiles. These must be the nonprofit's accounts, never a sponsor's posts
+  // (the SCHWANS_* constants) — those belong to the Event node, not here.
+  sameAs: [
+    MARSHALL_ARTICLE_SPRING_URL,
+    MARSHALL_ARTICLE_FALL_URL,
+    FACEBOOK_URL,
+    INSTAGRAM_URL,
+    LINKEDIN_URL,
+  ],
 }
 
 /** Renders the node. Included on `/` and `/about`. */

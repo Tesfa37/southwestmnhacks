@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { WaitlistCta } from "@/components/waitlist-cta"
+import { SocialLinks } from "@/components/social-links"
 import { getEventPhase } from "@/lib/event-phase"
 import {
   SUPPORT_EMAIL,
@@ -10,7 +11,6 @@ import {
   PARTNERSHIP_LINE,
   LEGAL_ENTITY_NAME,
   EIN,
-  SOCIAL_LINKS,
 } from "@/lib/config"
 
 export function Footer() {
@@ -26,6 +26,10 @@ export function Footer() {
             <p className="text-gray-400">
               A free 24-hour hackathon for southwest Minnesota&apos;s next generation of builders.
             </p>
+            {/* Icon row sits with the wordmark rather than in the Community
+                column: that column is plain text links, and a lone row of icons
+                inside it reads as a different kind of thing. */}
+            <SocialLinks variant="icon" onDark className="mt-5" />
           </div>
 
           <div>
@@ -96,17 +100,6 @@ export function Footer() {
                   Discord
                 </a>
               )}
-              {SOCIAL_LINKS.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-gray-400 hover:text-white transition-colors"
-                >
-                  {social.label}
-                </a>
-              ))}
               <a
                 href={DEVPOST_FALL_URL}
                 target="_blank"

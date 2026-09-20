@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { SocialLinks } from "@/components/social-links"
 import { Mail } from "lucide-react"
 import {
   EVENT_NAME,
@@ -10,7 +11,6 @@ import {
   PRIVACY_EMAIL,
   CONDUCT_EMAIL,
   MAILING_ADDRESS,
-  SOCIAL_LINKS,
 } from "@/lib/config"
 
 export const metadata: Metadata = {
@@ -85,20 +85,7 @@ export default function ContactPage() {
               <p className="text-gray-600 leading-relaxed text-sm mb-3">
                 Event announcements, photos, and recaps.
               </p>
-              <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                {SOCIAL_LINKS.map((social) => (
-                  <li key={social.label}>
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-700 underline"
-                    >
-                      {social.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <SocialLinks variant="labeled" />
             </div>
 
             <p className="text-sm text-gray-500 text-center mt-10 leading-relaxed">
